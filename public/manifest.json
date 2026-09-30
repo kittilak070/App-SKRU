@@ -1,0 +1,19 @@
+{
+  "name": "ระบบบริการดิจิทัล มรภ.สงขลา (SKRU Digital Services)",
+  "short_name": "SKRU Digital",
+  "description": "เว็บแอปพลิเคชันระบบบริการดิจิทัล มหาวิทยาลัยราชภัฏสงขลา",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#ea1d24",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/skru-logo.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "productivity", "utilities"]
+}

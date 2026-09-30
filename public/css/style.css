@@ -1,0 +1,756 @@
+/* 
+ * SKRU Digital Services - 2-Tab Interface Stylesheet
+ * Songkhla Rajabhat University - Welcome & Login 2-Tab App
+ */
+
+:root {
+  --primary-red: #ea1d24;
+  --primary-orange: #f76707;
+  --primary-gradient: linear-gradient(90deg, #ea1d24 0%, #f76707 100%);
+  --primary-hover: linear-gradient(90deg, #d31219 0%, #e8590c 100%);
+  --student-active: #d62828;
+  --staff-active: #c8102e;
+  
+  --bg-page: #43464b;
+  --bg-login-gradient: linear-gradient(180deg, #ffb3b8 0%, #ffffff 42%, #fffdf2 75%, #fff8e1 100%);
+  --bg-input: #f8fafc;
+  
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  
+  --border-color: #e2e8f0;
+  --border-focus: #ea1d24;
+  --border-error: #ef4444;
+  
+  --radius-screen: 44px;
+  --radius-input: 16px;
+  --radius-btn: 30px;
+  
+  --font-family: 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --shadow-btn: 0 10px 25px rgba(234, 29, 36, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background: radial-gradient(circle at 50% 30%, #4a4d53 0%, #2f3237 100%);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Top Segmented 2-Tab Controller */
+.main-tab-nav {
+  display: flex;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 6px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  gap: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  z-index: 50;
+  max-width: 420px;
+  width: 100%;
+}
+
+.main-tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.main-tab-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.main-tab-btn.active {
+  background: var(--primary-gradient);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(234, 29, 36, 0.45);
+}
+
+/* Clean Mobile Screen Canvas (No Outer Bezel Frame) */
+.screen-frame {
+  width: 100%;
+  max-width: 390px;
+  height: 780px;
+  background: #ffffff;
+  border-radius: var(--radius-screen);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  transition: all 0.3s ease;
+}
+
+/* Header inside Screen */
+.screen-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  padding: 16px 24px 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.login-tag {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #838d99;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Tab Panes Wrapper */
+.tab-content-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.tab-pane {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.tab-pane.active {
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ==========================================================================
+   TAB 1: WELCOME SCREEN (หน้าเริ่มต้นใช้งาน)
+   ========================================================================== */
+.screen-intro-body {
+  height: 100%;
+  width: 100%;
+  background: url('../images/students-bg.svg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 24px 30px 24px;
+  text-align: center;
+}
+
+/* Ribbons on Top */
+.ribbon-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 150px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.ribbon-left {
+  position: absolute;
+  top: -20px;
+  left: 28px;
+  width: 44px;
+  height: 175px;
+  background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+  transform: rotate(-26deg);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.ribbon-right {
+  position: absolute;
+  top: -20px;
+  right: 28px;
+  width: 44px;
+  height: 175px;
+  background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+  transform: rotate(26deg);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo Badge */
+.intro-logo-wrap {
+  position: relative;
+  z-index: 10;
+  margin-top: 55px;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.28));
+  animation: ribbonFloat 4s ease-in-out infinite;
+}
+
+.intro-logo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.intro-content {
+  position: relative;
+  z-index: 10;
+  margin-top: auto;
+  margin-bottom: 26px;
+  padding: 0 10px;
+}
+
+.intro-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.35;
+  margin-bottom: 10px;
+  letter-spacing: -0.2px;
+}
+
+.intro-subtitle {
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #334155;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   TAB 2: LOGIN SCREEN (หน้ากรอก USERNAME PASSWORD)
+   ========================================================================== */
+.screen-login-body {
+  height: 100%;
+  width: 100%;
+  background: var(--bg-login-gradient);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 24px 28px 24px;
+  overflow-y: auto;
+}
+
+.login-logo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 45px;
+  margin-bottom: 20px;
+}
+
+.login-logo-wrap img {
+  width: 115px;
+  height: 115px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.16));
+  transition: transform 0.3s ease;
+}
+
+.login-logo-wrap img:hover {
+  transform: scale(1.05);
+}
+
+/* Role Selector Tabs */
+.role-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 0 4px;
+  gap: 8px;
+}
+
+.role-tab-btn {
+  background: transparent;
+  border: none;
+  padding: 8px 6px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+  border-bottom: 2.5px solid transparent;
+}
+
+.role-tab-btn .tab-icon {
+  font-size: 15px;
+}
+
+.role-tab-btn.active-student {
+  color: var(--student-active);
+  font-weight: 700;
+  border-bottom-color: var(--student-active);
+}
+
+.role-tab-btn.active-staff {
+  color: var(--staff-active);
+  font-weight: 700;
+  border-bottom-color: var(--staff-active);
+}
+
+/* Form Styles */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-grow: 1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.3;
+}
+
+.forgot-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: #d62828;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+/* Input Fields */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--radius-input);
+  transition: all 0.25s;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.input-wrapper:hover {
+  border-color: #cbd5e1;
+  background: #ffffff;
+}
+
+.input-wrapper.focused {
+  border-color: var(--primary-red);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(234, 29, 36, 0.1);
+}
+
+.input-wrapper.error {
+  border-color: var(--border-error);
+  background: #fff5f5;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.input-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: #94a3b8;
+}
+
+.form-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 40px 0 44px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+  outline: none;
+}
+
+.btn-toggle-eye {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  transition: color 0.2s;
+}
+
+.btn-toggle-eye:hover {
+  color: #475569;
+}
+
+.btn-toggle-eye svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+.field-error-text {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #ef4444;
+  margin-top: 2px;
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+.field-error-text.show {
+  display: flex;
+}
+
+/* Checkbox Remember Me */
+.remember-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.custom-checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1.5px solid #0284c7;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.custom-checkbox.checked {
+  background: #0284c7;
+  border-color: #0284c7;
+}
+
+.custom-checkbox svg {
+  width: 12px;
+  height: 12px;
+  stroke: #ffffff;
+  stroke-width: 3;
+  display: none;
+}
+
+.custom-checkbox.checked svg {
+  display: block;
+}
+
+.remember-label {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Primary Action Buttons */
+.btn-primary {
+  width: 100%;
+  height: 48px;
+  border-radius: var(--radius-btn);
+  background: var(--primary-gradient);
+  border: none;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: var(--shadow-btn);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: auto;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(234, 29, 36, 0.5);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Bottom Gesture Bar */
+.phone-bottom-bar {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  height: 5px;
+  background-color: #0f172a;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 30;
+}
+
+/* Alert Banner */
+.alert-banner {
+  position: absolute;
+  top: 55px;
+  left: 20px;
+  right: 20px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  z-index: 40;
+  animation: fadeIn 0.3s ease;
+}
+
+.alert-banner.error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+.alert-banner.success {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+}
+
+.alert-banner.warning {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+}
+
+/* Quick Demo Bottom Bar */
+.demo-helper-bar {
+  margin-top: 18px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  flex-wrap: wrap;
+}
+
+.demo-chip {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 12px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.demo-chip:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #f76707;
+  transform: translateY(-2px);
+}
+
+.security-badge-btn {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34d399;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  border: none;
+}
+
+.security-badge-btn:hover {
+  background: rgba(16, 185, 129, 0.25);
+}
+
+/* Modals */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: 24px;
+  max-width: 480px;
+  width: 100%;
+  padding: 28px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  position: relative;
+  animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #f1f5f9;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  font-size: 18px;
+}
+
+.sec-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sec-item:last-child {
+  border-bottom: none;
+}
+
+.sec-item .badge {
+  background: #ecfdf5;
+  color: #059669;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+/* Post-Login Dashboard */
+.dashboard-container {
+  display: none;
+  width: 100%;
+  max-width: 780px;
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+  padding: 32px;
+  margin: 0 auto;
+  animation: fadeIn 0.4s ease;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 0;
+    justify-content: flex-start;
+  }
+  .main-tab-nav {
+    border-radius: 0;
+    margin-bottom: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    max-width: 100%;
+  }
+  .screen-frame {
+    height: calc(100vh - 60px);
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .demo-helper-bar {
+    margin: 12px 8px;
+  }
+}
