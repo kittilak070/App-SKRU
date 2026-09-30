@@ -1,7 +1,0 @@
-[
-  { "id": "all", "name": "ทั้งหมด" },
-  { "id": "university", "name": "ข่าวมหาวิทยาลัย" },
-  { "id": "student-activities", "name": "กิจกรรมนักศึกษา" },
-  { "id": "academic-scholarships", "name": "วิชาการ & ทุน" },
-  { "id": "recruitment", "name": "รับสมัครงาน" }
-]
