@@ -10,10 +10,10 @@ async function pushToGitHub() {
   
   if (!token) {
     console.log('----------------------------------------------------');
-    console.log('📌 วิธีการ Push Branch 674295044 ขึ้น GitHub:');
+    console.log('📌 วิธีการ Push Branch 044 ขึ้น GitHub:');
     console.log('');
     console.log('ทางเลือกที่ 1 (ใช้ Git CLI / VS Code Terminal):');
-    console.log('  git push -u origin 674295044');
+    console.log('  git push -u origin 044');
     console.log('');
     console.log('ทางเลือกที่ 2 (ใช้ Node script กับ GitHub Token):');
     console.log('  node push.js <YOUR_GITHUB_PERSONAL_ACCESS_TOKEN>');
@@ -21,7 +21,7 @@ async function pushToGitHub() {
     return;
   }
 
-  console.log('🚀 กำลัง Push branch 674295044 ไปยัง https://github.com/kittilak070/App-SKRU.git ...');
+  console.log('🚀 กำลัง Push branch 044 ไปยัง https://github.com/kittilak070/App-SKRU.git ...');
 
   try {
     const pushResult = await git.push({
@@ -29,7 +29,7 @@ async function pushToGitHub() {
       http,
       dir,
       remote: 'origin',
-      ref: '674295044',
+      ref: '044',
       onAuth: () => ({ username: token })
     });
     console.log('✅ Push สำเร็จเรียบร้อย!', pushResult);
