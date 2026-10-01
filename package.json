@@ -1,0 +1,23 @@
+{
+  "name": "consent-form-app",
+  "version": "1.0.0",
+  "description": "Personal Data Consent Management Web Application (PDPA)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "pdpa",
+    "consent-form",
+    "nodejs",
+    "express",
+    "javascript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

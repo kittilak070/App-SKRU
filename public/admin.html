@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายการข้อมูลความยินยอม (Admin View)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+        }
+        body {
+            background-color: #f3f4f6;
+            padding: 24px 16px;
+            color: #1f2937;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #ee0000;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 22px;
+            color: #ee0000;
+        }
+        .nav-btn {
+            background: #ee0000;
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-btn:hover {
+            background: #cc0000;
+        }
+        .stats {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px 20px;
+            flex: 1;
+        }
+        .stat-card h3 {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+        .stat-card p {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111827;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        th, td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        th {
+            background-color: #f9fafb;
+            color: #4b5563;
+            font-weight: 600;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-agree {
+            background-color: #def7ec;
+            color: #03543f;
+        }
+        .badge-disagree {
+            background-color: #fde8e8;
+            color: #9b1c1c;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>รายการข้อมูลความยินยอมที่บันทึกไว้</h1>
+            <div>
+                <button class="nav-btn" onclick="fetchData()">รีเฟรชข้อมูล</button>
+                <a href="/" class="nav-btn" style="background:#4b5563; margin-left:8px;">กลับหน้าฟอร์ม</a>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <h3>จำนวนรายการทั้งหมด</h3>
+                <p id="total-count">0</p>
+            </div>
+        </div>
+
+        <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ลำดับ</th>
+                        <th>วัน-เวลา (Timestamp)</th>
+                        <th>ข้อ 1: พัฒนาบริการ</th>
+                        <th>ข้อ 2: เสนอผลิตภัณฑ์</th>
+                        <th>ข้อ 3: กลุ่มธุรกิจทางการเงิน</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <tr>
+                        <td colspan="5" class="empty-state">กำลังโหลดข้อมูล...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function formatBadge(val) {
+            if (val === 'agree') {
+                return '<span class="badge badge-agree">ยินยอม</span>';
+            }
+            return '<span class="badge badge-disagree">ไม่ยินยอม</span>';
+        }
+
+        async function fetchData() {
+            try {
+                const res = await fetch('/api/consent');
+                const data = await res.json();
+                const list = data.data || [];
+
+                document.getElementById('total-count').textContent = data.total || list.length;
+                const tbody = document.getElementById('table-body');
+
+                if (list.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" class="empty-state">ยังไม่มีข้อมูลความยินยอม</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = list.map((item, index) => {
+                    const date = item.timestamp ? new Date(item.timestamp).toLocaleString('th-TH') : '-';
+                    return `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${date}</td>
+                            <td>${formatBadge(item.consent1)}</td>
+                            <td>${formatBadge(item.consent2)}</td>
+                            <td>${formatBadge(item.consent3)}</td>
+                        </tr>
+                    `;
+                }).join('');
+            } catch (err) {
+                console.error(err);
+                document.getElementById('table-body').innerHTML = '<tr><td colspan="5" class="empty-state" style="color:red;">โหลดข้อมูลไม่สำเร็จ</td></tr>';
+            }
+        }
+
+        fetchData();
+    </script>
+</body>
+</html>
