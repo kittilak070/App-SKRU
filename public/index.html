@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SKRU Digital Student Card App - บัตรนักศึกษาดิจิทัล</title>
+  
+  <!-- Google Fonts: Prompt & Kanit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- QRCode.js & JsBarcode -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+  <!-- html2canvas for card download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-skru">
+  <!-- Outer Backdrop for Desktop Preview -->
+  <div class="desktop-app-wrapper">
+    
+    <!-- Phone Mockup Container -->
+    <div class="mobile-device-container">
+      
+      <!-- Hardware Notch / Dynamic Island & Speaker -->
+      <div class="phone-hardware-notch">
+        <div class="camera-lens"></div>
+        <div class="speaker-grille"></div>
+      </div>
+
+      <!-- Phone Side Buttons -->
+      <div class="phone-btn btn-volume-up"></div>
+      <div class="phone-btn btn-volume-down"></div>
+      <div class="phone-btn btn-power"></div>
+
+      <!-- Phone Screen Viewport -->
+      <div class="phone-screen-viewport">
+        
+        <!-- Mobile OS Status Bar -->
+        <div class="mobile-status-bar">
+          <div class="status-time" id="status-clock">09:41</div>
+          <div class="status-icons">
+            <i class="fa-solid fa-signal"></i>
+            <span class="network-badge">5G</span>
+            <i class="fa-solid fa-wifi"></i>
+            <div class="battery-icon">
+              <div class="battery-level"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile App Top Bar Header -->
+        <header class="mobile-app-header">
+          <div class="app-brand-left">
+            <div class="app-crest-mini">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="app-header-titles">
+              <h1>บัตรนักศึกษาดิจิทัล</h1>
+              <span id="card-header-uni-abbr">มหาวิทยาลัยราชภัฏสงขลา (SKRU)</span>
+            </div>
+          </div>
+          <div class="app-header-actions">
+            <button class="icon-btn" id="btn-open-student-drawer" title="สลับนักศึกษา">
+              <i class="fa-solid fa-users"></i>
+            </button>
+            <button class="icon-btn" id="btn-open-theme-drawer" title="เปลี่ยนธีมสี">
+              <i class="fa-solid fa-palette"></i>
+            </button>
+          </div>
+        </header>
+
+        <!-- Main Scrollable App Screen Content -->
+        <div class="mobile-app-body">
+          
+          <!-- Live Security Status Header Bar inside app -->
+          <div class="app-security-strip">
+            <span class="live-dot-pulse"></span>
+            <span class="security-text">สถานะการยืนยันตัวตน: <strong>สมบูรณ์ (Active)</strong></span>
+            <span class="live-sec-time" id="live-security-clock">10:04:22</span>
+          </div>
+
+          <!-- Digital Student Card 3D Component -->
+          <div class="card-3d-wrapper">
+            <div class="card-3d-inner" id="digital-card-inner">
+              
+              <!-- FRONT SIDE OF CARD -->
+              <div class="card-face card-front" id="card-front-element">
+                <div class="holo-shimmer"></div>
+                
+                <div class="live-security-badge">
+                  <span class="pulse-dot"></span> LIVE VERIFIED
+                </div>
+
+                <div class="card-crest-wrapper">
+                  <div class="crest-icon-circle">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                  </div>
+                </div>
+
+                <div class="card-uni-info">
+                  <h3 id="card-uni-th">มหาวิทยาลัยราชภัฏสงขลา</h3>
+                  <p id="card-uni-en">SONGKHLA RAJABHAT UNIVERSITY</p>
+                </div>
+
+                <div class="card-divider-line"></div>
+
+                <div class="card-photo-container">
+                  <img id="card-photo" src="/assets/student_nutella.jpg" alt="Student Photo">
+                </div>
+
+                <div class="card-name-section">
+                  <span class="label-sub">ชื่อ-นามสกุล / Name</span>
+                  <h4 id="card-name-th">นายนูเทลล่า ฮาตาริ</h4>
+                  <p id="card-name-en">Mr.Nutella Hatari</p>
+                </div>
+
+                <div class="student-id-box">
+                  <span class="label-sub-red">รหัสนักศึกษา / Student ID</span>
+                  <div class="id-number" id="card-student-id">6414205012</div>
+                </div>
+
+                <div class="card-bottom-banner">
+                  <img src="/assets/skru_campus_bg.jpg" class="campus-bg-img" alt="Campus BG">
+                  <div class="skru-overlay-logo">
+                    <span class="skru-logo-text" id="card-logo-overlay">SKRU</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- BACK SIDE OF CARD -->
+              <div class="card-face card-back" id="card-back-element">
+                <div class="card-back-header">
+                  <div class="card-crest-sm">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                  </div>
+                  <div class="back-header-text">
+                    <h4>ข้อมูลประจำตัวนักศึกษา</h4>
+                    <p>Student Identity Verification</p>
+                  </div>
+                </div>
+
+                <div class="back-info-group">
+                  <div class="info-row">
+                    <span class="info-label"><i class="fa-solid fa-building-columns"></i> คณะ:</span>
+                    <span class="info-val" id="card-back-faculty">คณะวิทยาศาสตร์และเทคโนโลยี</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label"><i class="fa-solid fa-book-bookmark"></i> สาขาวิชา:</span>
+                    <span class="info-val" id="card-back-major">สาขาวิชาวิทยาการคอมพิวเตอร์</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label"><i class="fa-solid fa-user-gear"></i> สถานะ:</span>
+                    <span class="status-pill active" id="card-back-status">กำลังศึกษา (Active)</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="info-label"><i class="fa-solid fa-calendar-day"></i> วันหมดอายุ:</span>
+                    <span class="info-val highlight" id="card-back-expiry">31 พ.ค. 2025</span>
+                  </div>
+                </div>
+
+                <div class="barcode-box">
+                  <svg id="card-barcode"></svg>
+                </div>
+
+                <div class="qr-security-box">
+                  <div class="qr-code-wrapper" id="card-qrcode"></div>
+                  <div class="qr-instructions">
+                    <p class="qr-title"><i class="fa-solid fa-qrcode"></i> สแกนเพื่อตรวจสอบความถูกต้อง</p>
+                    <p class="qr-sub">Scan QR Code to Verify Student Status</p>
+                    <div class="security-hash" id="card-sec-hash">SEC-HASH: 8F492A</div>
+                  </div>
+                </div>
+
+                <div class="emergency-box">
+                  <span><i class="fa-solid fa-phone-flip"></i> กรณีฉุกเฉิน: </span>
+                  <a href="tel:0818765432" id="card-back-emergency-link"><strong id="card-back-emergency">081-876-5432</strong></a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Flip Hint Banner -->
+          <div class="flip-hint-pill" id="flip-hint-pill">
+            <i class="fa-solid fa-hand-pointer"></i> แตะที่บัตร หรือกดปุ่มด้านล่างเพื่อพลิกดูด้านหลัง
+          </div>
+
+        </div>
+
+        <!-- Mobile Bottom App Dock / Action Bar -->
+        <footer class="mobile-app-dock">
+          <button class="dock-btn primary" id="btn-flip-card">
+            <div class="dock-icon"><i class="fa-solid fa-rotate"></i></div>
+            <span>พลิกบัตร</span>
+          </button>
+          
+          <button class="dock-btn" id="btn-scan-qr">
+            <div class="dock-icon"><i class="fa-solid fa-qrcode"></i></div>
+            <span>สแกน/ขยาย</span>
+          </button>
+
+          <button class="dock-btn" id="btn-open-student-drawer-dock">
+            <div class="dock-icon"><i class="fa-solid fa-address-book"></i></div>
+            <span>นักศึกษา</span>
+          </button>
+
+          <button class="dock-btn" id="btn-download-card">
+            <div class="dock-icon"><i class="fa-solid fa-download"></i></div>
+            <span>บันทึกรูป</span>
+          </button>
+        </footer>
+
+        <!-- Mobile Home Indicator Bar -->
+        <div class="phone-home-indicator"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Bottom Drawer: Student Selector -->
+  <div class="mobile-drawer-backdrop" id="student-drawer-backdrop">
+    <div class="mobile-drawer">
+      <div class="drawer-handle"></div>
+      <div class="drawer-header">
+        <h3><i class="fa-solid fa-users"></i> เลือกบัตรนักศึกษา</h3>
+        <button class="drawer-close-btn" id="btn-close-student-drawer"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="drawer-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="drawer-student-search" placeholder="ค้นหารหัสนักศึกษา, ชื่อ...">
+      </div>
+      <div class="drawer-list" id="drawer-student-list">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Drawer: Theme Selector -->
+  <div class="mobile-drawer-backdrop" id="theme-drawer-backdrop">
+    <div class="mobile-drawer">
+      <div class="drawer-handle"></div>
+      <div class="drawer-header">
+        <h3><i class="fa-solid fa-palette"></i> เลือกธีมสีบัตร</h3>
+        <button class="drawer-close-btn" id="btn-close-theme-drawer"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="theme-picker-grid">
+        <button class="theme-card-option active" data-theme="theme-skru">
+          <div class="theme-preview-color" style="background: linear-gradient(135deg, #e60012, #a0000c);"></div>
+          <span>SKRU Red (ต้นฉบับ)</span>
+        </button>
+        <button class="theme-card-option" data-theme="theme-navy">
+          <div class="theme-preview-color" style="background: linear-gradient(135deg, #0d47a1, #051e44);"></div>
+          <span>Royal Navy</span>
+        </button>
+        <button class="theme-card-option" data-theme="theme-emerald">
+          <div class="theme-preview-color" style="background: linear-gradient(135deg, #00695c, #00332c);"></div>
+          <span>Emerald Green</span>
+        </button>
+        <button class="theme-card-option" data-theme="theme-dark">
+          <div class="theme-preview-color" style="background: linear-gradient(135deg, #1e293b, #0f172a);"></div>
+          <span>Cyber Dark Mode</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fullscreen QR / Barcode Zoom Modal -->
+  <div class="qr-zoom-modal-backdrop" id="qr-zoom-backdrop">
+    <div class="qr-zoom-card">
+      <button class="modal-close-btn" id="btn-close-qr-modal"><i class="fa-solid fa-xmark"></i></button>
+      <div class="qr-zoom-header">
+        <i class="fa-solid fa-qrcode"></i>
+        <h3>สแกนผ่านประตู / ห้องหนังสือ</h3>
+        <p>แสดง QR Code หรือ บาร์โค้ด แก่เครื่องสแกน</p>
+      </div>
+      <div class="zoom-qr-wrapper" id="modal-qrcode-container"></div>
+      <div class="zoom-barcode-wrapper">
+        <svg id="modal-barcode-container"></svg>
+      </div>
+      <div class="zoom-student-id-display" id="modal-student-id">6414205012</div>
+      <p class="modal-sec-notice"><i class="fa-solid fa-shield-check"></i> บัตรถูกต้องตามมาตรฐานมหาวิทยาลัยราชภัฏสงขลา</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
