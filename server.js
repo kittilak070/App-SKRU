@@ -272,10 +272,24 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`====================================================`);
-  console.log(`🚀 SKRU Digital Student Card Server running at:`);
-  console.log(`👉 http://localhost:${PORT}`);
-  console.log(`====================================================`);
-});
+// Start server with automatic port fallback on EADDRINUSE
+function startServer(port) {
+  const server = app.listen(port, () => {
+    console.log(`====================================================`);
+    console.log(`🚀 SKRU Digital Student Card Server running at:`);
+    console.log(`👉 http://localhost:${port}`);
+    console.log(`====================================================`);
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.warn(`⚠️ Port ${port} is in use. Trying port ${port + 1}...`);
+      startServer(port + 1);
+    } else {
+      console.error('Server error:', err);
+    }
+  });
+}
+
+startServer(PORT);
+
