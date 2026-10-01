@@ -1,0 +1,39 @@
+{
+  "notifications": {
+    "all_notifications": true,
+    "interesting_news": true,
+    "app_notifications": true,
+    "followed_activities": true,
+    "university_news": true,
+    "faculty_news": true,
+    "subscribe_news": true,
+    "course_notifications": true
+  },
+  "subscriptions": {
+    "sports": true,
+    "health": true,
+    "activities": true,
+    "entertainment": true,
+    "study": true,
+    "promotions": false,
+    "scholarships": true,
+    "food": false,
+    "faculty_dept": true,
+    "travel": false
+  },
+  "security": {
+    "biometrics": false,
+    "show_contact_info": false,
+    "location_history": false,
+    "pin_set": true
+  },
+  "privacy": {
+    "product_improvement": true,
+    "product_marketing": true,
+    "partner_marketing": false
+  },
+  "general": {
+    "language": "th",
+    "version": "26.8.0(2)"
+  }
+}
