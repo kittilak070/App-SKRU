@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#E50914">
+  <meta name="format-detection" content="telephone=no">
+  <title>ระบบกิจกรรมนักศึกษา - Student Activity System</title>
+  
+  <!-- Google Fonts: Prompt & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Application Viewport Container -->
+  <div class="device-backdrop">
+    <!-- Main Mobile Application Container -->
+    <div class="mobile-container" id="mobile-container">
+      
+      <!-- Top Red Accent Bar (from Figma) -->
+      <div class="app-top-accent-bar"></div>
+
+      <!-- App Header -->
+      <header class="app-header">
+        <button class="back-btn" id="header-back-btn" aria-label="ย้อนกลับ">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <div class="header-titles">
+          <h1 class="header-main-title" id="page-title">กิจกรรม</h1>
+          <p class="header-subtitle" id="page-subtitle">ระบบกิจกรรมนักศึกษา</p>
+        </div>
+      </header>
+
+      <!-- App Scrollable Content Area -->
+      <main class="app-content-body">
+
+        <!-- TAB 1: ACTIVITIES VIEW (FIGMA EXACT DESIGN) -->
+        <div class="tab-pane active" id="pane-activities">
+          
+          <!-- Hero Banner Card (Dark Slate with Geometric Accent) -->
+          <div class="hero-activity-card">
+            <!-- Geometric circle background vector -->
+            <div class="geometric-circles" aria-hidden="true">
+              <div class="geo-circle outer"></div>
+              <div class="geo-circle inner"></div>
+            </div>
+
+            <div class="hero-content">
+              <span class="hero-tag">STUDENT ACTIVITY</span>
+              <h2 class="hero-title">กิจกรรมของนักศึกษา</h2>
+              <div class="hero-red-line"></div>
+            </div>
+          </div>
+
+          <!-- Section 1: "กิจกรรม" -->
+          <section class="menu-section">
+            <div class="section-title-row">
+              <h3 class="section-title">กิจกรรม</h3>
+              <span class="section-dot" aria-hidden="true"></span>
+            </div>
+
+            <div class="card-group">
+              <!-- Item 1: ค้นหากิจกรรม -->
+              <div class="menu-item-card" id="btn-search-activities" role="button" tabindex="0">
+                <div class="menu-icon-box red-tint">
+                  <!-- Search Icon -->
+                  <svg class="menu-icon red-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </div>
+                <div class="menu-item-text">
+                  <div class="menu-item-title">ค้นหากิจกรรม</div>
+                  <div class="menu-item-subtitle">ค้นหากิจกรรมที่เปิดให้เข้าร่วม</div>
+                </div>
+                <div class="menu-item-arrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="card-divider"></div>
+
+              <!-- Item 2: เพิ่มรหัสกิจกรรม -->
+              <div class="menu-item-card" id="btn-add-activity-code" role="button" tabindex="0">
+                <div class="menu-icon-box red-tint">
+                  <!-- Plus in Box Icon -->
+                  <svg class="menu-icon red-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect>
+                    <line x1="12" y1="8" x2="12" y2="16"></line>
+                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                  </svg>
+                </div>
+                <div class="menu-item-text">
+                  <div class="menu-item-title">เพิ่มรหัสกิจกรรม</div>
+                  <div class="menu-item-subtitle">เพิ่มกิจกรรมด้วยรหัสกิจกรรม</div>
+                </div>
+                <div class="menu-item-arrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2: "ข้อมูลนักศึกษา" -->
+          <section class="menu-section">
+            <div class="section-title-row">
+              <h3 class="section-title">ข้อมูลนักศึกษา</h3>
+              <span class="section-dot" aria-hidden="true"></span>
+            </div>
+
+            <div class="card-group">
+              <!-- Item 1: กิจกรรมที่ลงทะเบียน -->
+              <div class="menu-item-card" id="btn-my-registered" role="button" tabindex="0">
+                <div class="menu-icon-box slate-tint">
+                  <!-- Document/Id card Icon -->
+                  <svg class="menu-icon slate-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="3" ry="3"></rect>
+                    <line x1="7" y1="8" x2="17" y2="8"></line>
+                    <line x1="7" y1="12" x2="17" y2="12"></line>
+                    <line x1="7" y1="16" x2="12" y2="16"></line>
+                  </svg>
+                </div>
+                <div class="menu-item-text">
+                  <div class="menu-item-title">กิจกรรมที่ลงทะเบียน</div>
+                  <div class="menu-item-subtitle">ดูรายการกิจกรรมที่ลงทะเบียนไว้</div>
+                </div>
+                <div class="menu-badge" id="registered-badge-count">1</div>
+                <div class="menu-item-arrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="card-divider"></div>
+
+              <!-- Item 2: ตรวจสอบชั่วโมงกิจกรรม -->
+              <div class="menu-item-card" id="btn-check-hours" role="button" tabindex="0">
+                <div class="menu-icon-box slate-tint">
+                  <!-- Check Circle Icon -->
+                  <svg class="menu-icon slate-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+                <div class="menu-item-text">
+                  <div class="menu-item-title">ตรวจสอบชั่วโมงกิจกรรม</div>
+                  <div class="menu-item-subtitle">ตรวจสอบจำนวนชั่วโมงที่เข้าร่วม</div>
+                </div>
+                <div class="menu-item-arrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="card-divider"></div>
+
+              <!-- Item 3: ตรวจคะแนนความประพฤติ -->
+              <div class="menu-item-card" id="btn-conduct-score" role="button" tabindex="0">
+                <div class="menu-icon-box slate-tint">
+                  <!-- Building / Badge Icon -->
+                  <svg class="menu-icon slate-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 21h18"></path>
+                    <path d="M5 21V9l7-5 7 5v12"></path>
+                    <line x1="9" y1="12" x2="9" y2="17"></line>
+                    <line x1="15" y1="12" x2="15" y2="17"></line>
+                  </svg>
+                </div>
+                <div class="menu-item-text">
+                  <div class="menu-item-title">ตรวจคะแนนความประพฤติ</div>
+                  <div class="menu-item-subtitle">ตรวจสอบคะแนนและข้อมูลความประพฤติ</div>
+                </div>
+                <div class="menu-item-arrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="card-divider"></div>
+
+              <!-- Item 4: กิจกรรม กยศ. -->
+              <div class="menu-item-card" id="btn-kys-activities" role="button" tabindex="0">
+                <div class="menu-icon-box slate-tint">
+                  <!-- Shield Check Icon -->
+                  <svg class="menu-icon slate-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <polyline points="9 12 11 14 15 10"></polyline>
+                  </svg>
+                </div>
+                <div class="menu-item-text">
+                  <div class="menu-item-title">กิจกรรม กยศ.</div>
+                  <div class="menu-item-subtitle">ข้อมูลกิจกรรมสำหรับผู้กู้ยืม กยศ.</div>
+                </div>
+                <div class="menu-item-arrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- TAB 2: HOME VIEW -->
+        <div class="tab-pane" id="pane-home">
+          <div class="home-greeting-card">
+            <div class="greeting-avatar">
+              <span class="avatar-initials">ณส</span>
+            </div>
+            <div class="greeting-details">
+              <span class="greeting-subtitle">ยินดีต้อนรับสู่ระบบกิจกรรม</span>
+              <h2 class="greeting-name">นายณัฐพล สมบูรณ์</h2>
+              <span class="student-id-tag">รหัส 66010123 • ปี 2</span>
+            </div>
+          </div>
+
+          <div class="stats-overview-grid">
+            <div class="stat-mini-card">
+              <div class="stat-number" id="home-hours-val">38</div>
+              <div class="stat-label">ชม. กิจกรรมสะสม</div>
+              <div class="stat-sub">เป้าหมาย 50 ชม.</div>
+            </div>
+            <div class="stat-mini-card highlight-card">
+              <div class="stat-number red-text" id="home-conduct-val">100</div>
+              <div class="stat-label">คะแนนความประพฤติ</div>
+              <div class="stat-sub">สถานะ: ดีเยี่ยม</div>
+            </div>
+          </div>
+
+          <div class="upcoming-section">
+            <div class="upcoming-header">
+              <h3>กิจกรรมที่กำลังจะถึง</h3>
+              <a href="#" class="view-all-link" id="link-to-registered">ดูทั้งหมด</a>
+            </div>
+            <div id="home-upcoming-container" class="upcoming-container">
+              <!-- Loaded via JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: NOTIFICATIONS VIEW -->
+        <div class="tab-pane" id="pane-notifications">
+          <div class="tab-header-box">
+            <h2>การแจ้งเตือน</h2>
+            <button class="mark-read-btn" id="mark-read-btn">อ่านทั้งหมด</button>
+          </div>
+          <div class="notifications-list" id="notifications-list">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+
+        <!-- TAB 4: PROFILE VIEW -->
+        <div class="tab-pane" id="pane-profile">
+          <div class="profile-card">
+            <div class="profile-avatar-large">
+              <span>ณส</span>
+              <div class="online-indicator"></div>
+            </div>
+            <h2 class="profile-name">นายณัฐพล สมบูรณ์</h2>
+            <div class="profile-id">รหัสนักศึกษา: 66010123</div>
+            
+            <div class="profile-meta-list">
+              <div class="meta-row">
+                <span class="meta-label">คณะ</span>
+                <span class="meta-value">วิศวกรรมศาสตร์และเทคโนโลยี</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">สาขาวิชา</span>
+                <span class="meta-value">วิศวกรรมคอมพิวเตอร์</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">ระดับการศึกษา</span>
+                <span class="meta-value">ปริญญาตรี (ชั้นปีที่ 2)</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">เกรดเฉลี่ยสะสม (GPA)</span>
+                <span class="meta-value score-text">3.68</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">สถานะผู้กู้ กยศ.</span>
+                <span class="meta-badge-kys">ผู้กู้ยืมต่อเนื่อง</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+      <!-- Bottom Navigation Bar (from Figma) -->
+      <nav class="bottom-nav-bar" aria-label="เมนูหลัก">
+        
+        <!-- Tab 1: หน้าหลัก -->
+        <button class="nav-tab-item" data-tab="pane-home" id="nav-btn-home">
+          <div class="nav-icon-wrapper">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <span class="nav-tab-label">หน้าหลัก</span>
+        </button>
+
+        <!-- Tab 2: กิจกรรม (Active Red Highlight from Figma) -->
+        <button class="nav-tab-item active" data-tab="pane-activities" id="nav-btn-activities">
+          <div class="nav-icon-wrapper active-pill">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect>
+              <line x1="7" y1="8" x2="17" y2="8"></line>
+              <line x1="7" y1="12" x2="17" y2="12"></line>
+              <line x1="7" y1="16" x2="14" y2="16"></line>
+            </svg>
+          </div>
+          <span class="nav-tab-label active-text">กิจกรรม</span>
+        </button>
+
+        <!-- Tab 3: แจ้งเตือน -->
+        <button class="nav-tab-item" data-tab="pane-notifications" id="nav-btn-notifications">
+          <div class="nav-icon-wrapper has-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="nav-dot-badge"></span>
+          </div>
+          <span class="nav-tab-label">แจ้งเตือน</span>
+        </button>
+
+        <!-- Tab 4: โปรไฟล์ -->
+        <button class="nav-tab-item" data-tab="pane-profile" id="nav-btn-profile">
+          <div class="nav-icon-wrapper">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <span class="nav-tab-label">โปรไฟล์</span>
+        </button>
+
+      </nav>
+
+    </div><!-- End .mobile-container -->
+
+  </div><!-- End .device-backdrop -->
+
+
+  <!-- ==================== MODALS / FULL SCREENS ==================== -->
+
+  <!-- 1. MODAL: SEARCH & BOOK ACTIVITIES -->
+  <div class="modal-overlay" id="modal-search-activities" aria-hidden="true">
+    <div class="modal-sheet">
+      <div class="modal-drag-handle"></div>
+      <div class="modal-sheet-header">
+        <div class="modal-header-left">
+          <button class="modal-close-btn" data-close="modal-search-activities">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <div class="modal-titles">
+            <h3 class="modal-title">ค้นหากิจกรรม</h3>
+            <p class="modal-sub">เลือกและลงทะเบียนเข้าร่วมกิจกรรม</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body-scroll">
+        <!-- Search Input -->
+        <div class="search-input-box">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="activity-search-input" placeholder="ค้นหาชื่อกิจกรรม, รหัส, สถานที่..." autocomplete="off">
+          <button class="search-clear-btn" id="search-clear-btn" style="display:none;">&times;</button>
+        </div>
+
+        <!-- Filter Tags -->
+        <div class="filter-chips-slider">
+          <button class="filter-chip active" data-category="ทั้งหมด">ทั้งหมด</button>
+          <button class="filter-chip" data-category="กยศ.">กยศ. / จิตอาสา</button>
+          <button class="filter-chip" data-category="กิจกรรมบังคับ">กิจกรรมบังคับ</button>
+          <button class="filter-chip" data-category="วิชาการ/อบรม">วิชาการ/อบรม</button>
+          <button class="filter-chip" data-category="กีฬาและสุขภาพ">กีฬา</button>
+          <button class="filter-chip" data-category="ศิลปวัฒนธรรม">ศิลปวัฒนธรรม</button>
+        </div>
+
+        <!-- Activities List Container -->
+        <div class="activities-card-list" id="activities-card-list">
+          <div class="skeleton-loader">กำลังโหลดข้อมูลกิจกรรม...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 2. MODAL: ADD ACTIVITY BY CODE -->
+  <div class="modal-overlay" id="modal-add-code" aria-hidden="true">
+    <div class="modal-sheet compact-sheet">
+      <div class="modal-drag-handle"></div>
+      <div class="modal-sheet-header">
+        <div class="modal-header-left">
+          <button class="modal-close-btn" data-close="modal-add-code">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <div class="modal-titles">
+            <h3 class="modal-title">เพิ่มรหัสกิจกรรม</h3>
+            <p class="modal-sub">กรอกรหัสจากผู้จัดเพื่อลงทะเบียนทันที</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body-scroll">
+        <div class="code-entry-card">
+          <div class="code-icon-circle">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E50914" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="4"></rect>
+              <line x1="12" y1="8" x2="12" y2="16"></line>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+          </div>
+          <label class="form-label" for="activity-code-input">รหัสกิจกรรม (Activity Code)</label>
+          <div class="code-input-wrapper">
+            <input type="text" id="activity-code-input" class="code-input" placeholder="เช่น VOL-201, TECH-301" maxlength="15" autocomplete="off" autocapitalize="characters">
+          </div>
+          
+          <div class="quick-code-hint">
+            <span>แตะเพื่อทดสอบรหัสตัวอย่าง:</span>
+            <div class="code-chips-row">
+              <span class="code-chip" data-code="VOL-201">VOL-201 (จิตอาสา)</span>
+              <span class="code-chip" data-code="TECH-301">TECH-301 (AI/Web)</span>
+              <span class="code-chip" data-code="KYS-501">KYS-501 (กยศ.)</span>
+            </div>
+          </div>
+
+          <button class="btn-primary-action full-width" id="btn-submit-code">
+            <span>ยืนยันการลงทะเบียนด้วยรหัส</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 3. MODAL: REGISTERED ACTIVITIES (MY BOOKINGS) -->
+  <div class="modal-overlay" id="modal-registered-list" aria-hidden="true">
+    <div class="modal-sheet">
+      <div class="modal-drag-handle"></div>
+      <div class="modal-sheet-header">
+        <div class="modal-header-left">
+          <button class="modal-close-btn" data-close="modal-registered-list">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <div class="modal-titles">
+            <h3 class="modal-title">กิจกรรมที่ลงทะเบียน</h3>
+            <p class="modal-sub">รายการกิจกรรมที่บันทึกไว้ในบัญชีของคุณ</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body-scroll">
+        <div id="registered-cards-container" class="registered-cards-container">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 4. MODAL: CHECK ACTIVITY HOURS -->
+  <div class="modal-overlay" id="modal-hours-summary" aria-hidden="true">
+    <div class="modal-sheet">
+      <div class="modal-drag-handle"></div>
+      <div class="modal-sheet-header">
+        <div class="modal-header-left">
+          <button class="modal-close-btn" data-close="modal-hours-summary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <div class="modal-titles">
+            <h3 class="modal-title">ตรวจสอบชั่วโมงกิจกรรม</h3>
+            <p class="modal-sub">เกณฑ์การเข้าร่วมกิจกรรมเพื่อสำเร็จการศึกษา</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body-scroll">
+        <!-- Progress overview card -->
+        <div class="hours-summary-card">
+          <div class="hours-radial-box">
+            <div class="radial-number" id="hours-total-display">38</div>
+            <div class="radial-target">/ 50 ชม.</div>
+          </div>
+          <div class="hours-progress-bar-wrap">
+            <div class="hours-progress-bar" id="hours-main-bar" style="width: 76%;"></div>
+          </div>
+          <div class="hours-status-text">
+            <span>สะสมแล้ว 76%</span>
+            <span class="highlight-green">เหลืออีก 12 ชั่วโมง</span>
+          </div>
+        </div>
+
+        <div class="hours-category-list">
+          <h4 class="category-heading">จำแนกตามประเภทกิจกรรม</h4>
+          
+          <div class="hour-cat-item">
+            <div class="hour-cat-header">
+              <span class="hour-cat-name">1. กิจกรรมบังคับมหาวิทยาลัย</span>
+              <span class="hour-cat-count">18 / 20 ชม.</span>
+            </div>
+            <div class="cat-bar-wrap"><div class="cat-bar" style="width: 90%;"></div></div>
+          </div>
+
+          <div class="hour-cat-item">
+            <div class="hour-cat-header">
+              <span class="hour-cat-name">2. กิจกรรมเสริมสร้างสมรรถนะ</span>
+              <span class="hour-cat-count">12 / 15 ชม.</span>
+            </div>
+            <div class="cat-bar-wrap"><div class="cat-bar" style="width: 80%;"></div></div>
+          </div>
+
+          <div class="hour-cat-item">
+            <div class="hour-cat-header">
+              <span class="hour-cat-name">3. กิจกรรมจิตอาสา / บำเพ็ญประโยชน์</span>
+              <span class="hour-cat-count">8 / 15 ชม.</span>
+            </div>
+            <div class="cat-bar-wrap"><div class="cat-bar" style="width: 53%;"></div></div>
+          </div>
+        </div>
+
+        <div class="info-alert-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <p>นักศึกษาต้องสะสมชั่วโมงกิจกรรมครบถ้วน 50 ชั่วโมง ตามเกณฑ์ที่มหาวิทยาลัยกำหนดจึงจะสามารถยื่นขอสำเร็จการศึกษาได้</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 5. MODAL: CONDUCT SCORE -->
+  <div class="modal-overlay" id="modal-conduct-view" aria-hidden="true">
+    <div class="modal-sheet">
+      <div class="modal-drag-handle"></div>
+      <div class="modal-sheet-header">
+        <div class="modal-header-left">
+          <button class="modal-close-btn" data-close="modal-conduct-view">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <div class="modal-titles">
+            <h3 class="modal-title">คะแนนความประพฤติ</h3>
+            <p class="modal-sub">ประวัติวินัยและความประพฤตินักศึกษา</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body-scroll">
+        <div class="conduct-hero-card">
+          <div class="conduct-score-circle">
+            <span class="conduct-number">100</span>
+            <span class="conduct-max">/ 100</span>
+          </div>
+          <div class="conduct-badge-pill">ระดับ: ดีเยี่ยม (Grade A)</div>
+          <p class="conduct-note">ไม่มีประวัติการกระทำผิดวินัยหรือถูกตัดคะแนนความประพฤติ</p>
+        </div>
+
+        <div class="conduct-history-box">
+          <h4 class="history-title">ประวัติการบันทึกคะแนน</h4>
+          <div class="history-item">
+            <div class="history-icon-circle green">✓</div>
+            <div class="history-details">
+              <span class="history-title-text">คะแนนความประพฤติเริ่มต้นประจำปีการศึกษา</span>
+              <span class="history-date">ภาคการศึกษา 1/2569</span>
+            </div>
+            <span class="history-points">+100</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 6. MODAL: กยศ. VOLUNTEER ACTIVITIES -->
+  <div class="modal-overlay" id="modal-kys-view" aria-hidden="true">
+    <div class="modal-sheet">
+      <div class="modal-drag-handle"></div>
+      <div class="modal-sheet-header">
+        <div class="modal-header-left">
+          <button class="modal-close-btn" data-close="modal-kys-view">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <div class="modal-titles">
+            <h3 class="modal-title">กิจกรรม กยศ.</h3>
+            <p class="modal-sub">กิจกรรมบำเพ็ญประโยชน์สำหรับผู้กู้ยืมเงิน</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body-scroll">
+        <div class="kys-stat-card">
+          <div class="kys-badge-header">กองทุนเงินให้กู้ยืมเพื่อการศึกษา (กยศ.)</div>
+          <div class="kys-hours-number">24 <span class="kys-denom">/ 36 ชม.</span></div>
+          <div class="hours-progress-bar-wrap">
+            <div class="hours-progress-bar" style="width: 66.6%;"></div>
+          </div>
+          <p class="kys-status-desc">สถานะ: <span class="status-pass">ผ่านเกณฑ์สะสมประจำภาคเรียน</span></p>
+        </div>
+
+        <div class="kys-recommend-section">
+          <h4>กิจกรรม กยศ. ที่เปิดรับสมัครขณะนี้</h4>
+          <div id="kys-activity-list" class="kys-activity-list">
+            <!-- Filtered KYS activities injected via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 7. MODAL: E-TICKET QR CODE PASS -->
+  <div class="modal-overlay" id="modal-ticket-view" aria-hidden="true">
+    <div class="modal-sheet compact-sheet">
+      <div class="modal-drag-handle"></div>
+      <div class="modal-sheet-header">
+        <div class="modal-header-left">
+          <button class="modal-close-btn" data-close="modal-ticket-view">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <div class="modal-titles">
+            <h3 class="modal-title">บัตรเข้าร่วมกิจกรรม</h3>
+            <p class="modal-sub">E-Ticket สำหรับสแกนเข้างาน</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body-scroll">
+        <div class="ticket-card" id="ticket-card-content">
+          <div class="ticket-top-red-bar"></div>
+          <div class="ticket-inner">
+            <div class="ticket-event-badge" id="ticket-category">กิจกรรมบังคับ</div>
+            <h3 class="ticket-event-title" id="ticket-title">ปฐมนิเทศนักศึกษาใหม่</h3>
+            
+            <div class="ticket-qr-container">
+              <!-- SVG QR Code Generator Mockup -->
+              <svg class="ticket-qr-svg" width="160" height="160" viewBox="0 0 200 200">
+                <rect width="200" height="200" fill="#ffffff" rx="10"></rect>
+                <!-- Outer Corners -->
+                <rect x="20" y="20" width="45" height="45" fill="#1e2022" rx="6"></rect>
+                <rect x="28" y="28" width="29" height="29" fill="#ffffff" rx="3"></rect>
+                <rect x="34" y="34" width="17" height="17" fill="#E50914" rx="2"></rect>
+                
+                <rect x="135" y="20" width="45" height="45" fill="#1e2022" rx="6"></rect>
+                <rect x="143" y="28" width="29" height="29" fill="#ffffff" rx="3"></rect>
+                <rect x="149" y="34" width="17" height="17" fill="#E50914" rx="2"></rect>
+
+                <rect x="20" y="135" width="45" height="45" fill="#1e2022" rx="6"></rect>
+                <rect x="28" y="143" width="29" height="29" fill="#ffffff" rx="3"></rect>
+                <rect x="34" y="149" width="17" height="17" fill="#E50914" rx="2"></rect>
+
+                <!-- Data Dots -->
+                <rect x="80" y="25" width="12" height="12" fill="#1e2022"></rect>
+                <rect x="105" y="25" width="12" height="24" fill="#1e2022"></rect>
+                <rect x="80" y="55" width="20" height="12" fill="#1e2022"></rect>
+                <rect x="25" y="80" width="12" height="24" fill="#1e2022"></rect>
+                <rect x="45" y="90" width="24" height="12" fill="#1e2022"></rect>
+                <rect x="80" y="80" width="40" height="40" fill="#E50914" rx="4"></rect>
+                <rect x="90" y="90" width="20" height="20" fill="#ffffff" rx="2"></rect>
+                <rect x="135" y="85" width="15" height="15" fill="#1e2022"></rect>
+                <rect x="160" y="95" width="20" height="15" fill="#1e2022"></rect>
+                <rect x="80" y="135" width="25" height="15" fill="#1e2022"></rect>
+                <rect x="120" y="140" width="20" height="30" fill="#1e2022"></rect>
+                <rect x="155" y="135" width="25" height="25" fill="#1e2022"></rect>
+                <rect x="80" y="165" width="25" height="15" fill="#1e2022"></rect>
+              </svg>
+            </div>
+            
+            <div class="ticket-meta-grid">
+              <div class="ticket-meta-item">
+                <span class="ticket-meta-label">เลขที่นั่ง</span>
+                <span class="ticket-meta-val highlight-red" id="ticket-seat">A-042</span>
+              </div>
+              <div class="ticket-meta-item">
+                <span class="ticket-meta-label">รหัสนักศึกษา</span>
+                <span class="ticket-meta-val" id="ticket-studentid">66010123</span>
+              </div>
+              <div class="ticket-meta-item">
+                <span class="ticket-meta-label">วันที่</span>
+                <span class="ticket-meta-val" id="ticket-date">10 ต.ค. 2569</span>
+              </div>
+              <div class="ticket-meta-item">
+                <span class="ticket-meta-label">เวลา</span>
+                <span class="ticket-meta-val" id="ticket-time">08:30 - 16:30 น.</span>
+              </div>
+            </div>
+
+            <div class="ticket-barcode-wrap">
+              <div class="barcode-lines"></div>
+              <span class="barcode-number" id="ticket-code-str">BOOK-849204812</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
