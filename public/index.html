@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>กยศ. มหาวิทยาลัยราชภัฏสงขลา (SKRU)</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20width=%2232%22%20height=%2232%22><text y=%2226%22 font-size=%2228%22>🎓</text></svg>">
+</head>
+<body>
+
+  <!-- App Main Container -->
+  <div class="app-container">
+    
+    <!-- Top Red Navigation Bar -->
+    <header class="app-header">
+      <div class="brand-section">
+        <span class="brand-text">กยศ</span>
+        <span class="brand-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3L1 9L12 15L21 10.09V17H23V9M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z"/>
+          </svg>
+          SKRU
+        </span>
+      </div>
+      <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="เมนู">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Title Section -->
+    <section class="title-section">
+      <h1 class="main-title">ลงทะเบียนชำระหนี้</h1>
+      <h2 class="sub-title">มหาวิทยาลัยราชภัฏสงขลา (SKRU)</h2>
+    </section>
+
+    <!-- Main 6 Interactive Action Cards -->
+    <main class="menu-grid">
+      
+      <!-- 1. การกู้ยืม -->
+      <button class="action-card" data-action="loan">
+        <span class="card-label">การกู้ยืม</span>
+        <span class="card-icon">
+          <!-- Refresh / Cycle Icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+          </svg>
+        </span>
+      </button>
+
+      <!-- 2. สถานศึกษา -->
+      <button class="action-card" data-action="institution">
+        <span class="card-label">สถานศึกษา</span>
+        <span class="card-icon">
+          <!-- Bookmark / Institution Icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z"/>
+          </svg>
+        </span>
+      </button>
+
+      <!-- 3. การชำระหนี้ -->
+      <button class="action-card" data-action="repayment">
+        <span class="card-label">การชำระหนี้</span>
+        <span class="card-icon">
+          <!-- Money / Card Icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+          </svg>
+        </span>
+      </button>
+
+      <!-- 4. การหักเงินเดือน -->
+      <button class="action-card" data-action="salary">
+        <span class="card-label">การหักเงินเดือน</span>
+        <span class="card-icon">
+          <!-- Salary / Cash Sheet Icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="M19 14V6c0-1.1-.9-2-2-2H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-9-1c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm13-6v11c0 1.1-.9 2-2 2H4v-2h17V7h2z"/>
+          </svg>
+        </span>
+      </button>
+
+      <!-- 5. กิจกรรมจิตสาธารณะ กยศ. -->
+      <button class="action-card" data-action="volunteer">
+        <span class="card-label">กิจกรรมจิตสาธารณะ กยศ.</span>
+        <span class="card-icon">
+          <!-- Handshake / Volunteering Icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+          </svg>
+        </span>
+      </button>
+
+      <!-- 6. Hall of fame -->
+      <button class="action-card" data-action="hall-of-fame">
+        <span class="card-label">Hall of fame</span>
+        <span class="card-icon">
+          <!-- Graduation Cap Icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+          </svg>
+        </span>
+      </button>
+
+    </main>
+
+    <!-- Bottom Red Footer Banner -->
+    <footer class="footer-banner" data-action="news">
+      <div class="footer-banner-title">ข่าวประชาสัมพันธ์</div>
+      <div class="footer-banner-subtitle">การให้กู้ยืม ประจำปีการศึกษา 2569</div>
+    </footer>
+
+  </div>
+
+  <!-- Sidebar / Drawer Navigation -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <h3>เมนูระบบ กยศ. SKRU</h3>
+      <button class="drawer-close" id="drawerCloseBtn">&times;</button>
+    </div>
+    <ul class="drawer-menu">
+      <li><a href="#" data-action="loan">🔄 ระบบการกู้ยืมเงิน</a></li>
+      <li><a href="#" data-action="institution">🏫 ฝ่ายแนะแนวและทุน SKRU</a></li>
+      <li><a href="#" data-action="repayment">💳 ลงทะเบียนชำระหนี้</a></li>
+      <li><a href="#" data-action="salary">💼 ระบบหักเงินเดือน</a></li>
+      <li><a href="#" data-action="volunteer">🤝 กิจกรรมจิตสาธารณะ (36 ชม.)</a></li>
+      <li><a href="#" data-action="hall-of-fame">🏆 Hall of Fame ศิษย์เก่า</a></li>
+      <li><a href="#" data-action="news">📢 ข่าวสารและประกาศ</a></li>
+      <li><a href="https://dsl.studentloan.or.th" target="_blank">🌐 ระบบ DSL กยศ. กลาง</a></li>
+    </ul>
+  </aside>
+
+  <!-- Modal View Component -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">หัวข้อ</h3>
+        <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Dynamic Content Injected Here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-msg" id="toastMsg">ดำเนินการสำเร็จ</div>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

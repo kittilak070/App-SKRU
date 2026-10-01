@@ -1,0 +1,26 @@
+{
+  "name": "skru-student-loan-webapp",
+  "version": "1.0.0",
+  "description": "เว็บแอปพลิเคชัน กยศ. มหาวิทยาลัยราชภัฏสงขลา (SKRU) พัฒนาด้วย Fullstack JavaScript",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": [
+    "skru",
+    "student-loan",
+    "nodejs",
+    "express",
+    "javascript"
+  ],
+  "author": "SKRU Dev Team",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "isomorphic-git": "^1.42.5"
+  }
+}
