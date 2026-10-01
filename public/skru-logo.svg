@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 180" width="100%" height="100%" style="display:block; margin:auto; max-width:320px;">
+  <defs>
+    <!-- Gold Gradients -->
+    <linearGradient id="goldSealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F9E79F"/>
+      <stop offset="40%" stop-color="#F1C40F"/>
+      <stop offset="80%" stop-color="#D4AC0D"/>
+      <stop offset="100%" stop-color="#9A7D0A"/>
+    </linearGradient>
+
+    <linearGradient id="ribbonGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF176"/>
+      <stop offset="50%" stop-color="#FFD54F"/>
+      <stop offset="100%" stop-color="#FFB300"/>
+    </linearGradient>
+    
+    <linearGradient id="sunbeamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFDF00"/>
+      <stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="ribbonShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="1.5" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- ================= 1. LEFT: RAJABHAT ROYAL SEAL ================= -->
+  <g transform="translate(10, 5)">
+    <!-- Outer Gold Border -->
+    <ellipse cx="65" cy="85" rx="63" ry="76" fill="url(#goldSealGrad)" />
+    <!-- Dark Forest Green Ring -->
+    <ellipse cx="65" cy="85" rx="58" ry="71" fill="#0C4A26" stroke="#062915" stroke-width="0.8" />
+    <!-- Inner Gold Ring -->
+    <ellipse cx="65" cy="85" rx="46" ry="57" fill="#073219" stroke="url(#goldSealGrad)" stroke-width="1.8" />
+
+    <!-- Circular Seal Text Arcs -->
+    <path id="sealArcTop" d="M 18,85 A 48 60 0 0,1 112,85" fill="none" />
+    <path id="sealArcBottom" d="M 112,90 A 48 60 0 0,1 18,90" fill="none" />
+
+    <text font-family="'Prompt', 'Kanit', sans-serif" font-size="7.5" font-weight="700" fill="#FFD700" letter-spacing="0.5">
+      <textPath href="#sealArcTop" startOffset="50%" text-anchor="middle">มหาวิทยาลัยราชภัฏสงขลา</textPath>
+    </text>
+    <text font-family="'Prompt', 'Arial', sans-serif" font-size="5.8" font-weight="700" fill="#FFFFFF" letter-spacing="0.4">
+      <textPath href="#sealArcBottom" startOffset="50%" text-anchor="middle">SONGKHLA RAJABHAT UNIVERSITY</textPath>
+    </text>
+
+    <!-- Radiating Sun Rays behind Crown -->
+    <g transform="translate(65, 85)" stroke="url(#sunbeamGrad)" stroke-width="1.4" opacity="0.95">
+      <line x1="0" y1="0" x2="0" y2="-46" />
+      <line x1="0" y1="0" x2="14" y2="-44" />
+      <line x1="0" y1="0" x2="26" y2="-38" />
+      <line x1="0" y1="0" x2="36" y2="-28" />
+      <line x1="0" y1="0" x2="42" y2="-16" />
+      <line x1="0" y1="0" x2="44" y2="0" />
+      <line x1="0" y1="0" x2="42" y2="16" />
+      <line x1="0" y1="0" x2="36" y2="28" />
+      <line x1="0" y1="0" x2="-14" y2="-44" />
+      <line x1="0" y1="0" x2="-26" y2="-38" />
+      <line x1="0" y1="0" x2="-36" y2="-28" />
+      <line x1="0" y1="0" x2="-42" y2="-16" />
+      <line x1="0" y1="0" x2="-44" y2="0" />
+      <line x1="0" y1="0" x2="-42" y2="16" />
+      <line x1="0" y1="0" x2="-36" y2="28" />
+    </g>
+
+    <!-- Blue Background Core Oval -->
+    <ellipse cx="65" cy="85" rx="36" ry="46" fill="#154360" />
+
+    <!-- Lotus Pedestal Base -->
+    <path d="M 45,123 Q 65,133 85,123 Q 80,116 65,118 Q 50,116 45,123 Z" fill="#E74C3C" stroke="#F1C40F" stroke-width="1.2" />
+    <path d="M 48,120 Q 65,126 82,120 Q 75,112 65,114 Q 55,112 48,120 Z" fill="#2980B9" stroke="#F1C40F" stroke-width="1" />
+
+    <!-- Royal Crown (Phra Maha Phichai Mongkut) -->
+    <!-- Tiered Crown Body -->
+    <polygon points="52,112 55,92 65,76 75,92 78,112" fill="#FFFFFF" stroke="#2C3E50" stroke-width="1" />
+    <circle cx="65" cy="98" r="7.5" fill="#1B4F72" stroke="#FFD700" stroke-width="1.2" />
+    <!-- Chakra Inside Crown -->
+    <path d="M 65,92 L 65,104 M 59,98 L 71,98 M 61,94 L 69,102 M 61,102 L 69,94" stroke="#FFD700" stroke-width="1" />
+
+    <!-- Gold Spire and Crown Tiers -->
+    <polygon points="65,42 61,76 69,76" fill="url(#goldSealGrad)" stroke="#B7950B" stroke-width="0.8" />
+    <!-- Tiers on Spire -->
+    <ellipse cx="65" cy="70" rx="6.5" ry="2" fill="#FFD700" />
+    <ellipse cx="65" cy="61" rx="5" ry="1.8" fill="#FFD700" />
+    <ellipse cx="65" cy="52" rx="3.5" ry="1.5" fill="#FFD700" />
+    <circle cx="65" cy="40" r="2.8" fill="#FFF9C4" />
+  </g>
+
+  <!-- ================= 2. CENTER: STYLIZED SKRU TYPOGRAPHY ================= -->
+  <g transform="translate(145, 18)">
+    
+    <!-- Letter 'S' in Red -->
+    <path d="M 38,36 
+             C 38,20 23,16 13,20 
+             C 3,24 2,38 10,46 
+             C 19,54 40,56 40,78 
+             C 40,100 22,110 6,102 
+             C -2,98 -3,89 -3,89 
+             L 8,84 
+             C 8,84 10,92 18,95 
+             C 25,97 30,93 30,81 
+             C 30,68 15,62 6,51 
+             C -3,41 0,21 12,13 
+             C 24,5 48,9 48,31 
+             Z" 
+          fill="#E60028" />
+
+    <!-- Letter 'K' with folded yellow ribbon -->
+    <g transform="translate(48, 10)">
+      <!-- Vertical Red Stem -->
+      <rect x="0" y="2" width="13" height="114" rx="2" fill="#E60028" />
+      
+      <!-- Upper Diagonal Branch (Red) -->
+      <polygon points="13,56 44,4 60,4 27,62" fill="#E60028" />
+
+      <!-- Yellow / Gold 3D Ribbon Wrap Crossing Front -->
+      <polygon points="28,46 44,14 55,20 36,66" fill="url(#ribbonGold)" filter="url(#ribbonShadow)" />
+      
+      <!-- Lower Diagonal Branch (Red) -->
+      <polygon points="20,53 52,116 66,116 31,48" fill="#E60028" />
+    </g>
+
+    <!-- Letter 'R' in Red -->
+    <g transform="translate(126, 10)">
+      <path d="M 0,2 
+               L 33,2 
+               C 50,2 59,12 59,32 
+               C 59,48 49,57 34,59 
+               L 59,116 
+               L 43,116 
+               L 20,62 
+               L 13,62 
+               L 13,116 
+               L 0,116 
+               Z 
+               M 13,15 
+               L 13,49 
+               L 30,49 
+               C 39,49 45,44 45,32 
+               C 45,20 39,15 30,15 
+               Z" 
+            fill="#E60028" />
+    </g>
+
+    <!-- Letter 'U' in Red -->
+    <g transform="translate(196, 10)">
+      <path d="M 0,2 
+               L 13,2 
+               L 13,74 
+               C 13,92 23,102 35,102 
+               C 47,102 57,92 57,74 
+               L 57,2 
+               L 70,2 
+               L 70,74 
+               C 70,102 53,116 35,116 
+               C 17,116 0,102 0,74 
+               Z" 
+            fill="#E60028" />
+    </g>
+  </g>
+
+  <!-- ================= 3. RIGHT: 3-LINE CONDENSED TEXT ================= -->
+  <g transform="translate(400, 22)">
+    <!-- Line 1: SONGKHLA -->
+    <text x="0" y="32" 
+          font-family="'Arial Narrow', 'Prompt', 'Impact', sans-serif" 
+          font-size="34" 
+          font-weight="700" 
+          fill="#1C1C1E" 
+          letter-spacing="1.5"
+          transform="scale(1, 1.15)">
+      SONGKHLA
+    </text>
+
+    <!-- Line 2: RAJABHAT -->
+    <text x="0" y="68" 
+          font-family="'Arial Narrow', 'Prompt', 'Impact', sans-serif" 
+          font-size="34" 
+          font-weight="700" 
+          fill="#1C1C1E" 
+          letter-spacing="1.5"
+          transform="scale(1, 1.15)">
+      RAJABHAT
+    </text>
+
+    <!-- Line 3: UNIVERSITY -->
+    <text x="0" y="104" 
+          font-family="'Arial Narrow', 'Prompt', 'Impact', sans-serif" 
+          font-size="33" 
+          font-weight="700" 
+          fill="#1C1C1E" 
+          letter-spacing="1.2"
+          transform="scale(1, 1.15)">
+      UNIVERSITY
+    </text>
+  </g>
+</svg>

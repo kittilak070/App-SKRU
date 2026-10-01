@@ -1,0 +1,13 @@
+{
+  "name": "skru-satisfaction-rating",
+  "version": "1.0.0",
+  "description": "ระบบประเมินความพึงพอใจ มหาวิทยาลัยราชภัฏสงขลา (SKRU) ด้วย HTML/CSS/JS และ Node.js",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["satisfaction-rating", "skru", "nodejs", "javascript"],
+  "author": "",
+  "license": "ISC"
+}
