@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" width="200" height="260">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A"/>
+      <stop offset="50%" stop-color="#EAB308"/>
+      <stop offset="100%" stop-color="#CA8A04"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Green Oval Badge -->
+  <ellipse cx="100" cy="130" rx="96" ry="124" fill="#14532D" stroke="#CA8A04" stroke-width="4"/>
+  <ellipse cx="100" cy="130" rx="88" ry="115" fill="none" stroke="#FEF08A" stroke-width="2"/>
+
+  <!-- Inner Navy Blue Oval -->
+  <ellipse cx="100" cy="130" rx="68" ry="88" fill="url(#blueGrad)" stroke="#CA8A04" stroke-width="3"/>
+  <ellipse cx="100" cy="130" rx="64" ry="84" fill="none" stroke="#FEF08A" stroke-width="1"/>
+
+  <!-- Top Thai Title Text - Standard Clean Path Render -->
+  <g fill="#FEF08A" font-family="'Prompt', 'Sarabun', 'Segoe UI', sans-serif" font-weight="700" text-anchor="middle">
+    <text x="100" y="32" font-size="13.5" letter-spacing="0.5">มหาวิทยาลัยราชภัฏสงขลา</text>
+  </g>
+
+  <!-- Bottom English Subtitle Text -->
+  <g fill="#FFFFFF" font-family="'Prompt', 'Segoe UI', sans-serif" font-weight="700" text-anchor="middle">
+    <text x="100" y="236" font-size="9" letter-spacing="0.5">SONGKHLA RAJABHAT UNIVERSITY</text>
+  </g>
+
+  <!-- Side Accent Dots -->
+  <circle cx="18" cy="130" r="4" fill="#EAB308" stroke="#FFFFFF" stroke-width="1"/>
+  <circle cx="182" cy="130" r="4" fill="#EAB308" stroke="#FFFFFF" stroke-width="1"/>
+
+  <!-- Center Emblem: Rajabhat Royal Crown Motif -->
+  <g transform="translate(100, 130)">
+    <!-- Sun Rays around Crown -->
+    <g stroke="url(#goldGrad)" stroke-width="2.5" opacity="0.9">
+      <line x1="0" y1="0" x2="0" y2="-55"/>
+      <line x1="0" y1="0" x2="38" y2="-38"/>
+      <line x1="0" y1="0" x2="52" y2="0"/>
+      <line x1="0" y1="0" x2="38" y2="38"/>
+      <line x1="0" y1="0" x2="-38" y2="-38"/>
+      <line x1="0" y1="0" x2="-52" y2="0"/>
+      <line x1="0" y1="0" x2="-38" y2="38"/>
+      <line x1="0" y1="0" x2="0" y2="55"/>
+      <!-- Diagonal inner rays -->
+      <line x1="0" y1="0" x2="20" y2="-48"/>
+      <line x1="0" y1="0" x2="-20" y2="-48"/>
+      <line x1="0" y1="0" x2="48" y2="-20"/>
+      <line x1="0" y1="0" x2="-48" y2="-20"/>
+    </g>
+
+    <!-- Base Pedestal (White & Gold) -->
+    <path d="M-30 45 L30 45 L22 25 L-22 25 Z" fill="#FFFFFF" stroke="#CA8A04" stroke-width="2"/>
+    <line x1="-26" y1="35" x2="26" y2="35" stroke="#CA8A04" stroke-width="1"/>
+    <path d="M-20 25 L20 25 L15 15 L-15 15 Z" fill="#EAB308"/>
+
+    <!-- Tiered Crown (Prang Spire) -->
+    <path d="M-15 15 L15 15 L12 -5 L-12 -5 Z" fill="#FFFFFF" stroke="#CA8A04" stroke-width="1.5"/>
+    <path d="M-12 -5 L12 -5 L9 -22 L-9 -22 Z" fill="#EAB308" stroke="#CA8A04" stroke-width="1.5"/>
+    <path d="M-9 -22 L9 -22 L6 -36 L-6 -36 Z" fill="#FFFFFF" stroke="#CA8A04" stroke-width="1.5"/>
+    <path d="M-6 -36 L6 -36 L3 -48 L-3 -48 Z" fill="#EAB308"/>
+    <polygon points="0,-60 -4,-48 4,-48" fill="#FFFFFF" stroke="#CA8A04" stroke-width="1"/>
+    <circle cx="0" cy="-62" r="3" fill="#EAB308"/>
+
+    <!-- Central Circle Chakra Seal (Green & Gold) -->
+    <circle cx="0" cy="-2" r="16" fill="#15803D" stroke="#EAB308" stroke-width="2.5"/>
+    <circle cx="0" cy="-2" r="10" fill="#1E3A8A" stroke="#FFFFFF" stroke-width="1"/>
+    <!-- Unalom Spiral Symbol -->
+    <path d="M0 4 C-3 2 -3 -3 0 -5 C3 -7 3 -10 0 -12 L0 -15" stroke="#FEF08A" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>
