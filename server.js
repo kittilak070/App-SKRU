@@ -6,6 +6,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
+const mapRoutes = require('./routes/map');
 const { apiRateLimiter } = require('./middleware/security');
 
 const app = express();
@@ -20,8 +21,14 @@ app.use(
         scriptSrc: ["'self'", "'unsafe-inline'"],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net"],
         fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net"],
-        imgSrc: ["'self'", "data:", "https:"],
-        connectSrc: ["'self'"],
+        imgSrc: ["'self'", "data:", "blob:", "https:"],
+        // แผนที่ (/map): โหลดแผนที่พื้นหลังจาก OpenFreeMap
+        connectSrc: ["'self'", "https://tiles.openfreemap.org"],
+        // แผนที่ (/map): MapLibre ใช้ Web Worker แบบ blob
+        workerSrc: ["'self'", "blob:"],
+        childSrc: ["'self'", "blob:"],
+        // แผนที่ (/map): ภาพ 360° ของมหาวิทยาลัย
+        frameSrc: ["'self'", "https://kuula.co"],
         objectSrc: ["'none'"],
         upgradeInsecureRequests: process.env.NODE_ENV === 'production' ? [] : null
       }
@@ -50,10 +57,14 @@ app.use(cookieParser());
 app.use('/api/', apiRateLimiter);
 
 // 6. Serve static files from 'public' directory
+//    (หน้าแผนที่อยู่ที่ public/map → เปิดได้ที่ /map/)
 app.use(express.static(path.join(__dirname, 'public')));
 
 // 7. Mount Auth Routes
 app.use('/api/auth', authRoutes);
+
+// 7.1 Mount Campus Map API (ระบบแผนที่มหาวิทยาลัย)
+app.use('/api/map', mapRoutes);
 
 // 8. Specific Page Routes (2 Separate Pages + Dashboard)
 app.get('/', (req, res) => {
@@ -88,6 +99,7 @@ app.listen(PORT, () => {
   console.log(`📄 Page 1 (Welcome): http://localhost:${PORT}/`);
   console.log(`📄 Page 2 (Login):   http://localhost:${PORT}/login`);
   console.log(`📊 Dashboard:        http://localhost:${PORT}/dashboard`);
+  console.log(`🗺️  Campus Map:       http://localhost:${PORT}/map/`);
   console.log(`🔒 Security Protections: OWASP Hardening Active`);
   console.log('====================================================');
 });

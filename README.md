@@ -59,3 +59,20 @@ npm run dev
 ### 3. เข้าใช้งานผ่าน Web Browser
 เปิดเบราว์เซอร์ไปที่:
 👉 **[http://localhost:3000](http://localhost:3000)**
+
+---
+
+## 🗺️ ระบบแผนที่มหาวิทยาลัย (Campus Map)
+
+เปิดได้ที่ **http://localhost:3000/map/** หรือกดการ์ด "แผนที่มหาวิทยาลัย" ในหน้า Dashboard
+
+- หน้าบ้าน: `public/map/` (HTML/CSS/JS + Leaflet/MapLibre)
+- หลังบ้าน: `routes/map.js` (Express Router) · ข้อมูลสถานที่: `data/map/*.json`
+
+| Method | Path | คำอธิบาย |
+|---|---|---|
+| GET | `/api/map/categories` | หมวดหมู่สถานที่ + จำนวน |
+| GET | `/api/map/places?cat=อาคาร` | รายการสถานที่ (กรองตามหมวด/กลุ่ม) |
+| GET | `/api/map/places/:id` | รายละเอียดสถานที่ |
+| GET | `/api/map/search?q=หอพัก` | ค้นหาสถานที่ |
+| GET | `/api/map/campus` `/official` `/nearby` | ข้อมูลที่หน้าแผนที่ใช้ |
