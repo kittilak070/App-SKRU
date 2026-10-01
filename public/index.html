@@ -20,7 +20,9 @@
                 </svg>
             </button>
             <h1 class="header-title">การจัดการข้อมูลส่วนบุคคล</h1>
-            <div class="spacer"></div>
+            <a href="/admin.html" class="header-admin-link" title="เปิดหน้าตรวจสอบข้อมูลความยินยอม">
+                📊 ตรวจสอบ
+            </a>
         </header>
 
         <!-- Subheader -->
@@ -91,6 +93,9 @@
             <!-- Confirm Button -->
             <div class="submit-container">
                 <button type="submit" id="submit-btn" class="submit-btn">ยืนยัน</button>
+                <a href="/admin.html" class="admin-view-btn">
+                    📊 เปิดหน้าตรวจสอบข้อมูลความยินยอม
+                </a>
             </div>
         </form>
 
@@ -100,10 +105,11 @@
         </footer>
     </div>
 
-    <!-- Quick link to Admin Page (for testing) -->
-    <div class="admin-quick-access">
-        <a href="/admin.html">📊 เปิดหน้าตรวจสอบข้อมูลความยินยอม (Admin View) &rarr;</a>
-    </div>
+    <!-- Floating Action Button for Admin View -->
+    <a href="/admin.html" class="floating-admin-fab" id="floating-admin-btn" title="เปิดหน้าตรวจสอบข้อมูลความยินยอม">
+        <span class="fab-icon">📊</span>
+        <span class="fab-text">เปิดหน้าตรวจสอบข้อมูลความยินยอม</span>
+    </a>
 
     <!-- Notification Toast / Modal -->
     <div id="toast" class="toast"></div>
