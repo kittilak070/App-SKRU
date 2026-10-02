@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fdfaf0" />
+    <title>ผลการศึกษาและคำแนะนำ | SRU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-frame">
+      <header class="topbar">
+        <button class="icon-button" id="backButton" type="button" aria-label="ย้อนกลับ">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+        </button>
+        <div class="brand">SRU</div>
+        <h1>ผลการศึกษาและคำแนะนำ</h1>
+        <div class="topbar-actions">
+          <button class="icon-button notification-button" type="button" aria-label="การแจ้งเตือน">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" /></svg>
+            <span class="notification-dot"></span>
+          </button>
+          <button class="profile-button" type="button" aria-label="โปรไฟล์">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2" /><path d="M5.5 20c.6-3.5 3-5.2 6.5-5.2s5.9 1.7 6.5 5.2" /></svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="student-card panel" aria-labelledby="student-name">
+        <div class="student-card-top">
+          <div class="avatar" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><circle cx="24" cy="16" r="6.5" /><path d="M10.5 39c1-7.4 5.6-11 13.5-11s12.5 3.6 13.5 11" /></svg>
+          </div>
+          <div class="student-details">
+            <div class="status-row">
+              <span class="status-badge"><span class="status-dot"></span>สถานะ : ปกติ</span>
+              <span class="year-badge">ชั้นปีที่ 3</span>
+            </div>
+            <h2 id="student-name">กำลังโหลด...</h2>
+            <p id="student-id">รหัสนักศึกษา : -</p>
+          </div>
+        </div>
+        <div class="program-callout" id="program-name">กำลังโหลดข้อมูลหลักสูตร...</div>
+      </section>
+
+      <section class="stats-card panel" aria-label="สรุปผลการศึกษา">
+        <div class="stat-grid">
+          <article class="stat-box pink-box">
+            <span>GPAX สะสม</span>
+            <strong id="current-gpa">-</strong>
+            <small>*เกียรตินิยม<br />อันดับ 1</small>
+          </article>
+          <article class="stat-box pink-box">
+            <span>เทอมล่าสุด 1/69</span>
+            <strong id="last-gpa">-</strong>
+            <small class="green-note">*ผ่าน 18<br />หน่วยกิต</small>
+          </article>
+        </div>
+        <div class="credit-progress">
+          <div class="progress-heading">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.3 12 5l9 4.3L12 14 3 9.3Z" /><path d="M6 11.3V16c3.2 2.7 8.8 2.7 12 0v-4.7M21 9v6" /></svg>ความก้าวหน้าหลักสูตร</span>
+            <span id="credit-summary">-</span>
+          </div>
+          <div class="progress-track"><span id="progress-bar"></span></div>
+          <div class="progress-foot"><span>สถานะ : เปิดตามแผนแนะนำ</span><span id="remaining-credit">เหลือ - หน่วยกิต</span></div>
+        </div>
+      </section>
+
+      <section class="advisor-card" aria-labelledby="advisor-title">
+        <div class="advisor-heading">
+          <div class="envelope-icon" aria-hidden="true">✉</div>
+          <h2 id="advisor-title">คำแนะนำจากอาจารย์ที่ปรึกษา</h2>
+          <span class="unread-badge">ข้อความใหม่</span>
+        </div>
+        <button class="message-preview" id="messageButton" type="button" aria-label="เปิดข้อความจากอาจารย์ที่ปรึกษา">
+          <span>“</span><span class="message-line"></span><span>”</span>
+        </button>
+      </section>
+
+      <section class="history-section" aria-labelledby="history-title">
+        <div class="section-heading">
+          <h2 id="history-title"><span class="history-icon">▤</span> ประวัติผลการศึกษา</h2>
+          <button class="all-history" type="button" id="showAllButton">ดูทั้งหมด <span aria-hidden="true">⟶</span></button>
+        </div>
+        <div class="history-list" id="historyList">
+          <div class="loading-row">กำลังโหลดประวัติผลการศึกษา...</div>
+        </div>
+      </section>
+
+      <button class="download-button" id="downloadButton" type="button">
+        <span aria-hidden="true">♧</span> ดาวน์โหลดใบรายงานผลการศึกษา (PDF)
+      </button>
+      <p class="footer-note">อัปเดตข้อมูลล่าสุดวันนี้ เวลา 09:42 น.</p>
+    </main>
+
+    <div class="modal-backdrop" id="modalBackdrop" hidden>
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" id="modalClose" type="button" aria-label="ปิด">×</button>
+        <p class="modal-kicker" id="modalKicker">รายละเอียดผลการศึกษา</p>
+        <h2 id="modalTitle">ภาคเรียนที่ 1/2566</h2>
+        <div class="modal-summary" id="modalSummary"></div>
+        <div class="course-list" id="courseList"></div>
+      </section>
+    </div>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
