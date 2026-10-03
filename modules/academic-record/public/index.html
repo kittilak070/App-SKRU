@@ -1,29 +1,29 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="th">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#fdfaf0" />
-    <title>ผลการศึกษาและคำแนะนำ | SRU</title>
+    <title>à¸œà¸¥à¸à¸²à¸£à¸¨à¸¶à¸à¸©à¸²à¹à¸¥à¸°à¸„à¸³à¹à¸™à¸°à¸™à¸³ | SRU</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main class="app-frame">
       <header class="topbar">
-        <button class="icon-button" id="backButton" type="button" aria-label="ย้อนกลับ">
+        <button class="icon-button" id="backButton" type="button" aria-label="à¸¢à¹‰à¸­à¸™à¸à¸¥à¸±à¸š">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
         </button>
         <div class="brand">SRU</div>
-        <h1>ผลการศึกษาและคำแนะนำ</h1>
+        <h1>à¸œà¸¥à¸à¸²à¸£à¸¨à¸¶à¸à¸©à¸²à¹à¸¥à¸°à¸„à¸³à¹à¸™à¸°à¸™à¸³</h1>
         <div class="topbar-actions">
-          <button class="icon-button notification-button" type="button" aria-label="การแจ้งเตือน">
+          <button class="icon-button notification-button" type="button" aria-label="à¸à¸²à¸£à¹à¸ˆà¹‰à¸‡à¹€à¸•à¸·à¸­à¸™">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" /></svg>
             <span class="notification-dot"></span>
           </button>
-          <button class="profile-button" type="button" aria-label="โปรไฟล์">
+          <button class="profile-button" type="button" aria-label="à¹‚à¸›à¸£à¹„à¸Ÿà¸¥à¹Œ">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2" /><path d="M5.5 20c.6-3.5 3-5.2 6.5-5.2s5.9 1.7 6.5 5.2" /></svg>
           </button>
         </div>
@@ -36,75 +36,76 @@
           </div>
           <div class="student-details">
             <div class="status-row">
-              <span class="status-badge"><span class="status-dot"></span>สถานะ : ปกติ</span>
-              <span class="year-badge">ชั้นปีที่ 3</span>
+              <span class="status-badge"><span class="status-dot"></span>à¸ªà¸–à¸²à¸™à¸° : à¸›à¸à¸•à¸´</span>
+              <span class="year-badge">à¸Šà¸±à¹‰à¸™à¸›à¸µà¸—à¸µà¹ˆ 3</span>
             </div>
-            <h2 id="student-name">กำลังโหลด...</h2>
-            <p id="student-id">รหัสนักศึกษา : -</p>
+            <h2 id="student-name">à¸à¸³à¸¥à¸±à¸‡à¹‚à¸«à¸¥à¸”...</h2>
+            <p id="student-id">à¸£à¸«à¸±à¸ªà¸™à¸±à¸à¸¨à¸¶à¸à¸©à¸² : -</p>
           </div>
         </div>
-        <div class="program-callout" id="program-name">กำลังโหลดข้อมูลหลักสูตร...</div>
+        <div class="program-callout" id="program-name">à¸à¸³à¸¥à¸±à¸‡à¹‚à¸«à¸¥à¸”à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¸«à¸¥à¸±à¸à¸ªà¸¹à¸•à¸£...</div>
       </section>
 
-      <section class="stats-card panel" aria-label="สรุปผลการศึกษา">
+      <section class="stats-card panel" aria-label="à¸ªà¸£à¸¸à¸›à¸œà¸¥à¸à¸²à¸£à¸¨à¸¶à¸à¸©à¸²">
         <div class="stat-grid">
           <article class="stat-box pink-box">
-            <span>GPAX สะสม</span>
+            <span>GPAX à¸ªà¸°à¸ªà¸¡</span>
             <strong id="current-gpa">-</strong>
-            <small>*เกียรตินิยม<br />อันดับ 1</small>
+            <small>*à¹€à¸à¸µà¸¢à¸£à¸•à¸´à¸™à¸´à¸¢à¸¡<br />à¸­à¸±à¸™à¸”à¸±à¸š 1</small>
           </article>
           <article class="stat-box pink-box">
-            <span>เทอมล่าสุด 1/69</span>
+            <span>à¹€à¸—à¸­à¸¡à¸¥à¹ˆà¸²à¸ªà¸¸à¸” 1/69</span>
             <strong id="last-gpa">-</strong>
-            <small class="green-note">*ผ่าน 18<br />หน่วยกิต</small>
+            <small class="green-note">*à¸œà¹ˆà¸²à¸™ 18<br />à¸«à¸™à¹ˆà¸§à¸¢à¸à¸´à¸•</small>
           </article>
         </div>
         <div class="credit-progress">
           <div class="progress-heading">
-            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.3 12 5l9 4.3L12 14 3 9.3Z" /><path d="M6 11.3V16c3.2 2.7 8.8 2.7 12 0v-4.7M21 9v6" /></svg>ความก้าวหน้าหลักสูตร</span>
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.3 12 5l9 4.3L12 14 3 9.3Z" /><path d="M6 11.3V16c3.2 2.7 8.8 2.7 12 0v-4.7M21 9v6" /></svg>à¸„à¸§à¸²à¸¡à¸à¹‰à¸²à¸§à¸«à¸™à¹‰à¸²à¸«à¸¥à¸±à¸à¸ªà¸¹à¸•à¸£</span>
             <span id="credit-summary">-</span>
           </div>
           <div class="progress-track"><span id="progress-bar"></span></div>
-          <div class="progress-foot"><span>สถานะ : เปิดตามแผนแนะนำ</span><span id="remaining-credit">เหลือ - หน่วยกิต</span></div>
+          <div class="progress-foot"><span>à¸ªà¸–à¸²à¸™à¸° : à¹€à¸›à¸´à¸”à¸•à¸²à¸¡à¹à¸œà¸™à¹à¸™à¸°à¸™à¸³</span><span id="remaining-credit">à¹€à¸«à¸¥à¸·à¸­ - à¸«à¸™à¹ˆà¸§à¸¢à¸à¸´à¸•</span></div>
         </div>
       </section>
 
       <section class="advisor-card" aria-labelledby="advisor-title">
         <div class="advisor-heading">
-          <div class="envelope-icon" aria-hidden="true">✉</div>
-          <h2 id="advisor-title">คำแนะนำจากอาจารย์ที่ปรึกษา</h2>
-          <span class="unread-badge">ข้อความใหม่</span>
+          <div class="envelope-icon" aria-hidden="true">âœ‰</div>
+          <h2 id="advisor-title">à¸„à¸³à¹à¸™à¸°à¸™à¸³à¸ˆà¸²à¸à¸­à¸²à¸ˆà¸²à¸£à¸¢à¹Œà¸—à¸µà¹ˆà¸›à¸£à¸¶à¸à¸©à¸²</h2>
+          <span class="unread-badge">à¸‚à¹‰à¸­à¸„à¸§à¸²à¸¡à¹ƒà¸«à¸¡à¹ˆ</span>
         </div>
-        <button class="message-preview" id="messageButton" type="button" aria-label="เปิดข้อความจากอาจารย์ที่ปรึกษา">
-          <span>“</span><span class="message-line"></span><span>”</span>
+        <button class="message-preview" id="messageButton" type="button" aria-label="à¹€à¸›à¸´à¸”à¸‚à¹‰à¸­à¸„à¸§à¸²à¸¡à¸ˆà¸²à¸à¸­à¸²à¸ˆà¸²à¸£à¸¢à¹Œà¸—à¸µà¹ˆà¸›à¸£à¸¶à¸à¸©à¸²">
+          <span>â€œ</span><span class="message-line"></span><span>â€</span>
         </button>
       </section>
 
       <section class="history-section" aria-labelledby="history-title">
         <div class="section-heading">
-          <h2 id="history-title"><span class="history-icon">▤</span> ประวัติผลการศึกษา</h2>
-          <button class="all-history" type="button" id="showAllButton">ดูทั้งหมด <span aria-hidden="true">⟶</span></button>
+          <h2 id="history-title"><span class="history-icon">â–¤</span> à¸›à¸£à¸°à¸§à¸±à¸•à¸´à¸œà¸¥à¸à¸²à¸£à¸¨à¸¶à¸à¸©à¸²</h2>
+          <button class="all-history" type="button" id="showAllButton">à¸”à¸¹à¸—à¸±à¹‰à¸‡à¸«à¸¡à¸” <span aria-hidden="true">âŸ¶</span></button>
         </div>
         <div class="history-list" id="historyList">
-          <div class="loading-row">กำลังโหลดประวัติผลการศึกษา...</div>
+          <div class="loading-row">à¸à¸³à¸¥à¸±à¸‡à¹‚à¸«à¸¥à¸”à¸›à¸£à¸°à¸§à¸±à¸•à¸´à¸œà¸¥à¸à¸²à¸£à¸¨à¸¶à¸à¸©à¸²...</div>
         </div>
       </section>
 
       <button class="download-button" id="downloadButton" type="button">
-        <span aria-hidden="true">♧</span> ดาวน์โหลดใบรายงานผลการศึกษา (PDF)
+        <span aria-hidden="true">â™§</span> à¸”à¸²à¸§à¸™à¹Œà¹‚à¸«à¸¥à¸”à¹ƒà¸šà¸£à¸²à¸¢à¸‡à¸²à¸™à¸œà¸¥à¸à¸²à¸£à¸¨à¸¶à¸à¸©à¸² (PDF)
       </button>
-      <p class="footer-note">อัปเดตข้อมูลล่าสุดวันนี้ เวลา 09:42 น.</p>
+      <p class="footer-note">à¸­à¸±à¸›à¹€à¸”à¸•à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¸¥à¹ˆà¸²à¸ªà¸¸à¸”à¸§à¸±à¸™à¸™à¸µà¹‰ à¹€à¸§à¸¥à¸² 09:42 à¸™.</p>
     </main>
 
     <div class="modal-backdrop" id="modalBackdrop" hidden>
       <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <button class="modal-close" id="modalClose" type="button" aria-label="ปิด">×</button>
-        <p class="modal-kicker" id="modalKicker">รายละเอียดผลการศึกษา</p>
-        <h2 id="modalTitle">ภาคเรียนที่ 1/2566</h2>
+        <button class="modal-close" id="modalClose" type="button" aria-label="à¸›à¸´à¸”">Ã—</button>
+        <p class="modal-kicker" id="modalKicker">à¸£à¸²à¸¢à¸¥à¸°à¹€à¸­à¸µà¸¢à¸”à¸œà¸¥à¸à¸²à¸£à¸¨à¸¶à¸à¸©à¸²</p>
+        <h2 id="modalTitle">à¸ à¸²à¸„à¹€à¸£à¸µà¸¢à¸™à¸—à¸µà¹ˆ 1/2566</h2>
         <div class="modal-summary" id="modalSummary"></div>
         <div class="course-list" id="courseList"></div>
       </section>
     </div>
-    <script src="/app.js" type="module"></script>
+    <script src="app.js" type="module"></script>
   </body>
 </html>
+

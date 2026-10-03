@@ -629,19 +629,25 @@
       justify-content: space-between;
       padding: 0 14px;
       color: white;
+      z-index: 10;
     }
 
     .btn-back-app {
-      background: transparent;
-      border: none;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       color: #38bdf8;
-      font-size: 1rem;
+      font-size: 0.82rem;
+      padding: 5px 12px;
+      border-radius: 20px;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 6px;
       font-family: inherit;
       font-weight: 600;
+    }
+    .btn-back-app:hover {
+      background: rgba(56, 189, 248, 0.2);
     }
 
     .app-bar-title {
@@ -676,7 +682,7 @@
     .in-app-frame {
       flex: 1;
       width: 100%;
-      height: 100%;
+      height: calc(100% - 52px);
       border: none;
       background: white;
     }
@@ -722,10 +728,10 @@
           </div>
         </div>
         <div class="header-actions">
-          <button class="btn-icon" title="สแกน QR Code" onclick="openService('check-in.html', 'Check-in Class')">
+          <button class="btn-icon" title="สแกน QR Code" onclick="openDirectApp('modules/check-in/public/index.html', 'Check-in Class', 'check-in.html')">
             <i class="fa-solid fa-qrcode"></i>
           </button>
-          <button class="btn-icon" title="การแจ้งเตือน" onclick="openService('news.html', 'ข่าวสารมหาวิทยาลัย')">
+          <button class="btn-icon" title="การแจ้งเตือน" onclick="openDirectApp('modules/news/public/index.html', 'ข่าวสารมหาวิทยาลัย', 'news.html')">
             <i class="fa-regular fa-bell"></i>
             <span class="badge-dot"></span>
           </button>
@@ -745,15 +751,15 @@
             <h3>นาย.กรรณพัต วังค้อม</h3>
             <p>คณะวิทยาศาสตร์และเทคโนโลยี (ปี 3)</p>
           </div>
-          <div class="card-qr-box" onclick="openService('student-card.html', 'บัตรนักศึกษา')" title="แตะเพื่อเปิดบัตร">
+          <div class="card-qr-box" onclick="openDirectApp('modules/student-card/public/index.html', 'บัตรนักศึกษา', 'student-card.html')" title="แตะเพื่อเปิดบัตร">
             <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=SKRU-6530100001" alt="Student QR">
           </div>
         </div>
         <div class="card-quick-actions">
-          <button class="btn-card-quick" onclick="openService('check-in.html', 'Check-in Class')">
+          <button class="btn-card-quick" onclick="openDirectApp('modules/check-in/public/index.html', 'Check-in Class', 'check-in.html')">
             <i class="fa-solid fa-user-check"></i> เช็คชื่อเข้าเรียน
           </button>
-          <button class="btn-card-quick" onclick="openService('tuition-fee.html', 'จ่ายค่าเทอม')">
+          <button class="btn-card-quick" onclick="openDirectApp('modules/tuition-fee/public/index.html', 'จ่ายค่าเทอม', 'tuition-fee.html')">
             <i class="fa-solid fa-receipt"></i> จ่ายค่าเทอม
           </button>
         </div>
@@ -776,7 +782,7 @@
       </div>
 
       <!-- Quick News Flash -->
-      <div class="news-banner" onclick="openService('news.html', 'ข่าวสารมหาวิทยาลัย')" style="cursor: pointer;">
+      <div class="news-banner" onclick="openDirectApp('modules/news/public/index.html', 'ข่าวสารมหาวิทยาลัย', 'news.html')" style="cursor: pointer;">
         <i class="fa-solid fa-bullhorn"></i>
         <div class="news-text">
           <strong>ประกาศ มรภ.สงขลา</strong>
@@ -793,7 +799,7 @@
 
       <div class="app-grid" id="appsGrid">
         <!-- 1. Check-in Class (035) -->
-        <div class="app-item" data-cat="academic" data-name="check-in เช็คชื่อ เข้าเรียน 035" onclick="openService('check-in.html', 'Check-in Class')">
+        <div class="app-item" data-cat="academic" data-name="check-in เช็คชื่อ เข้าเรียน 035" onclick="openDirectApp('modules/check-in/public/index.html', 'Check-in Class', 'check-in.html')">
           <div class="app-icon-squircle grad-blue">
             <i class="fa-solid fa-clipboard-user"></i>
             <span class="branch-tiny-badge">035</span>
@@ -802,7 +808,7 @@
         </div>
 
         <!-- 2. Student Profile (051) -->
-        <div class="app-item" data-cat="account" data-name="student profile ข้อมูล ประวัตินักศึกษา 051" onclick="openService('student-profile.html', 'Student Profile')">
+        <div class="app-item" data-cat="account" data-name="student profile ข้อมูล ประวัตินักศึกษา 051" onclick="openDirectApp('modules/student-profile/public/index.html', 'Student Profile', 'student-profile.html')">
           <div class="app-icon-squircle grad-emerald">
             <i class="fa-solid fa-id-card"></i>
             <span class="branch-tiny-badge">051</span>
@@ -811,7 +817,7 @@
         </div>
 
         <!-- 3. Tuition Fee (045) -->
-        <div class="app-item" data-cat="finance" data-name="tuition fee จ่ายค่าเทอม ค่าธรรมเนียม 045" onclick="openService('tuition-fee.html', 'จ่ายค่าเทอม')">
+        <div class="app-item" data-cat="finance" data-name="tuition fee จ่ายค่าเทอม ค่าธรรมเนียม 045" onclick="openDirectApp('modules/tuition-fee/public/index.html', 'จ่ายค่าเทอม', 'tuition-fee.html')">
           <div class="app-icon-squircle grad-amber">
             <i class="fa-solid fa-credit-card"></i>
             <span class="branch-tiny-badge">045</span>
@@ -820,7 +826,7 @@
         </div>
 
         <!-- 4. Student Card (028) -->
-        <div class="app-item" data-cat="account" data-name="student card บัตรนักศึกษา 028" onclick="openService('student-card.html', 'บัตรนักศึกษา')">
+        <div class="app-item" data-cat="account" data-name="student card บัตรนักศึกษา 028" onclick="openDirectApp('modules/student-card/public/index.html', 'บัตรนักศึกษา', 'student-card.html')">
           <div class="app-icon-squircle grad-cyan">
             <i class="fa-solid fa-address-card"></i>
             <span class="branch-tiny-badge">028</span>
@@ -829,7 +835,7 @@
         </div>
 
         <!-- 5. Academic Record (042) -->
-        <div class="app-item" data-cat="academic" data-name="grades academic record ผลการศึกษา คำแนะนำ 042" onclick="openService('academic-record.html', 'ผลการศึกษา')">
+        <div class="app-item" data-cat="academic" data-name="grades academic record ผลการศึกษา คำแนะนำ 042" onclick="openDirectApp('modules/academic-record/public/index.html', 'ผลการศึกษา', 'academic-record.html')">
           <div class="app-icon-squircle grad-indigo">
             <i class="fa-solid fa-graduation-cap"></i>
             <span class="branch-tiny-badge">042</span>
@@ -838,7 +844,7 @@
         </div>
 
         <!-- 6. Campus Map (032) -->
-        <div class="app-item" data-cat="facilities" data-name="campus map แผนที่ มหาวิทยาลัย 032" onclick="openService('campus-map.html', 'แผนที่มหาวิทยาลัย')">
+        <div class="app-item" data-cat="facilities" data-name="campus map แผนที่ มหาวิทยาลัย 032" onclick="openDirectApp('modules/campus-map/public/index.html', 'แผนที่มหาวิทยาลัย', 'campus-map.html')">
           <div class="app-icon-squircle grad-emerald">
             <i class="fa-solid fa-map-location-dot"></i>
             <span class="branch-tiny-badge">032</span>
@@ -847,7 +853,7 @@
         </div>
 
         <!-- 7. Student Loan (044) -->
-        <div class="app-item" data-cat="finance" data-name="student loan กยศ กู้ยืม 044" onclick="openService('student-loan.html', 'ลงทะเบียน กยศ.')">
+        <div class="app-item" data-cat="finance" data-name="student loan กยศ กู้ยืม 044" onclick="openDirectApp('modules/student-loan/public/index.html', 'ลงทะเบียน กยศ.', 'student-loan.html')">
           <div class="app-icon-squircle grad-amber">
             <i class="fa-solid fa-hand-holding-dollar"></i>
             <span class="branch-tiny-badge">044</span>
@@ -856,7 +862,7 @@
         </div>
 
         <!-- 8. Booking (043) -->
-        <div class="app-item" data-cat="facilities" data-name="booking จอง ยืม อุปกรณ์ สถานที่ 043" onclick="openService('booking.html', 'ยืม/จองอุปกรณ์')">
+        <div class="app-item" data-cat="facilities" data-name="booking จอง ยืม อุปกรณ์ สถานที่ 043" onclick="openDirectApp('modules/booking/index.html', 'ยืม/จองอุปกรณ์', 'booking.html')">
           <div class="app-icon-squircle grad-rose">
             <i class="fa-solid fa-calendar-check"></i>
             <span class="branch-tiny-badge">043</span>
@@ -865,7 +871,7 @@
         </div>
 
         <!-- 9. Faculty Contact (030) -->
-        <div class="app-item" data-cat="academic" data-name="faculty contact ติดต่ออาจารย์ คณะ 030" onclick="openService('faculty-contact.html', 'ติดต่ออาจารย์')">
+        <div class="app-item" data-cat="academic" data-name="faculty contact ติดต่ออาจารย์ คณะ 030" onclick="openDirectApp('modules/faculty-contact/public/index.html', 'ติดต่ออาจารย์', 'faculty-contact.html')">
           <div class="app-icon-squircle grad-blue">
             <i class="fa-solid fa-chalkboard-user"></i>
             <span class="branch-tiny-badge">030</span>
@@ -874,7 +880,7 @@
         </div>
 
         <!-- 10. News (041) -->
-        <div class="app-item" data-cat="activities" data-name="news ข่าวสาร มหาวิทยาลัย 041" onclick="openService('news.html', 'ข่าวสารมหาวิทยาลัย')">
+        <div class="app-item" data-cat="activities" data-name="news ข่าวสาร มหาวิทยาลัย 041" onclick="openDirectApp('modules/news/public/index.html', 'ข่าวสารมหาวิทยาลัย', 'news.html')">
           <div class="app-icon-squircle grad-purple">
             <i class="fa-solid fa-newspaper"></i>
             <span class="branch-tiny-badge">041</span>
@@ -883,7 +889,7 @@
         </div>
 
         <!-- 11. Learning Resources (029) -->
-        <div class="app-item" data-cat="academic" data-name="learning resources แหล่งเรียนรู้ สื่อ 029" onclick="openService('learning-resources.html', 'แหล่งเรียนรู้')">
+        <div class="app-item" data-cat="academic" data-name="learning resources แหล่งเรียนรู้ สื่อ 029" onclick="openDirectApp('modules/learning-resources/public/index.html', 'แหล่งเรียนรู้', 'learning-resources.html')">
           <div class="app-icon-squircle grad-indigo">
             <i class="fa-solid fa-book-open-reader"></i>
             <span class="branch-tiny-badge">029</span>
@@ -892,7 +898,7 @@
         </div>
 
         <!-- 12. Dorm Booking (039) -->
-        <div class="app-item" data-cat="facilities" data-name="dorm dormitory booking จองหอพัก 039" onclick="openService('dorm-booking.html', 'จองหอพัก')">
+        <div class="app-item" data-cat="facilities" data-name="dorm dormitory booking จองหอพัก 039" onclick="openDirectApp('modules/dorm-booking/public/index.html', 'จองหอพัก', 'dorm-booking.html')">
           <div class="app-icon-squircle grad-teal">
             <i class="fa-solid fa-bed"></i>
             <span class="branch-tiny-badge">039</span>
@@ -901,7 +907,7 @@
         </div>
 
         <!-- 13. Event Booking (046) -->
-        <div class="app-item" data-cat="activities" data-name="event booking จองกิจกรรม 046" onclick="openService('event-booking.html', 'จองกิจกรรม')">
+        <div class="app-item" data-cat="activities" data-name="event booking จองกิจกรรม 046" onclick="openDirectApp('modules/event-booking/public/index.html', 'จองกิจกรรม', 'event-booking.html')">
           <div class="app-icon-squircle grad-amber">
             <i class="fa-solid fa-champagne-glasses"></i>
             <span class="branch-tiny-badge">046</span>
@@ -910,7 +916,7 @@
         </div>
 
         <!-- 14. Privacy Settings (040) -->
-        <div class="app-item" data-cat="account" data-name="privacy settings จัดการความเป็นส่วนตัว 040" onclick="openService('privacy-settings.html', 'ความเป็นส่วนตัว')">
+        <div class="app-item" data-cat="account" data-name="privacy settings จัดการความเป็นส่วนตัว 040" onclick="openDirectApp('modules/privacy-settings/public/index.html', 'ความเป็นส่วนตัว', 'privacy-settings.html')">
           <div class="app-icon-squircle grad-rose">
             <i class="fa-solid fa-shield-halved"></i>
             <span class="branch-tiny-badge">040</span>
@@ -919,7 +925,7 @@
         </div>
 
         <!-- 15. Academic Calendar (048) -->
-        <div class="app-item" data-cat="academic" data-name="academic calendar ปฏิทินการศึกษา 048" onclick="openService('academic-calendar.html', 'ปฏิทินการศึกษา')">
+        <div class="app-item" data-cat="academic" data-name="academic calendar ปฏิทินการศึกษา 048" onclick="openDirectApp('modules/academic-calendar/index.html', 'ปฏิทินการศึกษา', 'academic-calendar.html')">
           <div class="app-icon-squircle grad-sky">
             <i class="fa-solid fa-calendar-days"></i>
             <span class="branch-tiny-badge">048</span>
@@ -928,7 +934,7 @@
         </div>
 
         <!-- 16. Login Portal (027) -->
-        <div class="app-item" data-cat="account" data-name="login เข้าสู่ระบบ 027" onclick="openService('login.html', 'เข้าสู่ระบบ')">
+        <div class="app-item" data-cat="account" data-name="login เข้าสู่ระบบ 027" onclick="openDirectApp('modules/login/public/login.html', 'เข้าสู่ระบบ', 'login.html')">
           <div class="app-icon-squircle grad-blue">
             <i class="fa-solid fa-right-to-bracket"></i>
             <span class="branch-tiny-badge">027</span>
@@ -937,7 +943,7 @@
         </div>
 
         <!-- 17. Settings (049) -->
-        <div class="app-item" data-cat="account" data-name="settings ตั้งค่าระบบ 049" onclick="openService('settings.html', 'ตั้งค่าระบบ')">
+        <div class="app-item" data-cat="account" data-name="settings ตั้งค่าระบบ 049" onclick="openDirectApp('modules/settings/public/index.html', 'ตั้งค่าระบบ', 'settings.html')">
           <div class="app-icon-squircle grad-indigo">
             <i class="fa-solid fa-gear"></i>
             <span class="branch-tiny-badge">049</span>
@@ -946,7 +952,7 @@
         </div>
 
         <!-- 18. Vote & Survey (033) -->
-        <div class="app-item" data-cat="activities" data-name="vote survey โหวต แบบสำรวจ 033" onclick="openService('vote.html', 'ระบบโหวต')">
+        <div class="app-item" data-cat="activities" data-name="vote survey โหวต แบบสำรวจ 033" onclick="openDirectApp('modules/vote/public/index.html', 'ระบบโหวต', 'vote.html')">
           <div class="app-icon-squircle grad-emerald">
             <i class="fa-solid fa-check-to-slot"></i>
             <span class="branch-tiny-badge">033</span>
@@ -955,7 +961,7 @@
         </div>
 
         <!-- 19. Rewards (050) -->
-        <div class="app-item" data-cat="activities" data-name="rewards redeem แลกของรางวัล 050" onclick="openService('rewards.html', 'แลกของรางวัล')">
+        <div class="app-item" data-cat="activities" data-name="rewards redeem แลกของรางวัล 050" onclick="openDirectApp('modules/rewards/public/index.html', 'แลกของรางวัล', 'rewards.html')">
           <div class="app-icon-squircle grad-purple">
             <i class="fa-solid fa-gift"></i>
             <span class="branch-tiny-badge">050</span>
@@ -964,7 +970,7 @@
         </div>
 
         <!-- 20. Library System (047) -->
-        <div class="app-item" data-cat="facilities" data-name="library ห้องสมุด หนังสือ 047" onclick="openService('library.html', 'ห้องสมุด')">
+        <div class="app-item" data-cat="facilities" data-name="library ห้องสมุด หนังสือ 047" onclick="openDirectApp('modules/library/public/index.html', 'ห้องสมุด', 'library.html')">
           <div class="app-icon-squircle grad-blue">
             <i class="fa-solid fa-lines-leaning"></i>
             <span class="branch-tiny-badge">047</span>
@@ -984,15 +990,15 @@
         <i class="fa-solid fa-book-bookmark"></i>
         <span>วิชาการ</span>
       </div>
-      <div class="nav-tab-item" onclick="openService('student-card.html', 'บัตรนักศึกษา')">
+      <div class="nav-tab-item" onclick="openDirectApp('modules/student-card/public/index.html', 'บัตรนักศึกษา', 'student-card.html')">
         <i class="fa-solid fa-id-card-clip"></i>
         <span>บัตรดิจิทัล</span>
       </div>
-      <div class="nav-tab-item" onclick="openService('rewards.html', 'แลกของรางวัล')">
+      <div class="nav-tab-item" onclick="openDirectApp('modules/rewards/public/index.html', 'แลกของรางวัล', 'rewards.html')">
         <i class="fa-solid fa-gift"></i>
         <span>สิทธิพิเศษ</span>
       </div>
-      <div class="nav-tab-item" onclick="openService('student-profile.html', 'ประวัตินักศึกษา')">
+      <div class="nav-tab-item" onclick="openDirectApp('modules/student-profile/public/index.html', 'ประวัตินักศึกษา', 'student-profile.html')">
         <i class="fa-solid fa-user"></i>
         <span>บัญชีฉัน</span>
       </div>
@@ -1006,7 +1012,7 @@
         </button>
         <span class="app-bar-title" id="appBarTitle">กำลังโหลด...</span>
         <div class="app-bar-actions">
-          <a href="#" target="_blank" class="btn-app-bar-action" id="externalOpenBtn" title="เปิดแท็บใหม่">
+          <a href="#" target="_blank" class="btn-app-bar-action" id="externalOpenBtn" title="เปิดแท็บใหม่แบบเดี่ยว">
             <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
         </div>
@@ -1029,11 +1035,11 @@
 
     let currentFilter = 'all';
 
-    // In-App Screen Loader
-    function openService(url, title) {
+    // Direct Module In-App Loader (Direct path avoids double iframes & double header bars)
+    function openDirectApp(moduleUrl, title, standaloneUrl) {
       appBarTitle.textContent = title;
-      externalOpenBtn.href = url;
-      inAppFrame.src = url;
+      externalOpenBtn.href = standaloneUrl || moduleUrl;
+      inAppFrame.src = moduleUrl;
       inAppView.classList.add('open');
     }
 
@@ -1084,7 +1090,7 @@
       });
     });
 
-    // Bottom Tab Bar
+    // Bottom Tab Bar Navigation
     function switchNavTab(tab) {
       if (tab === 'home') {
         categoryPills.forEach(p => p.classList.remove('active'));
