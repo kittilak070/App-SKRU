@@ -1,0 +1,18 @@
+{
+  "name": "skru-payment-system",
+  "version": "1.0.0",
+  "description": "ระบบชำระเงินค่าธรรมเนียมการศึกษา มหาวิทยาลัยราชภัฏสงขลา",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["skru", "payment", "university"],
+  "author": "SKRU",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  }
+}
