@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ระบบเช็คชื่อเข้าเรียน - Class Check-in</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Background Ambient Glow for Desktop View -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <div class="app-layout">
+    <!-- Quick Demo Controller Bar for Easy Testing -->
+    <header class="demo-controls-bar">
+      <div class="control-brand">
+        <span class="pulse-dot"></span>
+        <strong>Smart Class Check-in</strong>
+        <span class="badge-role" id="currentRoleBadge">Student View</span>
+      </div>
+      
+      <div class="control-actions">
+        <!-- Switch Identity -->
+        <div class="select-wrapper">
+          <label for="userSelect">👤 สวมบทบาท:</label>
+          <select id="userSelect" title="เลือกผู้ใช้งาน">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <!-- Role Toggle -->
+        <button id="toggleTeacherModeBtn" class="btn-control btn-role">
+          <span class="icon">⚙️</span>
+          <span id="roleBtnText">โหมดอาจารย์ (Teacher)</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Mobile Container (Exact Match to Design Prototype) -->
+    <main class="mobile-container" id="mobileScreen">
+      
+      <!-- Top Navigation Bar -->
+      <nav class="top-nav-bar" id="topNav">
+        <button class="nav-btn-icon" id="btnBack" title="ย้อนกลับ" aria-label="Back">
+          <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </button>
+        
+        <h1 class="nav-title" id="courseCodeHeader">4663235- sec 01</h1>
+        
+        <button class="nav-btn-icon history-btn" id="btnHistory" title="ประวัติการเช็คชื่อ" aria-label="History">
+          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 4v6h6"></path>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </button>
+      </nav>
+
+      <!-- Scrollable Main View -->
+      <div class="app-scroll-content">
+        
+        <!-- SECTION 1: Class Detail Section -->
+        <section class="section-container" aria-labelledby="classDetailHeading">
+          <div class="section-banner-header">
+            <div class="banner-title-group">
+              <!-- Book Icon -->
+              <svg class="header-icon red-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              <h2 id="classDetailHeading" class="banner-heading">Clss Detail</h2>
+            </div>
+            
+            <span class="live-status-pill" id="sessionPill">
+              <span class="status-circle"></span>
+              <span id="sessionStatusText">เปิดเช็คชื่อ</span>
+            </span>
+          </div>
+
+          <div class="card-detail-body">
+            <!-- Course Title -->
+            <div class="detail-row mb-sm">
+              <span class="label-muted">Course</span>
+              <div class="value-highlight" id="courseName">Human-Computer Interaction</div>
+            </div>
+
+            <!-- Code, Credit, Section Row -->
+            <div class="grid-three-col">
+              <div class="info-group">
+                <span class="label-muted">Code</span>
+                <div class="value-strong" id="courseCode">4663235</div>
+              </div>
+              <div class="info-group">
+                <span class="label-muted">Credit</span>
+                <div class="value-strong" id="courseCredit">3</div>
+              </div>
+              <div class="info-group">
+                <span class="label-muted">Section</span>
+                <div class="value-strong" id="courseSection">01</div>
+              </div>
+            </div>
+
+            <!-- Teacher & Check-in status Row -->
+            <div class="grid-two-col">
+              <div class="info-group">
+                <span class="label-muted">Teacher</span>
+                <div class="value-text" id="teacherName">Mr.Panukorn Puripanyanon</div>
+              </div>
+              <div class="info-group">
+                <span class="label-muted">Check-in class</span>
+                <div class="checkin-status-indicator" id="myCheckInStatus">No</div>
+              </div>
+            </div>
+
+            <!-- Date/Time Row -->
+            <div class="detail-row">
+              <span class="label-muted">Date/Time</span>
+              <div class="datetime-badge">
+                <span class="time-text" id="courseDateTime">TUE  08:00-12:00</span>
+                <span class="room-pill" id="courseRoom">Lab.คอม301</span>
+              </div>
+            </div>
+
+            <!-- Main Check-in Action Button -->
+            <div class="checkin-action-area">
+              <button id="btnCheckIn" class="btn-checkin" type="button">
+                <span class="btn-spinner hidden" id="checkInSpinner"></span>
+                <span class="btn-icon-check hidden" id="checkInCheckmark">✓</span>
+                <span id="btnCheckInText">CHECK-IN CLASS</span>
+              </button>
+              
+              <!-- Check-in summary progress bar -->
+              <div class="attendance-progress-container">
+                <div class="progress-info">
+                  <span>เข้าเรียนแล้ว <strong id="checkedCountText">0</strong>/<span id="totalCountText">0</span> คน</span>
+                  <span class="percent-badge" id="attendancePercent">0%</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" id="attendanceProgressBar" style="width: 0%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: Classmate Section -->
+        <section class="section-container" aria-labelledby="classmateHeading">
+          <div class="section-banner-header">
+            <div class="banner-title-group">
+              <!-- Graduation Cap Icon -->
+              <svg class="header-icon red-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+              <h2 id="classmateHeading" class="banner-heading">Classmate</h2>
+            </div>
+            
+            <button class="link-see-all" id="btnSeeAll">See All</button>
+          </div>
+
+          <!-- Classmates List Items -->
+          <div class="classmate-list" id="classmateListContainer">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Bottom Floating / Navigation Bar -->
+      <footer class="app-bottom-bar">
+        <div class="user-profile-strip">
+          <div class="user-avatar" id="currentUserAvatar">👩‍🎓</div>
+          <div class="user-info-text">
+            <span class="user-name" id="currentUserName">Ms.Rusnee yuda</span>
+            <span class="user-sub" id="currentUserRoleDesc">กำลังเข้าใช้งาน (Student)</span>
+          </div>
+        </div>
+        <button class="btn-qr-scan" id="btnQrCode" title="แสดง QR Code สำหรับเช็คชื่อ">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+            <line x1="7" y1="7" x2="7.01" y2="7"></line>
+            <line x1="17" y1="7" x2="17.01" y2="7"></line>
+            <line x1="7" y1="17" x2="7.01" y2="17"></line>
+            <line x1="17" y1="17" x2="17.01" y2="17"></line>
+          </svg>
+          QR Code
+        </button>
+      </footer>
+    </main>
+
+    <!-- SIDE PANEL / TEACHER DASHBOARD (For Instructors) -->
+    <aside class="teacher-drawer hidden" id="teacherDrawer">
+      <div class="drawer-header">
+        <h3>🧑‍🏫 แผงควบคุมอาจารย์ (Teacher Panel)</h3>
+        <button class="btn-close-drawer" id="btnCloseTeacherDrawer">&times;</button>
+      </div>
+      
+      <div class="drawer-content">
+        <div class="control-card">
+          <h4>สถานะระบบเช็คชื่อ</h4>
+          <p class="text-sm">เปิดหรือปิดการอนุญาตให้นักศึกษาเช็คชื่อผ่านอุปกรณ์</p>
+          <div class="toggle-switch-group">
+            <span>สถานะ: <strong id="teacherSessionStatus">เปิดอยู่</strong></span>
+            <button id="btnToggleSession" class="btn-primary-action">
+              สลับสถานะเปิด/ปิด
+            </button>
+          </div>
+        </div>
+
+        <div class="control-card">
+          <h4>รหัส PIN ประจำห้อง</h4>
+          <p class="text-sm">กำหนดรหัส 4 หลักเพื่อป้องกันการเช็คชื่อนอกห้องเรียน</p>
+          <div class="pin-config-row">
+            <input type="text" id="pinInput" maxlength="6" value="8899" class="input-pin" placeholder="PIN Code">
+            <label class="checkbox-label">
+              <input type="checkbox" id="requirePinCheck"> บังคับใส่ PIN
+            </label>
+            <button id="btnSavePin" class="btn-sm">บันทึก</button>
+          </div>
+        </div>
+
+        <div class="control-card">
+          <h4>จัดการรอบเช็คชื่อ</h4>
+          <p class="text-sm">รีเซ็ตสถานะทุกคนเป็น 'ยังไม่เช็คชื่อ' สำหรับเริ่มคาบใหม่</p>
+          <button id="btnResetSession" class="btn-danger-outline">
+            🔄 เริ่มคาบเรียนใหม่ (Reset Session)
+          </button>
+        </div>
+
+        <div class="control-card">
+          <h4>เพิ่มนักศึกษาในรายวิชา</h4>
+          <form id="addStudentForm" class="add-student-form">
+            <input type="text" id="newStudentId" placeholder="รหัสนักศึกษา (เช่น 6401011)" required>
+            <input type="text" id="newStudentName" placeholder="ชื่อ-นามสกุล (เช่น นายสมชาย ใจดี)" required>
+            <input type="text" id="newStudentFaculty" placeholder="คณะ (เช่น Faculty of Science)" value="Faculty of Science">
+            <button type="submit" class="btn-primary-action">+ เพิ่มนักศึกษา</button>
+          </form>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- MODAL: Chat / Message Popup with Classmate -->
+  <div class="modal-backdrop hidden" id="chatModal">
+    <div class="modal-box chat-modal-box">
+      <div class="modal-header">
+        <div class="chat-peer-info">
+          <span class="chat-avatar" id="chatPeerAvatar">👩‍🎓</span>
+          <div>
+            <h4 id="chatPeerName">Ms.Ponthip phetmak</h4>
+            <span class="status-online">● ออนไลน์ในห้องเรียน</span>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="btnCloseChat">&times;</button>
+      </div>
+      
+      <div class="chat-messages-body" id="chatMessagesList">
+        <!-- Chat bubbles rendered here -->
+      </div>
+
+      <form id="chatForm" class="chat-input-bar">
+        <input type="text" id="chatInputText" placeholder="พิมพ์ข้อความคุยกับเพื่อน..." autocomplete="off" required>
+        <button type="submit" class="btn-send-msg">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: See All Classmates -->
+  <div class="modal-backdrop hidden" id="seeAllModal">
+    <div class="modal-box modal-wide">
+      <div class="modal-header">
+        <div class="header-with-icon">
+          <span class="red-icon">🎓</span>
+          <h3>รายชื่อนักศึกษาทั้งหมด (All Classmates)</h3>
+        </div>
+        <button class="modal-close-btn" id="btnCloseSeeAll">&times;</button>
+      </div>
+
+      <div class="search-filter-bar">
+        <input type="text" id="searchStudentInput" placeholder="🔍 ค้นหาด้วยชื่อ หรือรหัสนักศึกษา..." class="input-search">
+        <div class="filter-pills">
+          <button class="pill-btn active" data-filter="all">ทั้งหมด (<span id="countAll">0</span>)</button>
+          <button class="pill-btn" data-filter="checked">เช็คชื่อแล้ว (<span id="countChecked">0</span>)</button>
+          <button class="pill-btn" data-filter="absent">ยังไม่เช็ค (<span id="countAbsent">0</span>)</button>
+        </div>
+      </div>
+
+      <div class="modal-list-scroll" id="allStudentsContainer">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Attendance History -->
+  <div class="modal-backdrop hidden" id="historyModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="header-with-icon">
+          <span class="red-icon">🕒</span>
+          <h3>ประวัติการเช็คชื่อย้อนหลัง (History)</h3>
+        </div>
+        <button class="modal-close-btn" id="btnCloseHistory">&times;</button>
+      </div>
+      
+      <div class="modal-list-scroll" id="historyListContainer">
+        <!-- History items rendered here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: QR Code & PIN Modal -->
+  <div class="modal-backdrop hidden" id="qrModal">
+    <div class="modal-box text-center">
+      <div class="modal-header">
+        <h3>📷 รหัส QR Code ประจำห้องเรียน</h3>
+        <button class="modal-close-btn" id="btnCloseQr">&times;</button>
+      </div>
+      
+      <div class="qr-display-container">
+        <div class="qr-code-box" id="qrCodeVisual">
+          <!-- Dynamic SVG QR Pattern -->
+          <svg viewBox="0 0 200 200" width="180" height="180">
+            <rect width="200" height="200" fill="#ffffff" />
+            <!-- Corners -->
+            <rect x="20" y="20" width="50" height="50" fill="#2d3748" rx="4" />
+            <rect x="30" y="30" width="30" height="30" fill="#ffffff" rx="2" />
+            <rect x="38" y="38" width="14" height="14" fill="#e53e3e" rx="1" />
+            
+            <rect x="130" y="20" width="50" height="50" fill="#2d3748" rx="4" />
+            <rect x="140" y="30" width="30" height="30" fill="#ffffff" rx="2" />
+            <rect x="148" y="38" width="14" height="14" fill="#e53e3e" rx="1" />
+
+            <rect x="20" y="130" width="50" height="50" fill="#2d3748" rx="4" />
+            <rect x="30" y="140" width="30" height="30" fill="#ffffff" rx="2" />
+            <rect x="38" y="148" width="14" height="14" fill="#e53e3e" rx="1" />
+
+            <!-- Pattern Dots -->
+            <circle cx="100" cy="40" r="8" fill="#2d3748" />
+            <circle cx="100" cy="70" r="6" fill="#2d3748" />
+            <circle cx="80" cy="100" r="7" fill="#2d3748" />
+            <circle cx="100" cy="100" r="10" fill="#e53e3e" />
+            <circle cx="120" cy="100" r="7" fill="#2d3748" />
+            <circle cx="150" cy="100" r="6" fill="#2d3748" />
+            <circle cx="100" cy="130" r="6" fill="#2d3748" />
+            <circle cx="100" cy="160" r="8" fill="#2d3748" />
+            <circle cx="140" cy="140" r="8" fill="#2d3748" />
+            <circle cx="160" cy="160" r="8" fill="#2d3748" />
+            <circle cx="40" cy="95" r="5" fill="#2d3748" />
+          </svg>
+        </div>
+
+        <div class="qr-pin-info">
+          <span>รหัส PIN ประจำคาบ:</span>
+          <div class="pin-display-badge" id="qrPinText">8899</div>
+        </div>
+        <p class="qr-subtext">สแกน QR Code หรือกรอกรหัส PIN ด้านบนเพื่อเช็คชื่อเข้าห้องเรียน <strong>Lab.คอม301</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PIN Prompt if PIN is required -->
+  <div class="modal-backdrop hidden" id="pinPromptModal">
+    <div class="modal-box text-center">
+      <div class="modal-header">
+        <h3>🔐 กรุณากรอกรหัส PIN เช็คชื่อ</h3>
+        <button class="modal-close-btn" id="btnClosePinPrompt">&times;</button>
+      </div>
+      <div class="modal-body-pad">
+        <p class="text-muted">อาจารย์ผู้สอนได้ตั้งค่ารหัส PIN ประจำคาบเรียนนี้ไว้</p>
+        <div class="pin-input-large-wrapper">
+          <input type="password" id="studentCheckInPin" maxlength="6" placeholder="• • • •" class="input-pin-large" autofocus>
+        </div>
+        <div class="modal-actions-row">
+          <button id="btnCancelPin" class="btn-secondary">ยกเลิก</button>
+          <button id="btnSubmitPinCheckIn" class="btn-primary-action">ยืนยันเช็คชื่อ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

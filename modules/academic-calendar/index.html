@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKRU APP - ปฏิทินการศึกษา มหาวิทยาลัยราชภัฏสงขลา</title>
+    <!-- Google Fonts: Kanit & Prompt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Main Smartphone Frame -->
+    <div class="app-wrapper">
+        <div class="device-frame">
+
+            <!-- SKRU App Red Header Banner -->
+            <header class="skru-header">
+                <div class="header-main">
+                    <div class="university-brand">
+                        <h1 class="app-title">SKRU APP</h1>
+                        <p class="app-sub">มหาวิทยาลัยราชภัฏสงขลา</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="icon-btn clickable" id="btnNotificationAlert" title="การแจ้งเตือน">
+                            <i class="fa-regular fa-bell"></i>
+                            <span class="badge-dot" id="notiBadge"></span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- App Screen Body (ONLY Calendar Page) -->
+            <main class="app-body">
+                
+                <!-- Calendar Section Title -->
+                <div class="calendar-title-card clickable" id="btnOpenYearModal" title="คลิกเพื่อดูปฏิทินตลอดปีการศึกษา">
+                    <div class="title-left">
+                        <div class="cal-icon-wrapper">
+                            <i class="fa-regular fa-calendar-days"></i>
+                        </div>
+                        <div class="title-text">
+                            <h2>ปฏิทินการศึกษา</h2>
+                            <p>ดูปฏิทินตลอดปีการศึกษา <i class="fa-solid fa-chevron-right text-xs"></i></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Month Navigation Header -->
+                <div class="month-navigator">
+                    <button class="nav-arrow clickable" id="prevMonthBtn" aria-label="เดือนก่อนหน้า">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div class="current-month-display">
+                        <span id="monthYearLabel" class="clickable" title="คลิกเพื่อกลับสู่วันนี้">กันยายน 2569</span>
+                        <button id="btnTodayReset" class="btn-today-pill clickable" title="กลับสู่วันนี้">วันนี้</button>
+                    </div>
+                    <button class="nav-arrow clickable" id="nextMonthBtn" aria-label="เดือนถัดไป">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Calendar Grid Container -->
+                <div class="calendar-box">
+                    <!-- Day Headers (Mon - Sun) -->
+                    <div class="days-header-grid">
+                        <div class="day-col">จ</div>
+                        <div class="day-col">อ</div>
+                        <div class="day-col">พ</div>
+                        <div class="day-col">พฤ</div>
+                        <div class="day-col">ศ</div>
+                        <div class="day-col weekend">ส</div>
+                        <div class="day-col weekend">อา</div>
+                    </div>
+
+                    <!-- Date Cells Grid (Every day clickable!) -->
+                    <div class="dates-grid" id="datesGrid">
+                        <!-- Dynamically generated date cells -->
+                    </div>
+                </div>
+
+                <!-- Event Category Filter Checks (Interactive Filters) -->
+                <div class="event-categories-legend">
+                    <label class="category-chip class-chip clickable">
+                        <input type="checkbox" checked value="class" class="cat-filter">
+                        <span class="chip-dot class-dot"><i class="fa-solid fa-check"></i></span>
+                        <span class="chip-label">วันเรียน</span>
+                    </label>
+                    <label class="category-chip exam-chip clickable">
+                        <input type="checkbox" checked value="exam" class="cat-filter">
+                        <span class="chip-dot exam-dot"><i class="fa-solid fa-check"></i></span>
+                        <span class="chip-label">วันสอบ</span>
+                    </label>
+                    <label class="category-chip reg-chip clickable">
+                        <input type="checkbox" checked value="reg" class="cat-filter">
+                        <span class="chip-dot reg-dot"><i class="fa-solid fa-check"></i></span>
+                        <span class="chip-label">วันลงทะเบียน</span>
+                    </label>
+                    <label class="category-chip holiday-chip clickable">
+                        <input type="checkbox" checked value="holiday" class="cat-filter">
+                        <span class="chip-dot holiday-dot"><i class="fa-solid fa-check"></i></span>
+                        <span class="chip-label">วันหยุด</span>
+                    </label>
+                </div>
+
+                <!-- Daily Activities Section ("กิจกรรมวันนี้") -->
+                <div class="activities-section">
+                    <div class="activities-header">
+                        <div class="act-title">
+                            <div class="act-icon"><i class="fa-regular fa-calendar-check"></i></div>
+                            <div>
+                                <h3>กิจกรรมวันนี้</h3>
+                                <span class="selected-date-str" id="selectedDateHeader">27 กันยายน 2569</span>
+                            </div>
+                        </div>
+                        <button class="btn-add-event clickable" id="btnAddEvent">
+                            <i class="fa-solid fa-plus"></i> เพิ่มกิจกรรม
+                        </button>
+                    </div>
+
+                    <!-- Activities List (Clickable Event Cards) -->
+                    <div class="events-list" id="eventsListContainer">
+                        <!-- Dynamic Event Cards generated here -->
+                    </div>
+                </div>
+
+            </main>
+
+            <!-- Bottom Navigation Bar -->
+            <nav class="bottom-nav">
+                <button class="nav-tab clickable" data-nav="home">
+                    <i class="fa-solid fa-house"></i>
+                    <span>หน้าหลัก</span>
+                </button>
+                <button class="nav-tab active clickable" data-nav="calendar">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>ปฏิทิน</span>
+                </button>
+                <button class="nav-tab clickable" data-nav="notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span>แจ้งเตือน</span>
+                </button>
+                <button class="nav-tab clickable" data-nav="profile">
+                    <i class="fa-regular fa-user"></i>
+                    <span>โปรไฟล์</span>
+                </button>
+            </nav>
+
+        </div>
+    </div>
+
+    <!-- MODAL 1: ADD NEW EVENT -->
+    <div class="modal-overlay" id="addEventModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-calendar-plus"></i> เพิ่มกิจกรรมใหม่</h3>
+                <button class="close-modal-btn clickable" id="btnCloseAddModal">&times;</button>
+            </div>
+            <form id="addEventForm">
+                <div class="form-group">
+                    <label>ชื่อกิจกรรม / วิชาเรียน</label>
+                    <input type="text" id="eventTitle" placeholder="เช่น เรียนรายวิชา HCI sec 01" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>วันที่</label>
+                        <input type="date" id="eventDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>ประเภทกิจกรรม</label>
+                        <select id="eventType" required>
+                            <option value="class">วันเรียน (Class)</option>
+                            <option value="exam">วันสอบ (Exam)</option>
+                            <option value="reg">วันลงทะเบียน (Registration)</option>
+                            <option value="holiday">วันหยุด (Holiday)</option>
+                            <option value="club">กิจกรรมชมรม (Club)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>เวลาเริ่มต้น</label>
+                        <input type="time" id="startTime" value="08:30" required>
+                    </div>
+                    <div class="form-group">
+                        <label>เวลาสิ้นสุด</label>
+                        <input type="time" id="endTime" value="12:00" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>สถานที่ / ห้องเรียน</label>
+                    <input type="text" id="eventLocation" placeholder="เช่น อาคาร Lab. คอม301" required>
+                </div>
+                <div class="form-group">
+                    <label>รายละเอียดเพิ่มเติม (Optional)</label>
+                    <textarea id="eventNotes" rows="2" placeholder="รายละเอียดของกิจกรรม..."></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel clickable" id="btnCancelAdd">ยกเลิก</button>
+                    <button type="submit" class="btn-submit clickable">บันทึกกิจกรรม</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: EVENT DETAILS -->
+    <div class="modal-overlay" id="eventDetailModal">
+        <div class="modal-content detail-card-modal">
+            <button class="close-modal-btn clickable" id="btnCloseDetailModal">&times;</button>
+            <div class="detail-header-badge" id="detailTypeBadge">
+                <i class="fa-solid fa-book"></i> วันเรียน
+            </div>
+            <h3 id="detailTitle">เรียนรายวิชา HCI sec 01</h3>
+            <div class="detail-meta">
+                <div class="meta-row">
+                    <i class="fa-regular fa-clock"></i>
+                    <span id="detailTime">08:30 - 12:00 น.</span>
+                </div>
+                <div class="meta-row">
+                    <i class="fa-solid fa-calendar-day"></i>
+                    <span id="detailDateStr">วันอาทิตย์ที่ 27 กันยายน 2569</span>
+                </div>
+                <div class="meta-row">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span id="detailLocation">อาคาร Lab. คอม301</span>
+                </div>
+            </div>
+            <div class="detail-notes-box" id="detailNotesContainer">
+                <p id="detailNotes">การบรรยายเนื้อหา User Interface Design และ Usability Testing</p>
+            </div>
+            <div class="detail-actions">
+                <button class="btn-outline-danger clickable" id="btnDeleteEvent"><i class="fa-solid fa-trash"></i> ลบกิจกรรม</button>
+                <button class="btn-primary clickable" id="btnCloseDetailDone">ปิด</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: ACADEMIC YEAR OVERVIEW -->
+    <div class="modal-overlay" id="yearModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-calendar-week"></i> ปฏิทินตลอดปีการศึกษา 2569</h3>
+                <button class="close-modal-btn clickable" id="btnCloseYearModal">&times;</button>
+            </div>
+            <div class="semester-timeline">
+                <div class="timeline-step done">
+                    <div class="step-dot">1</div>
+                    <div class="step-info">
+                        <h4>ลงทะเบียนเรียนประจำภาคเรียนที่ 1/2569</h4>
+                        <p>1 - 10 มิถุนายน 2569</p>
+                    </div>
+                </div>
+                <div class="timeline-step done">
+                    <div class="step-dot">2</div>
+                    <div class="step-info">
+                        <h4>วันเปิดภาคเรียนที่ 1/2569</h4>
+                        <p>16 มิถุนายน 2569</p>
+                    </div>
+                </div>
+                <div class="timeline-step active">
+                    <div class="step-dot">3</div>
+                    <div class="step-info">
+                        <h4>การสอบกลางภาค (Midterm Examination)</h4>
+                        <p>12 - 18 ตุลาคม 2569</p>
+                    </div>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-dot">4</div>
+                    <div class="step-info">
+                        <h4>การสอบปลายภาค (Final Examination)</h4>
+                        <p>16 - 27 พฤศจิกายน 2569</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-submit clickable" id="btnCloseYearDone">ปิด</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 4: NOTIFICATION LIST -->
+    <div class="modal-overlay" id="notificationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fa-regular fa-bell"></i> การแจ้งเตือนล่าสุด</h3>
+                <button class="close-modal-btn clickable" id="btnCloseNotiModal">&times;</button>
+            </div>
+            <div class="noti-list">
+                <div class="noti-item">
+                    <div class="noti-icon exam"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="noti-body">
+                        <h4>แจ้งเตือนวันสอบกลางภาค</h4>
+                        <p>กำหนดการสอบกลางภาควิชา HCI sec 01 จะเริ่มในวันที่ 12 ตุลาคม 2569</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-submit clickable" id="btnCloseNotiDone">ปิด</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Popup Notification -->
+    <div class="toast-message" id="toastMessage"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

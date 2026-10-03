@@ -1,0 +1,44 @@
+[
+  {
+    "id": "dharmniti",
+    "name": "ธรรมนิติ",
+    "cat": "academic",
+    "desc": "สื่อการเรียนรู้ด้านกฎหมาย บัญชี ภาษี และธุรกิจ",
+    "url": "https://www.dharmniti.co.th/"
+  },
+  {
+    "id": "set",
+    "name": "ตลาดหลักทรัพย์แห่งประเทศไทย",
+    "cat": "finance",
+    "desc": "ความรู้ด้านการลงทุน การเงิน และตลาดทุน",
+    "url": "https://www.set.or.th/th/home"
+  },
+  {
+    "id": "thaimooc",
+    "name": "Thai MOOC",
+    "cat": "elearning",
+    "desc": "เรียนรู้หลากหลายสาขาวิชาผ่านบทเรียนออนไลน์",
+    "url": "https://thaimooc.org/"
+  },
+  {
+    "id": "scholar",
+    "name": "Google Scholar",
+    "cat": "academic",
+    "desc": "ค้นหาบทความทางวิชาการและงานวิจัย",
+    "url": "https://scholar.google.com/"
+  },
+  {
+    "id": "coursera",
+    "name": "Coursera",
+    "cat": "elearning",
+    "desc": "หลักสูตรออนไลน์เพื่อพัฒนาความรู้และทักษะอาชีพ",
+    "url": "https://www.coursera.org/"
+  },
+  {
+    "id": "edx",
+    "name": "edX",
+    "cat": "elearning",
+    "desc": "เปิดโลกการเรียนรู้กับหลักสูตรออนไลน์นานาชาติ",
+    "url": "https://www.edx.org/"
+  }
+]

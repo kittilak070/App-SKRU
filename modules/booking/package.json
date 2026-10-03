@@ -1,0 +1,13 @@
+{
+  "name": "app-skru-043",
+  "version": "1.0.0",
+  "description": "App-SKRU-043",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

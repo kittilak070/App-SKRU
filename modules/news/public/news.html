@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ข่าวสารและกิจกรรม | SKRU Campus News</title>
+  
+  <!-- Google Fonts: Prompt & Kanit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Top Header Bar -->
+    <header class="app-header">
+      <button class="header-btn" id="headerBackBtn" title="ย้อนกลับ" onclick="handleBackAction()">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      
+      <div class="header-title-group">
+        <h1 class="header-title">ข่าวสารและกิจกรรม</h1>
+        <div class="header-subtitle">SKRU Campus News</div>
+      </div>
+
+      <div class="header-spacer" style="width: 42px; height: 42px;"></div>
+    </header>
+
+    <!-- Search Bar (Collapsible/Hidden by default to match mobile view) -->
+    <div class="search-container" style="display: none;">
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="ค้นหาข่าวสาร, กิจกรรม, ทุนการศึกษา...">
+        <button class="search-clear-btn" id="searchClearBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    </div>
+
+
+    <!-- Main Content -->
+    <main class="app-content">
+
+      <!-- Featured Hero Card -->
+      <section class="featured-section">
+        <div class="featured-card" id="featuredCard">
+          <div class="featured-image-box">
+            <img id="featuredImg" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80" alt="Featured News">
+            <span class="featured-badge-top" id="featuredBadge" style="display: none;">กิจกรรมจิตอาสา</span>
+            <div class="featured-overlay">
+              <h2 class="featured-hero-title" id="featuredTitle">โครงการอบรมเชิงปฏิบัติการ เรื่อง การทำบ้านปลา และการอนุรักษ์ทรัพยากรธรรมชาติทางทะเล</h2>
+            </div>
+          </div>
+          
+          <div class="featured-body">
+            <p class="featured-summary" id="featuredSummary">
+              กองอาคารและสถานที่ ร่วมกับคณะกรรมการสำนักงานสีเขียว (Green Office) จัดโครงการรณรงค์มหาวิทยาลัยปลอดบุหรี่และการสร้างสมดุลทางระบบนิเวศ ณ หาดสมิหลา
+            </p>
+            
+            <div class="featured-footer">
+              <div class="action-buttons-group">
+                <button class="btn-social btn-facebook" id="shareFbBtn" title="แชร์ไปยัง Facebook" onclick="shareToFacebook(event)">
+                  <i class="fa-brands fa-facebook-f"></i>
+                </button>
+                <button class="btn-social btn-copy" id="copyLinkBtn" title="คัดลอกลิงก์" onclick="copyNewsLink(event)">
+                  <i class="fa-regular fa-clone"></i>
+                </button>
+              </div>
+
+              <button class="btn-like-pill" id="featuredLikeBtn" onclick="toggleHeroLike(event)">
+                <i class="fa-solid fa-heart"></i>
+                <span id="featuredLikesText">342 ไลก์</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Latest News & Announcements Section -->
+      <section class="latest-news-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-indicator"></div>
+            <h3 class="section-title">ข่าวสาร & ประกาศล่าสุด</h3>
+          </div>
+          <a class="section-link" id="seeAllNewsBtn" href="javascript:void(0)" onclick="resetFiltersAndShowAll()">ดูทั้งหมด</a>
+        </div>
+
+        <div class="news-list" id="latestNewsList">
+          <!-- News Card Items rendered dynamically by JS -->
+          <div class="skeleton" style="height: 90px;"></div>
+          <div class="skeleton" style="height: 90px;"></div>
+        </div>
+      </section>
+
+      <!-- Comments Section -->
+      <section class="comments-section-wrapper">
+        <div class="comments-container">
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <h3 class="section-title" style="color: #E11D48;">ความคิดเห็น</h3>
+              <span class="section-counter-badge" id="commentsCountBadge">7</span>
+            </div>
+            <a class="section-link" href="javascript:void(0)" onclick="toggleAllCommentsView()">See All</a>
+          </div>
+
+          <!-- Comments List -->
+          <div class="comments-list" id="commentsList">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- Add Comment Input Box -->
+          <div class="comment-input-wrap">
+            <div class="author-select-row" style="display: none;">
+              <span>ชื่อผู้แสดงความเห็น:</span>
+              <input type="text" id="commentAuthorInput" class="author-input-name" placeholder="ชื่อของคุณ" value="Tanawut Pitchayaboonowng">
+            </div>
+            <form id="commentForm" class="comment-input-box" onsubmit="submitComment(event)">
+              <input type="text" id="commentTextInput" placeholder="เขียนความคิดเห็นของคุณ..." autocomplete="off">
+              <button type="submit" class="comment-send-btn" id="commentSubmitBtn" title="ส่งความคิดเห็น">
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+      <a href="javascript:void(0)" class="nav-item" onclick="switchTab('home')">
+        <i class="fa-solid fa-house"></i>
+        <span>หน้าหลัก</span>
+      </a>
+      <a href="javascript:void(0)" class="nav-item active" onclick="switchTab('news')">
+        <span class="nav-badge-dot"></span>
+        <i class="fa-regular fa-newspaper"></i>
+        <span>ข่าวสาร</span>
+      </a>
+      <a href="javascript:void(0)" class="nav-item" onclick="switchTab('events')">
+        <i class="fa-regular fa-calendar-days"></i>
+        <span>กิจกรรม</span>
+      </a>
+      <a href="javascript:void(0)" class="nav-item" onclick="switchTab('notifications')">
+        <i class="fa-regular fa-bell"></i>
+        <span>แจ้งเตือน</span>
+      </a>
+      <a href="javascript:void(0)" class="nav-item" onclick="switchTab('profile')">
+        <i class="fa-regular fa-circle-user"></i>
+        <span>โปรไฟล์</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <!-- Article Detail Modal -->
+  <div class="modal-overlay" id="articleModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modalArticleCategory">ข่าวมหาวิทยาลัย</h3>
+        <button class="modal-close-btn" onclick="closeArticleModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="articleModalBody">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin: Create News Modal -->
+  <div class="modal-overlay" id="adminModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-pen-to-square" style="color: #E11D48; margin-right: 8px;"></i>เพิ่มข่าวสารใหม่</h3>
+        <button class="modal-close-btn" onclick="closeAdminModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="createNewsForm" onsubmit="handleCreateNews(event)">
+          <div class="form-group">
+            <label for="newsTitle">หัวข้อข่าวสาร <span style="color:red;">*</span></label>
+            <input type="text" id="newsTitle" class="form-input" placeholder="เช่น ขอเชิญร่วมกิจกรรม..." required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="newsCategory">หมวดหมู่</label>
+              <select id="newsCategory" class="form-select">
+                <option value="university">ข่าวมหาวิทยาลัย</option>
+                <option value="student-activities">กิจกรรมนักศึกษา</option>
+                <option value="academic-scholarships">วิชาการ & ทุน</option>
+                <option value="services">บริการวิชาการ</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="newsBadge">ป้ายกำกับ (Badge)</label>
+              <input type="text" id="newsBadge" class="form-input" placeholder="เช่น อบรมสัมมนาฟรี, รับสมัครงาน">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="newsSummary">เนื้อหาย่อ (แสดงในหน้ารวม) <span style="color:red;">*</span></label>
+            <textarea id="newsSummary" class="form-textarea" placeholder="สรุปเนื้อหาสำคัญสั้นๆ..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="newsContent">เนื้อหาฉบับเต็ม</label>
+            <textarea id="newsContent" class="form-textarea" style="min-height: 120px;" placeholder="รายละเอียดทั้งหมด กำหนดการ คุณสมบัติ..."></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="newsLocation">สถานที่ / จัดที่ไหน</label>
+              <input type="text" id="newsLocation" class="form-input" placeholder="เช่น ห้องประชุม 2, อาคาร 15">
+            </div>
+            <div class="form-group">
+              <label for="newsAuthor">หน่วยงานผู้จัด / ผู้ประกาศ</label>
+              <input type="text" id="newsAuthor" class="form-input" placeholder="เช่น สำนักวิจัยและพัฒนา">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="newsImage">URL รูปภาพหน้าปก</label>
+            <input type="url" id="newsImage" class="form-input" placeholder="https://images.unsplash.com/...">
+          </div>
+
+          <div class="form-group" style="display: flex; align-items: center; gap: 8px;">
+            <input type="checkbox" id="newsIsFeatured" style="width: 18px; height: 18px; accent-color: #E11D48;">
+            <label for="newsIsFeatured" style="margin-bottom: 0; cursor: pointer;">ตั้งเป็นข่าวเด่นบนสุด (Hero Featured)</label>
+          </div>
+
+          <button type="submit" class="btn-submit" id="saveNewsBtn">บันทึกและเผยแพร่ข่าว</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin FAB (Floating Action Button) -->
+  <button class="admin-fab" id="openAdminModalBtn" title="สร้างข่าวสารใหม่ (Admin)">
+    <i class="fa-solid fa-plus"></i>
+  </button>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastNotification">
+    <i class="fa-solid fa-circle-check" style="color: #4ADE80;"></i>
+    <span id="toastMessage">ดำเนินการสำเร็จ</span>
+  </div>
+
+  <!-- Main JavaScript Logic -->
+  <script src="js/app.js"></script>
+</body>
+</html>

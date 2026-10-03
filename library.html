@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ห้องสมุดและยืม-คืนหนังสือ (Library System) | SKRU Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Prompt', sans-serif;
+      background: #0f172a;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .portal-nav {
+      height: 54px;
+      background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      color: white;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .portal-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+    }
+    .portal-logo {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      box-shadow: 0 2px 8px rgba(59,130,246,0.4);
+    }
+    .portal-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .portal-title small {
+      font-size: 0.75rem;
+      font-weight: 400;
+      opacity: 0.75;
+      display: block;
+      margin-top: -2px;
+    }
+    .current-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+    .branch-tag {
+      background: #3b82f6;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+    .portal-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .service-select {
+      background: #1e293b;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      outline: none;
+      cursor: pointer;
+      max-width: 320px;
+    }
+    .service-select:focus {
+      border-color: #3b82f6;
+    }
+    .btn-nav {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-nav:hover {
+      background: rgba(255,255,255,0.18);
+    }
+    .btn-nav-primary {
+      background: #3b82f6;
+      border-color: #2563eb;
+    }
+    .btn-nav-primary:hover {
+      background: #2563eb;
+    }
+    .frame-container {
+      flex: 1;
+      width: 100%;
+      height: calc(100vh - 54px);
+      position: relative;
+    }
+    .app-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: white;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Hub -->
+  <header class="portal-nav">
+    <a href="index.html" class="portal-brand" title="กลับหน้าหลักรวมบริการ">
+      <div class="portal-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+      <div class="portal-title">
+        SKRU PORTAL
+        <small>มหาวิทยาลัยราชภัฏสงขลา</small>
+      </div>
+    </a>
+
+    <div class="current-badge">
+      <span class="branch-tag">Branch 047</span>
+      <i class="fa-solid fa-lines-leaning"></i>
+      <strong>ห้องสมุดและยืม-คืนหนังสือ</strong>
+    </div>
+
+    <div class="portal-controls">
+      <label for="pageSwitcher" style="font-size: 0.8rem; opacity: 0.7;">สลับหน้า:</label>
+      <select id="pageSwitcher" class="service-select" onchange="location.href=this.value">
+        <option value="check-in.html" >[035] เช็คชื่อเข้าชั้นเรียน (Check-in Class)</option>
+            <option value="student-profile.html" >[051] ข้อมูลประวัตินักศึกษา (Student Profile)</option>
+            <option value="tuition-fee.html" >[045] จ่ายค่าเทอมและค่าธรรมเนียม (Tuition Fee Payment)</option>
+            <option value="student-card.html" >[028] บัตรประจำตัวนักศึกษาดิจิทัล (Student Card)</option>
+            <option value="academic-record.html" >[042] ผลการศึกษาและคำแนะนำ (Academic Record & Advising)</option>
+            <option value="campus-map.html" >[032] แผนที่มหาวิทยาลัย (Campus Map)</option>
+            <option value="student-loan.html" >[044] ระบบลงทะเบียนกู้ยืม กยศ. (Student Loan (กยศ.))</option>
+            <option value="booking.html" >[043] ยืมและจองอุปกรณ์/สถานที่ (Facility & Equipment Booking)</option>
+            <option value="faculty-contact.html" >[030] ติดต่ออาจารย์ / คณะ (Faculty Contact)</option>
+            <option value="news.html" >[041] ข่าวสารในมหาวิทยาลัย (University News)</option>
+            <option value="learning-resources.html" >[029] แหล่งเรียนรู้และสื่อการสอน (Learning Resources)</option>
+            <option value="dorm-booking.html" >[039] จองหอพักในมหาวิทยาลัย (Dormitory Booking)</option>
+            <option value="event-booking.html" >[046] จองกิจกรรมนักศึกษา (Event & Activities Booking)</option>
+            <option value="privacy-settings.html" >[040] จัดการความเป็นส่วนตัว (Privacy Settings)</option>
+            <option value="academic-calendar.html" >[048] ปฏิทินการศึกษา (Academic Calendar)</option>
+            <option value="login.html" >[027] เข้าสู่ระบบกลาง SKRU (Login Portal)</option>
+            <option value="settings.html" >[049] ตั้งค่าระบบ (System Settings)</option>
+            <option value="vote.html" >[033] ระบบโหวต / สำรวจความคิดเห็น (Vote & Survey)</option>
+            <option value="rewards.html" >[050] แลกของรางวัลและสิทธิพิเศษ (Rewards & Privilege)</option>
+            <option value="library.html" selected>[047] ห้องสมุดและยืม-คืนหนังสือ (Library System)</option>
+      </select>
+      <a href="modules/library/public/index.html" target="_blank" class="btn-nav" title="เปิดหน้าเว็บตรงแบบไม่มีแถบเมนู">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> เปิดตรง
+      </a>
+      <a href="index.html" class="btn-nav btn-nav-primary" title="กลับหน้าแรก">
+        <i class="fa-solid fa-house"></i> หน้าแรก
+      </a>
+    </div>
+  </header>
+
+  <!-- Module Frame -->
+  <main class="frame-container">
+    <iframe src="modules/library/public/index.html" class="app-frame" id="contentFrame" title="ห้องสมุดและยืม-คืนหนังสือ"></iframe>
+  </main>
+</body>
+</html>

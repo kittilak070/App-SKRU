@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ระบบให้คะแนนความพึงพอใจ - SKRU</title>
+  <meta name="description" content="ระบบประเมินและให้คะแนนความพึงพอใจ มหาวิทยาลัยราชภัฏสงขลา">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="skru-logo.svg" type="image/svg+xml">
+</head>
+<body>
+
+  <!-- Main Mobile App Card Frame -->
+  <main class="app-container" id="ratingCard">
+    <!-- Red Top Header -->
+    <header class="header-banner">
+      ให้คะแนนความพึงพอใจ
+    </header>
+
+    <!-- Content Body -->
+    <section class="content-body">
+      <!-- SKRU University Logo (Interactive) -->
+      <div class="logo-wrapper" id="logoWrapper">
+        <div class="logo-bubble" id="logoBubble">✨ กดที่ตราได้นะ!</div>
+        <img src="skru-logo.png" alt="ตรามหาวิทยาลัยราชภัฏสงขลา SKRU" class="logo-interactive" id="skruLogo" title="คลิกเพื่อเล่น!">
+        <div class="sparkle-container" id="sparkleContainer"></div>
+      </div>
+
+      <!-- Rating Title -->
+      <h1 class="title-label">คะแนนความพึงพอใจ</h1>
+
+      <!-- 5-Star Rating Control -->
+      <div class="star-rating-container" id="starContainer" role="radiogroup" aria-label="เลือกระดับความพึงพอใจ 1 ถึง 5 ดาว">
+        <button type="button" class="star-btn" data-score="1" aria-label="1 ดาว - ควรปรับปรุง" title="1 ดาว">
+          <svg viewBox="0 0 24 24">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </button>
+        <button type="button" class="star-btn" data-score="2" aria-label="2 ดาว - พอใช้" title="2 ดาว">
+          <svg viewBox="0 0 24 24">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </button>
+        <button type="button" class="star-btn" data-score="3" aria-label="3 ดาว - ปานกลาง" title="3 ดาว">
+          <svg viewBox="0 0 24 24">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </button>
+        <button type="button" class="star-btn" data-score="4" aria-label="4 ดาว - ดี" title="4 ดาว">
+          <svg viewBox="0 0 24 24">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </button>
+        <button type="button" class="star-btn" data-score="5" aria-label="5 ดาว - ดีมาก" title="5 ดาว">
+          <svg viewBox="0 0 24 24">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Live Preview Text -->
+      <div class="score-text-preview" id="scoreLabel"></div>
+
+      <!-- Additional Comment Section -->
+      <div class="comment-section">
+        <label for="commentInput" class="comment-label">เพิ่มเติม</label>
+        <textarea id="commentInput" class="comment-textarea" rows="6" placeholder="ข้อเสนอแนะหรือความคิดเห็นเพิ่มเติม (ถ้ามี)..."></textarea>
+      </div>
+
+      <!-- Green Submit Button -->
+      <div class="submit-btn-wrapper">
+        <button type="button" class="btn-submit" id="submitBtn">
+          <span id="btnText">ยืนยัน</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Success Modal Overlay -->
+    <div class="modal-overlay" id="successModal">
+      <div class="success-icon">✓</div>
+      <h2 class="modal-title">ขอบคุณสำหรับความคิดเห็น!</h2>
+      <p class="modal-message">เราได้บันทึกคะแนนความพึงพอใจของท่านเรียบร้อยแล้ว เพื่อนำไปพัฒนาและปรับปรุงการให้บริการต่อไป</p>
+      <button type="button" class="btn-secondary" id="resetBtn">ให้คะแนนใหม่อีกครั้ง</button>
+    </div>
+  </main>
+
+  <!-- Bottom navigation links -->
+  <footer class="app-footer">
+    <p>ระบบประเมินความพึงพอใจ SKRU • <a href="admin.html">📊 ดูผลสรุปและคะแนนสถิติ</a></p>
+  </footer>
+
+  <!-- Toast Notification Message -->
+  <div class="toast-msg" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

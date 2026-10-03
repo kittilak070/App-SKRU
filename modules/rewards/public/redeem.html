@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKRU Rewards | ระบบแลกของรางวัลและสะสมคะแนนกิจกรรม</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="rewards-app">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="logo-box">
+          <i class="fa-solid fa-gift"></i>
+        </div>
+        <div>
+          <h1>SKRU Rewards & Privilege</h1>
+          <p>ระบบสะสมคะแนนกิจกรรมและแลกของรางวัล มหาวิทยาลัยราชภัฏสงขลา</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="student-pill">
+          <i class="fa-regular fa-user-circle"></i>
+          <div>
+            <span class="s-name">นาย.กรรณพัต วังค้อม</span>
+            <span class="s-id">6530100001 (ปี 3)</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero / Points Overview -->
+    <section class="points-hero">
+      <div class="points-card">
+        <div class="tier-badge"><i class="fa-solid fa-crown"></i> Gold Member</div>
+        <p class="points-label">คะแนนกิจกรรมสะสมคงเหลือ</p>
+        <div class="points-display">
+          <span class="points-num" id="currentPoints">1,450</span>
+          <span class="points-unit">Points</span>
+        </div>
+        <div class="points-meta">
+          <span><i class="fa-solid fa-clock-rotate-left"></i> หมดอายุ: 31 พ.ค. 2570</span>
+          <span><i class="fa-solid fa-bolt"></i> ได้รับในเทอมนี้: +350 pts</span>
+        </div>
+      </div>
+
+      <div class="quick-stats-grid">
+        <div class="stat-box">
+          <i class="fa-solid fa-medal icon-blue"></i>
+          <div>
+            <h4>กิจกรรมที่เข้าร่วม</h4>
+            <p>18 กิจกรรม</p>
+          </div>
+        </div>
+        <div class="stat-box">
+          <i class="fa-solid fa-ticket icon-green"></i>
+          <div>
+            <h4>คูปองที่ใช้ได้</h4>
+            <p id="myVouchersCount">2 ใบ</p>
+          </div>
+        </div>
+        <div class="stat-box">
+          <i class="fa-solid fa-gift icon-purple"></i>
+          <div>
+            <h4>แลกไปแล้ว</h4>
+            <p id="redeemedCount">4 รายการ</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabs Navigation -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="catalog"><i class="fa-solid fa-store"></i> แคตตาล็อกของรางวัล</button>
+      <button class="tab-btn" data-tab="my-rewards"><i class="fa-solid fa-ticket"></i> คูปองและของรางวัลของฉัน</button>
+      <button class="tab-btn" data-tab="history"><i class="fa-solid fa-list-check"></i> ประวัติการแลก</button>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Tab 1: Catalog -->
+      <section id="catalogTab" class="tab-pane active">
+        <!-- Category Filter -->
+        <div class="filter-bar">
+          <button class="filter-chip active" data-cat="all">ทั้งหมด</button>
+          <button class="filter-chip" data-cat="supplies"><i class="fa-solid fa-print"></i> การเรียนและโควตาพิมพ์</button>
+          <button class="filter-chip" data-cat="food"><i class="fa-solid fa-utensils"></i> อาหารและเครื่องดื่ม</button>
+          <button class="filter-chip" data-cat="souvenir"><i class="fa-solid fa-shirt"></i> ของที่ระลึก SKRU</button>
+          <button class="filter-chip" data-cat="privilege"><i class="fa-solid fa-star"></i> สิทธิพิเศษ</button>
+        </div>
+
+        <div class="rewards-grid" id="rewardsGrid">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- Tab 2: My Rewards -->
+      <section id="myRewardsTab" class="tab-pane">
+        <div class="vouchers-list" id="vouchersList">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- Tab 3: History -->
+      <section id="historyTab" class="tab-pane">
+        <div class="history-table-container">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>วัน-เวลา</th>
+                <th>ของรางวัล</th>
+                <th>หมวดหมู่</th>
+                <th>ใช้คะแนน</th>
+                <th>สถานะ</th>
+              </tr>
+            </thead>
+            <tbody id="historyTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal for Redeem Confirmation -->
+    <div class="modal-overlay" id="redeemModal" style="display: none;">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3>ยืนยันการแลกของรางวัล</h3>
+          <button class="btn-close" id="closeModalBtn">&times;</button>
+        </div>
+        <div class="modal-body" id="modalBody">
+          <!-- Dynamic details -->
+        </div>
+        <div class="modal-footer">
+          <button class="btn-cancel" id="cancelRedeemBtn">ยกเลิก</button>
+          <button class="btn-confirm" id="confirmRedeemBtn">ยืนยันใช้คะแนน</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

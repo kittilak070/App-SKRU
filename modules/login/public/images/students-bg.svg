@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 900" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient for University Atmosphere -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="30%" stop-color="#334155"/>
+      <stop offset="60%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#e11d48"/>
+    </linearGradient>
+
+    <!-- Warm Maroon/Pink Ambient Wash -->
+    <linearGradient id="warmWash" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="35%" stop-color="#f8fafc" stop-opacity="0.6"/>
+      <stop offset="70%" stop-color="#fda4af" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#e11d48" stop-opacity="0.85"/>
+    </linearGradient>
+
+    <radialGradient id="sunGlow" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#fef08a" stop-opacity="0.3"/>
+      <stop offset="60%" stop-color="#fb7185" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="softBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+  </defs>
+
+  <!-- Base Fill -->
+  <rect width="450" height="900" fill="url(#bgGrad)"/>
+
+  <!-- Architectural Background (Campus building columns and golden banners) -->
+  <g opacity="0.4" filter="url(#softBlur)">
+    <rect x="20" y="80" width="80" height="700" fill="#94a3b8"/>
+    <rect x="120" y="80" width="90" height="700" fill="#cbd5e1"/>
+    <rect x="230" y="80" width="80" height="700" fill="#94a3b8"/>
+    <rect x="330" y="80" width="100" height="700" fill="#64748b"/>
+    <!-- Golden celebration backdrop banner -->
+    <rect x="160" y="140" width="180" height="150" fill="#eab308" opacity="0.8"/>
+  </g>
+
+  <!-- Blurred Student Silhouettes in University Polo/Activity Uniforms -->
+  <g filter="url(#softBlur)" opacity="0.75">
+    <!-- Student 1 (Left) -->
+    <circle cx="80" cy="380" r="45" fill="#fcd34d"/>
+    <path d="M 10,440 Q 80,410 150,440 L 160,750 L 0,750 Z" fill="#be123c"/>
+
+    <!-- Student 2 (Center left) -->
+    <circle cx="160" cy="340" r="50" fill="#fde68a"/>
+    <path d="M 80,400 Q 160,370 240,400 L 250,750 L 70,750 Z" fill="#9f1239"/>
+
+    <!-- Student 3 (Center right cheering) -->
+    <circle cx="280" cy="330" r="52" fill="#fed7aa"/>
+    <path d="M 200,390 Q 280,360 360,390 L 370,750 L 190,750 Z" fill="#be123c"/>
+    <!-- Raised hand flag -->
+    <path d="M 320,260 L 360,210 L 380,240 Z" fill="#e11d48"/>
+
+    <!-- Student 4 (Right) -->
+    <circle cx="390" cy="370" r="46" fill="#fef08a"/>
+    <path d="M 310,430 Q 390,400 470,430 L 480,750 L 300,750 Z" fill="#881337"/>
+  </g>
+
+  <!-- Ambient Light Bokeh Circles -->
+  <g filter="url(#softBlur)" opacity="0.45">
+    <circle cx="90" cy="220" r="40" fill="#ffffff"/>
+    <circle cx="340" cy="260" r="55" fill="#fde047"/>
+    <circle cx="200" cy="480" r="70" fill="#f43f5e"/>
+    <circle cx="70" cy="620" r="60" fill="#fb7185"/>
+    <circle cx="380" cy="580" r="50" fill="#f59e0b"/>
+  </g>
+
+  <!-- Warm Frosted Gradient Overlay -->
+  <rect width="450" height="900" fill="url(#warmWash)"/>
+  <rect width="450" height="900" fill="url(#sunGlow)"/>
+</svg>

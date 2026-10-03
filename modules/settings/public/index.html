@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ระบบตั้งค่า - Settings System</title>
+  
+  <!-- Google Fonts: Prompt & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Quick Jump Header for Desktop Preview -->
+    <header class="desktop-bar">
+      <div class="brand">
+        <i class="fa-solid fa-gear brand-icon"></i>
+        <span>ระบบตั้งค่า (Settings App)</span>
+      </div>
+      <div class="view-controls">
+        <button class="view-btn active" data-screen="main"><i class="fa-solid fa-list"></i> หน้าตั้งค่าหลัก</button>
+        <button class="view-btn" data-screen="notifications"><i class="fa-bell"></i> การแจ้งเตือน</button>
+        <button class="view-btn" data-screen="subscriptions"><i class="fa-newspaper"></i> รับข่าวสาร</button>
+        <button class="view-btn" data-screen="security"><i class="fa-shield-halved"></i> ความปลอดภัย</button>
+        <button class="view-btn" data-screen="privacy"><i class="fa-user-lock"></i> ข้อมูลส่วนบุคคล</button>
+        <button class="btn-sync" id="btnSync"><i class="fa-solid fa-rotate-right"></i> ดึงข้อมูล API</button>
+      </div>
+    </header>
+
+    <!-- Phone Frame Shell -->
+    <main class="mobile-frame-wrapper">
+      <div class="phone-frame">
+        <!-- Phone Notch / Status Bar -->
+        <div class="status-bar">
+          <span class="time" id="currentTime">09:41</span>
+          <div class="status-icons">
+            <i class="fa-solid fa-signal"></i>
+            <i class="fa-solid fa-wifi"></i>
+            <i class="fa-solid fa-battery-full"></i>
+          </div>
+        </div>
+
+        <!-- Dynamic Screen Content Container -->
+        <div class="screen-viewport">
+
+          <!-- 1. MAIN SETTINGS SCREEN -->
+          <div class="screen active" id="screen-main">
+            <!-- Title Header -->
+            <div class="main-header">
+              <div class="main-title">
+                <div class="settings-header-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e63956" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" y1="21" x2="4" y2="14"></line>
+                    <line x1="4" y1="10" x2="4" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12" y2="3"></line>
+                    <line x1="20" y1="21" x2="20" y2="16"></line>
+                    <line x1="20" y1="12" x2="20" y2="3"></line>
+                    <line x1="1" y1="14" x2="7" y2="14"></line>
+                    <line x1="9" y1="8" x2="15" y2="8"></line>
+                    <line x1="17" y1="16" x2="23" y2="16"></line>
+                  </svg>
+                </div>
+                <h1>ตั้งค่า</h1>
+              </div>
+            </div>
+
+            <!-- Sub category label -->
+            <div class="section-label">ตั้งค่า</div>
+
+            <!-- Menu List -->
+            <div class="menu-list">
+              <!-- Item 1: Notifications -->
+              <div class="menu-item" onclick="navigateTo('notifications')">
+                <div class="icon-box red-tint">
+                  <i class="fa-regular fa-bell"></i>
+                </div>
+                <div class="menu-text">การตั้งค่าการแจ้งเตือน</div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <!-- Item 2: Subscriptions -->
+              <div class="menu-item" onclick="navigateTo('subscriptions')">
+                <div class="icon-box red-tint">
+                  <i class="fa-regular fa-newspaper"></i>
+                </div>
+                <div class="menu-text">การลงทะเบียนรับข่าวสาร</div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <!-- Item 3: Security -->
+              <div class="menu-item" onclick="navigateTo('security')">
+                <div class="icon-box red-tint">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e63956" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <polyline points="9 12 11 14 15 10"></polyline>
+                  </svg>
+                </div>
+                <div class="menu-text">ความปลอดภัย</div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <!-- Item 4: Privacy -->
+              <div class="menu-item" onclick="navigateTo('privacy')">
+                <div class="icon-box red-tint">
+                  <i class="fa-solid fa-user-lock"></i>
+                </div>
+                <div class="menu-text">จัดการความเป็นส่วนตัว</div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <!-- Item 5: Terms -->
+              <div class="menu-item" onclick="navigateTo('terms')">
+                <div class="icon-box red-tint">
+                  <i class="fa-regular fa-clipboard"></i>
+                </div>
+                <div class="menu-text">ข้อตกลงและเงื่อนไข</div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <!-- Item 6: Language -->
+              <div class="menu-item" onclick="openModal('modal-language')">
+                <div class="icon-box red-tint">
+                  <i class="fa-solid fa-globe"></i>
+                </div>
+                <div class="menu-text">ภาษา</div>
+                <div class="sub-badge" id="currentLangBadge">ไทย</div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <!-- Item 7: Contact Us -->
+              <div class="menu-item" onclick="navigateTo('contact')">
+                <div class="icon-box red-tint">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div class="menu-text">ติดต่อเรา</div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+            </div>
+
+            <!-- Footer Graphic & Version -->
+            <div class="main-footer">
+              <div class="version-info" id="appVersion">version 26.8.0(2)</div>
+              
+              <!-- Graphic artwork matching screenshot -->
+              <div class="footer-graphic">
+                <div class="graphic-circle"></div>
+                <div class="graphic-phone">
+                  <div class="phone-screen-graphic">
+                    <div class="user-avatar-icon">
+                      <i class="fa-solid fa-user-gear"></i>
+                    </div>
+                    <div class="graphic-slider line-1"></div>
+                    <div class="graphic-slider line-2"></div>
+                    <div class="graphic-slider line-3"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- 2. NOTIFICATIONS SCREEN -->
+          <div class="screen" id="screen-notifications">
+            <div class="sub-header">
+              <button class="back-btn" onclick="navigateTo('main')">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <h2>การตั้งค่าการแจ้งเตือน</h2>
+            </div>
+
+            <div class="toggle-list">
+              <!-- Master Toggle -->
+              <div class="toggle-item header-toggle-item">
+                <div class="toggle-info">
+                  <div class="toggle-title">ได้รับการแจ้งเตือน</div>
+                  <div class="toggle-subtitle">ปิดการแจ้งเตือนทั้งหมดชั่วคราว</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="notif-all_notifications" data-cat="notifications" data-key="all_notifications">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="divider"></div>
+
+              <!-- Sub Toggles -->
+              <div class="toggle-item">
+                <div class="toggle-info">
+                  <div class="toggle-title">ข่าวและกิจกรรมที่น่าสนใจ</div>
+                  <div class="toggle-subtitle">ข่าวและกิจกรรมที่ได้รับความสนใจจากสมาชิก</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="notif-interesting_news" data-cat="notifications" data-key="interesting_news">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="toggle-item">
+                <div class="toggle-info">
+                  <div class="toggle-title">แจ้งเตือนแอปพลิเคชัน</div>
+                  <div class="toggle-subtitle">แจ้งเตือนในปฏิทิน, เตือนการชำระเงิน และอื่นๆ</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="notif-app_notifications" data-cat="notifications" data-key="app_notifications">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="toggle-item">
+                <div class="toggle-info">
+                  <div class="toggle-title">กิจกรรมที่ติดตาม</div>
+                  <div class="toggle-subtitle">มีการปรับปรุงกิจกรรมที่คุณติดตาม</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="notif-followed_activities" data-cat="notifications" data-key="followed_activities">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="toggle-item">
+                <div class="toggle-info">
+                  <div class="toggle-title">ข่าวล่าสุดของมหาวิทยาลัย</div>
+                  <div class="toggle-subtitle">ข่าวสารอย่างเป็นทางการทั่วทั้งวิทยาเขต</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="notif-university_news" data-cat="notifications" data-key="university_news">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="toggle-item">
+                <div class="toggle-info">
+                  <div class="toggle-title">ข่าวล่าสุดของคณะ</div>
+                  <div class="toggle-subtitle">ข่าวสารจากคณะ</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="notif-faculty_news" data-cat="notifications" data-key="faculty_news">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="toggle-item">
+                <div class="toggle-info">
+                  <div class="toggle-title">สมัครรับข่าวสาร</div>
+                  <div class="toggle-subtitle">ข้อมูลจากแหล่งอื่นๆที่คุณได้ติดตาม</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="notif-subscribe_news" data-cat="notifications" data-key="subscribe_news">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="toggle-item">
+                <div class="toggle-info">
+                  <div class="toggle-title">แจ้งเตือนหลักสูตร</div>
+                  <div class="toggle-subtitle">ปรับปรุงจากรายวิชาที่คุณได้ลงทะเบียน</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="notif-course_notifications" data-cat="notifications" data-key="course_notifications">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- 3. SUBSCRIPTIONS SCREEN (Matching Image 1) -->
+          <div class="screen" id="screen-subscriptions">
+            <div class="sub-header">
+              <button class="back-btn" onclick="navigateTo('main')">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <h2>การลงทะเบียนรับข่าวสาร</h2>
+            </div>
+
+            <div class="simple-list" id="subscriptionsList">
+              <div class="simple-item clickable" onclick="openSubscriptionDetail('sports', 'กีฬา')">
+                <span>กีฬา</span>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <div class="simple-item clickable" onclick="openSubscriptionDetail('health', 'สุขภาพ')">
+                <span>สุขภาพ</span>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <div class="simple-item clickable" onclick="openSubscriptionDetail('activities', 'กิจกรรม')">
+                <span>กิจกรรม</span>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <div class="simple-item clickable" onclick="openSubscriptionDetail('entertainment', 'บันเทิง')">
+                <span>บันเทิง</span>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <div class="simple-item clickable" onclick="openSubscriptionDetail('study', 'การเรียน')">
+                <span>การเรียน</span>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <div class="simple-item clickable" onclick="openSubscriptionDetail('promotions', 'โปรโมชั่น')">
+                <span>โปรโมชั่น</span>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <div class="simple-item clickable" onclick="openSubscriptionDetail('scholarships', 'ทุนการศึกษา')">
+                <span>ทุนการศึกษา</span>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <div class="simple-item clickable" onclick="openSubscriptionDetail('food', 'อาหารการกิน')">
+                <span>อาหารการกิน</span>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <div class="simple-item clickable" onclick="openSubscriptionDetail('faculty_dept', 'คณะและหน่วยงาน')">
+                <span>คณะและหน่วยงาน</span>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <div class="simple-item clickable" onclick="openSubscriptionDetail('travel', 'การเดินทางและการท่องเที่ยว')">
+                <span>การเดินทางและการท่องเที่ยว</span>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- 3.1 SUBSCRIPTION DETAIL SCREEN (Matching Image 2) -->
+          <div class="screen bg-gray" id="screen-subscription-detail">
+            <div class="sub-header">
+              <button class="back-btn" onclick="navigateTo('subscriptions')">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <h2 id="subDetailHeaderTitle">กีฬา</h2>
+            </div>
+
+            <div class="single-toggle-card">
+              <span id="subDetailItemName" class="single-toggle-label">กีฬา</span>
+              <label class="switch">
+                <input type="checkbox" id="subDetailToggle">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+
+          <!-- 4. SECURITY SCREEN -->
+          <div class="screen bg-gray" id="screen-security">
+            <div class="sub-header">
+              <button class="back-btn" onclick="navigateTo('main')">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <h2>ความปลอดภัย</h2>
+            </div>
+
+            <div class="group-section-title">ตั้งค่าความปลอดภัย</div>
+
+            <div class="group-list">
+              <div class="group-item" onclick="openModal('modal-pin')">
+                <div class="item-title">เปลี่ยน PIN</div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <div class="group-item" onclick="openModal('modal-reset-pin')">
+                <div class="item-title">รีเซ็ต PIN</div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <div class="toggle-item border-top">
+                <div class="toggle-info">
+                  <div class="toggle-title">ลายนิ้วมือ/ Face ID</div>
+                  <div class="toggle-subtitle">ตรวจสอบข้อมูลด้วย ลายนิ้วมือ และ Face ID</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="sec-biometrics" data-cat="security" data-key="biometrics">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="group-section-title">การตั้งค่าความเป็นส่วนตัว</div>
+
+            <div class="group-list">
+              <div class="toggle-item">
+                <div class="toggle-info">
+                  <div class="toggle-title">แสดงข้อมูลติดต่อ</div>
+                  <div class="toggle-subtitle">อีเมลและเบอร์โทร</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="sec-show_contact_info" data-cat="security" data-key="show_contact_info">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="toggle-item border-top">
+                <div class="toggle-info">
+                  <div class="toggle-title">ประวัติตำแหน่ง</div>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="sec-location_history" data-cat="security" data-key="location_history">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- 5. PRIVACY MANAGEMENT SCREEN (Category List) -->
+          <div class="screen" id="screen-privacy">
+            <div class="sub-header">
+              <button class="back-btn" onclick="navigateTo('main')">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <h2>การจัดการข้อมูลส่วนบุคคล</h2>
+            </div>
+
+            <div class="group-section-title">หมวดหมู่การให้ความยินยอม</div>
+
+            <div class="group-list">
+              <div class="group-item text-multi-line" onclick="openPrivacyConsentScreen('product_improvement')">
+                <div class="item-title">ความยินยอมให้เราพัฒนาและปรับปรุงผลิตภัณฑ์และการให้บริการที่ดียิ่งขึ้นแก่ท่าน</div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <div class="group-item text-multi-line border-top" onclick="openPrivacyConsentScreen('product_marketing')">
+                <div class="item-title">ความยินยอมให้เรานำเสนอผลิตภัณฑ์และบริการ</div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+
+              <div class="group-item text-multi-line border-top" onclick="openPrivacyConsentScreen('partner_marketing')">
+                <div class="item-title">ความยินยอมให้กลุ่มธุรกิจทางการเงินนำเสนอผลิตภัณฑ์และบริการ</div>
+                <i class="fa-solid fa-chevron-right arrow-icon"></i>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- 5.1 PRIVACY CONSENT DETAIL SCREEN (Matching User Screenshots 1, 2, 3) -->
+          <div class="screen bg-gray privacy-detail-screen" id="screen-privacy-detail">
+            <div class="sub-header">
+              <button class="back-btn" onclick="navigateTo('privacy')">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <h2>การจัดการข้อมูลส่วนบุคคล</h2>
+            </div>
+
+            <!-- Gray Banner Title -->
+            <div class="privacy-banner-title" id="privacyBannerTitle">
+              ความยินยอมให้เราพัฒนาและปรับปรุงผลิตภัณฑ์และการให้บริการที่ดียิ่งขึ้นแก่ท่าน
+            </div>
+
+            <!-- White Consent Content Box -->
+            <div class="privacy-card">
+              <div class="privacy-body-text" id="privacyBodyText">
+                1. เพื่อให้ท่านได้รับสิ่งที่ตรงและถูกใจมากยิ่งขึ้น จากการทำข้อมูลสถิติวิเคราะห์ วิจัย พัฒนา และปรับปรุงผลิตภัณฑ์หรือบริการของเรา ท่านยินยอมให้เราเก็บรวบรวม ใช้ และเปิดเผยข้อมูล
+              </div>
+
+              <!-- Red Radio Option Buttons -->
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="consentRadio" value="true" id="radioAgree">
+                  <span class="custom-radio"></span>
+                  <span>ยินยอม</span>
+                </label>
+
+                <label class="radio-label">
+                  <input type="radio" name="consentRadio" value="false" id="radioDisagree">
+                  <span class="custom-radio"></span>
+                  <span>ไม่ยินยอม</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Bottom Disclaimer & Save Button Section -->
+            <div class="privacy-bottom-section">
+              <div class="privacy-notice" id="privacyFooterNotice">
+                ท่านสามารถดูรายละเอียดการจัดการข้อมูลส่วนบุคคลของธนาคารในนโยบายความเป็นส่วนตัวที่ <a href="https://krungthai.com/th/content/privacy-policy" target="_blank" onclick="event.preventDefault()">https://krungthai.com/th/content/privacy-policy</a>
+              </div>
+              <button class="btn-confirm-full" onclick="savePrivacyConsent()">ยืนยัน</button>
+            </div>
+          </div>
+
+          <!-- 6. TERMS AND CONDITIONS SCREEN (Matching User Screenshots 1-5) -->
+          <div class="screen bg-gray terms-screen" id="screen-terms">
+            <div class="sub-header">
+              <button class="back-btn" onclick="navigateTo('main')">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <h2>ข้อตกลงและเงื่อนไข</h2>
+            </div>
+
+            <div class="terms-content-container">
+              <h3 class="terms-main-heading">ข้อตกลงและเงื่อนไขการใช้บริการแอปพลิเคชัน Songkhla Rajabhat University</h3>
+              
+              <p>ยินดีต้อนรับสู่ Songkhla Rajabhat University ข้อตกลงและเงื่อนไขนี้มีความสำคัญและมีผลต่อสิทธิทางกฎหมายของผู้ขอใช้บริการ จึงขอให้ผู้ขอใช้บริการอ่านข้อตกลงและเงื่อนไขการใช้บริการแอปพลิเคชัน Songkhla Rajabhat University ด้านล่างทั้งหมดด้วยความเข้าใจก่อนการใช้งานแอปพลิเคชัน Songkhla Rajabhat University โดยการเข้าใช้งานแอปพลิเคชัน Songkhla Rajabhat University ให้ถือว่าผู้ขอใช้บริการยืนยันว่าผู้ขอใช้บริการเข้าใจและได้อ่านข้อตกลงและเงื่อนไขการใช้บริการแอปพลิเคชัน Songkhla Rajabhat University ทั้งหมดแล้ว ถ้าผู้ขอใช้บริการไม่ยอมรับข้อตกลงและเงื่อนไขการใช้บริการแอปพลิเคชัน Songkhla Rajabhat University ผู้ขอใช้บริการจะไม่สามารถใช้แอปพลิเคชันนี้ได้</p>
+
+              <p>ธนาคารขอสงวนสิทธิ์ในการเปลี่ยนแปลงแก้ไขเพิ่มเติมหรือลบบางส่วนของข้อตกลงและเงื่อนไขการใช้บริการแอปพลิเคชัน Songkhla Rajabhat University ในการใช้งานได้ตลอดเวลา โดยธนาคารจะแจ้งการเปลี่ยนแปลงแก้ไขเพิ่มเติมหรือยกเลิกข้อตกลงและเงื่อนไขการใช้บริการแอปพลิเคชัน Songkhla Rajabhat University ให้ผู้ขอใช้บริการทราบล่วงหน้า พร้อมขอคำยืนยันให้ผู้ขอใช้บริการยินยอมรับการแก้ไขเปลี่ยนแปลงเช่นนั้นอีกครั้ง การแก้ไขเปลี่ยนแปลงดังกล่าวจะมีผลเมื่อผู้ขอใช้บริการได้ยืนยันการยินยอมรับการแก้ไขเปลี่ยนแปลงดังกล่าวแล้ว โดยให้ถือว่าการแก้ไขเปลี่ยนแปลงดังกล่าวเป็นส่วนหนึ่งของข้อตกลงและเงื่อนไขการใช้บริการแอปพลิเคชัน Songkhla Rajabhat University หากผู้ขอใช้บริการไม่ยอมรับการแก้ไขเปลี่ยนแปลงดังกล่าว ผู้ขอใช้บริการก็จะไม่สามารถใช้บริการแอปพลิเคชัน Songkhla Rajabhat University ได้อีกต่อไป</p>
+
+              <p>ทั้งนี้ ขอให้ผู้ขอใช้บริการตรวจสอบข้อตกลงและเงื่อนไขการใช้บริการแอปพลิเคชัน Songkhla Rajabhat University เป็นประจำสำหรับการปรับปรุงข้อมูล ข้อกำหนด เงื่อนไข และนโยบายความเป็นส่วนตัวต่างๆ เพื่อประโยชน์ในการใช้บริการแอปพลิเคชัน Songkhla Rajabhat University ของผู้ขอใช้บริการเอง</p>
+
+              <p>ธนาคารตกลงให้ผู้ขอใช้บริการเข้าใช้งานแอปพลิเคชัน Songkhla Rajabhat University นี้ ภายใต้ข้อตกลงและเงื่อนไข ดังต่อไปนี้</p>
+
+              <h4>1. นิยาม</h4>
+              <p>1.1. “แอปพลิเคชัน” หมายความว่า แอปพลิเคชัน Songkhla Rajabhat University ตามข้อตกลงและเงื่อนไขนี้</p>
+              <p>1.2. “ผู้ขอใช้บริการ” หมายความว่า นักศึกษาของมหาวิทยาลัยที่ตกลงยินยอมใช้บริการแอปพลิเคชัน</p>
+              <p>1.3. “ธนาคาร” หมายความว่า ธนาคารกรุงไทย จำกัด (มหาชน) ซึ่งเป็นผู้ให้บริการแอปพลิเคชัน และบุคคลที่ได้รับมอบหมายจากธนาคารให้ดูแลการให้บริการแอปพลิเคชัน</p>
+              <p>1.4. “มหาวิทยาลัย” หมายความว่า มหาวิทยาลัย ซึ่งเป็นผู้สนับสนุนการให้บริการแอปพลิเคชัน และบุคคลที่ได้รับมอบหมายจากมหาวิทยาลัยให้สนับสนุนการให้บริการแอปพลิเคชัน ผ่านสำนักบริหารเทคโนโลยีสารสนเทศมหาวิทยาลัย</p>
+              <p>1.5. “ชื่อผู้ใช้และรหัสผ่าน” หมายความว่า ชื่อผู้ใช้และรหัสผ่านที่ออกโดยสำนักบริหารเทคโนโลยีสารสนเทศมหาวิทยาลัย เพื่อใช้ในการเข้าใช้บริการแอปพลิเคชัน</p>
+              <p>1.6. “อุปกรณ์” หมายความว่า อุปกรณ์ใด ๆ ที่นำมาใช้งานแอปพลิเคชัน เช่น โทรศัพท์เคลื่อนที่ แท็บเล็ต คอมพิวเตอร์ หรืออุปกรณ์และเครื่องมือชนิดอื่นใดที่ธนาคารกำหนดสำหรับการใช้งานแอปพลิเคชัน</p>
+              <p>1.7. “รายการ” หมายความว่า คำสั่งรายการ และ/หรือธุรกรรมใดๆ ที่กระทำผ่านแอปพลิเคชัน เช่น การลงชื่อเข้าเรียน การจองห้องประชุม เป็นต้น</p>
+              <p>1.8. “ข้อมูลส่วนบุคคลทางการศึกษา” หมายความว่า ข้อมูลเกี่ยวกับสิ่งเฉพาะตัวบุคคลของผู้ขอใช้บริการ เช่น ชื่อ นามสกุล หมายเลขประจำตัวประชาชน รหัสประจำตัวนักศึกษา ข้อมูลประวัติส่วนตัว ข้อมูลการศึกษา ประวัตีกิจกรรม และข้อมูลอื่นๆ บรรดาที่มีชื่อของบุคคล เลขหมาย รหัส หรือสิ่งอื่นใดที่ทำให้รู้ตัวบุคคลนั้นได้ หรือรูปถ่ายที่มีอยู่ในระบบฐานข้อมูลของมหาวิทยาลัย และ/หรือที่ถ่ายโอนจากระบบฐานข้อมูลของมหาวิทยาลัย และ/หรือที่มหาวิทยาลัยเก็บรวบรวมมาจากผู้ขอใช้บริการ บุคคลหรือหน่วยงานอื่นใดเพื่อประโยชน์ในการจัดการศึกษาของมหาวิทยาลัย ซึ่งได้รับความคุ้มครองภายใต้กฎหมายว่าด้วยข้อมูลข่าวสารของราชการ กฎหมายว่าด้วยการกระทำใด ๆ บนเครือข่ายคอมพิวเตอร์ และกฎหมายว่าด้วยการคุ้มครองข้อมูลส่วนบุคคลใด ๆ</p>
+              <p>1.9. “ข้อมูลส่วนบุคคลอื่น ๆ” หมายความว่า ข้อมูลเกี่ยวกับสิ่งเฉพาะตัวบุคคลของผู้ขอใช้บริการ ที่ไม่ใช่ข้อมูลส่วนบุคคลทางการศึกษา เช่น ชื่อ นามสกุล หมายเลขประจำตัวประชาชน ข้อมูลประวัติส่วนตัว และข้อมูลอื่นๆ บรรดาที่มีชื่อของบุคคล เลขหมาย รหัส หรือสิ่งอื่นใดที่ทำให้รู้ตัวบุคคลนั้นได้ หรือรูปถ่ายที่มีอยู่ในแอปพลิเคชัน หรือที่แอปพลิเคชันเก็บรวบรวมมาจากผู้ขอใช้บริการ บุคคลหรือหน่วยงานอื่นใดเพื่อประโยชน์ในการให้บริการแอปพลิเคชัน ซึ่งได้รับความคุ้มครองภายใต้กฎหมายว่าด้วยการกระทำใด ๆ บนเครือข่ายคอมพิวเตอร์ และกฎหมายว่าด้วยการคุ้มครองข้อมูลส่วนบุคคลใด ๆ</p>
+              <p>1.10. “เหตุสุดวิสัย” หมายถึง เหตุใดๆ อันอยู่นอกเหนือการควบคุมของธนาคาร ซึ่งเป็นอุปสรรคต่อการให้บริการตามข้อตกลงและเงื่อนไขนี้ รวมถึงเป็นเหตุให้เกิดข้อขัดข้อง หรือข้อมูลผิดพลาด เช่น ระบบคอมพิวเตอร์ของธนาคารหรือระบบคอมพิวเตอร์ของมหาวิทยาลัยหรือระบบสื่อสารขัดข้องเพราะกระแสไฟฟ้าขัดข้อง หรือปัญหาด้านพลังงาน การกระทำของบุคคลภายนอก ไวรัสคอมพิวเตอร์ หรือข้อมูลที่เป็นอันตรายต่างๆ (Harmful Data) ซึ่งเหตุดังกล่าวไม่ได้มีสาเหตุมาจากเกิดจากการที่ธนาคารไม่ดูแลรักษาระบบคอมพิวเตอร์อย่างเพียงพอตามมาตรฐาน</p>
+
+              <h4>2. การใช้งานแอปพลิเคชัน</h4>
+              <p><strong>ผู้ขอใช้บริการรับทราบและยอมรับว่า</strong></p>
+              <p>2.1. ผู้ขอใช้บริการสามารถใช้แอปพลิเคชันได้ต่อเมื่อผู้ขอใช้บริการได้ดาวน์โหลดแอปพลิเคชันเพื่อติดตั้งบนเครื่องมือเพื่อทำการรายการของผู้ขอใช้บริการ โดยต้องทำการดาวน์โหลดผ่านช่องทางและดำเนินการใดๆ ตามที่ธนาคารกำหนด รวมทั้งได้รับอนุมัติจากมหาวิทยาลัยและธนาคารให้เป็นผู้ขอใช้บริการด้วย โดยผู้ขอใช้บริการตกลงผูกพันและปฏิบัติตามข้อตกลงและเงื่อนไขการใช้บริการที่ธนาคารกำหนดขึ้น และ/หรือ ข้อกำหนดและเงื่อนไขการใช้บริการตามแต่ละฟังก์ชั่น และ/หรือ ประเภทรายการที่ปรากฏขึ้นก่อน และ/หรือ ระหว่างที่คุณทำรายการ (ถ้ามี) ด้วย ทั้งนี้ ให้ถือว่าข้อตกลง ข้อกำหนด และเงื่อนไขการใช้บริการดังกล่าว เป็นส่วนหนึ่งของข้อตกลงและเงื่อนไขการใช้งานนี้ด้วย</p>
+              <p>2.2. ในการเข้าใช้แอปพลิเคชัน ผู้ขอใช้บริการต้องใส่ชื่อผู้ใช้และรหัสผ่านให้ถูกต้อง พร้อมทั้งปฏิบัติตามขั้นตอน วิธีการ และเงื่อนไขการใช้บริการที่ธนาคารกำหนดอย่างถูกต้องครบถ้วนทุกครั้ง โดยในกรณีที่ผู้ขอใช้บริการใส่ชื่อผู้ใช้และรหัสผ่านไม่ถูกต้องเกินจำนวนครั้งที่ธนาคารกำหนด ระบบจะระงับการให้บริการชั่วคราว โดยผู้ขอใช้บริการต้องติดต่อสำนักบริหารเทคโนโลยีสารสนเทศมหาวิทยาลัย ทั้งนี้ ผู้ขอใช้บริการตกลงว่าการระงับการให้บริการชั่วคราวดังกล่าวจะไม่มีผลเป็นการยกเลิกรายการที่ทำเสร็จสิ้นตามขั้นตอนการใช้แอปพลิเคชันแล้ว และผู้ขอใช้บริการตกลงจะไม่เรียกร้องค่าเสียหายใด ๆ กับธนาคารทั้งสิ้น</p>
+              <p>2.3. การใช้บริการแอปพลิเคชันนี้ไม่ต้องเสียค่าใช้จ่ายใดๆ ทั้งนี้ การให้บริการแอปพลิเคชันของธนาคารไม่รวมถึงการจัดหาอุปกรณ์ที่นำมาใช้งานแอปพลิเคชัน หากผู้ขอใช้บริการต้องการใช้แอปพลิเคชัน ผู้ขอใช้บริการจะต้องเชื่อมต่อสัญญาณอินเทอร์เน็ตและเครือข่ายโทรคมนาคมเอง โดยธนาคารจะไม่รับผิดชอบค่าใช้จ่ายที่เกิดขึ้น</p>
+              <p>2.4. วัตถุประสงค์ของการใช้งานแต่ละเมนู/ฟังก์ชั่น จะปรากฏอยู่ในแอปพลิเคชัน และข้อมูลที่ปรากฏอยู่ในแอปพลิเคชันเป็นข้อมูลเพื่อประกอบการใช้งานเท่านั้น</p>
+              <p>2.5. การกระทำการใดๆ ของผู้ขอใช้บริการบนแอปพลิเคชัน หากได้กระทำโดยใช้ชื่อผู้ใช้และรหัสผ่านของผู้ขอใช้บริการ ผู้ขอใช้บริการตกลงให้ถือว่าเป็นการกระทำที่ถูกต้องสมบูรณ์ของผู้ขอใช้บริการซึ่งมีผลผูกพันผู้ขอใช้บริการ และผู้ขอใช้บริการยินยอมรับผิดชอบในการกระทำดังกล่าวทุกประการ โดยผู้ขอใช้บริการตกลงให้ธนาคารสามารถใช้ข้อมูลการดำเนินการดังกล่าวเป็นพยานหลักฐานในการดำเนินทำการทางกฎหมายได้ทุกประการ</p>
+              <p>2.6. ผู้ขอใช้บริการสามารถเข้าใช้งานฟังก์ชั่นต่างๆ ในแอปพลิเคชัน ดังต่อไปนี้ และ/หรือ ที่ธนาคารจะกำหนดเพิ่มเติมในภายหน้า ได้ตามขั้นตอน วิธีการ และเงื่อนไขที่ธนาคารกำหนด ตลอด 24 ชั่วโมง หรือตามเวลาอื่นใดที่ธนาคารจะกำหนดต่อไป</p>
+              <p>2.6.1. ผู้ขอใช้บริการสามารถเข้าถึงข่าวสารและบริการต่างๆ ของมหาวิทยาลัยซึ่งเชื่อมต่อกับระบบฐานข้อมูลของมหาวิทยาลัยและ/หรือธนาคารได้ ตามข้อตกลงและเงื่อนไขที่ธนาคารกำหนด</p>
+              <p>2.6.2. การใช้ QR Code ผู้ขอใช้บริการสามารถแสดง QR Code ที่ถูกสร้างขึ้นตามฟังก์ชั่นดังกล่าวเพื่อทำรายการต่างๆ ที่มหาวิทยาลัยได้ เช่น การลงชื่อเข้าเรียน เป็นต้น</p>
+              <p>2.6.3. การแสดงรายละเอียดวิชาที่ลงทะเบียนเรียน ผู้ขอใช้บริการสามารถตรวจสอบรายละเอียดต่างๆ ของวิชาที่ลงทะเบียนเรียน เช่น รหัสวิชา รายชื่อวิชา ข้อมูลทั่วไปรายวิชา และหน่วยกิต เป็นต้น</p>
+              <p>2.6.4. การใช้ปฏิทิน ผู้ขอใช้บริการสามารถใช้ปฏิทินเพื่อตรวจสอบตารางเรียนและตารางกิจกรรม รวมทั้งสามารถเพิ่มรายการและตั้งการแจ้งเตือนในปฏิทินได้</p>
+              <p>2.6.5. การจองสิ่งอำนวยความสะดวกภายในมหาวิทยาลัย ผู้ขอใช้บริการสามารถจองสิ่งอำนวยความสะดวกต่างๆ เช่น จองห้องประชุม อุปกรณ์ต่างๆ เป็นต้น โดยเมื่อผู้ขอใช้บริการทำรายการจองสิ่งอำนวยความสะดวกเรียบร้อยแล้ว ผู้ขอใช้บริการจะต้องแสดง QR Code ของผู้ขอใช้บริการเพื่อเข้าใช้บริการสิ่งอำนวยความสะดวกดังกล่าว</p>
+              <p>2.6.6. การแสดงข้อมูลทั่วไปของมหาวิทยาลัย ผู้ขอใช้บริการสามารถค้นหาข้อมูลที่เกี่ยวข้องกับมหาวิทยาลัย เช่น รายชื่อบุคลากร คณะ ภาควิชา หน่วยงาน หมายเลขโทรศัพท์ เป็นต้น</p>
+              <p>2.6.7. การใช้แผนที่ ผู้ขอใช้บริการสามารถค้นหาและแสดงสถานที่ต่างๆ บนแผนที่ของมหาวิทยาลัย เช่น ค้นหาเขตวิทยาเขตต่างๆ ของมหาวิทยาลัย ค้นหาคณะในมหาวิทยาลัย เป็นต้น</p>
+              <p>2.7. ผู้ขอใช้บริการจะไม่ใช้แอปพลิเคชันเพื่อวัตถุประสงค์ที่ขัดต่อกฎหมาย ความสงบเรียบร้อย หรือศีลธรรมอันดีของประชาชน หรือขัดต่อกฎระเบียบของมหาวิทยาลัย</p>
+              <p>2.8. การใช้แอปพลิเคชัน เพื่อชำระค่าบริการต่างๆ ผ่านช่องทางชำระเงินบนแอปพลิเคชัน โดยการหักจากบัญชีเงินฝากธนาคาร บัญชีบัตรเครดิต บัญชีเงินอิเล็กทรอนิกส์ ของผู้ขอใช้บริการนั้น เป็นเพียงช่องทางเชื่อมต่อไปยังระบบให้บริการหรือเว็บไซต์ของธนาคาร ผู้ออกบัตรเครดิต และ/หรือ ผู้ให้บริการรับชำระเงิน เท่านั้น การกระทำใดๆ เพื่อให้มีผลในการหักจำนวนเงิน ตัดจำนวนเงิน หรือเรียกเก็บเงินจากบัญชีเงินฝากธนาคาร บัญชีบัตรเครดิต และ/หรือ บัญชีเงินอิเล็กทรอนิกส์ ของผู้ขอใช้บริการ ให้เป็นไปตามข้อตกลงระหว่างผู้ขอใช้บริการกับธนาคาร ผู้ออกบัตรเครดิต และ/หรือ ผู้ให้บริการรับชำระเงิน</p>
+              <p>2.9. การใช้งานบางฟังก์ชั่นบนแอปพลิเคชันตามข้อตกลงและเงื่อนไขนี้ อาจมีข้อกำหนดและเงื่อนไขอื่นปรากฏขึ้นตามการใช้งานบนฟังก์ชั่นนั้นๆ ผู้ขอใช้บริการตกลงว่าจะศึกษาและทำความเข้าใจในแต่ละข้อกำหนด และเงื่อนไข และสามารถตัดสินใจเลือกใช้ฟังก์ชั่นตามแต่วิพากษ์ของผู้ขอใช้บริการ ทั้งนี้ ไม่ถือว่าข้อกำหนดและเงื่อนไข การใช้บริการในแต่ละฟังก์ชั่นดังกล่าวเป็นส่วนหนึ่งของข้อตกลงและเงื่อนไขนี้</p>
+              <p>2.10. ธนาคารไม่มีส่วนในความรับผิดชอบไม่ว่าด้วยกรณีใดๆ ต่อความเสียหายหรือเหตุขัดข้องใดๆ อันเนื่องมาจากการใช้งานแอปพลิเคชัน และ/หรือ การใช้อุปกรณ์ใดของผู้ขอใช้บริการ</p>
+
+              <h4>3. นโยบายความปลอดภัย</h4>
+              <p><strong>ผู้ขอใช้บริการรับทราบและยอมรับว่า</strong></p>
+              <p>3.1. ผู้ขอใช้บริการสามารถเข้าใช้งานแอปพลิเคชันโดยใช้ชื่อผู้ใช้และรหัสผ่านชุดเดียวกับที่ผู้ขอใช้บริการได้รับจากสำนักบริหารเทคโนโลยีสารสนเทศมหาวิทยาลัย และผู้ขอใช้บริการทราบว่า ชื่อผู้ใช้และรหัสผ่านนี้อาจไม่สามารถเข้าถึงการใช้งานบางอย่างบนแอปพลิเคชันได้ หากผู้ขอใช้บริการไม่ได้ทำการยืนยันการยอมรับข้อตกลงและเงื่อนไขบางประการก่อนการใช้งาน</p>
+              <p>3.2. ผู้ขอใช้บริการจะต้องเก็บรักษาชื่อผู้ใช้และรหัสผ่านไว้ไม่ให้ผู้อื่นล่วงรู้ และไม่กระทำการใดๆ ที่จะเป็นการเปิดเผยชื่อผู้ใช้และรหัสผ่านของผู้ขอใช้บริการต่อบุคคลอื่น หากสงสัยว่ามีบุคคลอื่นล่วงรู้ชื่อผู้ใช้และรหัสผ่านของผู้ขอใช้บริการโปรดแจ้งสำนักบริหารเทคโนโลยีสารสนเทศมหาวิทยาลัยทราบ</p>
+              <p>3.3. กรณีที่ผู้ขอใช้บริการกรอกรหัสผ่านผิดเกิน 3 ครั้ง ธนาคารอาจระงับการใช้บริการแอปพลิเคชันทันที และหากผู้ขอใช้บริการต้องการใช้แอปพลิเคชันต่อไปโปรดแจ้งสำนักบริหารเทคโนโลยีสารสนเทศมหาวิทยาลัยทราบ</p>
+              <p>3.4. ผู้ขอใช้บริการจะไม่นำอุปกรณ์ที่มีการดัดแปลงระบบปฏิบัติการมาใช้กับแอปพลิเคชัน โดยผู้ขอใช้บริการรับทราบว่าการดำเนินการดังกล่าวอาจทำให้เกิดความเสี่ยงต่อการโจรกรรมชื่อผู้ใช้และรหัสผ่าน ข้อมูลส่วนบุคคลทางการศึกษา ข้อมูลส่วนบุคคลอื่น ๆ หรือข้อมูลใด ๆ และผู้ขอใช้บริการยอมรับว่าหากนำอุปกรณ์ดังกล่าวมาใช้งาน ธนาคารไม่ต้องรับผิดชอบในความเสียหายที่เกิดขึ้น</p>
+
+              <h4>4. การยกเลิกการใช้งานแอปพลิเคชัน</h4>
+              <p>4.1. ธนาคารสงวนสิทธิ์ที่จะไม่ให้บริการ หรือหยุดการบริการแอปพลิเคชัน ส่วนใดส่วนหนึ่งหรือทั้งหมด เมื่อใดก็ได้ โดยจะมีการแจ้งให้ผู้ขอใช้บริการทราบล่วงหน้า</p>
+              <p>4.2. ธนาคารสงวนสิทธิ์ในการยกเลิกข้อตกลงและเงื่อนไข หรือเพิกถอนสิทธิ์ส่วนใด ส่วนหนึ่งหรือทั้งหมดของผู้ขอใช้บริการ ที่ผู้ขอใช้บริการได้รับภายใต้ข้อตกลงและเงื่อนไขนี้ได้ตลอดเวลา โดยจะมีการแจ้งให้ผู้ขอใช้บริการทราบล่วงหน้า</p>
+              <p>4.3. ธนาคารจะยกเลิกการให้บริการแอปพลิเคชันเมื่อผู้ขอใช้บริการพ้นสภาพความเป็นนักศึกษา และ/หรือ ถูกเพิกถอนสิทธิ์ในการเข้าใช้งานแอปพลิเคชันไม่ว่าจะด้วยกรณีใดๆ และธนาคารไม่มีความรับผิดชอบต่อผู้ขอใช้บริการหรือต่อบุคคลอื่นใดที่เป็นผลจากการยกเลิกการให้บริการแอปพลิเคชันดังกล่าว</p>
+              <p>4.4. ผู้ขอใช้บริการรับทราบและยอมรับว่าการสิ้นสุดการใช้งานแอปพลิเคชัน และการสิ้นสุดของข้อตกลงและเงื่อนไขนี้ รวมถึงการสิ้นสุดของข้อตกลงและเงื่อนไขที่มีการเปลี่ยนแปลง จะไม่กระทบต่อสิทธิ์ตามกฎหมาย ข้อผูกพัน ภาระผูกพัน หรือพันธะทางกฎหมาย</p>
+
+              <h4>นโยบายความเป็นส่วนตัว</h4>
+              <p>เพื่อแสดงความโปร่งใสของ บมจ.ธนาคารกรุงไทย (“ธนาคาร”) เกี่ยวกับกิจกรรมการเก็บรวบรวม ใช้ เปิดเผยและ/หรือโอนไปยังต่างประเทศซึ่งข้อมูลส่วนบุคคลของบุคคลของลูกค้า โดยปฏิบัติให้เป็นไปตามกฎหมายว่าด้วยการคุ้มครองข้อมูลส่วนบุคคล ธนาคารได้จัดทำนโยบายความเป็นส่วนตัวสำหรับลูกค้า รายละเอียด ดังนี้</p>
+              <p><strong>ประเภทของลูกค้า ได้แก่</strong></p>
+              <p>• ลูกค้าบุคคลธรรมดาของธนาคาร ซึ่งรวมถึง บุคคลธรรมดาซึ่งใช้หรือเคยใช้ผลิตภัณฑ์หรือบริการ ผู้ติดต่อสอบถามข้อมูลผลิตภัณฑ์หรือบริการ ผู้ที่ได้รับทราบข้อมูลผลิตภัณฑ์หรือบริการผ่านสื่อต่าง ๆ และผู้ที่ได้รับการเสนอหรือชักชวนจากธนาคารให้ใช้หรือรับผลิตภัณฑ์หรือบริการ</p>
+              <p>• บุคคลธรรมดาที่มีความเกี่ยวข้องกับนิติบุคคล เช่น ผู้แทนนิติบุคคล ผู้ถือหุ้นบุคคลธรรมดา ผู้ติดต่อ ตัวแทนบุคคลธรรมดาผู้รับมอบอำนาจ ลูกจ้าง พนักงาน เจ้าหน้าที่ บุคลากรและบุคคลอื่นในทำนองเดียวกันของลูกค้านิติบุคคลของธนาคาร รวมถึง บุคคลธรรมดาอื่นใดที่ลูกค้านิติบุคคลเปิดเผยข้อมูลส่วนบุคคลมายังธนาคารเพื่อดำเนินธุรกรรมกับธนาคาร ("บุคคลที่เกี่ยวข้องกับลูกค้านิติบุคคล")</p>
+              <p>• บุคคลธรรมดาอื่นใดที่ธนาคารมีความสัมพันธ์ ปฏิสัมพันธ์ ติดต่อกัน โดยประการอื่น หรือให้ข้อมูลส่วนบุคคลกับธนาคาร ไม่ว่าจะในทางใด ("บุคคลที่ติดต่อกับธนาคารในประการอื่น")</p>
+              <p>(รวมเรียกว่า "ท่าน")</p>
+              <p>นโยบายความเป็นส่วนตัวนี้จะบังคับใช้กับการเก็บรวบรวม ใช้ เปิดเผย และ/หรือ โอนไปยังต่างประเทศซึ่งข้อมูลส่วนบุคคลที่เกี่ยวกับท่าน โดยธนาคารอาจจะเก็บรวบรวมข้อมูลส่วนบุคคลดังกล่าวผ่านช่องทางต่าง ๆ เช่น สาขา เว็บไซต์ อินเทอร์เน็ตแบงก์กิ้ง (เช่น https://www.krungthai.com , https://www.ktbnetbank.com , https://www.moneyconnect.ktbnetbank.com) แอปพลิเคชันมือถือ (เช่น Krungthai next (NEXT) , Krungthai connext , Krungthai corporate online (K-Corp) , เป๋าตัง) เครือข่ายสังคมออนไลน์ (เช่น ไลน์ (LINE) เฟซบุ๊ก (Facebook) และทวิตเตอร์ (Twitter)) โทรศัพท์ โทรสาร ช่องทางการสื่อสารออนไลน์ (เช่น อีเมล) เอทีเอ็ม (ATM) ศูนย์บริการข้อมูลลูกค้า (Call Center) ผ่านแบบสอบถาม นามบัตร ไปรษณีย์ งานกิจกรรม การประชุมและงานกิจกรรมต่าง ๆ หรือเมื่อธนาคารไปเยี่ยมเยือนท่าน หรือจากแหล่งอื่น ๆ (เช่น แพลตฟอร์มออนไลน์ หรือแหล่งข้อมูลสาธารณะอื่น ๆ) หรือผ่านบริษัทในเครือ บริษัทย่อย พันธมิตรทางธุรกิจ หน่วยงานกฎหมายหรือไม่เป็นไปตามกฎหมายว่าด้วยการคุ้มครองข้อมูลส่วนบุคคล</p>
+              <p>หากท่านต้องการใช้สิทธิใด ๆ ที่ระบุในส่วนนี้ ท่านสามารถติดต่อธนาคารได้โดยใช้ที่อยู่ในส่วน "ติดต่อธนาคาร" คำร้องขอใช้สิทธิใด ๆ ข้างต้นอาจถูกจำกัดโดยกฎหมายที่เกี่ยวข้อง อาจมีบางกรณีที่ธนาคารสามารถปฏิเสธคำขอของท่านได้โดยสมควรและโดยชอบ เช่น เมื่อธนาคารต้องปฏิบัติตามกฎหมายหรือคำสั่งศาล</p>
+              <p>หากท่านเชื่อว่าการเก็บรวบรวม ใช้ เปิดเผยและ/หรือ โอนไปยังต่างประเทศซึ่งข้อมูลส่วนบุคคลของท่านโดยธนาคารเป็นการละเมิดกฎหมายว่าด้วยการคุ้มครองข้อมูลส่วนบุคคลที่เกี่ยวข้อง ท่านมีสิทธิร้องเรียนต่อหน่วยงานที่เกี่ยวข้องกับการคุ้มครองข้อมูลส่วนบุคคล อย่างไรก็ตาม ท่านอาจแจ้งให้ธนาคารทราบถึงข้อกังวลของท่านก่อนเพื่อให้ธนาคารพิจารณาแก้ไขข้อกังวลของท่าน โปรดติดต่อธนาคารผ่านช่องทางที่ธนาคารได้ให้ไว้ในนโยบายความเป็นส่วนตัวฉบับนี้</p>
+
+              <h4>การดำเนินการเกี่ยวกับลูกค้านิติบุคคล</h4>
+              <p>ธนาคารไม่มีเจตนาในการเปิดเผยข้อมูลเกี่ยวกับลูกค้านิติบุคคลหรือข้อมูลของบุคคลที่เกี่ยวข้องกับลูกค้านิติบุคคลเพื่อวัตถุประสงค์ทางการตลาด ทั้งนี้ ธนาคารจะเก็บรวบรวมและใช้ข้อมูลส่วนบุคคลดังกล่าวภายใน ธนาคารเท่านั้น</p>
+              <p>ในกรณีที่ลูกค้านิติบุคคลของธนาคารเปิดเผยข้อมูลส่วนบุคคลของบุคคลที่เกี่ยวข้องกับลูกค้านิติบุคคล ท่านในฐานะลูกค้านิติบุคคลมีหน้าที่ที่จะต้องดำเนินการดังต่อไปนี้ เพื่อให้ธนาคารให้บริการหรือผลิตภัณฑ์แก่ท่านได้</p>
+              <p>(ก) ได้ตรวจสอบความถูกต้องและความสมบูรณ์ของข้อมูลส่วนบุคคลของบุคคลอื่นที่เปิดเผยให้แก่ธนาคารและจะแจ้งธนาคารหากมีการเปลี่ยนแปลงใด ๆ ในข้อมูลส่วนบุคคลของบุคคลอื่นที่ได้ให้ไว้ (หากมี)</p>
+              <p>(ข) ได้รับความยินยอมหรือสามารถอาศัยฐานทางกฎหมายอื่นสำหรับการเก็บรวบรวม ใช้ เปิดเผย และ/หรือโอนข้อมูลส่วนบุคคลของบุคคลดังกล่าวตามกฎหมายที่บังคับใช้</p>
+              <p>(ค) ได้แจ้งนโยบายความเป็นส่วนตัวฉบับนี้แก่บุคคลดังกล่าวแล้ว และ</p>
+              <p>(ง) จะดำเนินการเพื่อให้ธนาคารสามารถเก็บรวบรวม ใช้ เปิดเผย และ/หรือโอน ข้อมูลส่วนบุคคลตามวัตถุประสงค์ที่กำหนดไว้ในนโยบายความเป็นส่วนตัวฉบับนี้ และเพื่อวัตถุประสงค์การทำธุรกรรมที่เกี่ยวข้องให้เสร็จสิ้น ซึ่งรวมถึงการที่ธนาคารมีสิทธิที่จะรายงานผลการทำธุรกรรมของลูกค้ารายย่อยของลูกค้านิติบุคคล รวมถึงข้อมูลอื่นใดที่เกี่ยวข้อง กลับไปยังลูกค้านิติบุคคลได้</p>
+
+              <h4>7. การเปลี่ยนแปลงนโยบายความเป็นส่วนตัว</h4>
+              <p>ธนาคารอาจเปลี่ยนแปลงนโยบายความเป็นส่วนตัวนี้เป็นครั้งคราวหากมีการเปลี่ยนแปลงแนวทางปฏิบัติเกี่ยวกับการคุ้มครองข้อมูลส่วนบุคคลของธนาคารอันเนื่องมาจากเหตุผลต่าง ๆ เช่น การเปลี่ยนแปลงทางเทคโนโลยี การเปลี่ยนแปลงทางกฎหมาย โดยการแก้ไขนโยบายความเป็นส่วนตัวนี้จะมีผลใช้บังคับเมื่อธนาคารเผยแพร่บน https://www.krungthai.com อย่างไรก็ตาม หากการแก้ไขดังกล่าวมีผลกระทบอย่างมีนัยสำคัญต่อท่านในฐานะเจ้าของข้อมูลส่วนบุคคล ธนาคารจะแจ้งให้ท่านทราบล่วงหน้าตามความเหมาะสมก่อนที่การเปลี่ยนแปลงนั้นจะมีผลใช้บังคับ</p>
+
+              <h4>8. ติดต่อธนาคาร</h4>
+              <p>หากท่านมีข้อสงสัยเกี่ยวกับแนวทางปฏิบัติและกิจกรรมของธนาคารที่เกี่ยวข้องกับข้อมูลส่วนบุคคลของท่าน ท่านสามารถติดต่อธนาคารหรือเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคลของธนาคารได้ตามรายละเอียดด้านล่าง โดยธนาคารยินดีที่จะช่วยเหลือท่านในการให้ข้อมูล ข้อเสนอแนะ และข้อร้องเรียน โปรดติดต่อธนาคาร</p>
+              <p><strong>(1) บมจ.ธนาคารกรุงไทย</strong><br>
+              • เลขที่ 35 ถนนสุขุมวิท แขวงคลองเตยเหนือ เขตวัฒนา กรุงเทพมหานคร 10110<br>
+              • Call Center 02-111-1111<br>
+              • https://www.krungthai.com</p>
+              <p><strong>(2) เจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล</strong><br>
+              • เลขที่ 35 ถนนสุขุมวิท แขวงคลองเตยเหนือ เขตวัฒนา กรุงเทพมหานคร 10110<br>
+              • Email: dpo.official@ktb.co.th</p>
+            </div>
+          </div>
+
+          <!-- 8. CONTACT US SCREEN (Matching User Screenshot) -->
+          <div class="screen bg-gray contact-screen" id="screen-contact">
+            <div class="sub-header">
+              <button class="back-btn" onclick="navigateTo('main')">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <h2>ติดต่อเรา</h2>
+            </div>
+
+            <!-- Section 1: โซเชียลมีเดีย -->
+            <div class="contact-section-title">โซเชียลมีเดีย</div>
+            <div class="contact-group-list">
+              <div class="contact-item" onclick="showToast('Facebook: Songkhla Rajabhat University')">
+                <div class="social-icon fb-bg">
+                  <i class="fa-brands fa-facebook-f"></i>
+                </div>
+                <span class="social-label">Facebook</span>
+              </div>
+
+              <div class="contact-item border-top" onclick="showToast('Youtube: Songkhla Rajabhat University')">
+                <div class="social-icon yt-bg">
+                  <i class="fa-brands fa-youtube"></i>
+                </div>
+                <span class="social-label">Youtube</span>
+              </div>
+
+              <div class="contact-item border-top" onclick="showToast('Twitter: Songkhla Rajabhat University')">
+                <div class="social-icon tw-bg">
+                  <i class="fa-brands fa-twitter"></i>
+                </div>
+                <span class="social-label">Twitter</span>
+              </div>
+            </div>
+
+            <!-- Section 2: ติดต่อสอบถาม -->
+            <div class="contact-section-title">ติดต่อสอบถาม</div>
+            <div class="contact-group-list">
+              <a href="tel:074260200" class="contact-item text-link">
+                <div class="contact-circle-icon phone-red">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <span class="info-label bold-text">0-7426-0200-4</span>
+              </a>
+
+              <div class="contact-item border-top align-start">
+                <div class="contact-square-icon doc-pink">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e63956" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <line x1="10" y1="9" x2="8" y2="9"></line>
+                  </svg>
+                </div>
+                <span class="info-label bold-text address-text">
+                  มหาวิทยาลัยราชภัฏสงขลา 160 หมู่ 4 ถนนกาญจนวณิช ตำบลเขารูปช้าง อำเภอเมือง จังหวัดสงขลา รหัสไปรษณีย์ 90000
+                </span>
+              </div>
+            </div>
+
+            <!-- Section 3: ติดต่อธนาคารกรุงไทย -->
+            <div class="contact-section-title">ติดต่อธนาคารกรุงไทย</div>
+            <div class="contact-group-list">
+              <a href="mailto:uapp@krungthai.com" class="contact-item text-link">
+                <div class="contact-square-icon doc-blue">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <line x1="10" y1="9" x2="8" y2="9"></line>
+                  </svg>
+                </div>
+                <span class="info-label bold-text">uapp@krungthai.com</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Navigation Bar -->
+        <nav class="bottom-nav">
+          <button class="nav-item" onclick="showToast('หน้าหลัก (Home)')">
+            <i class="fa-solid fa-house"></i>
+            <span>หน้าแรก</span>
+          </button>
+
+          <button class="nav-item" onclick="showToast('บัตร (Cards)')">
+            <i class="fa-regular fa-id-card"></i>
+            <span>บัตร</span>
+          </button>
+
+          <!-- Floating Center Pay Button -->
+          <button class="nav-pay-btn" onclick="showToast('สแกนจ่าย QR Code')">
+            <div class="pay-circle">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+                <path d="M14 14h3v3h-3z"></path>
+                <path d="M18 18h3v3h-3z"></path>
+                <path d="M18 14h3"></path>
+                <path d="M14 18v3"></path>
+              </svg>
+            </div>
+            <span>จ่าย</span>
+          </button>
+
+          <button class="nav-item" onclick="showToast('ภารกิจ (Missions)')">
+            <i class="fa-solid fa-trophy"></i>
+            <span>ภารกิจ</span>
+          </button>
+
+          <button class="nav-item active" onclick="navigateTo('main')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e63956" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="21" x2="4" y2="14"></line>
+              <line x1="4" y1="10" x2="4" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12" y2="3"></line>
+              <line x1="20" y1="21" x2="20" y2="16"></line>
+              <line x1="20" y1="12" x2="20" y2="3"></line>
+              <line x1="1" y1="14" x2="7" y2="14"></line>
+              <line x1="9" y1="8" x2="15" y2="8"></line>
+              <line x1="17" y1="16" x2="23" y2="16"></line>
+            </svg>
+            <span>ตั้งค่า</span>
+          </button>
+        </nav>
+
+        <!-- Home Indicator Bar -->
+        <div class="home-indicator"></div>
+
+        <!-- Notification Toast -->
+        <div class="toast" id="toast">
+          <i class="fa-solid fa-circle-check"></i>
+          <span id="toastMsg">บันทึกเรียบร้อย</span>
+        </div>
+
+      </div> <!-- End phone-frame -->
+    </main>
+  </div>
+
+  <!-- MODALS -->
+
+  <!-- Modal: Terms & Conditions -->
+  <div class="modal-overlay" id="modal-terms">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>ข้อตกลงและเงื่อนไข</h3>
+        <button class="modal-close" onclick="closeModal('modal-terms')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>ข้อตกลงการใช้งานระบบ</strong></p>
+        <p>1. ข้อมูลส่วนบุคคลของท่านจะถูกเก็บรักษาอย่างปลอดภัยตามมาตรฐานความปลอดภัยข้อมูลสากล</p>
+        <p>2. การเปิดใช้งานการแจ้งเตือนจะช่วยให้ท่านไม่พลาดข่าวสารและกิจกรรมสำคัญของทางสถาบัน</p>
+        <p>3. ท่านสามารถปรับเปลี่ยนความยินยอมและความเป็นส่วนตัวได้ตลอดเวลาในเมนูนี้</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary" onclick="closeModal('modal-terms')">รับทราบ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Language Selection -->
+  <div class="modal-overlay" id="modal-language">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>เลือกภาษา (Language)</h3>
+        <button class="modal-close" onclick="closeModal('modal-language')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="lang-option selected" onclick="selectLanguage('th')">
+          <span>🇹🇭 ภาษาไทย (Thai)</span>
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <div class="lang-option" onclick="selectLanguage('en')">
+          <span>🇬🇧 English</span>
+          <i class="fa-solid fa-check" style="display:none;"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Contact Us -->
+  <div class="modal-overlay" id="modal-contact">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>ติดต่อเรา</h3>
+        <button class="modal-close" onclick="closeModal('modal-contact')">&times;</button>
+      </div>
+      <div class="modal-body contact-body">
+        <div class="contact-row">
+          <i class="fa-solid fa-headset"></i>
+          <div>
+            <div class="contact-label">ศูนย์บริการลูกค้า</div>
+            <div class="contact-val">02-123-4567</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <i class="fa-solid fa-envelope"></i>
+          <div>
+            <div class="contact-label">อีเมล</div>
+            <div class="contact-val">support@skru.ac.th</div>
+          </div>
+        </div>
+        <div class="contact-row">
+          <i class="fa-solid fa-clock"></i>
+          <div>
+            <div class="contact-label">เวลาทำการ</div>
+            <div class="contact-val">จันทร์ - ศุกร์ 08:30 - 16:30 น.</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary" onclick="closeModal('modal-contact')">ตกลง</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: PIN Management -->
+  <div class="modal-overlay" id="modal-pin">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="pinModalTitle">เปลี่ยน PIN</h3>
+        <button class="modal-close" onclick="closeModal('modal-pin')">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <p>กรุณากรอกรหัส PIN เดิม 6 หลัก</p>
+        <div class="pin-dots">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+        <div class="keypad">
+          <button class="key" onclick="pressKey(1)">1</button>
+          <button class="key" onclick="pressKey(2)">2</button>
+          <button class="key" onclick="pressKey(3)">3</button>
+          <button class="key" onclick="pressKey(4)">4</button>
+          <button class="key" onclick="pressKey(5)">5</button>
+          <button class="key" onclick="pressKey(6)">6</button>
+          <button class="key" onclick="pressKey(7)">7</button>
+          <button class="key" onclick="pressKey(8)">8</button>
+          <button class="key" onclick="pressKey(9)">9</button>
+          <button class="key transparent"></button>
+          <button class="key" onclick="pressKey(0)">0</button>
+          <button class="key transparent" onclick="clearKey()"><i class="fa-solid fa-delete-left"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Consent Detail Toggle -->
+  <div class="modal-overlay" id="modal-consent">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="consentTitle">รายละเอียดความยินยอม</h3>
+        <button class="modal-close" onclick="closeModal('modal-consent')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="consentDesc">รายละเอียด...</p>
+        <div class="consent-switch-row">
+          <span>ยินยอมเปิดใช้งาน</span>
+          <label class="switch">
+            <input type="checkbox" id="consentToggleInput">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary" onclick="saveConsentModal()">บันทึก</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Reset PIN Confirmation (Matching User Screenshot) -->
+  <div class="modal-overlay" id="modal-reset-pin">
+    <div class="dialog-card">
+      <div class="dialog-title">รีเซ็ต PIN</div>
+      <div class="dialog-body">
+        คุณจะออกจากระบบ<br>จากนั้นคุณสามารถตั้งรหัส PIN ใหม่หลังจากเข้าสู่ระบบ
+      </div>
+      <div class="dialog-actions">
+        <button class="dialog-btn btn-cancel" onclick="closeModal('modal-reset-pin')">ยกเลิก</button>
+        <button class="dialog-btn btn-confirm" onclick="confirmResetPin()">ยืนยัน</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

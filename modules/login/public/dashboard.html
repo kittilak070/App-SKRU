@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#ea1d24">
+  <title>ระบบบริการดิจิทัล มรภ.สงขลา | หน้าหลัก</title>
+  
+  <!-- Google Fonts: Prompt & Sarabun -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="/css/animations.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body style="background-color: #f1f5f9; padding: 24px 16px;">
+
+  <!-- Dashboard Container -->
+  <div class="dashboard-card animate-fade-in">
+    
+    <!-- Header -->
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 24px; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <img src="/images/skru-logo.png" alt="SKRU Logo" style="width: 54px; height: 54px; object-fit: contain;">
+        <div>
+          <h1 style="font-size: 20px; font-weight: 700; color: #0f172a;" id="dashName">กำลังโหลดข้อมูล...</h1>
+          <div style="font-size: 13px; color: #64748b; display: flex; gap: 8px; align-items: center; margin-top: 2px;">
+            <span style="background: #fee2e2; color: #dc2626; padding: 2px 8px; border-radius: 6px; font-weight: 600; font-size: 11px;" id="dashRole">บทบาท</span>
+            <span id="dashEmail">email@skru.ac.th</span>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn-primary" style="width: auto; height: 42px; padding: 0 20px; background: #ef4444;" id="btnLogout">
+        ออกจากระบบ
+      </button>
+    </div>
+
+    <!-- User Profile Details -->
+    <div id="dashDetails"></div>
+
+    <!-- Digital Services Grid -->
+    <h3 style="font-size: 16.5px; font-weight: 700; color: #1e293b; margin-top: 28px;">บริการดิจิทัล มรภ.สงขลา (SKRU Services)</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 16px;">
+      <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.04);" onclick="alert('เปิดระบบบริการการศึกษา (REG Online)')">
+        <span style="font-size: 32px;">📝</span>
+        <div style="font-size: 14px; font-weight: 600; color: #1e293b; margin-top: 8px;">ระบบบริการการศึกษา (REG)</div>
+      </div>
+
+      <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.04);" onclick="alert('เปิดระบบ e-Learning (SKRU LMS)')">
+        <span style="font-size: 32px;">💻</span>
+        <div style="font-size: 14px; font-weight: 600; color: #1e293b; margin-top: 8px;">ระบบ e-Learning (LMS)</div>
+      </div>
+
+      <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.04);" onclick="alert('เชื่อมต่อ SKRU Wi-Fi สำเร็จ')">
+        <span style="font-size: 32px;">📶</span>
+        <div style="font-size: 14px; font-weight: 600; color: #1e293b; margin-top: 8px;">อินเทอร์เน็ต & Wi-Fi</div>
+      </div>
+
+      <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.04);" onclick="alert('เปิดระบบสำนักวิทยบริการ / ห้องสมุด')">
+        <span style="font-size: 32px;">📚</span>
+        <div style="font-size: 14px; font-weight: 600; color: #1e293b; margin-top: 8px;">สำนักวิทยบริการ / ห้องสมุด</div>
+      </div>
+
+      <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.04);" onclick="alert('เปิด Microsoft 365')">
+        <span style="font-size: 32px;">📧</span>
+        <div style="font-size: 14px; font-weight: 600; color: #1e293b; margin-top: 8px;">อีเมล & Microsoft 365</div>
+      </div>
+
+      <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.04);" onclick="alert('เปิดระบบสวัสดิการและพยาบาล')">
+        <span style="font-size: 32px;">🏥</span>
+        <div style="font-size: 14px; font-weight: 600; color: #1e293b; margin-top: 8px;">สวัสดิการและพยาบาล</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const res = await fetch('/api/auth/me', { credentials: 'include' });
+        const data = await res.json();
+        if (!res.ok || !data.authenticated) {
+          window.location.href = '/login';
+          return;
+        }
+
+        const user = data.user;
+        document.getElementById('dashName').textContent = user.fullName || user.username;
+        document.getElementById('dashRole').textContent = user.role === 'student' ? 'นักศึกษา' : 'อาจารย์ / บุคลากร';
+        document.getElementById('dashEmail').textContent = user.email;
+
+        const details = document.getElementById('dashDetails');
+        if (user.role === 'student') {
+          details.innerHTML = `
+            <div style="background: #f8fafc; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0;">
+              <div style="font-size: 12.5px; color: #64748b;">รหัสประจำตัวนักศึกษา</div>
+              <div style="font-size: 18px; font-weight: 700; color: #0f172a;">${user.studentId}</div>
+              <div style="font-size: 14px; color: #334155; margin-top: 4px;">${user.faculty} - ${user.major}</div>
+              <div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: #0284c7; font-weight: 600;">
+                <span>ชั้นปี: ${user.year || 'ปี 3'}</span>
+                <span>เกรดเฉลี่ยสะสม (GPA): ${user.gpa || '3.78'}</span>
+                <span style="color: #16a34a;">สถานะ: ${user.status || 'กำลังศึกษา'}</span>
+              </div>
+            </div>
+          `;
+        } else {
+          details.innerHTML = `
+            <div style="background: #f8fafc; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0;">
+              <div style="font-size: 12.5px; color: #64748b;">ตำแหน่ง / ภาควิชา</div>
+              <div style="font-size: 18px; font-weight: 700; color: #0f172a;">${user.position || 'อาจารย์ประจำสาขา'}</div>
+              <div style="font-size: 14px; color: #334155; margin-top: 4px;">${user.department} - ${user.faculty}</div>
+              <div style="margin-top: 12px; font-size: 13px; color: #16a34a; font-weight: 600;">
+                สถานะ: ${user.status || 'ปฏิบัติงาน'}
+              </div>
+            </div>
+          `;
+        }
+      } catch (err) {
+        window.location.href = '/login';
+      }
+
+      document.getElementById('btnLogout').addEventListener('click', async () => {
+        await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+        window.location.href = '/login';
+      });
+    });
+  </script>
+</body>
+</html>

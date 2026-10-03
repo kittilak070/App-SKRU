@@ -1,0 +1,989 @@
+/* Google Fonts: Inter for Latin & Prompt for Thai */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: 'Prompt', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #3e3e42;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 10px;
+}
+
+/* ================= 390px x 844px SCREEN CONTAINER ================= */
+.screen-container {
+  position: relative;
+  width: 390px;
+  height: 844px;
+  background: #FBF6E4;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* ================= TOP LEFT DECORATIVE GRAPHICS ================= */
+.vector-top-1 {
+  position: absolute;
+  width: 15.36px;
+  height: 44px;
+  left: -9px;
+  top: 0px;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+  transform: rotate(-167.23deg);
+  pointer-events: none;
+}
+
+.vector-top-3 {
+  position: absolute;
+  width: 15.36px;
+  height: 44px;
+  left: -9px;
+  top: 0px;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+  transform: rotate(-167.23deg);
+  pointer-events: none;
+}
+
+.vector-top-2 {
+  position: absolute;
+  width: 15.36px;
+  height: 44px;
+  left: -6px;
+  top: 0px;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+  transform: rotate(-167.23deg);
+  pointer-events: none;
+}
+
+.rect-yellow-top {
+  position: absolute;
+  width: 6px;
+  height: 126px;
+  left: 0px;
+  top: 0px;
+  background: rgba(242, 218, 66, 0.84);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ellipse-red-top {
+  position: absolute;
+  width: 22px;
+  height: 110px;
+  left: -4px;
+  top: 40px;
+  background: #FF0000;
+  border-radius: 0 11px 11px 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ================= NAVIGATION BACK CIRCLE BUTTON ================= */
+.nav-back-circle-btn {
+  position: absolute;
+  left: 24px;
+  top: 18px;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid #222222;
+  border-radius: 50%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0;
+  transition: transform 0.15s ease;
+}
+
+.nav-back-circle-btn:hover {
+  transform: scale(1.12);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.back-arrow-icon {
+  width: 13px;
+  height: 13px;
+}
+
+/* ================= HEADER LOGO (SKRU CONNECT) ================= */
+.skru-header-logo {
+  position: absolute;
+  left: 38px;
+  top: 50px;
+  z-index: 10;
+}
+
+.logo-sk {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 28px;
+  color: #000000;
+  letter-spacing: -0.5px;
+}
+
+.logo-ru {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 28px;
+  color: #FF0000;
+  letter-spacing: -0.5px;
+}
+
+.connect-sub {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 9.5px;
+  line-height: 12px;
+  letter-spacing: 0.24em;
+  color: #000000;
+  margin-top: 2px;
+}
+
+/* ================= HEADER RIGHT TOOLS ================= */
+.header-right-tools {
+  position: absolute;
+  top: 52px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 10;
+}
+
+.icon-bell-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.icon-bell-btn:hover {
+  transform: scale(1.15);
+}
+
+.bell-svg {
+  width: 22px;
+  height: 22px;
+}
+
+.profile-avatar-circle {
+  width: 25px;
+  height: 25px;
+  border: 1.5px solid #222222;
+  border-radius: 50%;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.profile-avatar-circle:hover {
+  transform: scale(1.15);
+}
+
+.user-silhouette-svg {
+  width: 17px;
+  height: 17px;
+}
+
+.top-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* ================= PAGE TITLE ================= */
+.page-title {
+  position: absolute;
+  left: 38px;
+  top: 114px;
+  font-family: 'Prompt', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #000000;
+  z-index: 2;
+}
+
+/* ================= CARD 1: ข้อมูลนักศึกษา (Rectangle 73) ================= */
+.card-student-summary {
+  box-sizing: border-box;
+  position: absolute;
+  left: 24px;
+  top: 144px;
+  width: 342px;
+  height: 174px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  border-radius: 18px;
+  z-index: 2;
+}
+
+/* Student Photo Box (Rectangle 58) */
+.student-photo-box {
+  box-sizing: border-box;
+  position: absolute;
+  left: 14px;
+  top: 15px;
+  width: 88px;
+  height: 142px;
+  background: #FFFFFF;
+  border: 1px solid #777777;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.student-photo-box:hover {
+  border-color: #FF0000;
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.15);
+}
+
+.photo-inner-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.student-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Hover Camera Overlay */
+.photo-upload-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 5;
+  border-radius: 11px;
+}
+
+.student-photo-box:hover .photo-upload-overlay {
+  opacity: 1;
+}
+
+.camera-icon-svg {
+  width: 22px;
+  height: 22px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.overlay-text {
+  font-family: 'Prompt', sans-serif;
+  font-size: 8.5px;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Centered Red SKRU Art inside Photo Box */
+.badge-skru-art {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 22px;
+  color: #FF0000;
+  letter-spacing: 0.5px;
+  transform: scaleY(1.35);
+  user-select: none;
+}
+
+/* Student Name (Thai) */
+.student-name-card1 {
+  position: absolute;
+  left: 116px;
+  top: 18px;
+  font-family: 'Prompt', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14.5px;
+  line-height: 18px;
+  color: #000000;
+  white-space: nowrap;
+}
+
+/* Status Pill: นักศึกษาภาคปกติ */
+.badge-status-pill {
+  position: absolute;
+  right: 14px;
+  top: 19px;
+  background: #F4E8B9;
+  border-radius: 6px;
+  padding: 1.5px 6px;
+  font-family: 'Prompt', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 7.5px;
+  line-height: 10px;
+  color: #554400;
+  white-space: nowrap;
+}
+
+/* English Name */
+.student-name-en-card1 {
+  position: absolute;
+  left: 116px;
+  top: 38px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 10px;
+  color: #9E9E9E;
+  letter-spacing: 0.02em;
+}
+
+/* Student ID Label & Value */
+.label-id-card1 {
+  position: absolute;
+  left: 116px;
+  top: 61px;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 300;
+  font-size: 8.5px;
+  line-height: 11px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.val-id-group {
+  position: absolute;
+  left: 182px;
+  top: 60px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.val-id-card1 {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: 9.5px;
+  line-height: 12px;
+  color: #000000;
+}
+
+/* Red Copy Icon Button */
+.btn-copy-id {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.15s ease;
+}
+
+.btn-copy-id:hover {
+  transform: scale(1.2);
+}
+
+.copy-icon-svg {
+  width: 11px;
+  height: 11px;
+}
+
+/* Line 10 Divider */
+.line-10 {
+  position: absolute;
+  left: 116px;
+  top: 77px;
+  width: 212px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* Faculty */
+.label-faculty-card1 {
+  position: absolute;
+  left: 116px;
+  top: 84px;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 300;
+  font-size: 8px;
+  line-height: 10px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.val-faculty-card1 {
+  position: absolute;
+  left: 182px;
+  top: 84px;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 10px;
+  color: #222222;
+  white-space: nowrap;
+}
+
+/* Major */
+.label-major-card1 {
+  position: absolute;
+  left: 116px;
+  top: 100px;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 300;
+  font-size: 8px;
+  line-height: 10px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.val-major-card1 {
+  position: absolute;
+  left: 182px;
+  top: 100px;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 10px;
+  color: #222222;
+  white-space: nowrap;
+}
+
+/* Degree Level */
+.label-degree-card1 {
+  position: absolute;
+  left: 116px;
+  top: 116px;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 300;
+  font-size: 8px;
+  line-height: 10px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.val-degree-card1 {
+  position: absolute;
+  left: 182px;
+  top: 116px;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 10px;
+  color: #222222;
+}
+
+/* Year */
+.label-year-card1 {
+  position: absolute;
+  left: 116px;
+  top: 132px;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 300;
+  font-size: 8px;
+  line-height: 10px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.val-year-card1 {
+  position: absolute;
+  left: 182px;
+  top: 132px;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 10px;
+  color: #222222;
+}
+
+/* ================= CARD 2: ข้อมูลส่วนตัว (Rectangle 70) ================= */
+.card-student-detail {
+  box-sizing: border-box;
+  position: absolute;
+  left: 24px;
+  top: 330px;
+  width: 342px;
+  height: 470px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  border-radius: 18px;
+  padding: 16px 18px;
+  z-index: 2;
+}
+
+/* Title: ข้อมูลส่วนตัว */
+.detail-title {
+  position: absolute;
+  left: 18px;
+  top: 16px;
+  font-family: 'Prompt', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18px;
+  color: #000000;
+}
+
+/* Edit Button (Rectangle 76) */
+.btn-edit-detail {
+  position: absolute;
+  right: 18px;
+  top: 17px;
+  box-sizing: border-box;
+  border: 1px solid #FF0000;
+  border-radius: 3px;
+  background: #FFFFFF;
+  padding: 1.5px 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.15s ease;
+}
+
+.btn-edit-detail:hover {
+  background: rgba(255, 0, 0, 0.08);
+}
+
+.pen-icon-svg {
+  width: 9px;
+  height: 9px;
+}
+
+.text-edit-btn {
+  font-family: 'Prompt', sans-serif;
+  font-weight: 600;
+  font-size: 8px;
+  line-height: 10px;
+  color: #FF0000;
+}
+
+/* Rows Container & Item Layout inside Card 2 */
+.card-student-detail {
+  padding-top: 48px;
+}
+
+.detail-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 3px 0;
+}
+
+.row-label {
+  width: 125px;
+  font-family: 'Prompt', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 9.5px;
+  line-height: 13px;
+  color: rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+}
+
+.row-value {
+  flex: 1;
+  font-family: 'Prompt', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 9.5px;
+  line-height: 13px;
+  color: #000000;
+}
+
+.val-email {
+  font-family: 'Inter', 'Prompt', sans-serif;
+  font-size: 9px;
+  word-break: break-all;
+}
+
+.row-address-layout {
+  align-items: flex-start;
+}
+
+.val-address {
+  line-height: 13px;
+}
+
+.row-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.06);
+  margin: 4.5px 0;
+}
+
+/* ================= BOTTOM DECORATIVE SHAPES ================= */
+.ellipse-bottom-9 {
+  position: absolute;
+  width: 257px;
+  height: 547px;
+  left: -207px;
+  top: 638px;
+  background: rgba(255, 0, 0, 0.29);
+  transform: rotate(-90deg);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ellipse-bottom-10 {
+  position: absolute;
+  width: 257px;
+  height: 547px;
+  left: -280px;
+  top: 614px;
+  background: rgba(255, 0, 0, 0.54);
+  transform: rotate(-90deg);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.vector-bottom-2 {
+  position: absolute;
+  width: 15.36px;
+  height: 44px;
+  left: 372px;
+  top: 810px;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+  transform: rotate(15deg);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.vector-bottom-1 {
+  position: absolute;
+  width: 15.36px;
+  height: 44px;
+  left: 376px;
+  top: 810px;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+  transform: rotate(15deg);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.rect-yellow-bottom {
+  position: absolute;
+  width: 6px;
+  height: 126px;
+  left: 384px;
+  top: 766px;
+  background: rgba(242, 218, 66, 0.84);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.ellipse-red-bottom {
+  position: absolute;
+  width: 18px;
+  height: 91px;
+  left: 378px;
+  top: 742px;
+  background: #FF0000;
+  transform: rotate(-180deg);
+  border-radius: 9px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ================= TOAST NOTIFICATION ================= */
+.toast-msg {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-30px);
+  background: rgba(0, 0, 0, 0.85);
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.toast-msg.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ================= EDIT MODAL ================= */
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 90;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-box {
+  width: 100%;
+  max-height: 85%;
+  background: #FFFFFF;
+  border-radius: 24px 24px 0 0;
+  padding: 20px 20px 28px 20px;
+  overflow-y: auto;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.15);
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ECECEC;
+}
+
+.modal-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #888;
+  padding: 4px;
+}
+
+/* Photo Modal Section */
+.photo-modal-section {
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #E5E5E5;
+}
+
+.section-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 6px;
+}
+
+.photo-modal-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-photo-action {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #D0D0D0;
+  border-radius: 8px;
+  background: #F8F9FA;
+  font-family: 'Prompt', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  color: #333333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.btn-photo-action:hover {
+  background: #ECEFF1;
+  border-color: #999;
+}
+
+.btn-photo-reset {
+  color: #D32F2F;
+  border-color: #FFCDD2;
+  background: #FFEBEE;
+}
+
+.btn-photo-reset:hover {
+  background: #FFCDD2;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 4px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 11px;
+  font-family: inherit;
+  background: #FAFAFA;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #FF0000;
+  background: #FFFFFF;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.btn-modal-cancel {
+  flex: 1;
+  padding: 10px;
+  background: #F1F1F1;
+  border: none;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-modal-save {
+  flex: 1;
+  padding: 10px;
+  background: #FF0000;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-modal-save:hover {
+  opacity: 0.9;
+}
+
+/* ================= NOTIFICATIONS PANEL ================= */
+.notifications-panel {
+  position: absolute;
+  top: 85px;
+  right: 18px;
+  width: 280px;
+  background: #FFFFFF;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  border: 1px solid #E5E5E5;
+  z-index: 80;
+  padding: 14px;
+  display: none;
+  animation: fadeIn 0.2s ease;
+}
+
+.notifications-panel.active {
+  display: block;
+}
+
+.notif-header {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #222;
+  display: flex;
+  justify-content: space-between;
+}
+
+.notif-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  font-size: 14px;
+}
+
+.notif-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #F0F0F0;
+  font-size: 10px;
+}
+
+.notif-item:last-child {
+  border-bottom: none;
+}
+
+.notif-title {
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 2px;
+}
+
+.notif-time {
+  font-size: 8px;
+  color: #999;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ระบบชำระเงินค่าธรรมเนียมการศึกษา | SKRU Payment System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="logo-box">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div>
+          <h1>SKRU Payment System</h1>
+          <p>ระบบชำระเงินค่าธรรมเนียมการศึกษา มหาวิทยาลัยราชภัฏสงขลา</p>
+        </div>
+      </div>
+      <div class="header-right" id="userBadge" style="display: none;">
+        <div class="user-info">
+          <span class="user-name" id="badgeName">-</span>
+          <span class="user-role" id="badgeId">-</span>
+        </div>
+        <button class="btn-logout" id="logoutBtn" title="ออกจากระบบ"><i class="fa-solid fa-right-from-bracket"></i></button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-main">
+      <!-- Step 1: Login / Search Student -->
+      <section id="loginSection" class="card login-card">
+        <div class="card-header">
+          <i class="fa-solid fa-id-card-clip"></i>
+          <h2>เข้าสู่ระบบตรวจสอบค่าธรรมเนียม</h2>
+        </div>
+        <p class="subtitle">กรุณากรอกรหัสนักศึกษา 10 หลัก เพื่อตรวจสอบยอดค้างชำระ</p>
+        
+        <form id="loginForm" class="login-form">
+          <div class="form-group">
+            <label for="studentIdInput"><i class="fa-regular fa-user"></i> รหัสนักศึกษา</label>
+            <input type="text" id="studentIdInput" placeholder="เช่น 6530100001 หรือ 6530100002" required maxlength="10" autofocus>
+          </div>
+          <div class="quick-students">
+            <span>ทดสอบข้อมูล:</span>
+            <button type="button" class="btn-chip" data-id="6530100001">นาย.กรรณพัต (6530100001)</button>
+            <button type="button" class="btn-chip" data-id="6530100002">นางสาว.สมฤดี (6530100002)</button>
+          </div>
+          <button type="submit" class="btn-primary" id="searchBtn">
+            <i class="fa-solid fa-magnifying-glass"></i> ค้นหาข้อมูลค่าธรรมเนียม
+          </button>
+        </form>
+      </section>
+
+      <!-- Step 2: Student & Fees Overview -->
+      <section id="feeSection" class="card fee-section" style="display: none;">
+        <div class="student-profile-banner">
+          <div class="avatar-circle">
+            <i class="fa-solid fa-user-graduate"></i>
+          </div>
+          <div class="student-meta">
+            <h3 id="studentName">-</h3>
+            <div class="meta-tags">
+              <span><i class="fa-regular fa-id-badge"></i> รหัส: <strong id="studentId">-</strong></span>
+              <span><i class="fa-solid fa-building-columns"></i> <span id="studentFaculty">-</span></span>
+              <span><i class="fa-solid fa-book"></i> <span id="studentMajor">-</span></span>
+              <span><i class="fa-solid fa-calendar-days"></i> ชั้นปีที่ <span id="studentYear">-</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-title-row">
+          <h3><i class="fa-solid fa-receipt"></i> รายการค่าธรรมเนียมการศึกษา</h3>
+          <span class="badge-pending" id="feeStatusBadge">รอชำระเงิน</span>
+        </div>
+
+        <div class="fee-card" id="feeDetailsCard">
+          <div class="fee-row">
+            <span class="label">รายการ:</span>
+            <span class="value font-bold" id="feeDescription">-</span>
+          </div>
+          <div class="fee-row">
+            <span class="label">ภาคการศึกษา:</span>
+            <span class="value" id="feeSemester">-</span>
+          </div>
+          <div class="fee-row">
+            <span class="label">Ref. 1:</span>
+            <span class="value code" id="feeRef1">-</span>
+          </div>
+          <div class="fee-row">
+            <span class="label">Ref. 2:</span>
+            <span class="value code" id="feeRef2">-</span>
+          </div>
+          <div class="fee-row">
+            <span class="label">กำหนดชำระภายใน:</span>
+            <span class="value text-danger" id="feeDueDate">-</span>
+          </div>
+          <hr>
+          <div class="fee-row total-row">
+            <span class="label">ยอดชำระทั้งสิ้น:</span>
+            <span class="value total-amount" id="feeAmount">฿0.00</span>
+          </div>
+        </div>
+
+        <!-- Payment Method Selection -->
+        <div class="payment-selection-area" id="paymentSelectionArea">
+          <h3><i class="fa-solid fa-wallet"></i> เลือกช่องทางการชำระเงิน</h3>
+          
+          <div class="payment-methods-grid">
+            <label class="payment-method-card active">
+              <input type="radio" name="paymentMethod" value="QR_PROMPTPAY" checked>
+              <div class="card-inner">
+                <i class="fa-solid fa-qrcode method-icon"></i>
+                <div class="method-text">
+                  <strong>QR พร้อมเพย์ / Mobile Banking</strong>
+                  <span>สแกนจ่ายได้ทุกธนาคาร ฟรีค่าธรรมเนียม</span>
+                </div>
+              </div>
+            </label>
+
+            <label class="payment-method-card">
+              <input type="radio" name="paymentMethod" value="BANK_TRANSFER">
+              <div class="card-inner">
+                <i class="fa-solid fa-building-columns method-icon"></i>
+                <div class="method-text">
+                  <strong>โอนผ่านบัญชีธนาคาร</strong>
+                  <span>ธนาคารกรุงไทย / กสิกรไทย / ไทยพาณิชย์</span>
+                </div>
+              </div>
+            </label>
+
+            <label class="payment-method-card">
+              <input type="radio" name="paymentMethod" value="CREDIT_CARD">
+              <div class="card-inner">
+                <i class="fa-regular fa-credit-card method-icon"></i>
+                <div class="method-text">
+                  <strong>บัตรเครดิต / บัตรเดบิต</strong>
+                  <span>Visa, Mastercard, JCB</span>
+                </div>
+              </div>
+            </label>
+          </div>
+
+          <!-- QR Preview Box -->
+          <div class="qr-preview-box" id="qrBox">
+            <div class="qr-header">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/PromptPay-logo.png" alt="PromptPay" class="pp-logo">
+              <p>Thai QR Payment สแกนเพื่อชำระเงิน</p>
+            </div>
+            <div class="qr-image-wrapper">
+              <img id="qrCodeImg" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=00020101021229370016A000000677010111011300668000000005802TH53037645405110006304ABCD" alt="Payment QR Code">
+            </div>
+            <div class="qr-timer">
+              <i class="fa-regular fa-clock"></i> มีผลภายใน: <span id="countdown">15:00</span> นาที
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button type="button" class="btn-secondary" id="backToSearchBtn">
+              <i class="fa-solid fa-arrow-left"></i> ค้นหาคนอื่น
+            </button>
+            <button type="button" class="btn-success" id="confirmPaymentBtn">
+              <i class="fa-solid fa-circle-check"></i> ยืนยันการชำระเงินจำลอง
+            </button>
+          </div>
+        </div>
+
+        <!-- Receipt Area (When Paid) -->
+        <div class="receipt-card" id="receiptCard" style="display: none;">
+          <div class="receipt-success-badge">
+            <i class="fa-solid fa-circle-check"></i>
+            <h3>ชำระเงินเสร็จสมบูรณ์</h3>
+            <p>บันทึกการชำระเงินลงระบบทะเบียนเรียบร้อยแล้ว</p>
+          </div>
+
+          <div class="receipt-paper">
+            <div class="receipt-header">
+              <h4>มหาวิทยาลัยราชภัฏสงขลา</h4>
+              <h5>Songkhla Rajabhat University</h5>
+              <p>ใบเสร็จรับเงินค่าธรรมเนียมการศึกษา (Official Receipt)</p>
+            </div>
+            <div class="receipt-grid">
+              <div><strong>เลขที่ใบเสร็จ:</strong> <span id="rcptNo">-</span></div>
+              <div><strong>วันที่ชำระ:</strong> <span id="rcptDate">-</span></div>
+              <div><strong>รหัสนักศึกษา:</strong> <span id="rcptStudentId">-</span></div>
+              <div><strong>ชื่อ-นามสกุล:</strong> <span id="rcptStudentName">-</span></div>
+              <div><strong>ช่องทาง:</strong> <span id="rcptMethod">-</span></div>
+              <div><strong>รหัสอ้างอิง:</strong> <span id="rcptTxn">-</span></div>
+            </div>
+            <table class="receipt-table">
+              <thead>
+                <tr>
+                  <th>ลำดับ</th>
+                  <th>รายการ</th>
+                  <th style="text-align: right;">จำนวนเงิน</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td id="rcptItemName">ค่าธรรมเนียมการศึกษา</td>
+                  <td style="text-align: right;" id="rcptAmount">฿0.00</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th colspan="2" style="text-align: right;">รวมทั้งสิ้น</th>
+                  <th style="text-align: right;" id="rcptTotal">฿0.00</th>
+                </tr>
+              </tfoot>
+            </table>
+            <div class="receipt-footer">
+              <p>เอกสารนี้ออกโดยระบบบริการการศึกษาแบบอิเล็กทรอนิกส์ SKRU Portal</p>
+            </div>
+          </div>
+
+          <div class="receipt-actions">
+            <button type="button" class="btn-primary" onclick="window.print()">
+              <i class="fa-solid fa-print"></i> พิมพ์ใบเสร็จ
+            </button>
+            <button type="button" class="btn-secondary" id="resetBtn">
+              <i class="fa-solid fa-rotate-left"></i> กลับหน้าแรก
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>© 2026 มหาวิทยาลัยราชภัฏสงขลา (SKRU) • กองบริการการศึกษา</p>
+    </footer>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

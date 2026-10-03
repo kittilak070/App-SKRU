@@ -1,0 +1,38 @@
+[
+  {
+    "id": "book-1790824109095",
+    "activityId": "act-3",
+    "activityCode": "TECH-301",
+    "activityTitle": "เวิร์กชอป AI & Modern Web Development ยุคใหม่",
+    "date": "24 ตุลาคม 2569",
+    "time": "13:00 - 17:00 น.",
+    "location": "ห้องแล็บคอมพิวเตอร์ อาคาร 4 ชั้น 3",
+    "hours": 4,
+    "isKYS": false,
+    "studentId": "66010123",
+    "studentName": "นายณัฐพล",
+    "faculty": "คณะวิศวกรรมศาสตร์และเทคโนโลยี",
+    "major": "สาขาวิชาวิศวกรรมคอมพิวเตอร์",
+    "registeredAt": "2026-10-01T03:08:29.095Z",
+    "status": "ลงทะเบียนสำเร็จ (ผ่านรหัส)",
+    "seatNumber": "B-026"
+  },
+  {
+    "id": "book-1001",
+    "activityId": "act-1",
+    "activityCode": "ORI-101",
+    "activityTitle": "ปฐมนิเทศและเตรียมความพร้อมนักศึกษาใหม่ 2569",
+    "date": "10 ตุลาคม 2569",
+    "time": "08:30 - 16:30 น.",
+    "location": "หอประชุมใหญ่ อาคารเฉลิมพระเกียรติ",
+    "hours": 6,
+    "isKYS": false,
+    "studentId": "66010123",
+    "studentName": "นายณัฐพล สมบูรณ์",
+    "faculty": "คณะวิศวกรรมศาสตร์และเทคโนโลยี",
+    "major": "สาขาวิชาวิศวกรรมคอมพิวเตอร์",
+    "registeredAt": "2026-09-28T09:15:00.000Z",
+    "status": "ลงทะเบียนแล้ว",
+    "seatNumber": "A-042"
+  }
+]

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ส่งคำขอเข้าพบอาจารย์ | SKRU Appointment</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Lucide Icons CDN for ultra crisp SVG icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Top bar switch to Admin & Check status -->
+  <div class="portal-bar">
+    <button type="button" class="portal-link" id="openStatusModalBtn" style="border:none; cursor:pointer;">
+      <i data-lucide="search" style="width: 14px; height: 14px;"></i> ตรวจสอบสถานะคำขอ
+    </button>
+    <a href="admin.html" class="portal-link">
+      <i data-lucide="shield-check" style="width: 14px; height: 14px;"></i> สำหรับอาจารย์
+    </a>
+  </div>
+
+  <!-- Main Container matching the provided UI -->
+  <main class="app-container">
+    
+    <!-- Red Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="logo-box">
+          <span>SKRU</span>
+        </div>
+        <div class="header-text">
+          <span class="header-subtitle">ขั้นตอนการนัดหมาย</span>
+          <h1 class="header-title">ส่งคำขอเข้าพบอาจารย์</h1>
+        </div>
+      </div>
+      <button type="button" class="header-close-btn" id="closeBtn" title="ปิดหน้าต่าง" aria-label="ปิด">
+        <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+      </button>
+    </header>
+
+    <!-- App Body / Form -->
+    <div class="app-body">
+      
+      <!-- Teacher Profile Card -->
+      <section class="teacher-card">
+        <div class="teacher-info">
+          <div class="teacher-icon-box">
+            <i data-lucide="calendar" style="width: 24px; height: 24px;"></i>
+          </div>
+          <div class="teacher-details">
+            <span class="teacher-label">นัดหมายเข้าพบ</span>
+            <span class="teacher-name" id="teacherName">MR.Panukorn</span>
+            <span class="teacher-faculty" id="teacherFaculty">คณะวิทยาศาสตร์และเทคโนโลยี</span>
+          </div>
+        </div>
+        <div class="status-pill" id="teacherStatusBadge">
+          <span class="status-dot"></span>
+          <span id="teacherStatusText">พร้อมให้เข้าพบ</span>
+        </div>
+      </section>
+
+      <!-- Consultation Hours Banner -->
+      <div class="consultation-banner">
+        <i data-lucide="clock" class="banner-icon" style="width: 16px; height: 16px;"></i>
+        <span id="teacherHours">ช่วงให้คำปรึกษา: จันทร์, พุธ 13:00 - 16:00 น.</span>
+      </div>
+
+      <!-- Appointment Request Form -->
+      <form id="appointmentForm">
+        
+        <!-- Field 1: Student Name -->
+        <div class="form-group">
+          <label class="form-label" for="studentName">
+            ชื่อ-นามสกุล นักศึกษา / ผู้ติดต่อ <span class="required">*</span>
+          </label>
+          <div class="input-wrapper">
+            <i data-lucide="user" class="input-icon" style="width: 18px; height: 18px;"></i>
+            <input 
+              type="text" 
+              id="studentName" 
+              name="studentName" 
+              class="form-control" 
+              placeholder="นาย/นางสาว ..." 
+              required
+              autocomplete="name"
+            >
+          </div>
+        </div>
+
+        <!-- Field 2: Student ID or Phone -->
+        <div class="form-group">
+          <label class="form-label" for="studentId">
+            รหัสนักศึกษา / เบอร์ติดต่อ <span class="required">*</span>
+          </label>
+          <div class="input-wrapper">
+            <i data-lucide="credit-card" class="input-icon" style="width: 18px; height: 18px;"></i>
+            <input 
+              type="text" 
+              id="studentId" 
+              name="studentId" 
+              class="form-control" 
+              placeholder="เช่น 6512345678" 
+              required
+            >
+          </div>
+        </div>
+
+        <!-- Date & Time Row -->
+        <div class="form-row">
+          
+          <!-- Field 3: Date -->
+          <div class="form-group">
+            <label class="form-label" for="appointmentDate">
+              วันที่ต้องการเข้าพบ <span class="required">*</span>
+            </label>
+            <div class="input-wrapper">
+              <i data-lucide="calendar-days" class="input-icon" style="width: 18px; height: 18px;"></i>
+              <input 
+                type="date" 
+                id="appointmentDate" 
+                name="date" 
+                class="form-control" 
+                required
+              >
+            </div>
+          </div>
+
+          <!-- Field 4: Time -->
+          <div class="form-group">
+            <label class="form-label" for="appointmentTime">
+              เวลาโดยประมาณ <span class="required">*</span>
+            </label>
+            <div class="input-wrapper">
+              <i data-lucide="clock" class="input-icon" style="width: 18px; height: 18px;"></i>
+              <input 
+                type="time" 
+                id="appointmentTime" 
+                name="time" 
+                class="form-control" 
+                required
+              >
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Field 5: Topic -->
+        <div class="form-group">
+          <label class="form-label" for="topic">
+            หัวข้อเรื่องที่ต้องการปรึกษา <span class="required">*</span>
+          </label>
+          <textarea 
+            id="topic" 
+            name="topic" 
+            class="form-control" 
+            placeholder="เช่น ปรึกษาโครงงานวิจัย, แก้เกรดวิชา..." 
+            required
+          ></textarea>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" id="resetBtn">
+            ยกเลิก
+          </button>
+          <button type="submit" class="btn btn-primary" id="submitBtn">
+            <i data-lucide="send" style="width: 18px; height: 18px;"></i>
+            <span>ส่งคำขอนัดหมาย</span>
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </main>
+
+  <!-- Success Confirmation Modal -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-card">
+      <div class="modal-success-icon">
+        <i data-lucide="check" style="width: 32px; height: 32px;"></i>
+      </div>
+      <h3 style="font-size: 18px; font-weight: 700; color: #1e293b; margin-bottom: 6px;">
+        ส่งคำขอนัดหมายสำเร็จ!
+      </h3>
+      <p style="font-size: 13px; color: #64748b; line-height: 1.5;">
+        ระบบได้บันทึกคำขอของท่านแล้ว อาจารย์จะทำการตรวจสอบและแจ้งผลการนัดหมาย
+      </p>
+      
+      <div class="ticket-box">
+        <div style="font-size: 11px; color: #64748b; font-weight: 400; margin-bottom: 2px;">รหัสติดตามคำขอ (Ref Code)</div>
+        <span id="ticketCode" style="color: #ea2336; font-size: 18px;">APT-XXXXXXXX</span>
+      </div>
+
+      <div style="text-align: left; background: #f8fafc; padding: 12px 14px; border-radius: 10px; font-size: 12px; color: #475569; margin-bottom: 18px;">
+        <div><strong>ผู้ขอเข้าพบ:</strong> <span id="slipStudent"></span></div>
+        <div style="margin-top: 4px;"><strong>วัน-เวลา:</strong> <span id="slipDateTime"></span></div>
+        <div style="margin-top: 4px;"><strong>เรื่อง:</strong> <span id="slipTopic"></span></div>
+      </div>
+
+      <button type="button" class="btn btn-primary" id="closeSuccessModalBtn">
+        ตกลง / ปิดหน้าต่าง
+      </button>
+    </div>
+  </div>
+
+  <!-- Status Check Modal -->
+  <div class="modal-overlay" id="statusModal">
+    <div class="modal-card" style="max-width: 440px; text-align: left;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <h3 style="font-size: 17px; font-weight: 700; color: #1e293b;">
+          🔍 ตรวจสอบสถานะคำขอนัดหมาย
+        </h3>
+        <button type="button" id="closeStatusModalBtn" style="border:none; background:none; cursor:pointer; color:#64748b;">
+          <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+      
+      <div style="display: flex; gap: 8px; margin-bottom: 14px;">
+        <input 
+          type="text" 
+          id="searchStudentId" 
+          class="form-control" 
+          style="padding-left: 14px; height: 42px;" 
+          placeholder="กรอกรหัสนักศึกษา หรือ รหัสคำขอ"
+        >
+        <button type="button" id="searchBtn" class="btn btn-primary" style="width: auto; padding: 0 16px; height: 42px;">
+          ค้นหา
+        </button>
+      </div>
+
+      <div id="statusResults" style="max-height: 280px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
+        <div style="text-align: center; color: #94a3b8; font-size: 13px; padding: 20px;">
+          พิมพ์รหัสนักศึกษาแล้วกดค้นหาเพื่อดูประวัติ
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notifications -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

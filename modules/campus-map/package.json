@@ -1,0 +1,12 @@
+{
+  "name": "skru-map",
+  "version": "1.0.0",
+  "description": "ระบบแผนที่มหาวิทยาลัยราชภัฏสงขลา — หน้าบ้าน HTML/CSS/JS, หลังบ้าน Node.js",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": { "node": ">=18" },
+  "license": "UNLICENSED"
+}

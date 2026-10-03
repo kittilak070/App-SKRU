@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <!-- Gradients for Gold, Green, and Royal Blue -->
+    <radialGradient id="goldGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff3b0"/>
+      <stop offset="45%" stop-color="#f5c033"/>
+      <stop offset="85%" stop-color="#c88b0a"/>
+      <stop offset="100%" stop-color="#8a5a02"/>
+    </radialGradient>
+    
+    <radialGradient id="greenRimGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="60%" stop-color="#09552b"/>
+      <stop offset="90%" stop-color="#05371c"/>
+      <stop offset="100%" stop-color="#022110"/>
+    </radialGradient>
+    
+    <radialGradient id="blueCenterGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="40%" stop-color="#1d4ed8"/>
+      <stop offset="80%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </radialGradient>
+
+    <radialGradient id="sunburstGold" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff7cc"/>
+      <stop offset="60%" stop-color="#fbc02d"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </radialGradient>
+
+    <filter id="dropShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Shadow Group -->
+  <g filter="url(#dropShadow)">
+    <!-- Outer Gold Border -->
+    <circle cx="200" cy="200" r="185" fill="url(#goldGradient)" stroke="#6b4403" stroke-width="2"/>
+    <circle cx="200" cy="200" r="179" fill="none" stroke="#fff" stroke-width="1.5" stroke-opacity="0.6"/>
+
+    <!-- Dark Green Text Rim -->
+    <circle cx="200" cy="200" r="174" fill="url(#greenRimGradient)" stroke="url(#goldGradient)" stroke-width="4"/>
+
+    <!-- Decorative Stars on Ring -->
+    <g fill="#f5c033">
+      <!-- Left Star -->
+      <polygon points="42,200 45,193 52,193 46,188 49,181 42,185 35,181 38,188 32,193 39,193" transform="rotate(90 42 200) scale(0.9)"/>
+      <!-- Right Star -->
+      <polygon points="358,200 361,193 368,193 362,188 365,181 358,185 351,181 354,188 348,193 355,193" transform="rotate(-90 358 200) scale(0.9)"/>
+    </g>
+
+    <!-- Curved Text Paths -->
+    <path id="topTextPath" d="M 50,200 A 150,150 0 0,1 350,200" fill="none"/>
+    <path id="bottomTextPath" d="M 350,200 A 150,150 0 0,1 50,200" fill="none"/>
+
+    <!-- University Name Thai on Top -->
+    <text font-family="'Sarabun', 'Prompt', 'Kanit', sans-serif" font-size="21.5" font-weight="700" fill="#ffd700" letter-spacing="2">
+      <textPath href="#topTextPath" startOffset="50%" text-anchor="middle">
+        มหาวิทยาลัยราชภัฏสงขลา
+      </textPath>
+    </text>
+
+    <!-- University Name English on Bottom -->
+    <text font-family="'Prompt', 'Montserrat', sans-serif" font-size="16.5" font-weight="700" fill="#ffd700" letter-spacing="2.5">
+      <textPath href="#bottomTextPath" startOffset="50%" text-anchor="middle">
+        SONGKHLA RAJABHAT UNIVERSITY
+      </textPath>
+    </text>
+
+    <!-- Inner Gold Ring -->
+    <circle cx="200" cy="200" r="126" fill="url(#goldGradient)" stroke="#6b4403" stroke-width="2"/>
+    <circle cx="200" cy="200" r="120" fill="none" stroke="#fff" stroke-width="1.5" stroke-opacity="0.8"/>
+
+    <!-- Center Blue Medallion -->
+    <circle cx="200" cy="200" r="116" fill="url(#blueCenterGradient)" stroke="#c88b0a" stroke-width="3"/>
+
+    <!-- Sunburst Radiance / Aura in Center -->
+    <g opacity="0.35">
+      <!-- 24 rays -->
+      <line x1="200" y1="95" x2="200" y2="135" stroke="#fde047" stroke-width="2.5"/>
+      <line x1="200" y1="265" x2="200" y2="305" stroke="#fde047" stroke-width="2.5"/>
+      <line x1="95" y1="200" x2="135" y2="200" stroke="#fde047" stroke-width="2.5"/>
+      <line x1="265" y1="200" x2="305" y2="200" stroke="#fde047" stroke-width="2.5"/>
+      <line x1="125" y1="125" x2="153" y2="153" stroke="#fde047" stroke-width="2.5"/>
+      <line x1="247" y1="247" x2="275" y2="275" stroke="#fde047" stroke-width="2.5"/>
+      <line x1="125" y1="275" x2="153" y2="247" stroke="#fde047" stroke-width="2.5"/>
+      <line x1="247" y1="153" x2="275" y2="125" stroke="#fde047" stroke-width="2.5"/>
+    </g>
+
+    <!-- Inner Golden Pedestal & Royal Emblem Emblem Graphic -->
+    <!-- Base Pedestal (พานพุ่มแว่นฟ้า) -->
+    <g transform="translate(0, 5)">
+      <!-- Lower Pedestal Base -->
+      <path d="M 148,272 L 252,272 L 244,282 L 156,282 Z" fill="url(#sunburstGold)" stroke="#854d0e" stroke-width="1.5"/>
+      <path d="M 158,262 L 242,262 L 248,272 L 152,272 Z" fill="url(#goldGradient)" stroke="#854d0e" stroke-width="1.5"/>
+      
+      <!-- Pedestal Stem -->
+      <path d="M 184,242 L 216,242 L 222,262 L 178,262 Z" fill="url(#sunburstGold)" stroke="#854d0e" stroke-width="1.5"/>
+      <ellipse cx="200" cy="242" rx="20" ry="4" fill="#fef08a"/>
+
+      <!-- Upper Tier Bowl -->
+      <path d="M 160,230 Q 200,246 240,230 L 226,242 Q 200,248 174,242 Z" fill="url(#goldGradient)" stroke="#854d0e" stroke-width="1.5"/>
+      <ellipse cx="200" cy="228" rx="42" ry="8" fill="url(#sunburstGold)" stroke="#854d0e" stroke-width="1.5"/>
+      
+      <!-- Lotus Petals on Pedestal -->
+      <path d="M 165,226 Q 172,216 180,226 Q 188,216 195,226 Q 200,214 205,226 Q 212,216 220,226 Q 228,216 235,226" fill="none" stroke="#ca8a04" stroke-width="2"/>
+
+      <!-- Royal Thai Crown / Phra Maha Phichai Mongkut (พระมหาพิชัยมงกุฎ) -->
+      <!-- Crown Base -->
+      <path d="M 168,218 Q 200,224 232,218 L 228,202 Q 200,207 172,202 Z" fill="url(#goldGradient)" stroke="#854d0e" stroke-width="1.5"/>
+      <!-- Gem Stones on Ring -->
+      <circle cx="180" cy="210" r="3" fill="#ef4444" stroke="#7f1d1d" stroke-width="0.5"/>
+      <circle cx="200" cy="212" r="3.5" fill="#10b981" stroke="#064e3b" stroke-width="0.5"/>
+      <circle cx="220" cy="210" r="3" fill="#ef4444" stroke="#7f1d1d" stroke-width="0.5"/>
+
+      <!-- Crown Body -->
+      <path d="M 172,202 C 166,170 178,145 186,136 L 214,136 C 222,145 234,170 228,202 Z" fill="url(#sunburstGold)" stroke="#854d0e" stroke-width="1.5"/>
+      
+      <!-- Crown Tier Rings -->
+      <path d="M 180,175 Q 200,180 220,175" fill="none" stroke="#a16207" stroke-width="2"/>
+      <path d="M 184,155 Q 200,160 216,155" fill="none" stroke="#a16207" stroke-width="2"/>
+
+      <!-- Crown Center Medallion (Unalome / Royal Emblem) -->
+      <circle cx="200" cy="175" r="8" fill="#ffffff" stroke="#b45309" stroke-width="1.5"/>
+      <path d="M 200,169 Q 204,174 200,179 Q 196,183 200,187" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round"/>
+
+      <!-- Crown Spire (ยอดมงกุฎ) -->
+      <path d="M 194,136 L 206,136 L 204,115 L 200,92 L 196,115 Z" fill="url(#goldGradient)" stroke="#854d0e" stroke-width="1.5"/>
+      
+      <!-- Spire Rings -->
+      <ellipse cx="200" cy="130" rx="8" ry="2.5" fill="#fef08a" stroke="#854d0e" stroke-width="1"/>
+      <ellipse cx="200" cy="118" rx="6" ry="2" fill="#fef08a" stroke="#854d0e" stroke-width="1"/>
+      <ellipse cx="200" cy="108" rx="4" ry="1.5" fill="#fef08a" stroke="#854d0e" stroke-width="1"/>
+      
+      <!-- Diamond Top Aura (ยอดเพชร) -->
+      <circle cx="200" cy="90" r="4.5" fill="#ffffff" stroke="#eab308" stroke-width="1.5"/>
+      
+      <!-- Radiating Sparks from Diamond -->
+      <line x1="200" y1="82" x2="200" y2="76" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+      <line x1="192" y1="84" x2="186" y2="80" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="208" y1="84" x2="214" y2="80" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

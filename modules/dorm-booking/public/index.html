@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ระบบจองหอพัก - มหาวิทยาลัยราชภัฏสงขลา (SKRU)</title>
+  <meta name="description" content="ระบบจองหอพักออนไลน์ มหาวิทยาลัยราชภัฏสงขลา (SKRU Dormitory Booking System)">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏠</text></svg>">
+</head>
+<body>
+
+  <!-- Main Mobile Viewport Container -->
+  <div class="app-viewport" id="appViewport">
+    
+    <!-- Top SKRU Navigation Bar (Matching Figma Header) -->
+    <header class="skru-navbar">
+      <div class="brand-logo-group">
+        <span class="brand-title">SKRU</span>
+        <div class="brand-seal" title="มหาวิทยาลัยราชภัฏสงขลา">
+          <img src="assets/skru_seal.svg" alt="ตรามหาวิทยาลัยราชภัฏสงขลา" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+      </div>
+      <button class="nav-menu-btn" id="menuBtn" aria-label="Open Navigation Menu">
+        ☰
+      </button>
+    </header>
+
+    <!-- Navigation Drawer -->
+    <div class="nav-drawer-overlay" id="drawerOverlay"></div>
+    <nav class="nav-drawer" id="navDrawer">
+      <div class="drawer-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <img src="assets/skru_seal.svg" alt="SKRU Seal" style="width: 28px; height: 35px;">
+          <div style="font-weight: 700; color: var(--skru-red); font-size: 15px;">เมนูหลัก SKRU</div>
+        </div>
+        <button class="drawer-close-btn" id="drawerCloseBtn">&times;</button>
+      </div>
+      <ul class="drawer-menu">
+        <li><a href="#" class="active" onclick="switchView('home')">🏠 หน้าแรก (เลือกหอพัก)</a></li>
+        <li><a href="#" onclick="switchView('search')">🔍 ค้นหาการจอง / พิมพ์ใบจอง / แนบสลิป</a></li>
+        <li><a href="#" onclick="switchView('info')">ℹ️ ข้อมูลหอพัก & ระเบียบการ</a></li>
+        <li><a href="#" onclick="switchView('admin')">⚙️ สำหรับเจ้าหน้าที่ (Admin)</a></li>
+      </ul>
+      <div style="margin-top: auto; padding-top: 16px; border-top: 1px solid #E2E8F0; font-size: 12px; color: #64748B; text-align: center;">
+        งานหอพัก มหาวิทยาลัยราชภัฏสงขลา<br>© 2026 SKRU All Rights Reserved
+      </div>
+    </nav>
+
+    <!-- Main View Section: Home (Dorm Selection - Matching Figma) -->
+    <main id="viewHome" class="view-section">
+      <!-- Dorm Header Banner (Official SKRU Emblem Seal) -->
+      <div class="dorm-header-banner">
+        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 6px;">
+          <img src="assets/skru_seal.svg" alt="ตรามหาวิทยาลัยราชภัฏสงขลา" style="height: 52px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));">
+        </div>
+        <div class="banner-subtitle">จองหอพัก</div>
+        <div class="banner-institution">มหาวิทยาลัยราชภัฏสงขลา (SKRU)</div>
+      </div>
+
+      <!-- Section Title -->
+      <h1 class="section-heading-title">เลือกหอพัก</h1>
+
+      <!-- Navigation Tabs -->
+      <div class="view-tabs">
+        <button class="tab-btn active" id="tabHome">รายการหอพัก</button>
+        <button class="tab-btn" id="tabSearch">ค้นหาการจอง</button>
+        <button class="tab-btn" id="tabInfo">ข้อมูล & ข้อกำหนด</button>
+        <button class="tab-btn" id="tabAdmin">ระบบจัดการ</button>
+      </div>
+
+      <!-- Dormitory Cards Container (Populated via JS matching Figma) -->
+      <div class="dorm-list-container" id="dormListContainer">
+        <!-- Dynamic Dorm Cards will be injected here -->
+      </div>
+    </main>
+
+    <!-- Search View Section -->
+    <section id="viewSearch" class="view-section" style="display: none;">
+      <div class="search-container">
+        <h2 style="font-size: 18px; color: var(--skru-red); margin-bottom: 8px;">🔍 ตรวจสอบและค้นหาข้อมูลการจอง</h2>
+        <div class="search-box">
+          <form id="searchBookingForm">
+            <div class="form-group">
+              <label class="form-label" for="searchStudentId">กรอกรหัสนักศึกษา หรือ รหัสการจอง (Booking Code):</label>
+              <input type="text" id="searchStudentId" class="form-control" placeholder="เช่น 66123456789 หรือ BK123456" required>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%;">
+              ค้นหาข้อมูลการจอง
+            </button>
+          </form>
+        </div>
+
+        <div id="searchResultContainer" style="margin-top: 16px;"></div>
+      </div>
+    </section>
+
+    <!-- Info View Section -->
+    <section id="viewInfo" class="view-section" style="display: none;">
+      <div style="padding: 20px 16px;">
+        <h2 style="font-size: 18px; color: var(--skru-red); margin-bottom: 12px;">ℹ️ ระเบียบการและข้อบังคับหอพักนักศึกษา</h2>
+        <div style="background: white; padding: 16px; border-radius: 12px; border: 1px solid var(--border-gray); font-size: 13px; line-height: 1.6;">
+          <h3 style="color: var(--skru-red); font-size: 15px; margin-bottom: 8px;">คุณสมบัติของผู้มีสิทธิ์สมัครเข้าพัก</h3>
+          <ul style="padding-left: 20px; margin-bottom: 12px;">
+            <li>เป็นนักศึกษามหาวิทยาลัยราชภัฏสงขลาทุกชั้นปี</li>
+            <li>มีความประพฤติตามระเบียบของมหาวิทยาลัย</li>
+            <li>สามารถปฏิบัติตามกฎระเบียบของหอพักได้อย่างเคร่งครัด</li>
+          </ul>
+
+          <h3 style="color: var(--skru-red); font-size: 15px; margin-bottom: 8px;">เอกสารที่ต้องใช้ในวันรายงานตัวเข้าพัก</h3>
+          <ul style="padding-left: 20px;">
+            <li>ใบยืนยันการจองหอพัก (พิมพ์จากระบบนี้)</li>
+            <li>สำเนาบัตรประจำตัวประชาชนนักศึกษา 1 ชุด</li>
+            <li>หลักฐานการชำระเงินค่าบำรุงหอพัก</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Admin View Section -->
+    <section id="viewAdmin" class="view-section" style="display: none;">
+      <div class="admin-container">
+        <h2 style="font-size: 18px; color: var(--skru-red); margin-bottom: 12px;">⚙️ ระบบจัดการข้อมูลสำหรับเจ้าหน้าที่ (Admin)</h2>
+        
+        <!-- Admin Login Form (Shown when not logged in) -->
+        <div id="adminLoginBox" style="background: white; padding: 20px; border-radius: 12px; border: 1px solid var(--border-gray); box-shadow: var(--shadow-sm); max-width: 360px; margin: 10px auto;">
+          <div style="text-align: center; margin-bottom: 14px;">
+            <img src="assets/skru_seal.svg" alt="SKRU Seal" style="height: 48px; width: auto; margin-bottom: 6px;">
+            <div style="font-weight: 700; font-size: 15px; color: var(--skru-red);">ยืนยันตัวตนสำหรับเจ้าหน้าที่</div>
+            <div style="font-size: 12px; color: #64748B; margin-top: 2px;">กรอกรหัสผ่านเพื่อเข้าใช้งานระบบจัดการ</div>
+          </div>
+          <form id="adminLoginForm">
+            <div class="form-group">
+              <label class="form-label" for="adminPassword">รหัสผ่านแอดมิน (Admin Passcode):</label>
+              <input type="password" id="adminPassword" class="form-control" placeholder="กรอกรหัสผ่าน (เช่น 1234)" required>
+            </div>
+            <div id="adminLoginError" class="alert alert-danger" style="display: none; margin-bottom: 10px; font-size: 12px; padding: 8px 10px;"></div>
+            <button type="submit" class="btn-primary" style="width: 100%;">
+              🔓 เข้าสู่ระบบจัดการ
+            </button>
+          </form>
+        </div>
+
+        <!-- Admin Content Dashboard (Shown after password verification) -->
+        <div id="adminContentBox" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; background: #ECFDF5; padding: 8px 12px; border-radius: 8px; border: 1px solid #A7F3D0;">
+            <span style="font-size: 12.5px; color: #065F46; font-weight: 700;">✅ เข้าสู่ระบบในสิทธิ์เจ้าหน้าที่แล้ว</span>
+            <button class="btn-secondary" onclick="adminLogout()" style="padding: 4px 10px; font-size: 11.5px; min-height: 30px;">
+              🚪 ออกจากระบบ
+            </button>
+          </div>
+          <div id="adminTableContainer"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Banner (Exact Figma match) -->
+    <footer class="skru-footer-banner">
+      <div class="footer-title">สอบถามเพิ่มเติม</div>
+      <div class="footer-sub">งานหอพัก มหาวิทยาลัยราชภัฏสงขลา</div>
+    </footer>
+
+  </div>
+
+  <!-- Booking Wizard Modal Popup -->
+  <div class="modal-backdrop" id="bookingModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">จองหอพัก</div>
+        <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Step Wizard Indicators -->
+        <div class="booking-steps">
+          <div class="step-item active" id="stepItem1">
+            <div class="step-num">1</div>
+            <div class="step-label">เลือกห้อง/เตียง</div>
+          </div>
+          <div class="step-item" id="stepItem2">
+            <div class="step-num">2</div>
+            <div class="step-label">ข้อมูลนักศึกษา</div>
+          </div>
+          <div class="step-item" id="stepItem3">
+            <div class="step-num">3</div>
+            <div class="step-label">ยืนยันการจอง</div>
+          </div>
+          <div class="step-item" id="stepItem4">
+            <div class="step-num">4</div>
+            <div class="step-label">ใบจองหอพัก</div>
+          </div>
+        </div>
+
+        <!-- Wizard Step 1: Select Room & Bed -->
+        <div id="wizardStep1" class="wizard-step">
+          <label class="form-label" style="margin-bottom: 8px;">เลือกชั้นพัก:</label>
+          <div class="floor-tabs" id="floorTabsContainer"></div>
+
+          <label class="form-label" style="margin-bottom: 8px;">เลือกห้องและเตียงที่ต้องการ:</label>
+          <div class="room-grid" id="roomGridContainer"></div>
+
+          <div id="selectedBedDisplay" style="margin-top: 12px; display: none;"></div>
+
+          <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+            <button class="btn-primary" id="btnNextToStep2">
+              ถัดไป: กรอกข้อมูลนักศึกษา &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- Wizard Step 2: Student Information Form -->
+        <div id="wizardStep2" class="wizard-step" style="display: none;">
+          <form id="bookingForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="prefix">คำนำหน้าชื่อ</label>
+                <select id="prefix" class="form-control" required>
+                  <option value="นาย">นาย</option>
+                  <option value="นางสาว">นางสาว</option>
+                  <option value="นาง">นาง</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="fullName">ชื่อ-นามสกุล *</label>
+                <input type="text" id="fullName" class="form-control" placeholder="เช่น สมชาย ใจดี" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="studentId">รหัสนักศึกษา (9 หรือ 13 หลัก) *</label>
+              <input type="text" id="studentId" class="form-control" placeholder="กรอก 9 หลัก (เช่น 661234567) หรือ 13 หลัก" maxlength="13" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="faculty">คณะ</label>
+                <input type="text" id="faculty" class="form-control" placeholder="เช่น คณะวิทยาศาสตร์">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="major">สาขาวิชา</label>
+                <input type="text" id="major" class="form-control" placeholder="เช่น วิทยาการคอมพิวเตอร์">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="phone">เบอร์โทรศัพท์ติดต่อ *</label>
+                <input type="tel" id="phone" class="form-control" placeholder="0812345678" maxlength="10" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">อีเมล</label>
+                <input type="email" id="email" class="form-control" placeholder="student@skru.ac.th">
+              </div>
+            </div>
+
+            <!-- Payment Bank Account & Slip Attachment Box -->
+            <div style="background: #F8FAFC; border: 1.5px dashed var(--skru-red); border-radius: 12px; padding: 14px; margin: 16px 0;">
+              <div style="font-weight: 700; color: var(--skru-red); font-size: 14px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                💳 ข้อมูลการโอนเงินค่าบำรุงหอพัก & แนบสลิป
+              </div>
+              <div style="font-size: 12px; color: #334155; margin-bottom: 10px; line-height: 1.5; background: white; padding: 10px; border-radius: 8px; border: 1px solid #E2E8F0;">
+                <div><strong>🏦 ธนาคารกรุงไทย (Krungthai Bank)</strong></div>
+                <div><strong>เลขที่บัญชี:</strong> <span style="color: var(--skru-red); font-weight: 700; font-size: 14px;">901-0-12345-6</span></div>
+                <div><strong>ชื่อบัญชี:</strong> งานหอพัก มหาวิทยาลัยราชภัฏสงขลา</div>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label" for="paymentSlipFile">📎 แนบรูปภาพสลิปโอนเงิน (ถ้ามี):</label>
+                <input type="file" id="paymentSlipFile" class="form-control" accept="image/*" style="padding: 6px; font-size: 12px;">
+                <div id="slipPreviewContainer" style="margin-top: 10px; display: none; text-align: center;">
+                  <img id="slipPreviewImage" src="" alt="Preview Slip" style="max-width: 100%; max-height: 180px; border-radius: 8px; border: 1px solid #CBD5E1; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+                </div>
+                <div style="font-size: 11px; color: #64748B; margin-top: 4px;">* สามารถแนบสลิปทันที หรือแนบภายหลังได้ที่เมนู "ค้นหาการจอง"</div>
+              </div>
+            </div>
+
+            <div style="margin-top: 20px; display: flex; justify-content: space-between;">
+              <button type="button" class="btn-secondary" id="btnBackToStep1">
+                &larr; ย้อนกลับ
+              </button>
+              <button type="button" class="btn-primary" id="btnNextToStep3">
+                ตรวจสอบการจอง &rarr;
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Wizard Step 3: Review & Confirm -->
+        <div id="wizardStep3" class="wizard-step" style="display: none;">
+          <div id="step3Summary"></div>
+
+          <div style="margin-top: 20px; display: flex; justify-content: space-between;">
+            <button type="button" class="btn-secondary" id="btnBackToStep2">
+              &larr; ย้อนกลับไปแก้ไข
+            </button>
+            <button type="button" class="btn-primary" onclick="document.getElementById('bookingForm').dispatchEvent(new Event('submit'))">
+              ✅ ยืนยันส่งข้อมูลการจอง
+            </button>
+          </div>
+        </div>
+
+        <!-- Wizard Step 4: Booking Slip & Receipt -->
+        <div id="wizardStep4" class="wizard-step" style="display: none;">
+          <div id="step4SlipContainer"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

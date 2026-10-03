@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ห้องสมุด มรภ.สงขลา - SKRU Digital Library</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter & Prompt Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        skruRed: {
+                            DEFAULT: '#FF0000',
+                            50: '#fff1f1',
+                            100: '#ffdfdf',
+                            500: '#FF0000',
+                            600: '#e60000',
+                            700: '#cc0000',
+                            800: '#990000',
+                            900: '#660000'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Prompt', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', 'Prompt', sans-serif;
+            background-color: #0f172a;
+            color: #1e293b;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF0000;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glow-red {
+            box-shadow: 0 8px 25px -5px rgba(255, 0, 0, 0.35);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-0 sm:p-4 md:p-6 antialiased selection:bg-skruRed selection:text-white">
+
+    <!-- Smartphone Mobile App Frame Container -->
+    <div class="w-full max-w-sm sm:max-w-[410px] bg-slate-50 h-screen sm:h-[840px] sm:rounded-[40px] shadow-2xl flex flex-col overflow-hidden relative sm:border-[8px] sm:border-slate-900 text-slate-800">
+        
+        <!-- Mobile Status Bar -->
+        <div class="bg-slate-900 text-white px-6 pt-3 pb-1 flex justify-between items-center text-xs font-semibold select-none z-20 flex-shrink-0">
+            <span id="statusBarTime">09:41</span>
+            <div class="w-20 h-4 bg-slate-950 rounded-full mx-auto hidden sm:block"></div>
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-signal text-[10px]"></i>
+                <i class="fa-solid fa-wifi text-[10px]"></i>
+                <i class="fa-solid fa-battery-full text-xs text-emerald-400"></i>
+            </div>
+        </div>
+
+        <!-- App Top Header -->
+        <header class="bg-gradient-to-r from-red-600 via-skruRed to-red-700 text-white px-5 py-3.5 flex items-center justify-between shadow-md relative z-10 flex-shrink-0">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-full bg-white text-skruRed font-black flex items-center justify-center shadow text-xs border-2 border-white">
+                    SKRU
+                </div>
+                <div>
+                    <h1 class="text-sm font-bold leading-tight">ห้องสมุด มรภ.สงขลา</h1>
+                    <div onclick="openModal('occupancyModal')" class="cursor-pointer text-[10px] text-red-100 flex items-center gap-1 hover:text-white transition">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
+                        <span>เปิดบริการ (08:00 - 20:00)</span>
+                        <span class="bg-white/20 px-1.5 py-0.2 rounded text-[9px]">ว่าง 68%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-2">
+                <button onclick="showToast('คุณมี 1 การแจ้งเตือน: หนังสือใกล้ครบกำหนดคืนพรุ่งนี้')" class="relative p-2 rounded-full bg-white/10 hover:bg-white/20 transition text-white" title="แจ้งเตือน">
+                    <i class="fa-regular fa-bell text-base"></i>
+                    <span class="absolute top-1 right-1 w-2 h-2 bg-yellow-400 border border-red-600 rounded-full"></span>
+                </button>
+                <div onclick="openModal('profileModal')" class="w-8 h-8 rounded-full bg-slate-200 border-2 border-white overflow-hidden shadow cursor-pointer relative group" title="แก้ไขโปรไฟล์">
+                    <img id="headerUserAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="User Profile" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Scrollable App Content -->
+        <main class="flex-1 overflow-y-auto px-4 py-4 space-y-4 hide-scrollbar">
+
+            <!-- 1. VIRTUAL STUDENT / MEMBER CARD -->
+            <section class="relative">
+                <div class="bg-gradient-to-br from-red-600 via-skruRed to-slate-900 text-white rounded-2xl p-4 shadow-lg glow-red relative overflow-hidden transition-all duration-300">
+                    <div class="absolute -right-6 -bottom-6 text-white/5 text-8xl font-black select-none pointer-events-none">
+                        SKRU
+                    </div>
+                    
+                    <div class="flex justify-between items-start mb-3 relative z-10">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-[9px] uppercase tracking-widest font-bold text-red-200 bg-black/20 px-2 py-0.5 rounded-full">Digital Student Card</span>
+                                <button onclick="openModal('profileModal')" class="text-xs text-white/80 hover:text-white transition" title="แก้ไขข้อมูลโปรไฟล์">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                            </div>
+                            <h2 class="text-base font-bold mt-1" id="cardUserName">กัญญาพัชร วงศ์สว่าง</h2>
+                            <p class="text-[11px] text-red-100 font-mono">รหัสนักศึกษา: <span id="cardUserId">651234567</span></p>
+                        </div>
+                        <span class="bg-emerald-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow">
+                            <i class="fa-solid fa-check-circle mr-1"></i>ปกติ
+                        </span>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2 border-t border-white/15 relative z-10">
+                        <div class="flex items-center space-x-2.5">
+                            <div class="bg-white p-1 rounded-lg shadow-inner">
+                                <svg class="w-10 h-10 text-slate-900" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm11-2h8v8h-8V2zm2 2v4h4V4h-4zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm13-2h2v2h-2v-2zm-2 2h2v2h-2v-2zm4 0h2v2h-2v-2zm-2 2h2v2h-2v-2zm2 2h2v2h-2v-2zm-4 0h2v2h-2v-2zm2-6h2v2h-2v-2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-[9px] text-red-100" id="cardUserFaculty">คณะวิทยาการจัดการ</p>
+                                <p class="text-[10px] font-semibold text-white">สแกนเพื่อเข้า-ออก & ยืมหนังสือ</p>
+                            </div>
+                        </div>
+
+                        <button onclick="openModal('cardModal')" class="bg-white text-skruRed hover:bg-slate-100 font-bold px-2.5 py-1.5 rounded-lg text-[10px] shadow active:scale-95 transition flex items-center gap-1">
+                            <i class="fa-solid fa-qrcode"></i>
+                            <span>ขยาย QR</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FINE BANNER (IF FINE > 0) -->
+            <div id="fineBanner" class="bg-amber-50 border border-amber-200 rounded-2xl p-3 flex items-center justify-between hidden text-xs">
+                <div class="flex items-center space-x-2.5">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-600 text-lg"></i>
+                    <div>
+                        <p class="font-bold text-slate-800">มียอดค่าปรับค้างชำระ</p>
+                        <p class="text-[10.5px] text-amber-700">จำนวนเงิน: <strong id="fineAmountText">฿25.00</strong> บาท</p>
+                    </div>
+                </div>
+                <button onclick="openPayFineModal()" class="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-bold text-[10.5px] shadow-sm transition flex items-center gap-1">
+                    <i class="fa-solid fa-qrcode"></i>
+                    <span>ชำระเงิน</span>
+                </button>
+            </div>
+
+            <!-- QUICK ACTION GRID (6 BUTTONS) -->
+            <section class="grid grid-cols-3 gap-2">
+                <button onclick="scrollToSection('search-section')" class="bg-white p-2.5 rounded-2xl shadow-sm hover:shadow border border-slate-100 flex flex-col items-center text-center transition group">
+                    <div class="w-10 h-10 rounded-xl bg-red-50 text-skruRed flex items-center justify-center mb-1 group-hover:bg-skruRed group-hover:text-white transition">
+                        <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                    </div>
+                    <span class="text-[10px] font-medium text-slate-700">ค้นหา OPAC</span>
+                </button>
+
+                <button onclick="openModal('roomModal')" class="bg-white p-2.5 rounded-2xl shadow-sm hover:shadow border border-slate-100 flex flex-col items-center text-center transition group">
+                    <div class="w-10 h-10 rounded-xl bg-red-50 text-skruRed flex items-center justify-center mb-1 group-hover:bg-skruRed group-hover:text-white transition">
+                        <i class="fa-solid fa-door-open text-sm"></i>
+                    </div>
+                    <span class="text-[10px] font-medium text-slate-700">จองห้องศึกษา</span>
+                </button>
+
+                <button onclick="scrollToSection('ebook-section')" class="bg-white p-2.5 rounded-2xl shadow-sm hover:shadow border border-slate-100 flex flex-col items-center text-center transition group">
+                    <div class="w-10 h-10 rounded-xl bg-red-50 text-skruRed flex items-center justify-center mb-1 group-hover:bg-skruRed group-hover:text-white transition">
+                        <i class="fa-solid fa-book-open text-sm"></i>
+                    </div>
+                    <span class="text-[10px] font-medium text-slate-700">E-Book</span>
+                </button>
+
+                <button onclick="openModal('requestModal')" class="bg-white p-2.5 rounded-2xl shadow-sm hover:shadow border border-slate-100 flex flex-col items-center text-center transition group">
+                    <div class="w-10 h-10 rounded-xl bg-red-50 text-skruRed flex items-center justify-center mb-1 group-hover:bg-skruRed group-hover:text-white transition">
+                        <i class="fa-solid fa-cart-plus text-sm"></i>
+                    </div>
+                    <span class="text-[10px] font-medium text-slate-700">เสนอซื้อหนังสือ</span>
+                </button>
+
+                <button onclick="openModal('occupancyModal')" class="bg-white p-2.5 rounded-2xl shadow-sm hover:shadow border border-slate-100 flex flex-col items-center text-center transition group">
+                    <div class="w-10 h-10 rounded-xl bg-red-50 text-skruRed flex items-center justify-center mb-1 group-hover:bg-skruRed group-hover:text-white transition">
+                        <i class="fa-solid fa-users text-sm"></i>
+                    </div>
+                    <span class="text-[10px] font-medium text-slate-700">เช็กที่นั่งว่าง</span>
+                </button>
+
+                <button onclick="openModal('chatModal')" class="bg-white p-2.5 rounded-2xl shadow-sm hover:shadow border border-slate-100 flex flex-col items-center text-center transition group">
+                    <div class="w-10 h-10 rounded-xl bg-red-50 text-skruRed flex items-center justify-center mb-1 group-hover:bg-skruRed group-hover:text-white transition">
+                        <i class="fa-solid fa-comments text-sm"></i>
+                    </div>
+                    <span class="text-[10px] font-medium text-slate-700">ถามบรรณารักษ์</span>
+                </button>
+            </section>
+
+            <!-- CURRENT BORROWINGS SECTION (DYNAMICALLY CONNECTED) -->
+            <section class="bg-white rounded-2xl p-3.5 shadow-sm border border-slate-100 space-y-2.5">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-1.5 h-4 bg-skruRed rounded-full"></div>
+                        <h3 class="font-bold text-slate-800 text-xs" id="borrowingsCounterTitle">รายการยืมปัจจุบัน (2/5)</h3>
+                    </div>
+                    <span class="text-[10px] text-slate-500" id="fineStatusText">ไม่มีค่าปรับ</span>
+                </div>
+
+                <!-- Alert banner if books are near due -->
+                <div id="nearDueNotice" class="hidden p-2 rounded-xl bg-amber-50 border border-amber-200 text-[10px] text-amber-800 flex items-center justify-between">
+                    <div class="flex items-center gap-1.5">
+                        <i class="fa-solid fa-clock text-amber-600 text-xs flex-shrink-0 animate-pulse"></i>
+                        <span id="nearDueNoticeText">มีหนังสือใกล้ครบกำหนดคืน</span>
+                    </div>
+                    <span class="text-[9px] bg-amber-200/80 text-amber-900 font-bold px-1.5 py-0.5 rounded">กดยืมต่อได้</span>
+                </div>
+
+                <!-- Dynamic Borrowed List Container -->
+                <div id="borrowingsListContainer" class="space-y-2">
+                    <!-- Populated dynamically via fetchBorrowings() -->
+                </div>
+            </section>
+
+            <!-- 2. SMART SEARCH & BOOK CATALOG (DYNAMIC OPAC INTEGRATION) -->
+            <section id="search-section" class="bg-white rounded-2xl p-3.5 shadow-sm border border-slate-100 space-y-3">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-1.5 h-4 bg-skruRed rounded-full"></div>
+                        <h3 class="font-bold text-slate-800 text-xs">ค้นหาและจองทรัพยากร (Smart OPAC)</h3>
+                    </div>
+                    <span class="text-[10px] text-slate-400 font-mono" id="opacMatchCount">8 รายการ</span>
+                </div>
+
+                <!-- Universal Search Bar -->
+                <div class="relative">
+                    <input type="text" id="searchInput" onkeyup="filterBooksFrontend()" placeholder="ค้นหาชื่อเรื่อง, ผู้แต่ง, เลขเรียก, ISBN..." 
+                           class="w-full pl-9 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-skruRed transition">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                    <button onclick="clearSearchInput()" class="absolute right-2.5 top-2 text-slate-400 hover:text-slate-600 text-xs">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Connected Category Filter Pills -->
+                <div class="flex space-x-1.5 overflow-x-auto pb-1 hide-scrollbar text-[11px]">
+                    <button onclick="setFrontendCategory('all', this)" class="cat-btn bg-skruRed text-white px-3 py-1 rounded-lg font-medium whitespace-nowrap">ทั้งหมด</button>
+                    <button onclick="setFrontendCategory('book', this)" class="cat-btn bg-slate-100 text-slate-600 px-3 py-1 rounded-lg font-medium whitespace-nowrap">หนังสือเล่ม</button>
+                    <button onclick="setFrontendCategory('ebook', this)" class="cat-btn bg-slate-100 text-slate-600 px-3 py-1 rounded-lg font-medium whitespace-nowrap">E-Books</button>
+                    <button onclick="setFrontendCategory('research', this)" class="cat-btn bg-slate-100 text-slate-600 px-3 py-1 rounded-lg font-medium whitespace-nowrap">งานวิจัย/ปริญญานิพนธ์</button>
+                </div>
+
+                <!-- Dynamic Book Results List Container -->
+                <div id="frontendBookContainer" class="space-y-2.5 pt-1">
+                    <!-- Populated dynamically by JavaScript API calls -->
+                </div>
+            </section>
+
+            <!-- 3. DIGITAL RESOURCES -->
+            <section id="ebook-section" class="bg-white rounded-2xl p-3.5 shadow-sm border border-slate-100 space-y-2.5">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-1.5 h-4 bg-skruRed rounded-full"></div>
+                        <h3 class="font-bold text-slate-800 text-xs">คลังทรัพยากรดิจิทัล (E-Resources)</h3>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div onclick="openModal('pdfReaderModal')" class="p-2.5 bg-gradient-to-br from-red-50 to-white border border-red-100 rounded-xl cursor-pointer hover:shadow transition">
+                        <i class="fa-solid fa-tablet-screen-button text-skruRed text-base mb-1"></i>
+                        <h4 class="text-xs font-bold text-slate-800">2eBook Thailand</h4>
+                        <p class="text-[9px] text-slate-500">หนังสือเรียนไทย 2,500+ เล่ม</p>
+                    </div>
+
+                    <div onclick="showToast('กำลังเปิดคลังปัญญาสถาบัน SKRU IR...')" class="p-2.5 bg-gradient-to-br from-slate-50 to-white border border-slate-200 rounded-xl cursor-pointer hover:shadow transition">
+                        <i class="fa-solid fa-graduation-cap text-slate-800 text-base mb-1"></i>
+                        <h4 class="text-xs font-bold text-slate-800">SKRU IR Repository</h4>
+                        <p class="text-[9px] text-slate-500">วิจัย & ปริญญานิพนธ์ มรภ.สงขลา</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="h-10"></div>
+        </main>
+
+        <!-- Bottom Nav -->
+        <nav class="bg-white border-t border-slate-200 px-4 py-2 flex justify-around items-center absolute bottom-0 left-0 right-0 z-20 text-[10px] flex-shrink-0">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex flex-col items-center text-skruRed font-semibold">
+                <i class="fa-solid fa-house text-sm"></i>
+                <span>หน้าหลัก</span>
+            </button>
+            <button onclick="scrollToSection('search-section')" class="flex flex-col items-center text-slate-400 hover:text-skruRed">
+                <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                <span>ค้นหา</span>
+            </button>
+            <button onclick="openModal('roomModal')" class="flex flex-col items-center text-slate-400 hover:text-skruRed">
+                <i class="fa-solid fa-calendar-check text-sm"></i>
+                <span>จองห้อง</span>
+            </button>
+            <button onclick="openModal('profileModal')" class="flex flex-col items-center text-slate-400 hover:text-skruRed">
+                <i class="fa-solid fa-user-gear text-sm"></i>
+                <span>โปรไฟล์</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- MODAL 1: DIGITAL CARD -->
+    <div id="cardModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xs rounded-3xl p-5 shadow-2xl text-center space-y-4 text-slate-800">
+            <div class="flex justify-between items-center border-b pb-2">
+                <h3 class="font-bold text-sm">บัตรสมาชิกดิจิทัล SKRU</h3>
+                <button onclick="closeModal('cardModal')" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                <svg class="w-36 h-36 text-slate-900 mx-auto" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm11-2h8v8h-8V2zm2 2v4h4V4h-4zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm13-2h2v2h-2v-2zm-2 2h2v2h-2v-2zm4 0h2v2h-2v-2zm-2 2h2v2h-2v-2zm2 2h2v2h-2v-2zm-4 0h2v2h-2v-2zm2-6h2v2h-2v-2z"/>
+                </svg>
+                <p class="font-mono text-xs font-bold text-slate-700" id="modalMemberId">MEMBER ID: 651234567</p>
+            </div>
+            <button onclick="closeModal('cardModal')" class="w-full py-2 bg-skruRed text-white rounded-xl font-bold text-xs shadow hover:bg-red-700 transition">
+                ปิดหน้าจอ
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL 2: ROOM BOOKING -->
+    <div id="roomModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xs rounded-3xl p-5 shadow-2xl space-y-3 text-slate-800">
+            <div class="flex justify-between items-center border-b pb-2">
+                <h3 class="font-bold text-sm">จองห้องศึกษาค้นคว้ากลุ่ม</h3>
+                <button onclick="closeModal('roomModal')" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+            <form onsubmit="handleRoomBookingForm(event)" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-semibold mb-1 text-slate-700">เลือกห้องติว</label>
+                    <select id="booking-room-id" class="w-full p-2 bg-slate-50 border rounded-xl text-xs focus:outline-none focus:border-skruRed">
+                        <option value="R101">Room A1 (รองรับ 4-6 คน) - ชั้น 2</option>
+                        <option value="R102">Room A2 (รองรับ 6-8 คน) - ชั้น 2</option>
+                        <option value="R103">Room B1 (ห้องมัลติมีเดีย 8-10 คน) - ชั้น 3</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1 text-slate-700">วันที่</label>
+                    <input type="date" id="booking-date" class="w-full p-2 bg-slate-50 border rounded-xl text-xs focus:outline-none focus:border-skruRed">
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1 text-slate-700">ช่วงเวลา</label>
+                    <select id="booking-slot" class="w-full p-2 bg-slate-50 border rounded-xl text-xs focus:outline-none focus:border-skruRed">
+                        <option value="09:00-11:00">09:00 - 11:00 น.</option>
+                        <option value="11:00-13:00">11:00 - 13:00 น.</option>
+                        <option value="13:00-15:00">13:00 - 15:00 น.</option>
+                        <option value="15:00-17:00">15:00 - 17:00 น.</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full py-2.5 bg-skruRed text-white rounded-xl font-bold shadow hover:bg-red-700 transition">
+                    ยืนยันการจองผ่าน API
+                </button>
+            </form>
+            <div class="pt-2 border-t text-center">
+                <button onclick="handleSimulateCheckin()" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold border transition">
+                    <i class="fa-solid fa-qrcode mr-1"></i>จำลองสแกน QR เช็กอินเข้าห้อง
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: ASK LIBRARIAN CHAT -->
+    <div id="chatModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xs rounded-3xl p-4 shadow-2xl flex flex-col h-[400px] text-slate-800">
+            <div class="flex justify-between items-center border-b pb-2">
+                <div class="flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <h3 class="font-bold text-xs">Ask a Librarian (บรรณารักษ์)</h3>
+                </div>
+                <button onclick="closeModal('chatModal')" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+            <div id="chatMessages" class="flex-1 overflow-y-auto py-3 space-y-2 text-xs">
+                <div class="bg-slate-100 p-2.5 rounded-2xl max-w-[85%] text-slate-700">
+                    สวัสดีค่ะ สำนักวิทยบริการ มรภ.สงขลา ยินดีให้บริการค่ะ สามารถสอบถามเรื่องการยืมหนังสือหรือบริการต่างๆ ได้เลยค่ะ
+                </div>
+            </div>
+            <div class="flex gap-1.5 overflow-x-auto pb-2 text-[10px] hide-scrollbar">
+                <button onclick="sendQuickTag('เวลาเปิดให้บริการ')" class="px-2 py-1 bg-slate-100 hover:bg-slate-200 rounded-full whitespace-nowrap text-slate-600">🕒 เวลาบริการ</button>
+                <button onclick="sendQuickTag('กติกาการยืม-คืน')" class="px-2 py-1 bg-slate-100 hover:bg-slate-200 rounded-full whitespace-nowrap text-slate-600">📖 ยืม-คืน</button>
+                <button onclick="sendQuickTag('ชำระค่าปรับ')" class="px-2 py-1 bg-slate-100 hover:bg-slate-200 rounded-full whitespace-nowrap text-slate-600">💰 ค่าปรับ</button>
+            </div>
+            <form onsubmit="handleSendChat(event)" class="pt-2 border-t flex gap-2">
+                <input type="text" id="chatInput" placeholder="พิมพ์ข้อความ..." class="flex-1 px-3 py-1.5 bg-slate-50 border rounded-xl text-xs focus:outline-none focus:border-skruRed">
+                <button type="submit" class="px-3 py-1.5 bg-skruRed text-white rounded-xl text-xs font-bold">
+                    ส่ง
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 4: PROFILE EDIT MODAL -->
+    <div id="profileModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xs rounded-3xl p-5 shadow-2xl space-y-3 text-slate-800">
+            <div class="flex justify-between items-center border-b pb-2">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-user-pen text-skruRed text-sm"></i>
+                    <h3 class="font-bold text-sm">แก้ไขข้อมูลโปรไฟล์</h3>
+                </div>
+                <button onclick="closeModal('profileModal')" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+            <form onsubmit="handleUpdateProfileForm(event)" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-semibold mb-1 text-slate-700">ชื่อ - นามสกุล:</label>
+                    <input type="text" id="edit-profile-name" value="กัญญาพัชร วงศ์สว่าง" required class="w-full p-2 bg-slate-50 border rounded-xl text-xs focus:outline-none focus:border-skruRed">
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1 text-slate-700">รหัสนักศึกษา / เลขประจำตัว:</label>
+                    <input type="text" id="edit-profile-id" value="651234567" required class="w-full p-2 bg-slate-50 border rounded-xl text-xs focus:outline-none focus:border-skruRed">
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1 text-slate-700">คณะ / หน่วยงาน:</label>
+                    <input type="text" id="edit-profile-faculty" value="คณะวิทยาการจัดการ" required class="w-full p-2 bg-slate-50 border rounded-xl text-xs focus:outline-none focus:border-skruRed">
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1 text-slate-700">รูปโปรไฟล์ (URL):</label>
+                    <input type="text" id="edit-profile-avatar" value="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" class="w-full p-2 bg-slate-50 border rounded-xl text-xs focus:outline-none focus:border-skruRed">
+                </div>
+                <button type="submit" class="w-full py-2.5 bg-skruRed text-white rounded-xl font-bold shadow hover:bg-red-700 transition flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    <span>บันทึกการเปลี่ยนแปลง</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 5: BOOK DETAILS & OPAC RESERVATION MODAL (CONNECTED) -->
+    <div id="bookDetailModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xs rounded-3xl p-5 shadow-2xl space-y-3 text-slate-800">
+            <div class="flex justify-between items-center border-b pb-2">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-book-bookmark text-skruRed text-sm"></i>
+                    <h3 class="font-bold text-sm">รายละเอียดทรัพยากร OPAC</h3>
+                </div>
+                <button onclick="closeModal('bookDetailModal')" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+            <div class="space-y-2.5 text-xs">
+                <div class="flex space-x-3 items-start bg-slate-50 p-3 rounded-2xl border">
+                    <div id="modalBookCoverBox" class="w-14 h-18 bg-gradient-to-br from-red-500 to-red-700 text-white rounded-lg flex flex-col items-center justify-center p-1 text-center font-bold text-xs flex-shrink-0 shadow">
+                        <span id="modalBookCoverTag">Book</span>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <span id="modalBookStatusBadge" class="text-[9px] font-semibold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded inline-block mb-1">พร้อมยืม</span>
+                        <h4 class="font-bold text-slate-900 leading-snug" id="modalBookTitle">รายละเอียดหนังสือ</h4>
+                        <p class="text-[11px] text-slate-500" id="modalBookAuthor">ผู้แต่ง</p>
+                    </div>
+                </div>
+
+                <div class="space-y-1.5 bg-slate-50 p-3 rounded-2xl border text-[11px]">
+                    <div class="flex justify-between"><span class="text-slate-500">เลขเรียกหนังสือ:</span><strong class="font-mono" id="modalBookCallNo">QA76.9</strong></div>
+                    <div class="flex justify-between"><span class="text-slate-500">ISBN:</span><span class="font-mono" id="modalBookIsbn">-</span></div>
+                    <div class="flex justify-between"><span class="text-slate-500">สถานที่จัดเก็บ:</span><span id="modalBookLocation">ชั้น 3</span></div>
+                    <div class="flex justify-between"><span class="text-slate-500">ตู้/ชั้นวาง:</span><strong class="text-skruRed" id="modalBookShelfNo">ตู้ A-04</strong></div>
+                </div>
+
+                <p class="text-[10.5px] text-slate-600 bg-slate-50 p-2.5 rounded-xl border leading-relaxed" id="modalBookDesc">
+                    คำอธิบายรายละเอียดหนังสือ...
+                </p>
+
+                <div class="pt-1 space-y-2" id="modalBookActionContainer">
+                    <!-- Dynamic action buttons generated via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 6: SHELF LOCATOR MAP MODAL -->
+    <div id="shelfMapModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xs rounded-3xl p-5 shadow-2xl space-y-3 text-slate-800">
+            <div class="flex justify-between items-center border-b pb-2">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-map-location-dot text-skruRed text-sm"></i>
+                    <h3 class="font-bold text-sm">พิกัดชั้นวางหนังสือ</h3>
+                </div>
+                <button onclick="closeModal('shelfMapModal')" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+            <div class="space-y-2 text-xs">
+                <p class="font-bold text-slate-900" id="mapBookTitleText">ตำแหน่งหนังสือบนชั้นวาง</p>
+                <div class="grid grid-cols-2 gap-2 text-[11px]">
+                    <div class="bg-slate-50 p-2 rounded-xl border"><span class="text-slate-500 block">อาคาร:</span><strong id="mapBuildingText">อาคารบรรณราชนครินทร์</strong></div>
+                    <div class="bg-slate-50 p-2 rounded-xl border"><span class="text-slate-500 block">ชั้น:</span><strong id="mapFloorText">ชั้น 3</strong></div>
+                    <div class="bg-slate-50 p-2 rounded-xl border col-span-2"><span class="text-slate-500 block">ตำแหน่งตู้/ชั้นวาง:</span><strong class="text-skruRed" id="mapShelfNoText">ตู้ A-04 (หมวด QA)</strong></div>
+                </div>
+                <div class="bg-slate-100 p-4 rounded-2xl border border-slate-200 text-center space-y-2">
+                    <div class="border-2 border-dashed border-slate-300 p-3 rounded-xl bg-white space-y-2">
+                        <span class="text-[10px] text-emerald-600 font-bold block">🚪 ทางเข้าชั้น 3</span>
+                        <div class="bg-slate-100 p-1.5 rounded text-[10px] text-slate-600">ตู้ A-01</div>
+                        <div class="bg-slate-100 p-1.5 rounded text-[10px] text-slate-600">ตู้ A-02</div>
+                        <div class="bg-skruRed text-white p-2 rounded-xl font-bold text-xs shadow glow-red animate-bounce" id="targetShelfBox">
+                            📍 ตู้ A-04 (หนังสืออยู่ตรงนี้)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 7: PROMPTPAY FINE PAYMENT MODAL -->
+    <div id="payFineModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xs rounded-3xl p-5 shadow-2xl text-center space-y-3 text-slate-800">
+            <div class="flex justify-between items-center border-b pb-2">
+                <h3 class="font-bold text-sm">ชำระค่าปรับผ่าน PromptPay</h3>
+                <button onclick="closeModal('payFineModal')" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+            <div class="bg-blue-900 text-white p-4 rounded-2xl space-y-2">
+                <img id="payFineQR" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=PROMPTPAY-SKRU-LIBRARY-25.00" alt="PromptPay QR" class="w-36 h-36 mx-auto bg-white p-2 rounded-xl">
+                <p class="text-xs font-semibold">สำนักวิทยบริการ มรภ.สงขลา</p>
+                <p id="payFineAmountText" class="text-sm font-bold text-yellow-300">ยอดชำระ: ฿25.00 บาท</p>
+            </div>
+            <button onclick="handlePayFine()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs shadow transition">
+                <i class="fa-solid fa-circle-check mr-1"></i>จำลองการชำระเงินสำเร็จ
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL 8: BOOK PURCHASE REQUEST MODAL -->
+    <div id="requestModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xs rounded-3xl p-5 shadow-2xl space-y-3 text-slate-800">
+            <div class="flex justify-between items-center border-b pb-2">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-cart-plus text-skruRed text-sm"></i>
+                    <h3 class="font-bold text-sm">เสนอซื้อหนังสือเข้าห้องสมุด</h3>
+                </div>
+                <button onclick="closeModal('requestModal')" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+            <form onsubmit="handleBookRequest(event)" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-semibold mb-1 text-slate-700">ชื่อหนังสือที่ต้องการเสนอซื้อ:</label>
+                    <input type="text" id="req-title" required placeholder="เช่น Machine Learning 101" class="w-full p-2 bg-slate-50 border rounded-xl text-xs focus:outline-none focus:border-skruRed">
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1 text-slate-700">ชื่อผู้แต่ง / สำนักพิมพ์:</label>
+                    <input type="text" id="req-author" placeholder="เช่น ดร. สมเกียรติ" class="w-full p-2 bg-slate-50 border rounded-xl text-xs focus:outline-none focus:border-skruRed">
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1 text-slate-700">เหตุผลในการเสนอซื้อ:</label>
+                    <textarea id="req-reason" rows="2" placeholder="ใช้ทำวิจัย / ประกอบการเรียน..." class="w-full p-2 bg-slate-50 border rounded-xl text-xs focus:outline-none focus:border-skruRed"></textarea>
+                </div>
+                <button type="submit" class="w-full py-2.5 bg-skruRed text-white rounded-xl font-bold shadow hover:bg-red-700 transition">
+                    ส่งเสนอซื้อหนังสือ
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 9: REALTIME OCCUPANCY MODAL -->
+    <div id="occupancyModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xs rounded-3xl p-5 shadow-2xl space-y-3 text-slate-800">
+            <div class="flex justify-between items-center border-b pb-2">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-users text-skruRed text-sm"></i>
+                    <h3 class="font-bold text-sm">ความหนาแน่นพื้นที่จริง (Occupancy)</h3>
+                </div>
+                <button onclick="closeModal('occupancyModal')" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+            <div class="space-y-2 text-xs">
+                <div class="bg-slate-50 p-3 rounded-2xl border flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-full border-4 border-blue-600 flex items-center justify-center font-bold text-blue-600 text-sm">
+                        68%
+                    </div>
+                    <div>
+                        <h4 class="font-bold">ที่นั่งว่างระดับปานกลาง</h4>
+                        <p class="text-[10px] text-slate-500">ว่าง 240 / 350 ที่นั่งในอาคาร</p>
+                    </div>
+                </div>
+
+                <div class="space-y-1.5 pt-1">
+                    <div class="p-2 bg-slate-50 rounded-xl flex justify-between items-center text-[11px]">
+                        <span>ชั้น 1 - Co-Working Space</span>
+                        <span class="font-semibold text-amber-600">68/100 (🟡 คึกคัก)</span>
+                    </div>
+                    <div class="p-2 bg-slate-50 rounded-xl flex justify-between items-center text-[11px]">
+                        <span>ชั้น 2 - Quiet Reading Zone</span>
+                        <span class="font-semibold text-emerald-600">45/150 (🟢 เงียบสงบ)</span>
+                    </div>
+                    <div class="p-2 bg-slate-50 rounded-xl flex justify-between items-center text-[11px]">
+                        <span>ชั้น 3 - Computer Media Zone</span>
+                        <span class="font-semibold text-emerald-600">22/60 (🟢 ที่นั่งว่างเยอะ)</span>
+                    </div>
+                    <div class="p-2 bg-slate-50 rounded-xl flex justify-between items-center text-[11px]">
+                        <span>ชั้น 4 - Research & Thesis Archive</span>
+                        <span class="font-semibold text-emerald-600">12/40 (🟢 เงียบสงบ)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 10: PDF READER MODAL -->
+    <div id="pdfReaderModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xs rounded-3xl p-4 shadow-2xl flex flex-col h-[480px] text-slate-800">
+            <div class="flex justify-between items-center border-b pb-2">
+                <h3 class="font-bold text-xs">2eBook Thailand Reader</h3>
+                <button onclick="closeModal('pdfReaderModal')" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+            <div class="flex-1 bg-slate-900 text-slate-300 p-4 rounded-2xl overflow-y-auto my-2 text-xs space-y-3 font-serif">
+                <h4 class="font-bold text-white text-sm text-center border-b border-slate-700 pb-2">บทที่ 1: การพัฒนาเว็บด้วย React และ Node.js</h4>
+                <p>การพัฒนาเว็บแอปพลิเคชันสมัยใหม่เน้นความรวดเร็ว โครงสร้างที่เป็นระเบียบ และรองรับการทำงานแบบ Full-Stack ด้วย JavaScript...</p>
+                <p>Node.js ทำหน้าที่เป็น Runtime Environment ที่ช่วยให้สามารถเขียน JavaScript ในฝั่ง Server ได้อย่างมีประสิทธิภาพสูง...</p>
+            </div>
+            <button onclick="closeModal('pdfReaderModal')" class="w-full py-2 bg-skruRed text-white rounded-xl font-bold text-xs">
+                ปิดตัวอ่าน E-Book
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL 11: RENEW BORROW CONFIRMATION MODAL -->
+    <div id="renewConfirmModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xs rounded-3xl p-5 shadow-2xl space-y-3.5 text-slate-800">
+            <div class="flex justify-between items-center border-b pb-2">
+                <div class="flex items-center space-x-2">
+                    <div class="w-7 h-7 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xs">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <h3 class="font-bold text-sm">ยืนยันการยืมต่อหนังสือ</h3>
+                </div>
+                <button onclick="closeModal('renewConfirmModal')" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+
+            <div class="space-y-2.5 text-xs">
+                <!-- Book summary card -->
+                <div class="bg-amber-50/70 p-3 rounded-2xl border border-amber-200 space-y-1">
+                    <div class="flex items-center gap-1 text-amber-700 font-bold text-[10px]">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span>วันที่ยืมใกล้ครบกำหนดแล้ว</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 leading-snug text-xs line-clamp-2" id="renewModalBookTitle">-</h4>
+                    <p class="text-[10px] text-slate-500" id="renewModalCurrentDue">กำหนดคืนเดิม: -</p>
+                </div>
+
+                <!-- Renewal details -->
+                <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 space-y-1.5 text-[11px]">
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-500">ขยายเวลาเพิ่ม:</span>
+                        <strong class="text-slate-800 font-semibold">+14 วัน</strong>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-500">กำหนดคืนใหม่:</span>
+                        <strong class="text-emerald-600 font-bold" id="renewModalNewDueDate">-</strong>
+                    </div>
+                    <div class="flex justify-between items-center pt-1.5 border-t border-slate-200 text-[9.5px] text-slate-400">
+                        <span>เงื่อนไขการบริการ:</span>
+                        <span>ยืมต่อได้ 1 ครั้งต่อรายการ</span>
+                    </div>
+                </div>
+
+                <div class="pt-1 flex gap-2">
+                    <button type="button" onclick="closeModal('renewConfirmModal')" class="w-1/2 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs transition">
+                        ยกเลิก
+                    </button>
+                    <button type="button" id="confirmRenewSubmitBtn" onclick="confirmRenewBookAction()" class="w-1/2 py-2 bg-gradient-to-r from-amber-500 to-red-600 hover:from-amber-600 hover:to-red-700 text-white font-bold rounded-xl text-xs shadow transition flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-check text-xs"></i> ยืนยันยืมต่อ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 12: BOOK DETAIL + BORROW MODAL -->
+    <div id="bookDetailModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xs rounded-3xl shadow-2xl text-slate-800 overflow-hidden">
+            <!-- Header gradient -->
+            <div class="bg-gradient-to-r from-red-600 to-red-700 p-4 text-white">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-start space-x-3 flex-1 min-w-0">
+                        <div id="modalBookCoverBox" class="w-14 h-20 text-white rounded-xl flex flex-col items-center justify-center p-1 text-center font-bold text-xs flex-shrink-0 shadow-lg bg-gradient-to-br from-red-500 to-red-800">
+                            <i class="fa-solid fa-book text-xl mb-1"></i>
+                            <span id="modalBookCoverTag" class="text-[9px] leading-tight">Book</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <span id="modalBookStatusBadge" class="text-[9px] font-semibold bg-emerald-500/30 text-emerald-100 px-2 py-0.5 rounded-full inline-block mb-1">🟢 พร้อมยืม</span>
+                            <h3 id="modalBookTitle" class="font-bold text-sm leading-snug line-clamp-3">ชื่อหนังสือ</h3>
+                            <p id="modalBookAuthor" class="text-[10px] text-red-200 mt-0.5">ผู้แต่ง</p>
+                        </div>
+                    </div>
+                    <button onclick="closeModal('bookDetailModal')" class="text-red-200 hover:text-white ml-2 flex-shrink-0">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Book details -->
+            <div class="p-4 space-y-3 text-xs">
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="bg-slate-50 p-2 rounded-xl border border-slate-100">
+                        <span class="text-slate-400 block text-[9px] font-medium mb-0.5">เลขเรียก</span>
+                        <strong id="modalBookCallNo" class="text-slate-800 font-mono text-[10px]">QA76.9</strong>
+                    </div>
+                    <div class="bg-slate-50 p-2 rounded-xl border border-slate-100">
+                        <span class="text-slate-400 block text-[9px] font-medium mb-0.5">ISBN</span>
+                        <strong id="modalBookIsbn" class="text-slate-800 font-mono text-[10px]">-</strong>
+                    </div>
+                </div>
+                <div class="bg-slate-50 p-2 rounded-xl border border-slate-100">
+                    <span class="text-slate-400 block text-[9px] font-medium mb-0.5">📍 ที่ตั้ง</span>
+                    <strong id="modalBookLocation" class="text-slate-800 text-[10px]">ชั้น 3</strong>
+                </div>
+                <div class="bg-slate-50 p-2 rounded-xl border border-slate-100">
+                    <span class="text-slate-400 block text-[9px] font-medium mb-0.5">🗄️ ตู้/ชั้นวาง</span>
+                    <strong id="modalBookShelfNo" class="text-slate-800 text-[10px] text-skruRed">A-04</strong>
+                </div>
+                <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                    <span class="text-slate-400 block text-[9px] font-medium mb-1">📝 รายละเอียด</span>
+                    <p id="modalBookDesc" class="text-slate-600 text-[10px] leading-relaxed line-clamp-4">รายละเอียดหนังสือ</p>
+                </div>
+
+                <!-- Action buttons (injected dynamically) -->
+                <div id="modalBookActionContainer" class="space-y-2">
+                    <!-- Filled by openBookDetailModal() -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 13: BORROW CONFIRM MODAL -->
+    <div id="borrowConfirmModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-xs rounded-3xl p-5 shadow-2xl space-y-4 text-slate-800">
+            <div class="flex justify-between items-center border-b pb-2">
+                <div class="flex items-center space-x-2">
+                    <div class="w-7 h-7 rounded-xl bg-red-100 text-skruRed flex items-center justify-center text-xs">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                    </div>
+                    <h3 class="font-bold text-sm">ยืนยันการยืมหนังสือ</h3>
+                </div>
+                <button onclick="closeModal('borrowConfirmModal')" class="text-slate-400 hover:text-slate-600">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+
+            <div class="bg-red-50 p-3 rounded-2xl border border-red-100 space-y-1.5">
+                <h4 class="font-bold text-slate-900 text-xs leading-snug line-clamp-3" id="borrowConfirmBookTitle">-</h4>
+                <p class="text-[10px] text-slate-500" id="borrowConfirmBookAuthor">-</p>
+            </div>
+
+            <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100 space-y-2 text-[11px]">
+                <div class="flex justify-between items-center">
+                    <span class="text-slate-500">ระยะเวลายืม:</span>
+                    <strong class="text-slate-800">14 วัน</strong>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-slate-500">กำหนดคืน:</span>
+                    <strong class="text-emerald-600 font-bold" id="borrowConfirmDueDate">-</strong>
+                </div>
+                <div class="flex justify-between items-center pt-1.5 border-t border-slate-200 text-[9.5px] text-slate-400">
+                    <span>ค่าปรับ (ถ้าเกินกำหนด):</span>
+                    <span>2 บาท/เล่ม/วัน</span>
+                </div>
+            </div>
+
+            <div class="flex gap-2">
+                <button type="button" onclick="closeModal('borrowConfirmModal')" 
+                    class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs transition">
+                    ยกเลิก
+                </button>
+                <button type="button" id="confirmBorrowSubmitBtn" onclick="confirmBorrowAction()"
+                    class="w-1/2 py-2.5 bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 text-white font-bold rounded-xl text-xs shadow transition flex items-center justify-center gap-1">
+                    <i class="fa-solid fa-book-bookmark text-xs"></i> ยืนยันยืม
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-4 py-2.5 rounded-2xl text-xs font-medium shadow-2xl border border-slate-700 z-50 hidden flex items-center space-x-2">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
+        <span id="toastMessage">ทำรายการสำเร็จ</span>
+    </div>
+
+    <script>
+        let currentCategory = 'all';
+
+        // Express REST API Fetch Caller
+        async function fetchApi(method, path, body = null) {
+            try {
+                const options = {
+                    method: method,
+                    headers: { 'Content-Type': 'application/json' }
+                };
+                if (body && (method === 'POST' || method === 'PUT')) {
+                    options.body = JSON.stringify(body);
+                }
+                const response = await fetch(path, options);
+                const data = await response.json();
+                return data;
+            } catch (err) {
+                console.error("API Call error:", err);
+                return { status: 500, data: { error: err.message } };
+            }
+        }
+
+        // 1. Load User Profile & Fines
+        async function loadUserProfile() {
+            const res = await fetchApi('GET', '/api/v1/user');
+            if (res && res.data) {
+                const u = res.data;
+                document.getElementById('cardUserName').innerText = u.name;
+                document.getElementById('cardUserId').innerText = u.studentId;
+                document.getElementById('cardUserFaculty').innerText = u.faculty;
+                document.getElementById('headerUserAvatar').src = u.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80';
+                document.getElementById('modalMemberId').innerText = `MEMBER ID: ${u.studentId}`;
+
+                document.getElementById('edit-profile-name').value = u.name;
+                document.getElementById('edit-profile-id').value = u.studentId;
+                document.getElementById('edit-profile-faculty').value = u.faculty;
+                document.getElementById('edit-profile-avatar').value = u.avatar || '';
+
+                const fineBanner = document.getElementById('fineBanner');
+                if (u.fineBalance > 0) {
+                    fineBanner.classList.remove('hidden');
+                    document.getElementById('fineAmountText').innerText = `฿${u.fineBalance.toFixed(2)}`;
+                    document.getElementById('fineStatusText').innerText = `มียอดค่าปรับ ฿${u.fineBalance.toFixed(2)}`;
+                    document.getElementById('fineStatusText').className = 'text-[10px] text-red-600 font-bold';
+                } else {
+                    fineBanner.classList.add('hidden');
+                    document.getElementById('fineStatusText').innerText = 'ไม่มีค่าปรับ';
+                    document.getElementById('fineStatusText').className = 'text-[10px] text-slate-500';
+                }
+            }
+        }
+
+        // 2. Fetch & Render Dynamic Borrowed List
+        async function fetchBorrowings() {
+            const res = await fetchApi('GET', '/api/v1/borrowings');
+            if (res && res.data && res.data.success) {
+                const count = res.data.count;
+                const max = res.data.maxLoans;
+                const list = res.data.data || [];
+
+                document.getElementById('borrowingsCounterTitle').innerText = `รายการยืมปัจจุบัน (${count}/${max})`;
+                renderBorrowingsList(list);
+            } else {
+                // Offline / Standalone browser preview fallback
+                if (!window._mockBorrowings) {
+                    const today = new Date();
+                    const d1 = new Date(today); d1.setDate(d1.getDate() + 3);
+                    const d2 = new Date(today); d2.setDate(d2.getDate() + 11);
+                    const d3 = new Date(today); d3.setDate(d3.getDate() + 14);
+                    window._mockBorrowings = [
+                        { id: 'B004', title: 'หลักการตลาดดิจิทัลยุค 5.0', dueDate: d1.toISOString().split('T')[0], daysLeft: 3, renewed: false },
+                        { id: 'B014', title: 'การออกแบบระบบคลาวด์และสถาปัตยกรรม Microservices', dueDate: d2.toISOString().split('T')[0], daysLeft: 11, renewed: false },
+                        { id: 'B003', title: 'พัฒนาเว็บด้วย React & Node.js', dueDate: d3.toISOString().split('T')[0], daysLeft: 14, renewed: true }
+                    ];
+                }
+                document.getElementById('borrowingsCounterTitle').innerText = `รายการยืมปัจจุบัน (${window._mockBorrowings.length}/5)`;
+                renderBorrowingsList(window._mockBorrowings);
+            }
+        }
+
+        let pendingRenewBookId = null;
+
+        function openRenewConfirmModal(bookId, bookTitle, currentDueDate, daysLeft) {
+            pendingRenewBookId = bookId;
+            document.getElementById('renewModalBookTitle').innerText = bookTitle;
+            
+            let daysText = daysLeft === 0 ? 'วันนี้' : `อีก ${daysLeft} วัน`;
+            document.getElementById('renewModalCurrentDue').innerText = `กำหนดคืนเดิม: ${currentDueDate} (${daysText})`;
+            
+            // Calculate new due date (+14 days from today)
+            const targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 14);
+            const newDueStr = targetDate.toISOString().split('T')[0];
+            document.getElementById('renewModalNewDueDate').innerText = newDueStr;
+            
+            openModal('renewConfirmModal');
+        }
+
+        async function confirmRenewBookAction() {
+            if (!pendingRenewBookId) return;
+            const bookId = pendingRenewBookId;
+            const submitBtn = document.getElementById('confirmRenewSubmitBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> กำลังบันทึก...';
+            
+            try {
+                const result = await fetchApi('POST', '/api/v1/borrowings/renew', { bookId });
+                closeModal('renewConfirmModal');
+                if (result && result.data && result.data.success) {
+                    showToast(result.data.message);
+                    fetchBorrowings();
+                } else if (window._mockBorrowings) {
+                    // Fallback for standalone file preview
+                    const item = window._mockBorrowings.find(b => b.id === bookId);
+                    if (item) {
+                        item.renewed = true;
+                        const d = new Date();
+                        d.setDate(d.getDate() + 14);
+                        item.dueDate = d.toISOString().split('T')[0];
+                        item.daysLeft = 14;
+                        showToast(`ต่ออายุการยืม "${item.title}" เรียบร้อยแล้ว (กำหนดคืนใหม่: ${item.dueDate})`);
+                        fetchBorrowings();
+                    } else {
+                        showToast(result?.data?.message || 'ไม่สามารถยืมต่อได้');
+                    }
+                } else {
+                    showToast(result?.data?.message || 'ไม่สามารถยืมต่อได้');
+                }
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+                pendingRenewBookId = null;
+            }
+        }
+
+        function renderBorrowingsList(list) {
+            const container = document.getElementById('borrowingsListContainer');
+            if (!list || list.length === 0) {
+                container.innerHTML = `<div class="text-center py-4 text-slate-400 text-xs">ไม่มีรายการหนังสือที่กำลังยืมในขณะนี้</div>`;
+                const noticeEl = document.getElementById('nearDueNotice');
+                if (noticeEl) noticeEl.classList.add('hidden');
+                return;
+            }
+
+            // Check if any books are near due (daysLeft <= 3 and daysLeft >= 0 and !renewed)
+            const nearDueItems = list.filter(item => !item.renewed && item.daysLeft <= 3 && item.daysLeft >= 0);
+            const noticeEl = document.getElementById('nearDueNotice');
+            const noticeTextEl = document.getElementById('nearDueNoticeText');
+            if (noticeEl && noticeTextEl) {
+                if (nearDueItems.length > 0) {
+                    noticeEl.classList.remove('hidden');
+                    noticeTextEl.innerText = `มีหนังสือใกล้ครบกำหนด ${nearDueItems.length} เล่ม สามารถกดยืนยันยืมต่อได้`;
+                } else {
+                    noticeEl.classList.add('hidden');
+                }
+            }
+
+            container.innerHTML = list.map(item => {
+                let renewBtnHtml = '';
+                const isNearDue = (item.daysLeft <= 3 && item.daysLeft >= 0);
+                const isOverdue = item.daysLeft < 0;
+
+                if (item.renewed) {
+                    renewBtnHtml = `<span class="px-2 py-0.5 bg-slate-200 text-slate-500 rounded text-[9.5px] font-medium whitespace-nowrap">ยืมต่อแล้ว</span>`;
+                } else if (isOverdue) {
+                    renewBtnHtml = `<span class="px-2 py-0.5 bg-red-100 text-red-600 rounded text-[9.5px] font-semibold whitespace-nowrap">เกินกำหนด</span>`;
+                } else if (isNearDue) {
+                    // วันที่ยืมใกล้หมด (เหลือ 3 วันหรือน้อยกว่า): แสดงปุ่ม "ยืนยันยืมต่อ"
+                    const safeTitle = escapeHtml(item.title).replace(/'/g, "\\'");
+                    renewBtnHtml = `<button onclick="openRenewConfirmModal('${item.id}', '${safeTitle}', '${item.dueDate}', ${item.daysLeft})" class="px-2 py-0.5 bg-gradient-to-r from-amber-500 to-red-600 hover:from-amber-600 hover:to-red-700 text-white rounded text-[10px] font-bold shadow-sm transition whitespace-nowrap flex items-center gap-1 animate-pulse" title="วันที่ยืมใกล้หมดแล้ว สามารถกดยืนยันยืมต่อได้"><i class="fa-solid fa-clock-rotate-left text-[9px]"></i> ยืนยันยืมต่อ</button>`;
+                } else {
+                    // วันที่ยืมยังไม่ใกล้หมด (เหลือมากกว่า 3 วัน): ไม่แสดงปุ่มยืนยันยืมต่อ
+                    renewBtnHtml = `<span class="px-2 py-0.5 bg-slate-100 text-slate-400 rounded text-[9.5px] whitespace-nowrap" title="ปุ่มยืนยันยืมต่อจะขึ้นเมื่อเหลือกำหนดคืน 3 วันหรือน้อยกว่า">ยืมต่อได้เมื่อใกล้หมด</span>`;
+                }
+
+                return `
+                    <div class="flex items-center justify-between p-2 rounded-xl bg-slate-50 border border-slate-100">
+                        <div class="flex items-center space-x-2.5 min-w-0 flex-1 mr-2">
+                            <div class="w-8 h-11 bg-red-100 text-skruRed rounded-md flex-shrink-0 flex items-center justify-center font-bold text-xs">
+                                <i class="fa-solid fa-book"></i>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <h4 class="text-xs font-semibold text-slate-800 truncate">${escapeHtml(item.title)}</h4>
+                                <p class="text-[9.5px] font-medium ${item.daysLeft < 0 ? 'text-red-600' : item.daysLeft <= 3 ? 'text-amber-600 font-semibold' : 'text-emerald-600'}">${item.daysLeft < 0 ? `⚠️ เกินกำหนดแล้ว ${Math.abs(item.daysLeft)} วัน` : item.daysLeft === 0 ? '🔴 ครบกำหนดคืนวันนี้!' : `กำหนดคืน: ${item.dueDate} (อีก ${item.daysLeft} วัน)`}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-1.5 flex-shrink-0">
+                            ${renewBtnHtml}
+                            <button onclick="returnBookApi('${item.id}')" class="px-2 py-0.5 bg-slate-700 hover:bg-slate-800 text-white rounded text-[10px] font-medium transition" title="คืนหนังสือ">
+                                คืน
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 3. Open Borrow Confirm Modal (called from book list or detail modal)
+        let pendingBorrowBookId = null;
+
+        function openBorrowConfirmModal(bookId, title, author) {
+            pendingBorrowBookId = bookId;
+            document.getElementById('borrowConfirmBookTitle').innerText = title || '';
+            document.getElementById('borrowConfirmBookAuthor').innerText = author || '';
+            // Calculate due date (+14 days)
+            const due = new Date();
+            due.setDate(due.getDate() + 14);
+            const thaiMonths = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+            const dueThai = `${due.getDate()} ${thaiMonths[due.getMonth()]} ${due.getFullYear()}`;
+            document.getElementById('borrowConfirmDueDate').innerText = dueThai;
+            openModal('borrowConfirmModal');
+        }
+
+        async function confirmBorrowAction() {
+            if (!pendingBorrowBookId) return;
+            const bookId = pendingBorrowBookId;
+            const submitBtn = document.getElementById('confirmBorrowSubmitBtn');
+            const originalHtml = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> กำลังบันทึก...';
+
+            try {
+                const res = await fetchApi('POST', `/api/v1/borrowings/borrow/${bookId}`);
+                closeModal('borrowConfirmModal');
+                closeModal('bookDetailModal');
+                if (res && res.data && res.data.success) {
+                    showToast(res.data.message);
+                    fetchBorrowings();
+                    renderFrontendBooks(currentCategory, document.getElementById('searchInput').value);
+                } else {
+                    showToast(res?.data?.message || 'ไม่สามารถยืมหนังสือได้');
+                }
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalHtml;
+                pendingBorrowBookId = null;
+            }
+        }
+
+        // Legacy borrowBookApi (called from older inline buttons)
+        async function borrowBookApi(bookId) {
+            // Find book info for confirm modal
+            const res = await fetchApi('GET', `/api/v1/books/${bookId}`);
+            const b = (res && res.data && res.data.id) ? res.data :
+                      (window._sampleCatalog && window._sampleCatalog.find(item => item.id === bookId));
+            if (b) {
+                openBorrowConfirmModal(b.id, b.title, b.author);
+            } else {
+                openBorrowConfirmModal(bookId, 'หนังสือที่เลือก', '');
+            }
+        }
+
+        // 4. Return Book Action
+        async function returnBookApi(bookId) {
+            const res = await fetchApi('POST', `/api/v1/borrowings/return/${bookId}`);
+            if (res && res.data && res.data.success) {
+                showToast(res.data.message);
+                fetchBorrowings();
+                renderFrontendBooks(currentCategory, document.getElementById('searchInput').value);
+            }
+        }
+
+        // 5. Renew Book Action (Direct API call fallback)
+        async function renewBookApi(bookId, btnElement) {
+            const result = await fetchApi('POST', '/api/v1/borrowings/renew', { bookId });
+            if (result && result.data && result.data.success) {
+                showToast(result.data.message);
+                fetchBorrowings();
+            } else {
+                showToast(result?.data?.message || 'ไม่สามารถยืมต่อได้');
+            }
+        }
+
+        // 6. Hold / Queue Book Reservation Action
+        async function holdBookApi(bookId) {
+            const res = await fetchApi('POST', `/api/v1/books/hold/${bookId}`);
+            if (res && res.data && res.data.success) {
+                closeModal('bookDetailModal');
+                showToast(res.data.message);
+            }
+        }
+
+        // 7. Show Book Details Modal (Connected OPAC Details)
+        async function openBookDetailModal(bookId) {
+            const res = await fetchApi('GET', `/api/v1/books/${bookId}`);
+            const b = (res && res.data && res.data.id) ? res.data : (window._sampleCatalog && window._sampleCatalog.find(item => item.id === bookId));
+            if (b) {
+                document.getElementById('modalBookTitle').innerText = b.title;
+                document.getElementById('modalBookAuthor').innerText = b.author;
+                document.getElementById('modalBookCallNo').innerText = b.callNumber;
+                document.getElementById('modalBookIsbn').innerText = b.isbn || '-';
+                document.getElementById('modalBookLocation').innerText = b.location;
+                document.getElementById('modalBookShelfNo').innerText = `ตู้/ชั้นวาง ${b.shelfNo || 'A-04'}`;
+                document.getElementById('modalBookDesc').innerText = b.description || 'ไม่มีรายละเอียดเพิ่มเติม';
+                document.getElementById('modalBookCoverTag').innerText = b.coverTag || 'Book';
+                const coverBox = document.getElementById('modalBookCoverBox');
+                if (coverBox) {
+                    const baseClass = 'w-14 h-18 text-white rounded-lg flex flex-col items-center justify-center p-1 text-center font-bold text-xs flex-shrink-0 shadow';
+                    const colorClass = b.category === 'book' ? 'bg-gradient-to-br from-red-500 to-red-700' : b.category === 'ebook' ? 'bg-gradient-to-br from-blue-500 to-blue-700' : 'bg-gradient-to-br from-amber-600 to-amber-800';
+                    coverBox.className = `${baseClass} ${colorClass}`;
+                }
+
+                const statusBadge = document.getElementById('modalBookStatusBadge');
+                const actionContainer = document.getElementById('modalBookActionContainer');
+
+                if (b.status === 'available') {
+                    statusBadge.innerText = `🟢 พร้อมยืม (${b.availableCount} เล่ม)`;
+                    statusBadge.className = 'text-[9px] font-semibold bg-emerald-500/30 text-emerald-100 px-2 py-0.5 rounded-full inline-block mb-1';
+
+                    const safeTitle = (b.title || '').replace(/'/g, "\\'");
+                    const safeAuthor = (b.author || '').replace(/'/g, "\\'");
+                    actionContainer.innerHTML = `
+                        <button onclick="openBorrowConfirmModal('${b.id}', '${safeTitle}', '${safeAuthor}')" class="w-full py-2.5 bg-skruRed hover:bg-red-700 text-white font-bold rounded-xl text-xs shadow transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-book-bookmark"></i> ยืมหนังสือเล่มนี้
+                        </button>
+                        <button onclick="showShelfMapModal('${b.id}'); closeModal('bookDetailModal')" class="w-full py-2 bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold rounded-xl text-xs border border-purple-200 transition">
+                            <i class="fa-solid fa-map-location-dot mr-1"></i> ดูพิกัดชั้นวางหนังสือ
+                        </button>
+                    `;
+                } else if (b.status === 'borrowed') {
+                    statusBadge.innerText = `🟠 ถูกยืมอยู่ (กำหนดคืน ${b.returnDate || '02 ต.ค.'})`;
+                    statusBadge.className = 'text-[9px] font-semibold bg-amber-100 text-amber-700 px-2 py-0.5 rounded inline-block mb-1';
+
+                    actionContainer.innerHTML = `
+                        <button onclick="holdBookApi('${b.id}')" class="w-full py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl text-xs shadow transition">
+                            <i class="fa-solid fa-clock-rotate-left mr-1"></i> ลงชื่อต่อคิวจองหนังสือ
+                        </button>
+                        <button onclick="showShelfMapModal('${b.id}'); closeModal('bookDetailModal')" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs border transition">
+                            <i class="fa-solid fa-map-location-dot mr-1"></i> ดูตำแหน่งชั้นวาง
+                        </button>
+                    `;
+                } else if (b.category === 'ebook') {
+                    statusBadge.innerText = `📘 E-Book พร้อมอ่านออนไลน์`;
+                    statusBadge.className = 'text-[9px] font-semibold bg-blue-100 text-blue-700 px-2 py-0.5 rounded inline-block mb-1';
+
+                    actionContainer.innerHTML = `
+                        <button onclick="openModal('pdfReaderModal'); closeModal('bookDetailModal')" class="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs shadow transition">
+                            <i class="fa-solid fa-tablet-screen-button mr-1"></i> เปิดอ่าน E-Book ออนไลน์
+                        </button>
+                    `;
+                }
+
+                openModal('bookDetailModal');
+            }
+        }
+
+        // 8. Show Shelf Map Modal
+        async function showShelfMapModal(bookId) {
+            const res = await fetchApi('GET', `/api/v1/books/${bookId}`);
+            const b = (res && res.data && res.data.id) ? res.data : (window._sampleCatalog && window._sampleCatalog.find(item => item.id === bookId));
+            if (b) {
+                document.getElementById('mapBookTitleText').innerText = `ตำแหน่ง: ${b.title}`;
+                document.getElementById('mapBuildingText').innerText = b.building || 'อาคารบรรณราชนครินทร์';
+                document.getElementById('mapFloorText').innerText = b.floor || 'ชั้น 3';
+                document.getElementById('mapShelfNoText').innerText = `ตู้/ชั้นวาง ${b.shelfNo || 'A-04'}`;
+                document.getElementById('targetShelfBox').innerText = `📍 ตู้ ${b.shelfNo || 'A-04'} (หนังสืออยู่ตรงนี้)`;
+                openModal('shelfMapModal');
+            }
+        }
+
+        // 9. Pay Fine API Action
+        async function handlePayFine() {
+            const res = await fetchApi('POST', '/api/v1/user/pay-fine');
+            if (res && res.data && res.data.success) {
+                closeModal('payFineModal');
+                showToast(res.data.message);
+                loadUserProfile();
+            }
+        }
+
+        // 10. Book Purchase Request
+        async function handleBookRequest(e) {
+            e.preventDefault();
+            const title = document.getElementById('req-title').value.trim();
+            const author = document.getElementById('req-author').value.trim();
+            const reason = document.getElementById('req-reason').value.trim();
+
+            const res = await fetchApi('POST', '/api/v1/books/request', { title, author, reason });
+            if (res && res.data && res.data.success) {
+                closeModal('requestModal');
+                showToast(res.data.message);
+                document.getElementById('req-title').value = '';
+                document.getElementById('req-author').value = '';
+                document.getElementById('req-reason').value = '';
+            }
+        }
+
+        // Sample Books Catalog Data (Full Offline & Online Support)
+        window._sampleCatalog = [
+            { id: 'B001', title: 'วิทยาการข้อมูลและการเรียนรู้ของเครื่อง (Data Science & Machine Learning)', author: 'ผศ.ดร. สมชาย ใจดี (2567)', callNumber: 'QA76.9.D343 S67 2567', isbn: '978-616-12-3456-7', location: 'ชั้น 3 อาคารบรรณราชนครินทร์ (หมวด QA)', shelfNo: 'A-04', floor: 'ชั้น 3', building: 'อาคารบรรณราชนครินทร์', status: 'available', category: 'book', availableCount: 3, totalCount: 5, coverTag: 'Data Science', description: 'เนื้อหาครอบคลุม Data Science, Data Preprocessing, Machine Learning Algorithms และ Python' },
+            { id: 'B002', title: 'การพัฒนาการท่องเที่ยวเชิงวัฒนธรรมสงขลา', author: 'ดร. นภาพร สุวรรณ (2567)', callNumber: 'SKRU-IR-2567-08', isbn: 'SKRU-IR-2567-08', location: 'ชั้น 4 โซนคลังปริญญานิพนธ์', shelfNo: 'SKRU-IR-02', floor: 'ชั้น 4', building: 'อาคารบรรณราชนครินทร์', status: 'borrowed', returnDate: '04 ต.ค.', category: 'research', availableCount: 0, totalCount: 2, coverTag: 'SKRU Research', description: 'งานวิจัยเพื่อการพัฒนาเส้นทางท่องเที่ยววัฒนธรรมเมืองเก่าสงขลา' },
+            { id: 'B003', title: 'การพัฒนาเว็บแอปพลิเคชันด้วย React & Node.js', author: 'อ.อนันต์ สุขสวัสดิ์ (2568)', callNumber: 'QA76.76 .อ54 2568', isbn: '978-616-99-8877-1', location: 'คลังทรัพยากรดิจิทัล SKRU e-Book System', shelfNo: 'ONLINE', floor: 'ออนไลน์', building: 'คลัง e-Book', status: 'available', category: 'ebook', availableCount: 99, totalCount: 99, coverTag: 'React JS', description: 'คู่มือการสร้าง Full-Stack Web Application ด้วย React, Node.js, Express และ RESTful APIs' },
+            { id: 'B004', title: 'หลักการตลาดดิจิทัลยุค 5.0 (Digital Marketing 5.0)', author: 'ดร. ศิริพร กิจเจริญ (2567)', callNumber: 'HF5415 .ศ68 2567', isbn: '978-616-55-9876-5', location: 'ชั้น 2 (หมวด HF การตลาด)', shelfNo: 'B-12', floor: 'ชั้น 2', building: 'อาคารบรรณราชนครินทร์', status: 'borrowed', returnDate: '04 ต.ค.', category: 'book', availableCount: 2, totalCount: 4, coverTag: 'Marketing', description: 'กลยุทธ์การตลาดดิจิทัล การประยุกต์ใช้ AI ในการทำการตลาด และการสร้างแบรนด์' },
+            { id: 'B005', title: 'การโปรแกรมด้วย JavaScript และ Node.js สำหรับเว็บแอปพลิเคชัน', author: 'อ. วิชัย ทรงเดช (2568)', callNumber: 'QA76.73.J39 ว58 2568', isbn: '978-616-44-3322-1', location: 'คลังทรัพยากรดิจิทัล SKRU e-Book System', shelfNo: 'ONLINE', floor: 'ออนไลน์', building: 'คลัง e-Book', status: 'available', category: 'ebook', availableCount: 99, totalCount: 99, coverTag: 'Node.js', description: 'หนังสือเรียนอิเล็กทรอนิกส์เจาะลึกไวยากรณ์ ES6+, Express Framework และฐานข้อมูล' },
+            { id: 'B006', title: 'โครงสร้างข้อมูลและอัลกอริทึมสมัยใหม่ (Data Structures & Algorithms)', author: 'ดร. สมศักดิ์ กิจเจริญ (2566)', callNumber: 'QA76.9.D35 ส42 2566', isbn: '978-616-11-2233-4', location: 'ชั้น 3 (หมวด QA คอมพิวเตอร์)', shelfNo: 'A-09', floor: 'ชั้น 3', building: 'อาคารบรรณราชนครินทร์', status: 'available', category: 'book', availableCount: 4, totalCount: 5, coverTag: 'Data Struct', description: 'หลักการโครงสร้างข้อมูล Array, Linked List, Stack, Queue, Tree, Graph และ Big O Notation' },
+            { id: 'B014', title: 'การออกแบบระบบคลาวด์และสถาปัตยกรรม Microservices', author: 'ดร. ธนกฤต เมฆาสกุล (2568)', callNumber: 'QA76.585 .ธ35 2568', isbn: '978-616-43-1288-9', location: 'ชั้น 3 (หมวด QA คอมพิวเตอร์)', shelfNo: 'A-05', floor: 'ชั้น 3', building: 'อาคารบรรณราชนครินทร์', status: 'available', category: 'book', availableCount: 2, totalCount: 3, coverTag: 'Cloud & MS', description: 'หลักการออกแบบ Cloud Architecture, Docker, Kubernetes, CI/CD Pipeline และ Microservices' },
+            { id: 'B015', title: 'การเงินส่วนบุคคลและการลงทุนในสินทรัพย์ดิจิทัล (Personal Finance)', author: 'ผศ.ดร. อัมพร พงษ์ไพศาล (2567)', callNumber: 'HG179 .อ45 2567', isbn: '978-616-78-9012-3', location: 'ชั้น 2 (หมวด HG การเงินการธนาคาร)', shelfNo: 'B-08', floor: 'ชั้น 2', building: 'อาคารบรรณราชนครินทร์', status: 'available', category: 'book', availableCount: 3, totalCount: 4, coverTag: 'Finance', description: 'คู่มือบริหารจัดการเงิน การวางแผนภาษี การออม และการลงทุนในกองทุนรวมและสินทรัพย์ดิจิทัล' },
+            { id: 'B016', title: 'Cybersecurity Essentials: ความมั่นคงปลอดภัยไซเบอร์ภาคปฏิบัติ', author: 'อ. กิตติพงษ์ เทคโนโลยี (2568)', callNumber: 'QA76.9.A25 ก58 2568', isbn: '978-616-89-4455-2', location: 'คลังทรัพยากรดิจิทัล SKRU e-Book System', shelfNo: 'ONLINE', floor: 'ออนไลน์', building: 'คลัง e-Book', status: 'available', category: 'ebook', availableCount: 99, totalCount: 99, coverTag: 'Security', description: 'พื้นฐานความปลอดภัยทางไซเบอร์ เทคนิคป้องกัน Network Attack, การเข้ารหัส และ ISO 27001' },
+            { id: 'B017', title: 'นวัตกรรมเศรษฐกิจสร้างสรรค์ชุมชนลุ่มน้ำทะเลสาบสงขลา', author: 'ผศ. วรรณภา สุวรรณรัตน์ และคณะวิจัย (2567)', callNumber: 'SKRU-IR-2567-35', isbn: 'SKRU-IR-2567-35', location: 'ชั้น 4 โซนคลังปริญญานิพนธ์', shelfNo: 'SKRU-IR-05', floor: 'ชั้น 4', building: 'อาคารบรรณราชนครินทร์', status: 'available', category: 'research', availableCount: 2, totalCount: 2, coverTag: 'สงขลาวิจัย', description: 'งานวิจัยเชิงปฏิบัติการในการต่อยอดภูมิปัญญาท้องถิ่นสู่ผลิตภัณฑ์สร้างสรรค์รอบทะเลสาบสงขลา' },
+            { id: 'B018', title: 'ปัญญาประดิษฐ์เชิงสร้างสรรค์และการประยุกต์ใช้ในธุรกิจ (Generative AI)', author: 'ดร. ภาคภูมิ ศิริโรจน์ (2568)', callNumber: 'HF5548.2 .ภ34 2568', isbn: '978-616-95-1234-5', location: 'คลังทรัพยากรดิจิทัล SKRU e-Book System', shelfNo: 'ONLINE', floor: 'ออนไลน์', building: 'คลัง e-Book', status: 'available', category: 'ebook', availableCount: 99, totalCount: 99, coverTag: 'Gen AI', description: 'การนำเทคโนโลยี Generative AI, Prompt Engineering และ LLM มาประยุกต์ใช้ในธุรกิจ' }
+        ];
+
+        // 11. Fetch & Render OPAC Book Catalog
+        async function renderFrontendBooks(category = 'all', query = '') {
+            currentCategory = category;
+            const container = document.getElementById('frontendBookContainer');
+            const url = `/api/v1/books?category=${encodeURIComponent(category)}&search=${encodeURIComponent(query)}`;
+            const res = await fetchApi('GET', url);
+            
+            let books = [];
+            if (res && res.data && res.data.data) {
+                books = res.data.data;
+            } else if (window._sampleCatalog) {
+                // Fallback for standalone file preview
+                books = window._sampleCatalog;
+                if (category && category !== 'all') {
+                    books = books.filter(b => b.category === category);
+                }
+                if (query) {
+                    const q = query.toLowerCase().trim();
+                    books = books.filter(b =>
+                        b.title.toLowerCase().includes(q) ||
+                        b.author.toLowerCase().includes(q) ||
+                        b.callNumber.toLowerCase().includes(q) ||
+                        (b.isbn && b.isbn.toLowerCase().includes(q))
+                    );
+                }
+            }
+
+            document.getElementById('opacMatchCount').innerText = `${books.length} รายการ`;
+
+            if (books.length === 0) {
+                container.innerHTML = `<div class="text-center py-6 text-slate-400 text-xs">ไม่พบหนังสือที่ตรงกับคำค้นหา</div>`;
+                return;
+            }
+
+            container.innerHTML = books.map(book => {
+                let actionBtnHtml = '';
+                if (book.status === 'available') {
+                    // Open detail modal → user taps borrow button inside
+                    actionBtnHtml = `<button onclick="openBookDetailModal('${book.id}')" class="px-2.5 py-1 bg-skruRed text-white rounded-lg font-bold hover:bg-red-700 shadow-sm transition active:scale-95 flex items-center gap-1"><i class='fa-solid fa-book-bookmark text-[10px]'></i>ยืมหนังสือ</button>`;
+                } else {
+                    actionBtnHtml = `<button onclick="openBookDetailModal('${book.id}')" class="px-2 py-0.5 bg-amber-100 text-amber-700 font-semibold rounded text-[9.5px]">ถูกยืมอยู่</button>`;
+                }
+
+                return `
+                    <div class="border border-slate-100 bg-slate-50/70 p-2.5 rounded-xl flex space-x-2.5 items-start cursor-pointer hover:border-red-200 transition">
+                        <div onclick="openBookDetailModal('${book.id}')" class="w-12 h-16 ${book.category === 'book' ? 'bg-gradient-to-br from-red-500 to-red-700' : book.category === 'ebook' ? 'bg-gradient-to-br from-blue-500 to-blue-700' : 'bg-gradient-to-br from-amber-600 to-amber-800'} text-white rounded-lg flex flex-col items-center justify-center p-1 text-center shadow-sm flex-shrink-0">
+                            <i class="fa-solid ${book.category === 'book' ? 'fa-book' : book.category === 'ebook' ? 'fa-tablet-screen-button' : 'fa-scroll'} text-lg"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between">
+                                <span onclick="openBookDetailModal('${book.id}')" class="text-[9px] font-semibold ${book.status === 'available' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'} px-2 py-0.5 rounded">
+                                    ${book.status === 'available' ? 'พร้อมยืม' : 'ถูกยืมอยู่'}
+                                </span>
+                                <button onclick="showShelfMapModal('${book.id}')" class="text-[10px] text-purple-700 font-medium bg-purple-50 hover:bg-purple-100 px-1.5 py-0.5 rounded transition">
+                                    <i class="fa-solid fa-map-location-dot"></i> ดูชั้นวาง
+                                </button>
+                            </div>
+                            <h4 onclick="openBookDetailModal('${book.id}')" class="text-xs font-bold text-slate-800 mt-1 truncate hover:text-skruRed transition">${escapeHtml(book.title)}</h4>
+                            <p onclick="openBookDetailModal('${book.id}')" class="text-[10px] text-slate-500">${escapeHtml(book.author)}</p>
+                            <div class="flex items-center justify-between mt-1.5 pt-1 border-t border-slate-200/60 text-[10px]">
+                                <span class="text-slate-400 font-mono">${escapeHtml(book.callNumber)}</span>
+                                ${actionBtnHtml}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Profile Form Submit
+        async function handleUpdateProfileForm(e) {
+            e.preventDefault();
+            const name = document.getElementById('edit-profile-name').value.trim();
+            const studentId = document.getElementById('edit-profile-id').value.trim();
+            const faculty = document.getElementById('edit-profile-faculty').value.trim();
+            const avatar = document.getElementById('edit-profile-avatar').value.trim();
+
+            const res = await fetchApi('PUT', '/api/v1/user', { name, studentId, faculty, avatar });
+            if (res && res.data && res.data.success) {
+                document.getElementById('cardUserName').innerText = name;
+                document.getElementById('cardUserId').innerText = studentId;
+                document.getElementById('cardUserFaculty').innerText = faculty;
+                if (avatar) document.getElementById('headerUserAvatar').src = avatar;
+                document.getElementById('modalMemberId').innerText = `MEMBER ID: ${studentId}`;
+
+                closeModal('profileModal');
+                showToast('บันทึกข้อมูลโปรไฟล์เรียบร้อยแล้ว');
+            }
+        }
+
+        // Room Booking Submit
+        async function handleRoomBookingForm(e) {
+            e.preventDefault();
+            const roomId = document.getElementById('booking-room-id').value;
+            const date = document.getElementById('booking-date').value;
+            const slot = document.getElementById('booking-slot').value;
+
+            const res = await fetchApi('POST', '/api/v1/rooms/book', { roomId, date, slot });
+            closeModal('roomModal');
+            showToast(`จองห้องสำเร็จ! รหัสการจอง: ${res.data.bookingRef}`);
+        }
+
+        // Send Chat Submit
+        async function handleSendChat(e) {
+            e.preventDefault();
+            const input = document.getElementById('chatInput');
+            const msg = input.value.trim();
+            if (!msg) return;
+            sendChatMessage(msg);
+            input.value = '';
+        }
+
+        function sendQuickTag(text) {
+            sendChatMessage(text);
+        }
+
+        async function sendChatMessage(msg) {
+            const chatMessages = document.getElementById('chatMessages');
+            const userMsg = document.createElement('div');
+            userMsg.className = 'bg-red-50 text-skruRed p-2.5 rounded-2xl max-w-[85%] ml-auto text-xs font-medium';
+            userMsg.innerText = msg;
+            chatMessages.appendChild(userMsg);
+
+            const res = await fetchApi('POST', '/api/v1/chat', { message: msg });
+            if (res && res.data && res.data.reply) {
+                setTimeout(() => {
+                    const botMsg = document.createElement('div');
+                    botMsg.className = 'bg-slate-100 p-2.5 rounded-2xl max-w-[85%] text-slate-700 text-xs';
+                    botMsg.innerText = res.data.reply;
+                    chatMessages.appendChild(botMsg);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 300);
+            }
+        }
+
+        function filterBooksFrontend() {
+            const query = document.getElementById('searchInput').value;
+            renderFrontendBooks(currentCategory, query);
+        }
+
+        function clearSearchInput() {
+            document.getElementById('searchInput').value = '';
+            renderFrontendBooks(currentCategory, '');
+        }
+
+        function setFrontendCategory(cat, btn) {
+            document.querySelectorAll('.cat-btn').forEach(b => {
+                b.classList.remove('bg-skruRed', 'text-white');
+                b.classList.add('bg-slate-100', 'text-slate-600');
+            });
+            btn.classList.remove('bg-slate-100', 'text-slate-600');
+            btn.classList.add('bg-skruRed', 'text-white');
+            renderFrontendBooks(cat, document.getElementById('searchInput').value);
+        }
+
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').innerText = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function escapeHtml(str) {
+            return String(str || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        // ── Real-time Clock ──────────────────────────────
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const el = document.getElementById('statusBarTime');
+            if (el) el.textContent = `${h}:${m}`;
+        }
+
+        // ── Simulate QR Check-in ─────────────────────────
+        async function handleSimulateCheckin() {
+            const roomId = document.getElementById('booking-room-id')?.value || '';
+            closeModal('roomModal');
+            const res = await fetchApi('POST', '/api/v1/rooms/checkin', { roomId });
+            showToast(res?.data?.message || 'เช็กอินเข้าห้องสำเร็จ! 🎉');
+        }
+
+        // ── Open Fine Modal with Dynamic Amount ──────────
+        function openPayFineModal() {
+            const fineText = document.getElementById('fineAmountText')?.innerText || '฿0.00';
+            const fine = parseFloat(fineText.replace('฿', '')) || 0;
+            const qrEl = document.getElementById('payFineQR');
+            const amountEl = document.getElementById('payFineAmountText');
+            if (qrEl) qrEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=PROMPTPAY-SKRU-LIBRARY-${fine.toFixed(2)}`;
+            if (amountEl) amountEl.textContent = `ยอดชำระ: ฿${fine.toFixed(2)} บาท`;
+            openModal('payFineModal');
+        }
+
+        // ── Initialize on Page Load ───────────────────────
+        window.onload = function() {
+            // Start real-time clock
+            updateClock();
+            setInterval(updateClock, 10000);
+            // Set booking date to today
+            const todayStr = new Date().toISOString().split('T')[0];
+            const bookingDateEl = document.getElementById('booking-date');
+            if (bookingDateEl) bookingDateEl.value = todayStr;
+            // Load all data
+            loadUserProfile();
+            fetchBorrowings();
+            renderFrontendBooks();
+        };
+    </script>
+</body>
+</html>
