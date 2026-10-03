@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redeem Detail - ระบบแลกรับของรางวัล</title>
+  <!-- Google Font - Kanit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Mobile Container Wrapper -->
+  <div class="app-container">
+    
+    <!-- Top Status Bar Simulator -->
+    <div class="status-bar">
+      <span>09:41</span>
+      <div class="icons">
+        <svg width="14" height="10" viewBox="0 0 16 12" fill="currentColor">
+          <path d="M0 3.5C0 2.67 0.67 2 1.5 2H14.5C15.33 2 16 2.67 16 3.5V8.5C16 9.33 15.33 10 14.5 10H1.5C0.67 10 0 9.33 0 8.5V3.5Z"/>
+        </svg>
+        <svg width="14" height="10" viewBox="0 0 16 12" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8C0 9.25 0.28 10.43 0.78 11.5L8 2.5L15.22 11.5C15.72 10.43 16 9.25 16 8C16 3.58 12.42 0 8 0Z"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Header curve with title & coins -->
+    <div class="header-wrapper">
+      <div class="header-nav">
+        <button class="btn-back" id="btnBack" title="ย้อนกลับ">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <h1 class="header-title">Redeem detail</h1>
+        <div class="user-coin-badge" id="headerCoinBadge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700" stroke="#B8860B" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v12M15 9.5H10a2.5 2.5 0 0 0 0 5h4a2.5 2.5 0 0 1 0 5H9" fill="none" stroke="#FFF" stroke-width="2"/>
+          </svg>
+          <span id="userCoinsHeader">1,200</span>
+        </div>
+      </div>
+
+      <!-- Red Curved Bottom Shape -->
+      <div class="header-curve">
+        <svg viewBox="0 0 500 40" preserveAspectRatio="none">
+          <path d="M0,0 C150,45 350,45 500,0 L500,40 L0,40 Z" fill="#F8F9FB"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Main Scrollable Body Content -->
+    <div class="content-scroll" id="contentArea">
+      
+      <!-- Faint background geometry pattern -->
+      <div class="bg-watermark"></div>
+
+      <!-- Item Switcher (Allows testing multiple catalog items) -->
+      <div class="item-switcher">
+        <button class="switcher-btn active" data-id="rw-01">กระเป๋ามหาวิทยาลัย</button>
+        <button class="switcher-btn" data-id="rw-02">เสื้อแจ็คเก็ต</button>
+      </div>
+
+      <!-- TAB 1: REDEEM DETAIL VIEW -->
+      <div id="tabRedeem" class="tab-view active">
+        
+        <!-- Showcase Main Card -->
+        <div class="showcase-card">
+          <div class="image-container">
+            <img id="rewardImage" src="/assets/backpack.jpg" alt="กระเป๋าตรามหาวิทยาลัย">
+          </div>
+          <h2 class="item-title" id="rewardTitle">กระเป๋าตรามหาวิทยาลัย (1 ชิ้น)</h2>
+        </div>
+
+        <!-- 3 Stat Grid Cards -->
+        <div class="stats-grid">
+          
+          <!-- Stat 1: Coins -->
+          <div class="stat-card">
+            <div class="stat-icon">
+              <!-- Hand holding coin icon -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/>
+                <path d="m7 21 1.6-1.4c.4-.4.9-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.8a2 2 0 0 0-2.8-2.8L15 14"/>
+                <circle cx="15" cy="6" r="3"/>
+              </svg>
+            </div>
+            <div class="stat-label">Coins</div>
+            <div class="stat-value" id="rewardCoins">350</div>
+          </div>
+
+          <!-- Stat 2: Stock -->
+          <div class="stat-card">
+            <div class="stat-icon">
+              <!-- Package Box Icon -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m7.5 4.27 9 5.15"/>
+                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                <path d="m3.3 7 8.7 5 8.7-5"/>
+                <path d="M12 22V12"/>
+              </svg>
+            </div>
+            <div class="stat-label">Stock</div>
+            <div class="stat-value" id="rewardStock">1839</div>
+          </div>
+
+          <!-- Stat 3: Valid Until -->
+          <div class="stat-card">
+            <div class="stat-icon">
+              <!-- Calendar Icon -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+                <line x1="16" x2="16" y1="2" y2="6"/>
+                <line x1="8" x2="8" y1="2" y2="6"/>
+                <line x1="3" x2="21" y1="10" y2="10"/>
+              </svg>
+            </div>
+            <div class="stat-label">Valid Until</div>
+            <div class="stat-value" style="font-size: 13px;" id="rewardValid">31 Dec 2027</div>
+          </div>
+
+        </div>
+
+        <!-- Info Accordion 1: Description -->
+        <div class="info-accordion" id="accDescription">
+          <div class="accordion-header" onclick="toggleAccordion('accDescription')">
+            <div class="accordion-title-box">
+              <div class="accordion-icon">
+                <!-- Document file icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" x2="8" y1="13" y2="13"/>
+                  <line x1="16" x2="8" y1="17" y2="17"/>
+                  <line x1="10" x2="8" y1="9" y2="9"/>
+                </svg>
+              </div>
+              <span class="accordion-title">Description</span>
+            </div>
+            <div class="accordion-chevron">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"/>
+              </svg>
+            </div>
+          </div>
+          <div class="accordion-body" id="rewardDescription">
+            กระเป๋าสุดเท่ คุณภาพสูง เนื้อผ้าหนา ทนทาน
+            พร้อมโลโก้มหาวิทยาลัยปักประณีต
+            เหมาะสำหรับใส่อุปกรณ์การเรียน หนังสือ และของใช้ส่วนตัว
+          </div>
+        </div>
+
+        <!-- Info Accordion 2: Condition -->
+        <div class="info-accordion" id="accCondition">
+          <div class="accordion-header" onclick="toggleAccordion('accCondition')">
+            <div class="accordion-title-box">
+              <div class="accordion-icon">
+                <!-- Condition edit/check icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+              </div>
+              <span class="accordion-title">Condition</span>
+            </div>
+            <div class="accordion-chevron">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"/>
+              </svg>
+            </div>
+          </div>
+          <div class="accordion-body" id="rewardCondition">
+            -จำกัด 1 ใบ ต่อท่าน
+            -แลกรับที่จุดบริการนักศึกษา ชั้น1 โรงอาหาร
+            -ไม่สามารถแลกเปลี่ยนเป็นเงินสดได้
+            -สินค้ามีจำนวนจำกัด
+          </div>
+        </div>
+
+        <!-- Red Action Redeem Button -->
+        <div class="action-area">
+          <button class="btn-redeem" id="btnRedeemAction">
+            แลกรับรางวัล
+          </button>
+        </div>
+
+      </div>
+
+      <!-- TAB 2: MY REWARDS / CARD VIEW -->
+      <div id="tabHistory" class="tab-view">
+        <h2 style="font-size: 18px; margin-bottom: 14px;">ประวัติการแลกของรางวัล</h2>
+        <div id="historyListContainer">
+          <p style="text-align: center; color: #999; margin-top: 40px;">ยังไม่มีรายการแลกของรางวัล</p>
+        </div>
+      </div>
+
+      <!-- TAB 3: CHALLENGE VIEW -->
+      <div id="tabChallenge" class="tab-view">
+        <h2 style="font-size: 18px; margin-bottom: 14px;">ภารกิจรับ Coins ฟรี</h2>
+        <div class="showcase-card" style="text-align: center; padding: 24px 16px;">
+          <h3 style="font-size: 16px; margin-bottom: 8px;">🎯 ภารกิจประจำวัน</h3>
+          <p style="font-size: 13px; color: #666; margin-bottom: 16px;">เช็คอินเข้าร่วมกิจกรรมนักศึกษา เพื่อรับ 200 Coins</p>
+          <button class="btn-redeem" id="btnEarnCoins" style="height: 44px; font-size: 15px; margin: 0 auto; width: 80%;">
+            กดรับ +200 Coins
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+      <a href="#" class="nav-item active" data-tab="tabRedeem">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span>Home</span>
+      </a>
+
+      <a href="#" class="nav-item" data-tab="tabHistory">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="14" x="2" y="5" rx="2"/>
+          <line x1="2" x2="22" y1="10" y2="10"/>
+        </svg>
+        <span>Card</span>
+      </a>
+
+      <!-- Center Floating Red Pay Action Button -->
+      <div class="pay-wrapper">
+        <div class="nav-item-pay" id="btnPayCenter" title="สแกน Pay / QR">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="5" height="5" x="3" y="3" rx="1"/>
+            <rect width="5" height="5" x="16" y="3" rx="1"/>
+            <rect width="5" height="5" x="3" y="16" rx="1"/>
+            <path d="M21 16h-3a2 2 0 0 0-2 2v3"/>
+            <path d="M21 21v.01"/>
+            <path d="M12 7v3a2 2 0 0 1-2 2H7"/>
+            <path d="M3 12h.01"/>
+            <path d="M12 3h.01"/>
+            <path d="M12 16v5"/>
+            <path d="M16 12h5"/>
+          </svg>
+        </div>
+        <span class="pay-label">Pay</span>
+      </div>
+
+      <a href="#" class="nav-item" data-tab="tabChallenge">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+          <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+          <path d="M4 22h16"/>
+          <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+          <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+          <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+        </svg>
+        <span>Challenge</span>
+      </a>
+
+      <a href="#" class="nav-item" id="navSettings">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="21" y2="21"/>
+          <line x1="4" x2="20" y1="14" y2="14"/>
+          <line x1="4" x2="20" y1="7" y2="7"/>
+          <circle cx="8" cy="21" r="2"/>
+          <circle cx="16" cy="14" r="2"/>
+          <circle cx="12" cy="7" r="2"/>
+        </svg>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <!-- Redemption Modal Popup -->
+    <div class="modal-overlay" id="redeemModal">
+      <div class="modal-card">
+        <div class="success-badge">✓</div>
+        <h3 class="modal-title">แลกรับรางวัลสำเร็จ!</h3>
+        <p class="modal-subtitle">โปรดนำ QR Code หรือรหัสนี้ ไปแสดงที่จุดรับสินค้า</p>
+        
+        <div class="qr-box">
+          <img id="modalQrImg" class="qr-code-img" src="" alt="QR Code">
+          <div class="coupon-code" id="modalCouponCode">SKRU-350-000000</div>
+        </div>
+
+        <button class="btn-close-modal" id="btnCloseModal">ตกลง / ปิดหน้าต่าง</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
