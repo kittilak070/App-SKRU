@@ -1,0 +1,11 @@
+{
+  "id": "T001",
+  "name": "MR.Panukorn",
+  "faculty": "คณะวิทยาศาสตร์และเทคโนโลยี",
+  "department": "สาขาวิทยาการคอมพิวเตอร์และเทคโนโลยีสารสนเทศ",
+  "status": "พร้อมให้เข้าพบ",
+  "isAvailable": true,
+  "consultationHours": "จันทร์, พุธ 13:00 - 16:00 น.",
+  "room": "ห้องพักอาจารย์ 4302 อาคาร 4",
+  "email": "panukorn@skru.ac.th"
+}
