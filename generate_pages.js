@@ -244,188 +244,162 @@ const services = [
   }
 ];
 
-// Helper to create wrapper template
-function createPageHtml(currentService) {
+function createAppPageHtml(currentService) {
   const optionsHtml = services.map(s => {
     const isSelected = s.file === currentService.file ? 'selected' : '';
-    return `<option value="${s.file}" ${isSelected}>[${s.branch}] ${s.thaiTitle} (${s.title})</option>`;
+    return `<option value="${s.file}" ${isSelected}>[${s.branch}] ${s.thaiTitle}</option>`;
   }).join('\n            ');
 
   return `<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${currentService.thaiTitle} (${currentService.title}) | SKRU Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>${currentService.thaiTitle} | SKRU App</title>
+  
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0f172a">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     body {
       font-family: 'Prompt', sans-serif;
-      background: #0f172a;
+      background: #090d16;
       overflow: hidden;
       height: 100vh;
       display: flex;
       flex-direction: column;
     }
-    .portal-nav {
-      height: 54px;
-      background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
+    
+    /* Native App Bar */
+    .app-topbar {
+      height: 52px;
+      background: #0f172a;
       border-bottom: 1px solid rgba(255,255,255,0.1);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 16px;
+      padding: 0 12px;
       color: white;
       z-index: 1000;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
-    .portal-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: white;
-      cursor: pointer;
-    }
-    .portal-logo {
-      width: 34px;
-      height: 34px;
-      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      box-shadow: 0 2px 8px rgba(59,130,246,0.4);
-    }
-    .portal-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-    .portal-title small {
-      font-size: 0.75rem;
-      font-weight: 400;
-      opacity: 0.75;
-      display: block;
-      margin-top: -2px;
-    }
-    .current-badge {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    
+    .btn-app-back {
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.15);
-      padding: 4px 12px;
+      color: #38bdf8;
+      padding: 6px 12px;
       border-radius: 20px;
-      font-size: 0.85rem;
-    }
-    .branch-tag {
-      background: #3b82f6;
-      color: white;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 6px;
-    }
-    .portal-controls {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .service-select {
-      background: #1e293b;
-      color: white;
-      border: 1px solid rgba(255,255,255,0.2);
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 0.85rem;
-      outline: none;
-      cursor: pointer;
-      max-width: 320px;
-    }
-    .service-select:focus {
-      border-color: #3b82f6;
-    }
-    .btn-nav {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: white;
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 600;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       transition: all 0.2s;
     }
-    .btn-nav:hover {
-      background: rgba(255,255,255,0.18);
+    .btn-app-back:hover {
+      background: rgba(56, 189, 248, 0.2);
     }
-    .btn-nav-primary {
-      background: #3b82f6;
-      border-color: #2563eb;
+
+    .app-title-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .btn-nav-primary:hover {
+    .app-branch-badge {
       background: #2563eb;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 6px;
     }
-    .frame-container {
+    .app-current-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #f1f5f9;
+      max-width: 140px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .app-top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .app-select-nav {
+      background: rgba(255,255,255,0.08);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 4px 8px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.78rem;
+      outline: none;
+      max-width: 130px;
+      cursor: pointer;
+    }
+    .btn-open-direct {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #94a3b8;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      text-decoration: none;
+    }
+    .btn-open-direct:hover {
+      color: white;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .app-body-frame {
       flex: 1;
       width: 100%;
-      height: calc(100vh - 54px);
-      position: relative;
-    }
-    .app-frame {
-      width: 100%;
-      height: 100%;
+      height: calc(100vh - 52px);
       border: none;
       background: white;
-      display: block;
     }
   </style>
 </head>
 <body>
-  <!-- Top Navigation Hub -->
-  <header class="portal-nav">
-    <a href="index.html" class="portal-brand" title="กลับหน้าหลักรวมบริการ">
-      <div class="portal-logo"><i class="fa-solid fa-graduation-cap"></i></div>
-      <div class="portal-title">
-        SKRU PORTAL
-        <small>มหาวิทยาลัยราชภัฏสงขลา</small>
-      </div>
+  <!-- Native App Navigation Bar -->
+  <header class="app-topbar">
+    <a href="index.html" class="btn-app-back" title="กลับสู่ SKRU SuperApp">
+      <i class="fa-solid fa-chevron-left"></i> หน้าหลักแอป
     </a>
 
-    <div class="current-badge">
-      <span class="branch-tag">Branch ${currentService.branch}</span>
-      <i class="${currentService.icon}"></i>
-      <strong>${currentService.thaiTitle}</strong>
+    <div class="app-title-box">
+      <span class="app-branch-badge">${currentService.branch}</span>
+      <span class="app-current-title">${currentService.thaiTitle}</span>
     </div>
 
-    <div class="portal-controls">
-      <label for="pageSwitcher" style="font-size: 0.8rem; opacity: 0.7;">สลับหน้า:</label>
-      <select id="pageSwitcher" class="service-select" onchange="location.href=this.value">
+    <div class="app-top-actions">
+      <select class="app-select-nav" onchange="location.href=this.value" title="สลับบริการ">
         ${optionsHtml}
       </select>
-      <a href="${currentService.target}" target="_blank" class="btn-nav" title="เปิดหน้าเว็บตรงแบบไม่มีแถบเมนู">
-        <i class="fa-solid fa-arrow-up-right-from-square"></i> เปิดตรง
-      </a>
-      <a href="index.html" class="btn-nav btn-nav-primary" title="กลับหน้าแรก">
-        <i class="fa-solid fa-house"></i> หน้าแรก
+      <a href="${currentService.target}" target="_blank" class="btn-open-direct" title="เปิดหน้าต่างแยกเต็มจอ">
+        <i class="fa-solid fa-up-right-from-square"></i>
       </a>
     </div>
   </header>
 
-  <!-- Module Frame -->
-  <main class="frame-container">
-    <iframe src="${currentService.target}" class="app-frame" id="contentFrame" title="${currentService.thaiTitle}"></iframe>
-  </main>
+  <!-- Application Content Frame -->
+  <iframe src="${currentService.target}" class="app-body-frame" id="appBodyFrame" title="${currentService.thaiTitle}"></iframe>
 </body>
 </html>
 `;
@@ -433,10 +407,10 @@ function createPageHtml(currentService) {
 
 // Generate all requested HTML files + aliases in root
 for (const service of services) {
-  const htmlContent = createPageHtml(service);
+  const htmlContent = createAppPageHtml(service);
   const primaryPath = path.join(__dirname, service.file);
   fs.writeFileSync(primaryPath, htmlContent, 'utf8');
-  console.log(`Generated: ${service.file}`);
+  console.log(`Generated app page: ${service.file}`);
 
   for (const alias of service.aliases) {
     const aliasPath = path.join(__dirname, alias);
@@ -445,4 +419,4 @@ for (const service of services) {
   }
 }
 
-console.log('All 20 requested root HTML files generated successfully!');
+console.log('All app pages updated to mobile-app native experience!');

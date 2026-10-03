@@ -2,860 +2,1103 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SKRU Unified Portal | ศูนย์รวมบริการดิจิทัล มหาวิทยาลัยราชภัฏสงขลา</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>SKRU SuperApp | มหาวิทยาลัยราชภัฏสงขลา</title>
+  
+  <!-- Web App Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SKRU App">
+  <meta name="theme-color" content="#0f172a">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <style>
     :root {
-      --primary: #1e3a8a;
-      --primary-hover: #1e40af;
-      --primary-light: #3b82f6;
-      --accent: #f59e0b;
-      --accent-glow: rgba(245, 158, 11, 0.25);
-      --bg: #090d16;
-      --bg-surface: #111827;
-      --bg-card: rgba(26, 34, 52, 0.7);
+      --primary: #1d4ed8;
+      --primary-dark: #1e3a8a;
+      --primary-gradient: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 50%, #06b6d4 100%);
+      --card-gradient: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+      --gold-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      --app-bg: #0b0f19;
+      --app-surface: #131b2e;
+      --app-card: rgba(23, 32, 54, 0.85);
       --card-border: rgba(255, 255, 255, 0.08);
-      --card-hover-border: rgba(59, 130, 246, 0.5);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --radius: 14px;
-      --radius-sm: 8px;
-      --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
-      --shadow-hover: 0 12px 32px -4px rgba(59, 130, 246, 0.25);
+      --radius-app: 36px;
+      --radius-card: 20px;
+      --radius-icon: 16px;
+      --shadow-app: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      --shadow-card: 0 8px 24px -4px rgba(0, 0, 0, 0.3);
+      --bottom-nav-height: 68px;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
       font-family: 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg);
+      background-color: #030712;
       background-image: 
-        radial-gradient(circle at 10% 20%, rgba(30, 58, 138, 0.25) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.2) 0%, transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 60%);
+        radial-gradient(at 0% 0%, rgba(29, 78, 216, 0.25) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.2) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(6, 182, 212, 0.1) 0px, transparent 60%);
       background-attachment: fixed;
       color: var(--text-main);
       min-height: 100vh;
-      line-height: 1.5;
-    }
-
-    /* Container */
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* Top Navigation Header */
-    .top-navbar {
-      height: 72px;
       display: flex;
+      justify-content: center;
       align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--card-border);
-      backdrop-filter: blur(12px);
-      background: rgba(9, 13, 22, 0.8);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      padding: 20px 0;
     }
 
-    .brand-section {
+    /* Device Wrapper Frame */
+    .device-wrapper {
+      width: 100%;
+      max-width: 480px;
+      height: 94vh;
+      max-height: 960px;
+      background: var(--app-bg);
+      border-radius: var(--radius-app);
+      box-shadow: var(--shadow-app);
       display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      color: inherit;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      border: 8px solid #1f293d;
+      transition: max-width 0.3s ease, border-radius 0.3s ease;
     }
 
-    .brand-logo {
-      width: 44px;
+    /* Fullscreen Desktop Mode */
+    body.expanded-mode {
+      padding: 0;
+    }
+    body.expanded-mode .device-wrapper {
+      max-width: 100%;
+      height: 100vh;
+      max-height: 100vh;
+      border-radius: 0;
+      border: none;
+    }
+
+    /* Top Device Controls Bar (For toggle view) */
+    .device-switcher-bar {
+      position: absolute;
+      top: 10px;
+      right: 16px;
+      z-index: 1000;
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-device-toggle {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-family: inherit;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s;
+    }
+
+    .btn-device-toggle:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* App Status Bar */
+    .status-bar {
       height: 44px;
-      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e3a8a 100%);
-      border-radius: 12px;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      flex-shrink: 0;
+      z-index: 10;
+    }
+
+    .status-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dynamic-island {
+      width: 90px;
+      height: 22px;
+      background: #000;
+      border-radius: 20px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
-      color: white;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      gap: 6px;
+      font-size: 0.65rem;
+      color: #94a3b8;
     }
 
-    .brand-text h1 {
-      font-size: 1.15rem;
+    .status-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* App Main Scrollable Container */
+    .app-viewport {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 0 18px calc(var(--bottom-nav-height) + 16px) 18px;
+      scrollbar-width: none;
+    }
+    .app-viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* In-App Header */
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0 16px 0;
+    }
+
+    .user-profile-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .user-text h2 {
+      font-size: 0.98rem;
       font-weight: 700;
-      letter-spacing: -0.3px;
       color: #ffffff;
       line-height: 1.2;
     }
 
-    .brand-text p {
-      font-size: 0.78rem;
+    .user-text p {
+      font-size: 0.75rem;
       color: var(--text-muted);
     }
 
-    .top-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .badge-git {
-      background: rgba(59, 130, 246, 0.15);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      color: #93c5fd;
-      padding: 6px 14px;
-      border-radius: 30px;
-      font-size: 0.82rem;
+    .header-actions {
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    .badge-git i {
-      color: #60a5fa;
-    }
-
-    /* Hero Section */
-    .hero {
-      padding: 50px 0 30px 0;
-      text-align: center;
-    }
-
-    .hero-pill {
-      display: inline-flex;
+    .btn-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: white;
+      display: flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(245, 158, 11, 0.12);
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      color: #fcd34d;
-      padding: 5px 16px;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      font-weight: 500;
+      justify-content: center;
+      font-size: 0.95rem;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .btn-icon:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .badge-dot {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 8px;
+      height: 8px;
+      background: #ef4444;
+      border-radius: 50%;
+      border: 2px solid var(--app-bg);
+    }
+
+    /* Virtual Student Card Widget */
+    .student-card-widget {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e1b4b 60%, #0f172a 100%);
+      border-radius: var(--radius-card);
+      padding: 18px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
       margin-bottom: 20px;
     }
 
-    .hero-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      line-height: 1.25;
-      margin-bottom: 14px;
-      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-desc {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      max-width: 680px;
-      margin: 0 auto 32px auto;
-    }
-
-    /* Search & Filter Bar */
-    .controls-panel {
-      background: var(--bg-card);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      margin-bottom: 36px;
-      box-shadow: var(--shadow-card);
-    }
-
-    .search-row {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .search-wrapper {
-      position: relative;
-      flex: 1;
-    }
-
-    .search-wrapper i {
+    .student-card-widget::before {
+      content: '';
       position: absolute;
-      left: 16px;
+      top: -30%;
+      right: -20%;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .card-widget-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .univ-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #93c5fd;
+      letter-spacing: 0.5px;
+    }
+
+    .univ-tag i {
+      font-size: 1rem;
+      color: #f59e0b;
+    }
+
+    .card-type-pill {
+      background: rgba(245, 158, 11, 0.18);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fcd34d;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    .card-widget-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .student-info h3 {
+      font-size: 1.12rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .student-info p {
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    .card-qr-box {
+      background: white;
+      padding: 4px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .card-qr-box img {
+      width: 52px;
+      height: 52px;
+      display: block;
+    }
+
+    .card-quick-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-card-quick {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      padding: 7px 10px;
+      border-radius: 10px;
+      font-size: 0.78rem;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-card-quick:hover {
+      background: rgba(255, 255, 255, 0.18);
+      color: white;
+    }
+
+    /* Search Box */
+    .app-search-box {
+      position: relative;
+      margin-bottom: 18px;
+    }
+
+    .app-search-box i {
+      position: absolute;
+      left: 14px;
       top: 50%;
       transform: translateY(-50%);
       color: var(--text-muted);
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
 
-    .search-input {
+    .app-search-input {
       width: 100%;
-      background: rgba(15, 23, 42, 0.6);
+      background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 12px 16px 12px 46px;
+      border-radius: 14px;
+      padding: 10px 14px 10px 40px;
       color: white;
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       font-family: inherit;
       outline: none;
       transition: all 0.2s;
     }
 
-    .search-input:focus {
-      border-color: var(--primary-light);
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    .app-search-input:focus {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--primary);
     }
 
-    .search-input::placeholder {
+    .app-search-input::placeholder {
       color: #64748b;
     }
 
-    /* Filter Tabs */
-    .filter-tabs {
+    /* Category Pill Switcher */
+    .category-pills {
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding-bottom: 4px;
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+      scrollbar-width: none;
+    }
+    .category-pills::-webkit-scrollbar {
+      display: none;
     }
 
-    .filter-btn {
-      background: rgba(255, 255, 255, 0.04);
+    .pill-item {
+      background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--card-border);
       color: var(--text-muted);
-      padding: 8px 16px;
-      border-radius: 30px;
-      font-family: inherit;
-      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.78rem;
       font-weight: 500;
-      cursor: pointer;
       white-space: nowrap;
+      cursor: pointer;
       transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
-    .filter-btn:hover {
-      background: rgba(255, 255, 255, 0.08);
-      color: white;
-    }
-
-    .filter-btn.active {
-      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    .pill-item.active {
+      background: var(--primary);
       color: white;
       border-color: #3b82f6;
-      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.35);
+      box-shadow: 0 2px 8px rgba(29, 78, 216, 0.4);
     }
 
-    /* Services Grid */
-    .services-grid {
+    /* Section Title */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .section-header h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+
+    .section-header span {
+      font-size: 0.75rem;
+      color: #38bdf8;
+    }
+
+    /* App Icons Grid (4 columns) */
+    .app-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 20px;
-      margin-bottom: 60px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px 10px;
+      margin-bottom: 24px;
     }
 
-    .service-card {
-      background: var(--bg-card);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: 22px;
+    .app-item {
       display: flex;
       flex-direction: column;
+      align-items: center;
       text-decoration: none;
       color: inherit;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow-card);
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.15s ease;
     }
 
-    .service-card::before {
-      content: '';
+    .app-item:active {
+      transform: scale(0.92);
+    }
+
+    .app-icon-squircle {
+      width: 58px;
+      height: 58px;
+      border-radius: var(--radius-icon);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      color: white;
+      margin-bottom: 6px;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: all 0.2s;
+    }
+
+    .app-item:hover .app-icon-squircle {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .app-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: #e2e8f0;
+      line-height: 1.25;
+      max-width: 68px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .branch-tiny-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #0284c7;
+      color: white;
+      font-size: 0.58rem;
+      font-weight: 700;
+      padding: 1px 4px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    /* Icon Palette gradients */
+    .grad-blue   { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+    .grad-emerald{ background: linear-gradient(135deg, #10b981, #059669); }
+    .grad-amber  { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .grad-cyan   { background: linear-gradient(135deg, #06b6d4, #0e7490); }
+    .grad-indigo { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+    .grad-purple { background: linear-gradient(135deg, #a855f7, #7e22ce); }
+    .grad-rose   { background: linear-gradient(135deg, #f43f5e, #be123c); }
+    .grad-teal   { background: linear-gradient(135deg, #14b8a6, #0f766e); }
+    .grad-sky    { background: linear-gradient(135deg, #0ea5e9, #0369a1); }
+    .grad-red    { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+
+    /* Notice & News Carousel Banner */
+    .news-banner {
+      background: linear-gradient(90deg, rgba(37, 99, 235, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 14px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .news-banner i {
+      font-size: 1.2rem;
+      color: #60a5fa;
+    }
+
+    .news-text {
+      flex: 1;
+      font-size: 0.78rem;
+    }
+
+    .news-text strong {
+      display: block;
+      color: #93c5fd;
+      font-size: 0.8rem;
+    }
+
+    /* Bottom App Navigation Bar */
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: var(--bottom-nav-height);
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--card-border);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 10px;
+      z-index: 50;
+    }
+
+    .nav-tab-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      color: #64748b;
+      font-size: 0.7rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex: 1;
+    }
+
+    .nav-tab-item i {
+      font-size: 1.25rem;
+      transition: transform 0.2s;
+    }
+
+    .nav-tab-item.active {
+      color: #38bdf8;
+    }
+
+    .nav-tab-item.active i {
+      transform: translateY(-2px);
+    }
+
+    /* Modal / In-App WebView Overlay */
+    .in-app-view {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, transparent);
-      transition: all 0.25s;
+      bottom: 0;
+      background: var(--app-bg);
+      z-index: 200;
+      display: none;
+      flex-direction: column;
     }
 
-    .service-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--card-hover-border);
-      box-shadow: var(--shadow-hover);
-      background: rgba(30, 41, 64, 0.85);
-    }
-
-    .service-card:hover::before {
-      background: linear-gradient(90deg, #3b82f6, #60a5fa, #38bdf8);
-    }
-
-    .card-top {
+    .in-app-view.open {
       display: flex;
+    }
+
+    .app-bar-view {
+      height: 52px;
+      background: #0f172a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
+      padding: 0 14px;
       color: white;
     }
 
-    /* Card color variations */
-    .icon-blue   { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
-    .icon-indigo { background: linear-gradient(135deg, #6366f1, #4f46e5); }
-    .icon-emerald{ background: linear-gradient(135deg, #10b981, #059669); }
-    .icon-amber  { background: linear-gradient(135deg, #f59e0b, #d97706); }
-    .icon-purple { background: linear-gradient(135deg, #a855f7, #7e22ce); }
-    .icon-rose   { background: linear-gradient(135deg, #f43f5e, #be123c); }
-    .icon-cyan   { background: linear-gradient(135deg, #06b6d4, #0e7490); }
-
-    .branch-badge {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #93c5fd;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 20px;
-      letter-spacing: 0.5px;
-    }
-
-    .card-title {
-      font-size: 1.12rem;
-      font-weight: 600;
-      color: #f1f5f9;
-      margin-bottom: 4px;
-      line-height: 1.35;
-    }
-
-    .card-subtitle {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-      font-weight: 400;
-    }
-
-    .card-desc {
-      font-size: 0.85rem;
-      color: #cbd5e1;
-      margin-bottom: 18px;
-      line-height: 1.5;
-      flex: 1;
-    }
-
-    .card-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding-top: 12px;
-      margin-top: auto;
-    }
-
-    .file-tag {
-      font-family: 'Consolas', 'Courier New', monospace;
-      font-size: 0.78rem;
+    .btn-back-app {
+      background: transparent;
+      border: none;
       color: #38bdf8;
-      background: rgba(56, 189, 248, 0.1);
-      padding: 3px 8px;
-      border-radius: 6px;
-      border: 1px solid rgba(56, 189, 248, 0.2);
-    }
-
-    .btn-card-action {
-      display: inline-flex;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.82rem;
+      font-family: inherit;
       font-weight: 600;
-      color: #60a5fa;
-      transition: gap 0.2s;
     }
 
-    .service-card:hover .btn-card-action {
-      gap: 10px;
-      color: #93c5fd;
+    .app-bar-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
-    /* Empty state */
-    .empty-state {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 60px 20px;
-      color: var(--text-muted);
+    .app-bar-actions {
+      display: flex;
+      gap: 8px;
     }
 
-    .empty-state i {
-      font-size: 3rem;
-      margin-bottom: 12px;
-      opacity: 0.5;
-    }
-
-    /* Footer */
-    .portal-footer {
-      border-top: 1px solid var(--card-border);
-      padding: 32px 0;
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-top: auto;
-    }
-
-    .portal-footer a {
-      color: #60a5fa;
+    .btn-app-bar-action {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-decoration: none;
+      font-size: 0.8rem;
     }
 
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 1.85rem;
-      }
-      .search-row {
-        flex-direction: column;
-      }
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
+    .in-app-frame {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: white;
     }
   </style>
 </head>
 <body>
-  <!-- Header Bar -->
-  <header class="top-navbar">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-      <a href="index.html" class="brand-section">
-        <div class="brand-logo">
-          <i class="fa-solid fa-graduation-cap"></i>
-        </div>
-        <div class="brand-text">
-          <h1>SKRU UNIFIED PORTAL</h1>
-          <p>ระบบศูนย์รวมบริการดิจิทัล มหาวิทยาลัยราชภัฏสงขลา</p>
-        </div>
-      </a>
-      <div class="top-actions">
-        <div class="badge-git">
-          <i class="fa-brands fa-github"></i>
-          <span>App-SKRU • 20 บริการดิจิทัล</span>
-        </div>
+
+  <!-- SuperApp Device Shell -->
+  <div class="device-wrapper" id="deviceWrapper">
+    <!-- View Mode Switcher -->
+    <div class="device-switcher-bar">
+      <button class="btn-device-toggle" id="modeToggleBtn" title="สลับโหมดมือถือ / เต็มจอ">
+        <i class="fa-solid fa-expand"></i> เต็มจอ
+      </button>
+    </div>
+
+    <!-- Mobile Status Bar -->
+    <div class="status-bar">
+      <div class="status-left">
+        <span>09:41</span>
+      </div>
+      <div class="dynamic-island">
+        <i class="fa-solid fa-graduation-cap" style="color:#60a5fa;"></i> SKRU
+      </div>
+      <div class="status-right">
+        <i class="fa-solid fa-signal"></i>
+        <i class="fa-solid fa-wifi"></i>
+        <i class="fa-solid fa-battery-full"></i>
       </div>
     </div>
-  </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-pill">
-        <i class="fa-solid fa-sparkles"></i> รวมทุกสาขา (Branches) เชื่อมต่อเข้าสู่ระบบเดียว
-      </div>
-      <h2 class="hero-title">Songkhla Rajabhat University Portal</h2>
-      <p class="hero-desc">
-        เลือกเข้าใช้งานระบบบริการนักศึกษาและบุคลากร ทั้ง 20 บริการดิจิทัลได้ทันทีผ่านชื่อไฟล์ที่กำหนด
-      </p>
-
-      <!-- Search & Filter Controls -->
-      <div class="controls-panel">
-        <div class="search-row">
-          <div class="search-wrapper">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" class="search-input" placeholder="ค้นหาบริการ เช่น เช็คชื่อ, กยศ, แผนที่, ค่าเทอม, บัตรนักศึกษา หรือรหัสสาขา 027-051...">
+    <!-- Scrollable Viewport -->
+    <main class="app-viewport">
+      <!-- App Header Profile -->
+      <header class="app-header">
+        <div class="user-profile-header">
+          <div class="user-avatar">
+            <i class="fa-solid fa-user-graduate"></i>
+          </div>
+          <div class="user-text">
+            <h2>นาย.กรรณพัต วังค้อม</h2>
+            <p>6530100001 • วท.บ. วิทยาการคอมพิวเตอร์</p>
           </div>
         </div>
-        <div class="filter-tabs" id="filterTabs">
-          <button class="filter-btn active" data-category="all"><i class="fa-solid fa-border-all"></i> ทั้งหมด (20)</button>
-          <button class="filter-btn" data-category="academic"><i class="fa-solid fa-book"></i> วิชาการและการเรียน</button>
-          <button class="filter-btn" data-category="finance"><i class="fa-solid fa-coins"></i> การเงินและสิทธิประโยชน์</button>
-          <button class="filter-btn" data-category="facilities"><i class="fa-solid fa-building"></i> สถานที่และสิ่งอำนวยความสะดวก</button>
-          <button class="filter-btn" data-category="activities"><i class="fa-solid fa-calendar-check"></i> กิจกรรมและข่าวสาร</button>
-          <button class="filter-btn" data-category="account"><i class="fa-solid fa-user-gear"></i> บัญชีและความปลอดภัย</button>
+        <div class="header-actions">
+          <button class="btn-icon" title="สแกน QR Code" onclick="openService('check-in.html', 'Check-in Class')">
+            <i class="fa-solid fa-qrcode"></i>
+          </button>
+          <button class="btn-icon" title="การแจ้งเตือน" onclick="openService('news.html', 'ข่าวสารมหาวิทยาลัย')">
+            <i class="fa-regular fa-bell"></i>
+            <span class="badge-dot"></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Digital Student Card Widget -->
+      <section class="student-card-widget">
+        <div class="card-widget-top">
+          <div class="univ-tag">
+            <i class="fa-solid fa-shield-halved"></i> SKRU SMART ID
+          </div>
+          <span class="card-type-pill">STUDENT PASS</span>
+        </div>
+        <div class="card-widget-body">
+          <div class="student-info">
+            <h3>นาย.กรรณพัต วังค้อม</h3>
+            <p>คณะวิทยาศาสตร์และเทคโนโลยี (ปี 3)</p>
+          </div>
+          <div class="card-qr-box" onclick="openService('student-card.html', 'บัตรนักศึกษา')" title="แตะเพื่อเปิดบัตร">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=SKRU-6530100001" alt="Student QR">
+          </div>
+        </div>
+        <div class="card-quick-actions">
+          <button class="btn-card-quick" onclick="openService('check-in.html', 'Check-in Class')">
+            <i class="fa-solid fa-user-check"></i> เช็คชื่อเข้าเรียน
+          </button>
+          <button class="btn-card-quick" onclick="openService('tuition-fee.html', 'จ่ายค่าเทอม')">
+            <i class="fa-solid fa-receipt"></i> จ่ายค่าเทอม
+          </button>
+        </div>
+      </section>
+
+      <!-- Search in App -->
+      <div class="app-search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="appSearchInput" class="app-search-input" placeholder="ค้นหาบริการดิจิทัล (20 บริการ)...">
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="category-pills">
+        <div class="pill-item active" data-cat="all">ทั้งหมด (20)</div>
+        <div class="pill-item" data-cat="academic">วิชาการ</div>
+        <div class="pill-item" data-cat="finance">การเงิน</div>
+        <div class="pill-item" data-cat="facilities">สถานที่</div>
+        <div class="pill-item" data-cat="activities">กิจกรรม</div>
+        <div class="pill-item" data-cat="account">บัญชี</div>
+      </div>
+
+      <!-- Quick News Flash -->
+      <div class="news-banner" onclick="openService('news.html', 'ข่าวสารมหาวิทยาลัย')" style="cursor: pointer;">
+        <i class="fa-solid fa-bullhorn"></i>
+        <div class="news-text">
+          <strong>ประกาศ มรภ.สงขลา</strong>
+          เปิดระบบลงทะเบียนและจ่ายค่าเทอม ภาคเรียนที่ 1/2569 แล้ว
+        </div>
+        <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem; color: #94a3b8;"></i>
+      </div>
+
+      <!-- App Grid Section (20 Services) -->
+      <div class="section-header">
+        <h3>บริการดิจิทัลทั้งหมด</h3>
+        <span id="serviceCountText">20 บริการ</span>
+      </div>
+
+      <div class="app-grid" id="appsGrid">
+        <!-- 1. Check-in Class (035) -->
+        <div class="app-item" data-cat="academic" data-name="check-in เช็คชื่อ เข้าเรียน 035" onclick="openService('check-in.html', 'Check-in Class')">
+          <div class="app-icon-squircle grad-blue">
+            <i class="fa-solid fa-clipboard-user"></i>
+            <span class="branch-tiny-badge">035</span>
+          </div>
+          <span class="app-label">เช็คชื่อเรียน</span>
+        </div>
+
+        <!-- 2. Student Profile (051) -->
+        <div class="app-item" data-cat="account" data-name="student profile ข้อมูล ประวัตินักศึกษา 051" onclick="openService('student-profile.html', 'Student Profile')">
+          <div class="app-icon-squircle grad-emerald">
+            <i class="fa-solid fa-id-card"></i>
+            <span class="branch-tiny-badge">051</span>
+          </div>
+          <span class="app-label">ข้อมูลประวัติ</span>
+        </div>
+
+        <!-- 3. Tuition Fee (045) -->
+        <div class="app-item" data-cat="finance" data-name="tuition fee จ่ายค่าเทอม ค่าธรรมเนียม 045" onclick="openService('tuition-fee.html', 'จ่ายค่าเทอม')">
+          <div class="app-icon-squircle grad-amber">
+            <i class="fa-solid fa-credit-card"></i>
+            <span class="branch-tiny-badge">045</span>
+          </div>
+          <span class="app-label">จ่ายค่าเทอม</span>
+        </div>
+
+        <!-- 4. Student Card (028) -->
+        <div class="app-item" data-cat="account" data-name="student card บัตรนักศึกษา 028" onclick="openService('student-card.html', 'บัตรนักศึกษา')">
+          <div class="app-icon-squircle grad-cyan">
+            <i class="fa-solid fa-address-card"></i>
+            <span class="branch-tiny-badge">028</span>
+          </div>
+          <span class="app-label">บัตรนักศึกษา</span>
+        </div>
+
+        <!-- 5. Academic Record (042) -->
+        <div class="app-item" data-cat="academic" data-name="grades academic record ผลการศึกษา คำแนะนำ 042" onclick="openService('academic-record.html', 'ผลการศึกษา')">
+          <div class="app-icon-squircle grad-indigo">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span class="branch-tiny-badge">042</span>
+          </div>
+          <span class="app-label">ผลการศึกษา</span>
+        </div>
+
+        <!-- 6. Campus Map (032) -->
+        <div class="app-item" data-cat="facilities" data-name="campus map แผนที่ มหาวิทยาลัย 032" onclick="openService('campus-map.html', 'แผนที่มหาวิทยาลัย')">
+          <div class="app-icon-squircle grad-emerald">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span class="branch-tiny-badge">032</span>
+          </div>
+          <span class="app-label">แผนที่ มรภ.</span>
+        </div>
+
+        <!-- 7. Student Loan (044) -->
+        <div class="app-item" data-cat="finance" data-name="student loan กยศ กู้ยืม 044" onclick="openService('student-loan.html', 'ลงทะเบียน กยศ.')">
+          <div class="app-icon-squircle grad-amber">
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+            <span class="branch-tiny-badge">044</span>
+          </div>
+          <span class="app-label">กู้ยืม กยศ.</span>
+        </div>
+
+        <!-- 8. Booking (043) -->
+        <div class="app-item" data-cat="facilities" data-name="booking จอง ยืม อุปกรณ์ สถานที่ 043" onclick="openService('booking.html', 'ยืม/จองอุปกรณ์')">
+          <div class="app-icon-squircle grad-rose">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span class="branch-tiny-badge">043</span>
+          </div>
+          <span class="app-label">ยืม/จองของ</span>
+        </div>
+
+        <!-- 9. Faculty Contact (030) -->
+        <div class="app-item" data-cat="academic" data-name="faculty contact ติดต่ออาจารย์ คณะ 030" onclick="openService('faculty-contact.html', 'ติดต่ออาจารย์')">
+          <div class="app-icon-squircle grad-blue">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span class="branch-tiny-badge">030</span>
+          </div>
+          <span class="app-label">ติดต่ออาจารย์</span>
+        </div>
+
+        <!-- 10. News (041) -->
+        <div class="app-item" data-cat="activities" data-name="news ข่าวสาร มหาวิทยาลัย 041" onclick="openService('news.html', 'ข่าวสารมหาวิทยาลัย')">
+          <div class="app-icon-squircle grad-purple">
+            <i class="fa-solid fa-newspaper"></i>
+            <span class="branch-tiny-badge">041</span>
+          </div>
+          <span class="app-label">ข่าวสาร</span>
+        </div>
+
+        <!-- 11. Learning Resources (029) -->
+        <div class="app-item" data-cat="academic" data-name="learning resources แหล่งเรียนรู้ สื่อ 029" onclick="openService('learning-resources.html', 'แหล่งเรียนรู้')">
+          <div class="app-icon-squircle grad-indigo">
+            <i class="fa-solid fa-book-open-reader"></i>
+            <span class="branch-tiny-badge">029</span>
+          </div>
+          <span class="app-label">แหล่งเรียนรู้</span>
+        </div>
+
+        <!-- 12. Dorm Booking (039) -->
+        <div class="app-item" data-cat="facilities" data-name="dorm dormitory booking จองหอพัก 039" onclick="openService('dorm-booking.html', 'จองหอพัก')">
+          <div class="app-icon-squircle grad-teal">
+            <i class="fa-solid fa-bed"></i>
+            <span class="branch-tiny-badge">039</span>
+          </div>
+          <span class="app-label">จองหอพัก</span>
+        </div>
+
+        <!-- 13. Event Booking (046) -->
+        <div class="app-item" data-cat="activities" data-name="event booking จองกิจกรรม 046" onclick="openService('event-booking.html', 'จองกิจกรรม')">
+          <div class="app-icon-squircle grad-amber">
+            <i class="fa-solid fa-champagne-glasses"></i>
+            <span class="branch-tiny-badge">046</span>
+          </div>
+          <span class="app-label">จองกิจกรรม</span>
+        </div>
+
+        <!-- 14. Privacy Settings (040) -->
+        <div class="app-item" data-cat="account" data-name="privacy settings จัดการความเป็นส่วนตัว 040" onclick="openService('privacy-settings.html', 'ความเป็นส่วนตัว')">
+          <div class="app-icon-squircle grad-rose">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span class="branch-tiny-badge">040</span>
+          </div>
+          <span class="app-label">ความเป็นส่วนตัว</span>
+        </div>
+
+        <!-- 15. Academic Calendar (048) -->
+        <div class="app-item" data-cat="academic" data-name="academic calendar ปฏิทินการศึกษา 048" onclick="openService('academic-calendar.html', 'ปฏิทินการศึกษา')">
+          <div class="app-icon-squircle grad-sky">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span class="branch-tiny-badge">048</span>
+          </div>
+          <span class="app-label">ปฏิทินศึกษา</span>
+        </div>
+
+        <!-- 16. Login Portal (027) -->
+        <div class="app-item" data-cat="account" data-name="login เข้าสู่ระบบ 027" onclick="openService('login.html', 'เข้าสู่ระบบ')">
+          <div class="app-icon-squircle grad-blue">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            <span class="branch-tiny-badge">027</span>
+          </div>
+          <span class="app-label">เข้าสู่ระบบ</span>
+        </div>
+
+        <!-- 17. Settings (049) -->
+        <div class="app-item" data-cat="account" data-name="settings ตั้งค่าระบบ 049" onclick="openService('settings.html', 'ตั้งค่าระบบ')">
+          <div class="app-icon-squircle grad-indigo">
+            <i class="fa-solid fa-gear"></i>
+            <span class="branch-tiny-badge">049</span>
+          </div>
+          <span class="app-label">ตั้งค่าระบบ</span>
+        </div>
+
+        <!-- 18. Vote & Survey (033) -->
+        <div class="app-item" data-cat="activities" data-name="vote survey โหวต แบบสำรวจ 033" onclick="openService('vote.html', 'ระบบโหวต')">
+          <div class="app-icon-squircle grad-emerald">
+            <i class="fa-solid fa-check-to-slot"></i>
+            <span class="branch-tiny-badge">033</span>
+          </div>
+          <span class="app-label">โหวต/สำรวจ</span>
+        </div>
+
+        <!-- 19. Rewards (050) -->
+        <div class="app-item" data-cat="activities" data-name="rewards redeem แลกของรางวัล 050" onclick="openService('rewards.html', 'แลกของรางวัล')">
+          <div class="app-icon-squircle grad-purple">
+            <i class="fa-solid fa-gift"></i>
+            <span class="branch-tiny-badge">050</span>
+          </div>
+          <span class="app-label">แลกรางวัล</span>
+        </div>
+
+        <!-- 20. Library System (047) -->
+        <div class="app-item" data-cat="facilities" data-name="library ห้องสมุด หนังสือ 047" onclick="openService('library.html', 'ห้องสมุด')">
+          <div class="app-icon-squircle grad-blue">
+            <i class="fa-solid fa-lines-leaning"></i>
+            <span class="branch-tiny-badge">047</span>
+          </div>
+          <span class="app-label">ห้องสมุด</span>
         </div>
       </div>
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+      <div class="nav-tab-item active" onclick="switchNavTab('home')">
+        <i class="fa-solid fa-house"></i>
+        <span>หน้าแรก</span>
+      </div>
+      <div class="nav-tab-item" onclick="switchNavTab('academic')">
+        <i class="fa-solid fa-book-bookmark"></i>
+        <span>วิชาการ</span>
+      </div>
+      <div class="nav-tab-item" onclick="openService('student-card.html', 'บัตรนักศึกษา')">
+        <i class="fa-solid fa-id-card-clip"></i>
+        <span>บัตรดิจิทัล</span>
+      </div>
+      <div class="nav-tab-item" onclick="openService('rewards.html', 'แลกของรางวัล')">
+        <i class="fa-solid fa-gift"></i>
+        <span>สิทธิพิเศษ</span>
+      </div>
+      <div class="nav-tab-item" onclick="openService('student-profile.html', 'ประวัตินักศึกษา')">
+        <i class="fa-solid fa-user"></i>
+        <span>บัญชีฉัน</span>
+      </div>
+    </nav>
+
+    <!-- In-App WebView Overlay Screen -->
+    <div class="in-app-view" id="inAppView">
+      <div class="app-bar-view">
+        <button class="btn-back-app" id="closeAppBtn">
+          <i class="fa-solid fa-chevron-left"></i> กลับ
+        </button>
+        <span class="app-bar-title" id="appBarTitle">กำลังโหลด...</span>
+        <div class="app-bar-actions">
+          <a href="#" target="_blank" class="btn-app-bar-action" id="externalOpenBtn" title="เปิดแท็บใหม่">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+      <iframe src="about:blank" class="in-app-frame" id="inAppFrame"></iframe>
     </div>
-  </section>
+  </div>
 
-  <!-- Main Grid Section -->
-  <main class="container">
-    <div class="services-grid" id="servicesGrid">
-      <!-- 1. Check-in Class -->
-      <a href="check-in.html" class="service-card" data-category="academic" data-keywords="035 check-in class เช็คชื่อ เข้าห้องเรียน บันทึกเวลาเรียน">
-        <div class="card-top">
-          <div class="card-icon icon-blue"><i class="fa-solid fa-clipboard-user"></i></div>
-          <span class="branch-badge">Branch 035</span>
-        </div>
-        <h3 class="card-title">Check-in Class</h3>
-        <p class="card-subtitle">ระบบเช็คชื่อเข้าชั้นเรียน</p>
-        <p class="card-desc">ระบบเช็คชื่อเข้าเรียนออนไลน์ บันทึกเวลาเรียน และตรวจสอบสถานะการเข้าห้องเรียนของนักศึกษา</p>
-        <div class="card-bottom">
-          <span class="file-tag">check-in.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 2. Student Profile -->
-      <a href="student-profile.html" class="service-card" data-category="account" data-keywords="051 student profile ข้อมูล ประวัติ นักศึกษา ทะเบียน">
-        <div class="card-top">
-          <div class="card-icon icon-emerald"><i class="fa-solid fa-id-card"></i></div>
-          <span class="branch-badge">Branch 051</span>
-        </div>
-        <h3 class="card-title">Student Profile</h3>
-        <p class="card-subtitle">หน้าข้อมูลประวัตินักศึกษา</p>
-        <p class="card-desc">ดูและจัดการข้อมูลส่วนตัว ผลการลงทะเบียน คณะ สาขาวิชา และข้อมูลสถานะการเป็นนักศึกษา SKRU</p>
-        <div class="card-bottom">
-          <span class="file-tag">student-profile.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 3. Tuition Fee -->
-      <a href="tuition-fee.html" class="service-card" data-category="finance" data-keywords="045 tuition fee payment จ่ายค่าเทอม ค่าธรรมเนียมการศึกษา ใบเสร็จ QR พร้อมเพย์">
-        <div class="card-top">
-          <div class="card-icon icon-amber"><i class="fa-solid fa-credit-card"></i></div>
-          <span class="branch-badge">Branch 045</span>
-        </div>
-        <h3 class="card-title">Tuition Fee Payment</h3>
-        <p class="card-subtitle">หน้าจ่ายค่าเทอม</p>
-        <p class="card-desc">ตรวจสอบยอดค้างชำระ ชำระเงินผ่าน QR Code / Mobile Banking และพิมพ์ใบเสร็จรับเงินออนไลน์</p>
-        <div class="card-bottom">
-          <span class="file-tag">tuition-fee.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 4. Student Card -->
-      <a href="student-card.html" class="service-card" data-category="account" data-keywords="028 student card บัตรนักศึกษา virtual card บาร์โค้ด qr scan">
-        <div class="card-top">
-          <div class="card-icon icon-cyan"><i class="fa-solid fa-address-card"></i></div>
-          <span class="branch-badge">Branch 028</span>
-        </div>
-        <h3 class="card-title">Student Card</h3>
-        <p class="card-subtitle">หน้าบัตรนักศึกษา</p>
-        <p class="card-desc">บัตรประจำตัวนักศึกษาแบบ Virtual Card พร้อม QR Code / Barcode สแกนเข้าใช้งานพื้นที่และห้องสมุด</p>
-        <div class="card-bottom">
-          <span class="file-tag">student-card.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 5. Academic Record -->
-      <a href="academic-record.html" class="service-card" data-category="academic" data-keywords="042 academic record grades ผลการศึกษา คำแนะนำ ผลการเรียน เกรดเฉลี่ย GPA GPAX">
-        <div class="card-top">
-          <div class="card-icon icon-indigo"><i class="fa-solid fa-graduation-cap"></i></div>
-          <span class="branch-badge">Branch 042</span>
-        </div>
-        <h3 class="card-title">Academic Record</h3>
-        <p class="card-subtitle">ผลการศึกษาและคำแนะนำ</p>
-        <p class="card-desc">ตรวจสอบเกรดเฉลี่ย (GPA/GPAX) แผนการเรียนตลอดหลักสูตร และคำแนะนำทางวิชาการ</p>
-        <div class="card-bottom">
-          <span class="file-tag">academic-record.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 6. Campus Map -->
-      <a href="campus-map.html" class="service-card" data-category="facilities" data-keywords="032 campus map แผนที่ มหาวิทยาลัย อาคารเรียน นำทาง แผนผัง">
-        <div class="card-top">
-          <div class="card-icon icon-emerald"><i class="fa-solid fa-map-location-dot"></i></div>
-          <span class="branch-badge">Branch 032</span>
-        </div>
-        <h3 class="card-title">Campus Map</h3>
-        <p class="card-subtitle">หน้าแผนที่มหาวิทยาลัย</p>
-        <p class="card-desc">แผนที่นำทางอาคารเรียน สำนักงาน จุดบริการ และสิ่งอำนวยความสะดวกใน มหาวิทยาลัยราชภัฏสงขลา</p>
-        <div class="card-bottom">
-          <span class="file-tag">campus-map.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 7. Student Loan -->
-      <a href="student-loan.html" class="service-card" data-category="finance" data-keywords="044 student loan ลงทะเบียน กยศ กรอ กองทุน กู้ยืม ทุนการศึกษา">
-        <div class="card-top">
-          <div class="card-icon icon-amber"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-          <span class="branch-badge">Branch 044</span>
-        </div>
-        <h3 class="card-title">Student Loan (กยศ.)</h3>
-        <p class="card-subtitle">หน้าลงทะเบียนกู้ยืม กยศ.</p>
-        <p class="card-desc">ยื่นคำขอกู้ยืม ติดตามสถานะเอกสาร และตารางการส่งเอกสารกองทุน กยศ. / กรอ. ประจำภาคเรียน</p>
-        <div class="card-bottom">
-          <span class="file-tag">student-loan.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 8. Facility & Equipment Booking -->
-      <a href="booking.html" class="service-card" data-category="facilities" data-keywords="043 booking reservation ยืม จอง อุปกรณ์ สถานที่ ห้องประชุม ห้องแล็บ">
-        <div class="card-top">
-          <div class="card-icon icon-rose"><i class="fa-solid fa-calendar-check"></i></div>
-          <span class="branch-badge">Branch 043</span>
-        </div>
-        <h3 class="card-title">Booking & Facility</h3>
-        <p class="card-subtitle">ยืมและจองอุปกรณ์/สถานที่</p>
-        <p class="card-desc">จองห้องประชุม ห้องแล็บคอมพิวเตอร์ สนามกีฬา และยืมคืนอุปกรณ์การศึกษาภายในมหาวิทยาลัย</p>
-        <div class="card-bottom">
-          <span class="file-tag">booking.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 9. Faculty Contact -->
-      <a href="faculty-contact.html" class="service-card" data-category="academic" data-keywords="030 faculty contact ติดต่ออาจารย์ คณะ อาจารย์ที่ปรึกษา นัดหมาย ปรึกษา">
-        <div class="card-top">
-          <div class="card-icon icon-blue"><i class="fa-solid fa-chalkboard-user"></i></div>
-          <span class="branch-badge">Branch 030</span>
-        </div>
-        <h3 class="card-title">Faculty Contact</h3>
-        <p class="card-subtitle">หน้าติดต่ออาจารย์ / คณะ</p>
-        <p class="card-desc">ทำนัดหมายปรึกษาอาจารย์ที่ปรึกษา ค้นหาช่องทางติดต่อและเวลาให้คำปรึกษาของคณาจารย์</p>
-        <div class="card-bottom">
-          <span class="file-tag">faculty-contact.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 10. University News -->
-      <a href="news.html" class="service-card" data-category="activities" data-keywords="041 news ข่าวสาร มหาวิทยาลัย ประกาศ ประชาสัมพันธ์ กิจกรรม">
-        <div class="card-top">
-          <div class="card-icon icon-purple"><i class="fa-solid fa-newspaper"></i></div>
-          <span class="branch-badge">Branch 041</span>
-        </div>
-        <h3 class="card-title">University News</h3>
-        <p class="card-subtitle">ข่าวสารในมหาวิทยาลัย</p>
-        <p class="card-desc">อัปเดตข่าวประกาศสำคัญ ทุนการศึกษา กิจกรรมเด่น และข่าวสารประชาสัมพันธ์ของมหาวิทยาลัยราชภัฏสงขลา</p>
-        <div class="card-bottom">
-          <span class="file-tag">news.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 11. Learning Resources -->
-      <a href="learning-resources.html" class="service-card" data-category="academic" data-keywords="029 learning resources แหล่งเรียนรู้ สื่อการสอน e-learning เอกสาร สรุปวิชา">
-        <div class="card-top">
-          <div class="card-icon icon-indigo"><i class="fa-solid fa-book-open-reader"></i></div>
-          <span class="branch-badge">Branch 029</span>
-        </div>
-        <h3 class="card-title">Learning Resources</h3>
-        <p class="card-subtitle">หน้าแหล่งเรียนรู้</p>
-        <p class="card-desc">คลังเอกสารประกอบการสอน สื่อ e-Learning สรุปวิชาเรียน และวารสารวิชาการสำหรับนักศึกษา</p>
-        <div class="card-bottom">
-          <span class="file-tag">learning-resources.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 12. Dormitory Booking -->
-      <a href="dorm-booking.html" class="service-card" data-category="facilities" data-keywords="039 dorm dormitory booking จองหอพัก หอพักใน หอนักศึกษา ค่าหอ">
-        <div class="card-top">
-          <div class="card-icon icon-emerald"><i class="fa-solid fa-bed"></i></div>
-          <span class="branch-badge">Branch 039</span>
-        </div>
-        <h3 class="card-title">Dormitory Booking</h3>
-        <p class="card-subtitle">หน้าจองหอพักในมหาวิทยาลัย</p>
-        <p class="card-desc">ระบบเลือกห้องพัก สมัครหอพักนักศึกษา ตรวจสอบค่าน้ำ-ไฟ และประกาศกิจกรรมหอพัก</p>
-        <div class="card-bottom">
-          <span class="file-tag">dorm-booking.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 13. Event Booking -->
-      <a href="event-booking.html" class="service-card" data-category="activities" data-keywords="046 event booking activities จองกิจกรรม กิจกรรมนักศึกษา จิตอาสา ชั่วโมงกิจกรรม">
-        <div class="card-top">
-          <div class="card-icon icon-amber"><i class="fa-solid fa-champagne-glasses"></i></div>
-          <span class="branch-badge">Branch 046</span>
-        </div>
-        <h3 class="card-title">Event Booking</h3>
-        <p class="card-subtitle">หน้าจองกิจกรรม</p>
-        <p class="card-desc">ลงทะเบียนเข้าร่วมกิจกรรมเสริมหลักสูตร บันทึกชั่วโมงจิตอาสา และสะสมทรานสคริปต์กิจกรรม</p>
-        <div class="card-bottom">
-          <span class="file-tag">event-booking.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 14. Privacy Settings -->
-      <a href="privacy-settings.html" class="service-card" data-category="account" data-keywords="040 privacy settings จัดการความเป็นส่วนตัว pdpa ความปลอดภัย">
-        <div class="card-top">
-          <div class="card-icon icon-rose"><i class="fa-solid fa-shield-halved"></i></div>
-          <span class="branch-badge">Branch 040</span>
-        </div>
-        <h3 class="card-title">Privacy Settings</h3>
-        <p class="card-subtitle">หน้าจัดการความเป็นส่วนตัว</p>
-        <p class="card-desc">ตั้งค่าสิทธิ์การเข้าถึงข้อมูลส่วนบุคคล (PDPA) ความยินยอมข้อมูล และความปลอดภัยของบัญชีผู้ใช้</p>
-        <div class="card-bottom">
-          <span class="file-tag">privacy-settings.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 15. Academic Calendar -->
-      <a href="academic-calendar.html" class="service-card" data-category="academic" data-keywords="048 academic calendar ปฏิทินการศึกษา กำหนดการ วันเปิดเทอม วันสอบ วันหยุด">
-        <div class="card-top">
-          <div class="card-icon icon-cyan"><i class="fa-solid fa-calendar-days"></i></div>
-          <span class="branch-badge">Branch 048</span>
-        </div>
-        <h3 class="card-title">Academic Calendar</h3>
-        <p class="card-subtitle">หน้าปฏิทินการศึกษา</p>
-        <p class="card-desc">กำหนดการเปิด-ปิดภาคเรียน กำหนดลงทะเบียน วันสอบกลางภาค/ปลายภาค และวันหยุดนักขัตฤกษ์</p>
-        <div class="card-bottom">
-          <span class="file-tag">academic-calendar.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 16. Login Portal -->
-      <a href="login.html" class="service-card" data-category="account" data-keywords="027 login เข้าสู่ระบบ ยืนยันตัวตน sso sign in authentication">
-        <div class="card-top">
-          <div class="card-icon icon-blue"><i class="fa-solid fa-right-to-bracket"></i></div>
-          <span class="branch-badge">Branch 027</span>
-        </div>
-        <h3 class="card-title">Login Portal</h3>
-        <p class="card-subtitle">หน้าเข้าสู่ระบบกลาง SKRU</p>
-        <p class="card-desc">ระบบยืนยันตัวตนกลาง (Single Sign-On) เข้าสู่บริการดิจิทัลทั้งหมดของมหาวิทยาลัยอย่างปลอดภัย</p>
-        <div class="card-bottom">
-          <span class="file-tag">login.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 17. System Settings -->
-      <a href="settings.html" class="service-card" data-category="account" data-keywords="049 settings ตั้งค่า ระบบ ปรับแต่ง ธีม ภาษา การแจ้งเตือน">
-        <div class="card-top">
-          <div class="card-icon icon-indigo"><i class="fa-solid fa-gear"></i></div>
-          <span class="branch-badge">Branch 049</span>
-        </div>
-        <h3 class="card-title">System Settings</h3>
-        <p class="card-subtitle">หน้าตั้งค่าระบบ</p>
-        <p class="card-desc">ปรับแต่งการแจ้งเตือน ธีมหน้าจอ ภาษา และการตั้งค่าบัญชีการใช้งานในระบบ SKRU Portal</p>
-        <div class="card-bottom">
-          <span class="file-tag">settings.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 18. Vote & Survey -->
-      <a href="vote.html" class="service-card" data-category="activities" data-keywords="033 vote survey โหวต สำรวจความคิดเห็น เลือกตั้ง กิจกรรม แบบสอบถาม">
-        <div class="card-top">
-          <div class="card-icon icon-emerald"><i class="fa-solid fa-check-to-slot"></i></div>
-          <span class="branch-badge">Branch 033</span>
-        </div>
-        <h3 class="card-title">Vote & Survey</h3>
-        <p class="card-subtitle">หน้าโหวต / สำรวจความคิดเห็น</p>
-        <p class="card-desc">ลงคะแนนเลือกตั้งสโมสรนักศึกษา โหวตกิจกรรมมหาวิทยาลัย และทำแบบสำรวจความพึงพอใจ</p>
-        <div class="card-bottom">
-          <span class="file-tag">vote.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 19. Rewards & Privilege -->
-      <a href="rewards.html" class="service-card" data-category="activities" data-keywords="050 rewards redeem แลกรางวัล สิทธิพิเศษ คะแนนสะสม คูปอง แต้มกิจกรรม">
-        <div class="card-top">
-          <div class="card-icon icon-purple"><i class="fa-solid fa-gift"></i></div>
-          <span class="branch-badge">Branch 050</span>
-        </div>
-        <h3 class="card-title">Rewards & Privilege</h3>
-        <p class="card-subtitle">หน้าแลกรางวัล</p>
-        <p class="card-desc">ใช้คะแนนสะสมจากการเข้าร่วมกิจกรรม แลกคูปองโรงอาหาร โควตาพิมพ์งาน และของที่ระลึก SKRU</p>
-        <div class="card-bottom">
-          <span class="file-tag">rewards.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-
-      <!-- 20. Library System -->
-      <a href="library.html" class="service-card" data-category="facilities" data-keywords="047 library ห้องสมุด หอสมุด หนังสือ ยืมคืน วารสาร ฐานข้อมูลวิจัย">
-        <div class="card-top">
-          <div class="card-icon icon-blue"><i class="fa-solid fa-lines-leaning"></i></div>
-          <span class="branch-badge">Branch 047</span>
-        </div>
-        <h3 class="card-title">Library System</h3>
-        <p class="card-subtitle">หน้าห้องสมุด</p>
-        <p class="card-desc">ค้นหาหนังสือและสิ่งพิมพ์ ยืม-คืนหนังสือดิจิทัล จองพื้นที่อ่านหนังสือ และเข้าถึงฐานข้อมูลวิจัย</p>
-        <div class="card-bottom">
-          <span class="file-tag">library.html</span>
-          <span class="btn-card-action">เข้าใช้งาน <i class="fa-solid fa-arrow-right"></i></span>
-        </div>
-      </a>
-    </div>
-
-    <!-- Empty search state -->
-    <div id="noResults" class="empty-state" style="display: none;">
-      <i class="fa-regular fa-face-frown"></i>
-      <h3>ไม่พบบริการที่คุณค้นหา</h3>
-      <p>ลองค้นหาด้วยคำอื่น หรือกดปุ่ม "ทั้งหมด" เพื่อดูบริการทั้งหมด 20 รายการ</p>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="portal-footer">
-    <div class="container">
-      <p>© 2026 มหาวิทยาลัยราชภัฏสงขลา (Songkhla Rajabhat University) • โครงการพัฒนาระบบบริการดิจิทัลนักศึกษา</p>
-      <p style="margin-top: 6px; font-size: 0.8rem; opacity: 0.7;">
-        Repository: <code>kittilak070/App-SKRU</code> • รวมทุก Branch เข้าสู่หน้าเว็บหลักเรียบร้อยแล้ว
-      </p>
-    </div>
-  </footer>
-
-  <!-- Interactive JavaScript -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const searchInput = document.getElementById('searchInput');
-      const filterBtns = document.querySelectorAll('.filter-btn');
-      const cards = document.querySelectorAll('.service-card');
-      const noResults = document.getElementById('noResults');
+    const inAppView = document.getElementById('inAppView');
+    const inAppFrame = document.getElementById('inAppFrame');
+    const appBarTitle = document.getElementById('appBarTitle');
+    const externalOpenBtn = document.getElementById('externalOpenBtn');
+    const closeAppBtn = document.getElementById('closeAppBtn');
+    const modeToggleBtn = document.getElementById('modeToggleBtn');
+    const appSearchInput = document.getElementById('appSearchInput');
+    const categoryPills = document.querySelectorAll('.pill-item');
+    const appItems = document.querySelectorAll('.app-item');
+    const serviceCountText = document.getElementById('serviceCountText');
 
-      let currentCategory = 'all';
-      let currentQuery = '';
+    let currentFilter = 'all';
 
-      function filterCards() {
-        let visibleCount = 0;
-        cards.forEach(card => {
-          const cardCat = card.dataset.category;
-          const keywords = (card.dataset.keywords + ' ' + card.innerText).toLowerCase();
-          const matchCategory = currentCategory === 'all' || cardCat === currentCategory;
-          const matchQuery = !currentQuery || keywords.includes(currentQuery);
+    // In-App Screen Loader
+    function openService(url, title) {
+      appBarTitle.textContent = title;
+      externalOpenBtn.href = url;
+      inAppFrame.src = url;
+      inAppView.classList.add('open');
+    }
 
-          if (matchCategory && matchQuery) {
-            card.style.display = 'flex';
-            visibleCount++;
-          } else {
-            card.style.display = 'none';
-          }
-        });
+    closeAppBtn.addEventListener('click', () => {
+      inAppView.classList.remove('open');
+      inAppFrame.src = 'about:blank';
+    });
 
-        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-      }
+    // Viewport Mode Toggle (Mobile Shell vs Fullscreen)
+    modeToggleBtn.addEventListener('click', () => {
+      const isExpanded = document.body.classList.toggle('expanded-mode');
+      modeToggleBtn.innerHTML = isExpanded 
+        ? '<i class="fa-solid fa-compress"></i> กรอบมือถือ' 
+        : '<i class="fa-solid fa-expand"></i> เต็มจอ';
+    });
 
-      // Search input handler
-      searchInput.addEventListener('input', (e) => {
-        currentQuery = e.target.value.trim().toLowerCase();
-        filterCards();
+    // Filter Logic
+    function filterApps() {
+      const query = appSearchInput.value.trim().toLowerCase();
+      let count = 0;
+
+      appItems.forEach(item => {
+        const cat = item.dataset.cat;
+        const name = (item.dataset.name + ' ' + item.innerText).toLowerCase();
+
+        const matchCat = currentFilter === 'all' || cat === currentFilter;
+        const matchQuery = !query || name.includes(query);
+
+        if (matchCat && matchQuery) {
+          item.style.display = 'flex';
+          count++;
+        } else {
+          item.style.display = 'none';
+        }
       });
 
-      // Filter category handler
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          filterBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentCategory = btn.dataset.category;
-          filterCards();
-        });
+      serviceCountText.textContent = `${count} บริการ`;
+    }
+
+    appSearchInput.addEventListener('input', filterApps);
+
+    categoryPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        categoryPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        currentFilter = pill.dataset.cat;
+        filterApps();
       });
     });
+
+    // Bottom Tab Bar
+    function switchNavTab(tab) {
+      if (tab === 'home') {
+        categoryPills.forEach(p => p.classList.remove('active'));
+        document.querySelector('.pill-item[data-cat="all"]').classList.add('active');
+        currentFilter = 'all';
+        appSearchInput.value = '';
+        filterApps();
+      } else if (tab === 'academic') {
+        categoryPills.forEach(p => p.classList.remove('active'));
+        document.querySelector('.pill-item[data-cat="academic"]').classList.add('active');
+        currentFilter = 'academic';
+        filterApps();
+      }
+    }
   </script>
 </body>
 </html>
