@@ -36,26 +36,26 @@
 
 body {
   font-family: var(--font-family);
-  background-color: #e9ecef;
+  background-color: var(--bg-app);
   color: var(--text-dark);
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
   min-height: 100vh;
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* App Container Frame */
+/* App Container Frame - Fullscreen edge-to-edge */
 .app-container {
   width: 100%;
-  max-width: 450px;
+  max-width: 100%;
   background-color: var(--bg-app);
   min-height: 100vh;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+  box-shadow: none;
   display: flex;
   flex-direction: column;
+  flex: 1;
   position: relative;
   overflow-x: hidden;
   padding-bottom: 70px;

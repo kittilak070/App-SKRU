@@ -1,12 +1,32 @@
 [
   {
+    "id": "comment-1791257067998",
+    "newsId": "news-1",
+    "author": "นายสมชาย ใจดี (ITDI)",
+    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+    "text": "55555",
+    "timeAgo": "เมื่อสักครู่",
+    "likes": 0,
+    "createdAt": "2026-10-06T03:24:27.998Z"
+  },
+  {
+    "id": "comment-1791202393998",
+    "newsId": "news-1",
+    "author": "นายสมชาย ใจดี (ITDI)",
+    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+    "text": "ทดสอบการแสดงความคิดเห็น",
+    "timeAgo": "เมื่อสักครู่",
+    "likes": 0,
+    "createdAt": "2026-10-05T12:13:13.998Z"
+  },
+  {
     "id": "comment-1",
     "newsId": "news-1",
-    "author": "Tanawut Pitchayaboonowng",
+    "author": "นายสมชาย ใจดี (ITDI)",
     "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
-    "text": "ไปด้วยกันมั้ยเพื่อน กิจกรรมนี้ได้ชั่วโมงจิตอาสาด้วยนะ",
+    "text": "โครงการนี้น่าสนใจมากครับ ได้เก็บชั่วโมงจิตอาสา กยศ. ด้วย ลงทะเบียนเรียบร้อยแล้วครับ",
     "timeAgo": "2 ชม. ที่แล้ว",
-    "likes": 12,
+    "likes": 14,
     "createdAt": "2024-10-28T12:00:00.000Z"
   },
   {
@@ -14,7 +34,7 @@
     "newsId": "news-1",
     "author": "กิตติศักดิ์ สมบูรณ์",
     "avatar": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&q=80",
-    "text": "ลงทะเบียนทางไหนครับ มีลิงก์รับสมัครมั้ยครับอาจารย์",
+    "text": "ลงทะเบียนทางไหนครับ มีรถรับส่งจากมหาวิทยาลัยมั้ยครับอาจารย์",
     "timeAgo": "3 ชม. ที่แล้ว",
     "likes": 5,
     "createdAt": "2024-10-28T11:00:00.000Z"
@@ -22,7 +42,7 @@
   {
     "id": "comment-3",
     "newsId": "news-1",
-    "author": "Ploy Pailin",
+    "author": "พลอยไพลิน รัตนศิริ",
     "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
     "text": "ทีม Green Office จัดกิจกรรมดีมากๆ ค่ะ ปีก่อนไปสนุกและได้ความรู้เยอะเลย",
     "timeAgo": "4 ชม. ที่แล้ว",
@@ -32,41 +52,21 @@
   {
     "id": "comment-4",
     "newsId": "news-1",
-    "author": "ณัฐภัทร ใจดี",
+    "author": "ณัฐภัทร ทวีลาภ",
     "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
-    "text": "มีรถรับส่งจากมหาวิทยาลัยไปหาดสมิหลามั้ยครับ",
+    "text": "เจอกันที่หาดสมิหลาครับ ชวนเพื่อนๆ ในคณะวิทยาศาสตร์ไปกันครบทีม",
     "timeAgo": "5 ชม. ที่แล้ว",
-    "likes": 4,
+    "likes": 6,
     "createdAt": "2024-10-28T09:20:00.000Z"
   },
   {
     "id": "comment-5",
     "newsId": "news-1",
-    "author": "วรัญญา แก้วมณี",
-    "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80",
-    "text": "ชวนเพื่อนในสาขาไปกันเยอะๆ นะคะ ได้ทั้งบุญและชั่วโมงกิจกรรม",
-    "timeAgo": "6 ชม. ที่แล้ว",
-    "likes": 7,
-    "createdAt": "2024-10-28T08:30:00.000Z"
-  },
-  {
-    "id": "comment-6",
-    "newsId": "news-1",
-    "author": "ศราวุธ มหาสมุทร",
-    "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
-    "text": "เตรียมอุปกรณ์อะไรไปบ้างครับ เสื้อผ้าต้องเตรียมชุดเปลี่ยนมั้ย",
-    "timeAgo": "7 ชม. ที่แล้ว",
-    "likes": 3,
-    "createdAt": "2024-10-28T07:45:00.000Z"
-  },
-  {
-    "id": "comment-7",
-    "newsId": "news-1",
     "author": "อาจารย์ฝ่ายพัฒนานักศึกษา",
     "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80",
-    "text": "ยินดีต้อนรับนักศึกษาทุกคนครับ เจอกันที่จุดนัดพบหน้าอาคาร 1 เวลา 08.00 น. ครับ",
+    "text": "ยินดีต้อนรับนักศึกษาทุกคนครับ จุดนัดพบหน้าอาคาร 1 เวลา 08.00 น. มีรถบัสบริการครับ",
     "timeAgo": "8 ชม. ที่แล้ว",
-    "likes": 15,
+    "likes": 18,
     "createdAt": "2024-10-28T07:00:00.000Z"
   }
 ]

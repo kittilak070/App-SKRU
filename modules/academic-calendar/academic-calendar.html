@@ -21,6 +21,9 @@
             <!-- SKRU App Red Header Banner -->
             <header class="skru-header">
                 <div class="header-main">
+                    <button type="button" class="icon-btn clickable" id="btnCalendarBack" onclick="if(window.parent && window.parent !== window){window.parent.postMessage({type:'closeApp'},'*')}else if(window.history.length>1){window.history.back()}else{window.location.href='/index.html'}" style="margin-right:12px;background:rgba(255,255,255,0.2);color:white;border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;" title="ย้อนกลับ" aria-label="ย้อนกลับ">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
                     <div class="university-brand">
                         <h1 class="app-title">SKRU APP</h1>
                         <p class="app-sub">มหาวิทยาลัยราชภัฏสงขลา</p>

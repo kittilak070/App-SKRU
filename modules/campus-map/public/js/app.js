@@ -38,9 +38,22 @@ function renderNames(){
 }
 map.on('moveend',renderNames);
 let satelliteMode=true,tileErrors=0;
-const satellite=L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxNativeZoom:19,maxZoom:21}).addTo(map);
-const streetMap=L.maplibreGL({style:'basemap-no-labels.json',interactive:false,attributionControl:false,pane:'tilePane'});
-satellite.on('tileerror',()=>{if(++tileErrors===3&&satelliteMode){setMode(false);document.querySelector('#status').textContent='โหลดภาพดาวเทียมไม่สำเร็จ จึงแสดงแผนที่แทน'}});
+const satellite=L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxNativeZoom:19,maxZoom:21,attribution:'© Esri, Maxar'}).addTo(map);
+const osmFallback=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'});
+let streetMap;
+try {
+  streetMap=L.maplibreGL({style:'basemap-no-labels.json',interactive:false,attributionControl:false,pane:'tilePane'});
+} catch(err) {
+  console.warn('MapLibre GL init error, using OSM layer:', err);
+  streetMap=osmFallback;
+}
+satellite.on('tileerror',()=>{
+  if(++tileErrors>=4 && satelliteMode){
+    if(!map.hasLayer(osmFallback)) osmFallback.addTo(map);
+    const status=document.querySelector('#status');
+    if(status) status.textContent='กำลังใช้แผนที่ OpenStreetMap แทนภาพดาวเทียม';
+  }
+});
 L.control.scale({imperial:false,position:'bottomleft',maxWidth:90}).addTo(map);
 function render(){
  layers.clearLayers();const p=palette[document.body.classList.contains('light')?'light':'dark'];
@@ -52,7 +65,24 @@ function render(){
  });
  L.polygon(data.boundary,{color:satelliteMode?'#a9d7f1':p.edge,weight:2,dashArray:'6 5',fill:false,interactive:false}).addTo(layers);
 }
-function setMode(value){satelliteMode=value;tileErrors=0;if(value){map.removeLayer(streetMap);satellite.addTo(map)}else{map.removeLayer(satellite);streetMap.addTo(map)}document.querySelector('#satellite-mode').setAttribute('aria-pressed',String(value));document.querySelector('#vector-mode').setAttribute('aria-pressed',String(!value));render()}
+function setMode(value){
+  satelliteMode=value;tileErrors=0;
+  if(value){
+    if(map.hasLayer(streetMap)) map.removeLayer(streetMap);
+    if(map.hasLayer(osmFallback)) map.removeLayer(osmFallback);
+    if(!map.hasLayer(satellite)) satellite.addTo(map);
+  }else{
+    if(map.hasLayer(satellite)) map.removeLayer(satellite);
+    try {
+      if(!map.hasLayer(streetMap)) streetMap.addTo(map);
+    } catch(e) {
+      if(!map.hasLayer(osmFallback)) osmFallback.addTo(map);
+    }
+  }
+  document.querySelector('#satellite-mode').setAttribute('aria-pressed',String(value));
+  document.querySelector('#vector-mode').setAttribute('aria-pressed',String(!value));
+  render();
+}
 document.querySelector('#satellite-mode').onclick=()=>setMode(true);
 document.querySelector('#vector-mode').onclick=()=>setMode(false);
 const planDialog=document.querySelector('#plan-dialog'),planImage=document.querySelector('#plan-image');let planScale=1;
@@ -115,13 +145,32 @@ document.querySelector('#search-form').addEventListener('submit',e=>{e.preventDe
 document.querySelector('#reset').addEventListener('click',reset);
 document.querySelector('#zoom-in').addEventListener('click',()=>map.zoomIn());document.querySelector('#zoom-out').addEventListener('click',()=>map.zoomOut());
 document.querySelector('#theme').addEventListener('click',e=>{const light=document.body.classList.toggle('light');e.currentTarget.textContent=light?'☾':'☀';e.currentTarget.setAttribute('aria-pressed',String(light));e.currentTarget.setAttribute('aria-label',light?'ใช้แผนที่สีเข้ม':'ใช้แผนที่สีสว่าง');render()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')results.hidden=true});map.on('resize',home);render();reset();renderNames();
+document.addEventListener('keydown',e=>{if(e.key==='Escape')results.hidden=true});
+map.on('resize',home);
+render();
+reset();
+renderNames();
 
+// Invalidate Leaflet map size across various display contexts (iframe, tabs, fullscreen)
+setTimeout(() => { map.invalidateSize(); home(); }, 150);
+setTimeout(() => { map.invalidateSize(); }, 600);
+setTimeout(() => { map.invalidateSize(); }, 1500);
+window.addEventListener('resize', () => map.invalidateSize());
 
+// Allow iframe to trigger parent close / back
+document.querySelectorAll('a.brand').forEach(el => {
+  el.addEventListener('click', (e) => {
+    if (window.parent && window.parent !== window) {
+      e.preventDefault();
+      window.parent.postMessage({ action: 'back', type: 'closeApp' }, '*');
+    }
+  });
+});
 
 const tourDialog=document.querySelector('#tour-dialog'),tourFrame=document.querySelector('#tour-frame'),tourLoading=document.querySelector('#tour-loading');
 document.querySelector('#open-tour').addEventListener('click',()=>{document.querySelector('.map-credits').open=false;tourLoading.hidden=false;tourDialog.showModal();tourFrame.src='https://kuula.co/share/collection/7kRms?logo=1&info=0&fs=1&vr=1&zoom=1&thumbs=1&inst=0'});
 tourFrame.addEventListener('load',()=>{if(tourDialog.open)tourLoading.hidden=true});
 document.querySelector('#close-tour').addEventListener('click',()=>tourDialog.close());
 tourDialog.addEventListener('close',()=>{tourFrame.removeAttribute('src');document.querySelector('#open-tour').focus()});
+
 

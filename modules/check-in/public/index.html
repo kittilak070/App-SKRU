@@ -130,12 +130,25 @@
 
             <!-- Main Check-in Action Button -->
             <div class="checkin-action-area">
-              <button id="btnCheckIn" class="btn-checkin" type="button">
+              <button id="btnCheckIn" class="btn-checkin" type="button" title="คลิกเพื่อเช็คชื่อ หรือ ยกเลิกเช็คชื่อ (สลับสถานะ)">
                 <span class="btn-spinner hidden" id="checkInSpinner"></span>
                 <span class="btn-icon-check hidden" id="checkInCheckmark">✓</span>
                 <span id="btnCheckInText">CHECK-IN CLASS</span>
               </button>
               
+              <!-- Test Check & Uncheck Quick Control Bar -->
+              <div class="test-controls-row">
+                <button type="button" class="btn-test-pill btn-test-check" id="btnTestCheckIn" title="ทดสอบ: เช็คชื่อทันที">
+                  <span class="pill-dot green"></span> เช็คชื่อ (Check)
+                </button>
+                <button type="button" class="btn-test-pill btn-test-uncheck" id="btnTestUncheck" title="ทดสอบ: ไม่เช็คชื่อ / ยกเลิก">
+                  <span class="pill-dot red"></span> ไม่เช็ค (Uncheck)
+                </button>
+                <button type="button" class="btn-test-pill btn-test-reset" id="btnTestReset" title="รีเซ็ตทุกคนเป็นไม่เช็ค">
+                  🔄 รีเซ็ตทั้งหมด
+                </button>
+              </div>
+
               <!-- Check-in summary progress bar -->
               <div class="attendance-progress-container">
                 <div class="progress-info">

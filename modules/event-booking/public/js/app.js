@@ -164,7 +164,13 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (state.activeTab !== 'pane-activities') {
         switchTab('pane-activities');
       } else {
-        showToast('คุณอยู่ที่หน้าหลักของกิจกรรมแล้ว', 'info');
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'closeApp' }, '*');
+        } else if (window.history.length > 1) {
+          window.history.back();
+        } else {
+          window.location.href = '/index.html';
+        }
       }
     });
 

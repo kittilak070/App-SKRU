@@ -27,132 +27,396 @@
       </button>
       
       <div class="header-title-group">
-        <h1 class="header-title">ข่าวสารและกิจกรรม</h1>
-        <div class="header-subtitle">SKRU Campus News</div>
+        <h1 class="header-title" id="headerTitle">ข่าวสารและกิจกรรม</h1>
+        <div class="header-subtitle" id="headerSubtitle">SKRU Campus News</div>
       </div>
 
-      <div class="header-spacer" style="width: 42px; height: 42px;"></div>
+      <button class="header-btn" id="headerActionBtn" title="รีเฟรชข้อมูล" onclick="refreshCurrentTabData()">
+        <i class="fa-solid fa-rotate-right"></i>
+      </button>
     </header>
 
-    <!-- Search Bar (Collapsible/Hidden by default to match mobile view) -->
-    <div class="search-container" style="display: none;">
-      <div class="search-bar">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="searchInput" placeholder="ค้นหาข่าวสาร, กิจกรรม, ทุนการศึกษา...">
-        <button class="search-clear-btn" id="searchClearBtn"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-    </div>
-
-
-    <!-- Main Content -->
+    <!-- Main Content Container with Multi-tab Views -->
     <main class="app-content">
 
-      <!-- Featured Hero Card -->
-      <section class="featured-section">
-        <div class="featured-card" id="featuredCard">
-          <div class="featured-image-box">
-            <img id="featuredImg" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80" alt="Featured News">
-            <span class="featured-badge-top" id="featuredBadge" style="display: none;">กิจกรรมจิตอาสา</span>
-            <div class="featured-overlay">
-              <h2 class="featured-hero-title" id="featuredTitle">โครงการอบรมเชิงปฏิบัติการ เรื่อง การทำบ้านปลา และการอนุรักษ์ทรัพยากรธรรมชาติทางทะเล</h2>
-            </div>
+      <!-- ====================================================================
+           TAB 1: ข่าวสาร (NEWS)
+           ==================================================================== -->
+      <div class="tab-view active" id="tabViewNews">
+        
+        <!-- Search Bar -->
+        <div class="search-container" id="newsSearchWrap">
+          <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="ค้นหาข่าวสาร, กิจกรรม, ทุนการศึกษา...">
+            <button class="search-clear-btn" id="searchClearBtn" title="ล้างการค้นหา"><i class="fa-solid fa-xmark"></i></button>
           </div>
-          
-          <div class="featured-body">
-            <p class="featured-summary" id="featuredSummary">
-              กองอาคารและสถานที่ ร่วมกับคณะกรรมการสำนักงานสีเขียว (Green Office) จัดโครงการรณรงค์มหาวิทยาลัยปลอดบุหรี่และการสร้างสมดุลทางระบบนิเวศ ณ หาดสมิหลา
-            </p>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="category-filter-wrap" id="categoryFilterContainer">
+          <!-- Rendered dynamically by JS -->
+        </div>
+
+        <!-- Featured Hero Card Section -->
+        <section class="featured-section">
+          <div class="featured-card" id="featuredCard">
+            <div class="featured-image-box">
+              <img id="featuredImg" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80" alt="Featured News">
+              <span class="featured-badge-top" id="featuredBadge">กิจกรรมจิตอาสา</span>
+              <div class="featured-overlay">
+                <h2 class="featured-hero-title" id="featuredTitle">โครงการอบรมเชิงปฏิบัติการ เรื่อง การทำบ้านปลา และการอนุรักษ์ทรัพยากรธรรมชาติทางทะเล</h2>
+              </div>
+            </div>
             
-            <div class="featured-footer">
-              <div class="action-buttons-group">
-                <button class="btn-social btn-facebook" id="shareFbBtn" title="แชร์ไปยัง Facebook" onclick="shareToFacebook(event)">
-                  <i class="fa-brands fa-facebook-f"></i>
-                </button>
-                <button class="btn-social btn-copy" id="copyLinkBtn" title="คัดลอกลิงก์" onclick="copyNewsLink(event)">
-                  <i class="fa-regular fa-clone"></i>
+            <div class="featured-body">
+              <p class="featured-summary" id="featuredSummary">
+                กองอาคารและสถานที่ ร่วมกับคณะกรรมการสำนักงานสีเขียว (Green Office) จัดโครงการรณรงค์มหาวิทยาลัยปลอดบุหรี่และการสร้างสมดุลทางระบบนิเวศ ณ หาดสมิหลา
+              </p>
+              
+              <div class="featured-footer">
+                <div class="action-buttons-group">
+                  <button class="btn-social btn-facebook" id="shareFbBtn" title="แชร์ไปยัง Facebook" onclick="shareToFacebook(event)">
+                    <i class="fa-brands fa-facebook-f"></i>
+                  </button>
+                  <button class="btn-social btn-copy" id="copyLinkBtn" title="คัดลอกลิงก์" onclick="copyNewsLink(event)">
+                    <i class="fa-regular fa-clone"></i>
+                  </button>
+                </div>
+
+                <button class="btn-like-pill" id="featuredLikeBtn" onclick="toggleHeroLike(event)">
+                  <i class="fa-solid fa-heart"></i>
+                  <span id="featuredLikesText">342 ไลก์</span>
                 </button>
               </div>
-
-              <button class="btn-like-pill" id="featuredLikeBtn" onclick="toggleHeroLike(event)">
-                <i class="fa-solid fa-heart"></i>
-                <span id="featuredLikesText">342 ไลก์</span>
-              </button>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Latest News & Announcements Section -->
-      <section class="latest-news-section">
-        <div class="section-header">
-          <div class="section-title-wrap">
-            <div class="section-indicator"></div>
-            <h3 class="section-title">ข่าวสาร & ประกาศล่าสุด</h3>
-          </div>
-          <a class="section-link" id="seeAllNewsBtn" href="javascript:void(0)" onclick="resetFiltersAndShowAll()">ดูทั้งหมด</a>
-        </div>
-
-        <div class="news-list" id="latestNewsList">
-          <!-- News Card Items rendered dynamically by JS -->
-          <div class="skeleton" style="height: 90px;"></div>
-          <div class="skeleton" style="height: 90px;"></div>
-        </div>
-      </section>
-
-      <!-- Comments Section -->
-      <section class="comments-section-wrapper">
-        <div class="comments-container">
+        <!-- Latest News & Announcements Section -->
+        <section class="latest-news-section">
           <div class="section-header">
             <div class="section-title-wrap">
-              <h3 class="section-title" style="color: #E11D48;">ความคิดเห็น</h3>
-              <span class="section-counter-badge" id="commentsCountBadge">7</span>
+              <div class="section-indicator"></div>
+              <h3 class="section-title">ข่าวสาร & ประกาศล่าสุด</h3>
             </div>
-            <a class="section-link" href="javascript:void(0)" onclick="toggleAllCommentsView()">See All</a>
+            <a class="section-link" id="seeAllNewsBtn" href="javascript:void(0)" onclick="resetFiltersAndShowAll()">ดูทั้งหมด</a>
           </div>
 
-          <!-- Comments List -->
-          <div class="comments-list" id="commentsList">
-            <!-- Rendered by JS -->
+          <div class="news-list" id="latestNewsList">
+            <!-- News Card Items rendered dynamically by JS -->
+            <div class="skeleton" style="height: 90px;"></div>
+            <div class="skeleton" style="height: 90px;"></div>
+          </div>
+        </section>
+
+        <!-- Comments Section -->
+        <section class="comments-section-wrapper" id="commentsSectionWrapper">
+          <div class="comments-container">
+            <div class="section-header">
+              <div class="section-title-wrap">
+                <h3 class="section-title" style="color: #E11D48;">ความคิดเห็น</h3>
+                <span class="section-counter-badge" id="commentsCountBadge">5</span>
+              </div>
+              <a class="section-link" href="javascript:void(0)" onclick="toggleAllCommentsView()">ดูทั้งหมด</a>
+            </div>
+
+            <!-- Comments List -->
+            <div class="comments-list" id="commentsList">
+              <!-- Rendered by JS -->
+            </div>
+
+            <!-- Add Comment Input Box -->
+            <div class="comment-input-wrap">
+              <div class="author-select-row" style="display: none;">
+                <span>ชื่อผู้แสดงความเห็น:</span>
+                <input type="text" id="commentAuthorInput" class="author-input-name" placeholder="ชื่อของคุณ" value="นายสมชาย ใจดี (ITDI)">
+              </div>
+              <form id="commentForm" class="comment-input-box" onsubmit="submitComment(event)">
+                <input type="text" id="commentTextInput" placeholder="เขียนความคิดเห็นของคุณ..." autocomplete="off">
+                <button type="submit" class="comment-send-btn" id="commentSubmitBtn" title="ส่งความคิดเห็น">
+                  <i class="fa-solid fa-paper-plane"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ====================================================================
+           TAB 2: กิจกรรม (EVENTS & ACTIVITIES)
+           ==================================================================== -->
+      <div class="tab-view" id="tabViewEvents">
+        
+        <!-- Student Activity Hours Card -->
+        <div class="student-hours-card">
+          <div class="hours-card-top">
+            <div>
+              <div class="hours-card-student-name">นายสมชาย ใจดี (674295027)</div>
+              <div class="hours-card-student-sub">สาขาเทคโนโลยีและนวัตกรรมดิจิทัล (ITDI) ชั้นปีที่ 3</div>
+            </div>
+            <span class="hours-badge-status"><i class="fa-solid fa-check"></i> ผ่านเกณฑ์</span>
           </div>
 
-          <!-- Add Comment Input Box -->
-          <div class="comment-input-wrap">
-            <div class="author-select-row" style="display: none;">
-              <span>ชื่อผู้แสดงความเห็น:</span>
-              <input type="text" id="commentAuthorInput" class="author-input-name" placeholder="ชื่อของคุณ" value="Tanawut Pitchayaboonowng">
+          <div class="hours-stats-grid">
+            <div class="hours-stat-box">
+              <div class="hours-stat-val" id="statHoursDisplay">38<span>/50</span></div>
+              <div class="hours-stat-lbl">ชั่วโมงสะสม</div>
             </div>
-            <form id="commentForm" class="comment-input-box" onsubmit="submitComment(event)">
-              <input type="text" id="commentTextInput" placeholder="เขียนความคิดเห็นของคุณ..." autocomplete="off">
-              <button type="submit" class="comment-send-btn" id="commentSubmitBtn" title="ส่งความคิดเห็น">
-                <i class="fa-solid fa-paper-plane"></i>
-              </button>
-            </form>
+            <div class="hours-stat-box">
+              <div class="hours-stat-val" id="statKysDisplay">24<span>/36</span></div>
+              <div class="hours-stat-lbl">จิตอาสา กยศ.</div>
+            </div>
+            <div class="hours-stat-box">
+              <div class="hours-stat-val">100<span>/100</span></div>
+              <div class="hours-stat-lbl">คะแนนวินัย</div>
+            </div>
+          </div>
+
+          <div class="hours-progress-bar-wrap">
+            <div class="hours-progress-info">
+              <span>ความคืบหน้าชั่วโมงกิจกรรมทั้งหมด</span>
+              <span id="hoursPercentText">76%</span>
+            </div>
+            <div class="hours-progress-track">
+              <div class="hours-progress-fill" id="hoursProgressFill" style="width: 76%;"></div>
+            </div>
           </div>
         </div>
-      </section>
+
+        <!-- Activity Category Filters -->
+        <div class="category-filter-wrap" id="activityCategoryFilters">
+          <button class="cat-pill active" onclick="filterActivities('ทั้งหมด', this)">ทั้งหมด</button>
+          <button class="cat-pill" onclick="filterActivities('จิตอาสา (กยศ.)', this)">จิตอาสา (กยศ.)</button>
+          <button class="cat-pill" onclick="filterActivities('กิจกรรมบังคับ', this)">กิจกรรมบังคับ</button>
+          <button class="cat-pill" onclick="filterActivities('วิชาการ/อบรม', this)">วิชาการ/อบรม</button>
+          <button class="cat-pill" onclick="filterActivities('กีฬาและสุขภาพ', this)">กีฬา & สุขภาพ</button>
+          <button class="cat-pill" onclick="filterActivities('ศิลปวัฒนธรรม', this)">ศิลปวัฒนธรรม</button>
+        </div>
+
+        <!-- Section: Available Activities -->
+        <section>
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <div class="section-indicator"></div>
+              <h3 class="section-title">กิจกรรมที่เปิดรับสมัคร</h3>
+              <span class="section-counter-badge" id="activitiesCountBadge">6</span>
+            </div>
+            <a class="section-link" href="javascript:void(0)" onclick="openMyBookingsModal()">กิจกรรมของฉัน</a>
+          </div>
+
+          <div class="activities-list" id="activitiesListContainer">
+            <!-- Rendered by JS -->
+            <div class="skeleton" style="height: 120px;"></div>
+            <div class="skeleton" style="height: 120px;"></div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- ====================================================================
+           TAB 3: แจ้งเตือน (NOTIFICATIONS)
+           ==================================================================== -->
+      <div class="tab-view" id="tabViewNotifications">
+        
+        <div class="notif-toolbar">
+          <span class="notif-badge-unread-count" id="notifUnreadBadge">3 รายการที่ยังไม่ได้อ่าน</span>
+          <button class="btn-mark-all-read" id="btnMarkAllRead" onclick="handleMarkAllNotificationsRead()">
+            <i class="fa-solid fa-check-double"></i> อ่านทั้งหมด
+          </button>
+        </div>
+
+        <!-- Notifications List -->
+        <div class="notif-list" id="notificationsListContainer">
+          <!-- Rendered by JS -->
+          <div class="skeleton" style="height: 80px;"></div>
+          <div class="skeleton" style="height: 80px;"></div>
+          <div class="skeleton" style="height: 80px;"></div>
+        </div>
+
+      </div>
+
+      <!-- ====================================================================
+           TAB 4: โปรไฟล์นักศึกษา (STUDENT PROFILE)
+           ==================================================================== -->
+      <div class="tab-view" id="tabViewProfile">
+        
+        <!-- Profile Identity Hero -->
+        <div class="profile-card-hero">
+          <div class="profile-avatar-wrap">
+            <img class="profile-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Somchai Jaidee">
+            <span class="profile-online-badge" title="สถานะปกติ"></span>
+          </div>
+
+          <div class="profile-main-meta">
+            <h2 class="profile-name-th">นายสมชาย ใจดี</h2>
+            <div class="profile-id-code">
+              <i class="fa-solid fa-id-card"></i> 674295027
+            </div>
+            <div class="profile-faculty-text">
+              คณะวิทยาศาสตร์และเทคโนโลยี<br>
+              สาขาเทคโนโลยีและนวัตกรรมดิจิทัล (ITDI) ชั้นปีที่ 3
+            </div>
+          </div>
+        </div>
+
+        <!-- Academic Key Stats -->
+        <div class="academic-stats-card">
+          <div class="section-title-wrap">
+            <div class="section-indicator"></div>
+            <h3 class="section-title">สรุปผลการศึกษา</h3>
+          </div>
+
+          <div class="academic-stats-grid">
+            <div class="academic-stat-cell">
+              <div class="academic-stat-cell-top">
+                <span class="stat-cell-label">เกรดเฉลี่ยสะสม (GPAX)</span>
+                <span class="stat-cell-badge">เกียรตินิยมอันดับ 1</span>
+              </div>
+              <div class="stat-cell-value" style="color: #E11D48;">3.82</div>
+            </div>
+
+            <div class="academic-stat-cell">
+              <div class="academic-stat-cell-top">
+                <span class="stat-cell-label">เกรดล่าสุด (1/2569)</span>
+                <span class="stat-cell-badge" style="background:#DBEAFE; color:#1E40AF;">ยอดเยี่ยม</span>
+              </div>
+              <div class="stat-cell-value">3.90</div>
+            </div>
+
+            <div class="academic-stat-cell">
+              <div class="academic-stat-cell-top">
+                <span class="stat-cell-label">หน่วยกิตสะสม</span>
+                <span class="stat-cell-badge" style="background:#FEF3C7; color:#B45309;">78.5%</span>
+              </div>
+              <div class="stat-cell-value">102 <span style="font-size:0.85rem; color:#64748B; font-weight:400;">/130</span></div>
+            </div>
+
+            <div class="academic-stat-cell">
+              <div class="academic-stat-cell-top">
+                <span class="stat-cell-label">สถานภาพนักศึกษา</span>
+                <span class="stat-cell-badge" style="background:#DCFCE7; color:#166534;">ปกติ (Active)</span>
+              </div>
+              <div class="stat-cell-value" style="font-size: 1.1rem; color: #16A34A; padding-top: 4px;">
+                <i class="fa-solid fa-circle-check"></i> ปกติ
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Personal Details -->
+        <div class="profile-details-card">
+          <div class="section-title-wrap">
+            <div class="section-indicator"></div>
+            <h3 class="section-title">ข้อมูลส่วนตัว & การศึกษา</h3>
+          </div>
+
+          <div class="info-rows-list">
+            <div class="info-row-item">
+              <div class="info-row-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="info-row-content">
+                <div class="info-row-title">อีเมลมหาวิทยาลัย</div>
+                <div class="info-row-val">674295027@parichat.skru.ac.th</div>
+              </div>
+            </div>
+
+            <div class="info-row-item">
+              <div class="info-row-icon"><i class="fa-solid fa-phone"></i></div>
+              <div class="info-row-content">
+                <div class="info-row-title">เบอร์โทรศัพท์</div>
+                <div class="info-row-val">081-234-5678</div>
+              </div>
+            </div>
+
+            <div class="info-row-item">
+              <div class="info-row-icon"><i class="fa-solid fa-user-tie"></i></div>
+              <div class="info-row-content">
+                <div class="info-row-title">อาจารย์ที่ปรึกษา</div>
+                <div class="info-row-val">ดร. นรินทร์ รัตนพาณิชย์</div>
+              </div>
+            </div>
+
+            <div class="info-row-item">
+              <div class="info-row-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+              <div class="info-row-content">
+                <div class="info-row-title">หลักสูตร</div>
+                <div class="info-row-val">วิทยาศาสตรบัณฑิต (วท.บ. 4 ปี) ภาคปกติ</div>
+              </div>
+            </div>
+
+            <div class="info-row-item">
+              <div class="info-row-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+              <div class="info-row-content">
+                <div class="info-row-title">สิทธิกองทุนเงินให้กู้ยืม</div>
+                <div class="info-row-val">ผู้กู้ยืม กยศ. (ชั่วโมงสะสม 24/36 ชม.)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Shortcuts to SKRU Services -->
+        <div>
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <div class="section-indicator"></div>
+              <h3 class="section-title">บริการด่วน</h3>
+            </div>
+          </div>
+
+          <div class="profile-shortcuts-grid">
+            <a href="/academic-record.html" class="profile-shortcut-btn">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>ผลการศึกษา</span>
+            </a>
+            <a href="/tuition-fee.html" class="profile-shortcut-btn">
+              <i class="fa-solid fa-receipt"></i>
+              <span>ชำระค่าเทอม</span>
+            </a>
+            <a href="/student-card.html" class="profile-shortcut-btn">
+              <i class="fa-solid fa-id-badge"></i>
+              <span>บัตรนักศึกษา</span>
+            </a>
+            <a href="/academic-calendar.html" class="profile-shortcut-btn">
+              <i class="fa-solid fa-calendar-check"></i>
+              <span>ปฏิทินการศึกษา</span>
+            </a>
+            <a href="/library.html" class="profile-shortcut-btn">
+              <i class="fa-solid fa-book"></i>
+              <span>ห้องสมุด OPAC</span>
+            </a>
+            <a href="/privacy-settings.html" class="profile-shortcut-btn">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>ความปลอดภัย</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
 
     </main>
 
-    <!-- Bottom Navigation Bar -->
+    <!-- Bottom Navigation Bar (5 Items) -->
     <nav class="bottom-nav">
-      <a href="javascript:void(0)" class="nav-item" onclick="switchTab('home')">
+      <a href="javascript:void(0)" class="nav-item" id="navItemHome" onclick="switchTab('home')">
         <i class="fa-solid fa-house"></i>
         <span>หน้าหลัก</span>
       </a>
-      <a href="javascript:void(0)" class="nav-item active" onclick="switchTab('news')">
+      <a href="javascript:void(0)" class="nav-item active" id="navItemNews" onclick="switchTab('news')">
         <span class="nav-badge-dot"></span>
         <i class="fa-regular fa-newspaper"></i>
         <span>ข่าวสาร</span>
       </a>
-      <a href="javascript:void(0)" class="nav-item" onclick="switchTab('events')">
+      <a href="javascript:void(0)" class="nav-item" id="navItemEvents" onclick="switchTab('events')">
         <i class="fa-regular fa-calendar-days"></i>
         <span>กิจกรรม</span>
       </a>
-      <a href="javascript:void(0)" class="nav-item" onclick="switchTab('notifications')">
+      <a href="javascript:void(0)" class="nav-item" id="navItemNotifications" onclick="switchTab('notifications')">
+        <span class="nav-badge-count" id="bottomNavNotifBadge">3</span>
         <i class="fa-regular fa-bell"></i>
         <span>แจ้งเตือน</span>
       </a>
-      <a href="javascript:void(0)" class="nav-item" onclick="switchTab('profile')">
+      <a href="javascript:void(0)" class="nav-item" id="navItemProfile" onclick="switchTab('profile')">
         <i class="fa-regular fa-circle-user"></i>
         <span>โปรไฟล์</span>
       </a>
@@ -168,6 +432,19 @@
         <button class="modal-close-btn" onclick="closeArticleModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body" id="articleModalBody">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- My Bookings Ticket Modal -->
+  <div class="modal-overlay" id="ticketModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-ticket" style="color: #E11D48; margin-right: 8px;"></i>กิจกรรมที่ลงทะเบียนไว้</h3>
+        <button class="modal-close-btn" onclick="closeTicketModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="ticketModalBody">
         <!-- Rendered dynamically -->
       </div>
     </div>
@@ -194,7 +471,7 @@
                 <option value="university">ข่าวมหาวิทยาลัย</option>
                 <option value="student-activities">กิจกรรมนักศึกษา</option>
                 <option value="academic-scholarships">วิชาการ & ทุน</option>
-                <option value="services">บริการวิชาการ</option>
+                <option value="recruitment">รับสมัครงาน</option>
               </select>
             </div>
             <div class="form-group">

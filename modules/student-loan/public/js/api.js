@@ -35,6 +35,14 @@ const API = {
     const res = await fetch('/api/volunteer');
     return res.json();
   },
+  async submitVolunteerHours(payload) {
+    const res = await fetch('/api/volunteer/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    return res.json();
+  },
   async getHallOfFame() {
     const res = await fetch('/api/hall-of-fame');
     return res.json();

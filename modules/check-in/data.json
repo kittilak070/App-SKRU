@@ -13,7 +13,7 @@
     "sessionDate": "2026-09-30",
     "totalCapacity": 35
   },
-  "currentStudentId": "6401001",
+  "currentStudentId": "6401002",
   "students": [
     {
       "id": "6401001",
@@ -23,7 +23,7 @@
       "email": "rusnee.y@university.ac.th",
       "avatar": "👩‍🎓",
       "isCheckedIn": true,
-      "checkInTime": "20:50:40"
+      "checkInTime": "09:43:10"
     },
     {
       "id": "6401002",
@@ -33,7 +33,7 @@
       "email": "ponthip.p@university.ac.th",
       "avatar": "👩‍💻",
       "isCheckedIn": true,
-      "checkInTime": "08:12:45"
+      "checkInTime": "09:43:56"
     },
     {
       "id": "6401003",
@@ -42,8 +42,8 @@
       "major": "Information Technology",
       "email": "pechjamas.s@university.ac.th",
       "avatar": "👩‍🔬",
-      "isCheckedIn": true,
-      "checkInTime": "08:15:20"
+      "isCheckedIn": false,
+      "checkInTime": null
     },
     {
       "id": "6401004",
@@ -62,8 +62,8 @@
       "major": "Software Engineering",
       "email": "muhammad.b@university.ac.th",
       "avatar": "👨‍💻",
-      "isCheckedIn": true,
-      "checkInTime": "08:05:10"
+      "isCheckedIn": false,
+      "checkInTime": null
     },
     {
       "id": "6401006",
@@ -82,8 +82,8 @@
       "major": "Information Technology",
       "email": "kittisak.s@university.ac.th",
       "avatar": "👨‍🔬",
-      "isCheckedIn": true,
-      "checkInTime": "08:22:04"
+      "isCheckedIn": false,
+      "checkInTime": null
     },
     {
       "id": "6401008",

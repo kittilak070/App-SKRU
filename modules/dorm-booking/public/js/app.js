@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function initApp() {
   bindEvents();
   loadDorms();
+  prefillStudentInfo();
 }
 
 function bindEvents() {
@@ -224,11 +225,47 @@ async function loadDorms() {
     const res = await fetch('/api/dorms');
     const data = await res.json();
     if (data.success) {
-      state.dorms = data.dorms;
-      renderDorms(data.dorms);
+      const dorms = data.dorms || data.data || [];
+      state.dorms = dorms;
+      renderDorms(dorms);
     }
   } catch (err) {
     console.error('Error fetching dorms:', err);
+  }
+}
+
+// Prefill student information from active session or /api/student
+async function prefillStudentInfo() {
+  try {
+    let student = null;
+    const res = await fetch('/api/student');
+    if (res.ok) {
+      student = await res.json();
+    }
+    if (!student) {
+      const stored = localStorage.getItem('skru_user');
+      if (stored) student = JSON.parse(stored);
+    }
+    if (student) {
+      const searchInput = document.getElementById('searchStudentId');
+      if (searchInput && !searchInput.value) {
+        searchInput.value = student.studentId || '674295027';
+      }
+      const sId = document.getElementById('studentId');
+      if (sId) sId.value = student.studentId || '674295027';
+      const fName = document.getElementById('fullName');
+      if (fName) fName.value = student.firstName && student.lastName ? `${student.firstName} ${student.lastName}` : (student.fullName || 'สมชาย ใจดี');
+      const fac = document.getElementById('faculty');
+      if (fac) fac.value = student.faculty || 'คณะวิทยาศาสตร์และเทคโนโลยี';
+      const maj = document.getElementById('major');
+      if (maj) maj.value = student.major || 'สาขาวิชาเทคโนโลยีและนวัตกรรมดิจิทัล (ITDI)';
+      const ph = document.getElementById('phone');
+      if (ph) ph.value = student.phone || '081-234-5678';
+      const em = document.getElementById('email');
+      if (em) em.value = student.email || `${student.studentId || '674295027'}@parichat.skru.ac.th`;
+    }
+  } catch (e) {
+    console.log('Prefill error:', e);
   }
 }
 
@@ -310,9 +347,10 @@ async function openBookingModal(dormId) {
     const res = await fetch(`/api/dorms/${dormId}`);
     const data = await res.json();
     if (data.success) {
-      state.selectedDormDetails = data.dorm;
+      state.selectedDormDetails = data.dorm || data.data;
       renderFloorSelector();
       renderRoomGrid();
+      prefillStudentInfo();
     }
   } catch (err) {
     console.error('Error fetching dorm details:', err);
@@ -539,7 +577,7 @@ function renderBookingReceipt(booking) {
   container.innerHTML = `
     <div class="slip-card">
       <div class="slip-header">
-        <img src="assets/skru_seal.svg" alt="ตรามหาวิทยาลัยราชภัฏสงขลา" style="height:55px; width:auto; margin-bottom:6px; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.12));">
+        <img src="assets/skru-logo.png" alt="ตรามหาวิทยาลัยราชภัฏสงขลา" style="height:55px; width:auto; margin-bottom:6px; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.12));">
         <div style="color:var(--skru-red); font-weight:700; font-size:15px;">ใบยืนยันการจองหอพัก มหาวิทยาลัยราชภัฏสงขลา</div>
         <div class="slip-code">${booking.bookingCode}</div>
         <div style="font-size:11px; color:#64748B;">วันที่จอง: ${dateStr}</div>
@@ -593,7 +631,7 @@ async function handleSearchSubmit(e) {
     const data = await res.json();
 
     if (data.success) {
-      const b = data.booking;
+      const b = data.booking || (data.bookings && data.bookings[0]) || data.data;
       
       let slipDisplay = '';
       if (b.paymentSlip) {
@@ -622,7 +660,7 @@ async function handleSearchSubmit(e) {
         </div>
         <div class="slip-card">
           <div class="slip-header">
-            <img src="assets/skru_seal.svg" alt="SKRU Seal" style="height:45px; width:auto; margin-bottom:4px;">
+            <img src="assets/skru-logo.png" alt="SKRU Seal" style="height:45px; width:auto; margin-bottom:4px;">
             <div style="color:var(--skru-red); font-weight:700;">สถานะการจอง: <span style="color:#10B981;">ยืนยันแล้ว</span></div>
             <div class="slip-code">${b.bookingCode}</div>
           </div>
@@ -728,7 +766,8 @@ async function loadAdminBookings() {
     const data = await res.json();
 
     if (data.success) {
-      if (data.bookings.length === 0) {
+      const bookings = data.bookings || data.data || [];
+      if (bookings.length === 0) {
         container.innerHTML = '<p style="padding:16px;" class="text-muted">ยังไม่มีรายการจองหอพักในระบบ</p>';
         return;
       }
@@ -750,7 +789,7 @@ async function loadAdminBookings() {
               </tr>
             </thead>
             <tbody>
-              ${data.bookings.map(b => `
+              ${bookings.map(b => `
                 <tr>
                   <td><strong>${b.bookingCode}</strong></td>
                   <td>${b.studentId}</td>
@@ -804,4 +843,50 @@ function escapeHtml(str) {
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;");
+}
+
+// Global Back Navigation Action
+function handleDormBack() {
+  // 1. If booking wizard modal is open, close modal
+  const bookingModal = document.getElementById('bookingModal');
+  if (bookingModal && (bookingModal.classList.contains('open') || bookingModal.style.display === 'flex' || bookingModal.style.display === 'block')) {
+    closeModal();
+    return;
+  }
+
+  // 2. If navigation drawer is open, close drawer
+  const navDrawer = document.getElementById('navDrawer');
+  if (navDrawer && navDrawer.classList.contains('open')) {
+    navDrawer.classList.remove('open');
+    const overlay = document.getElementById('drawerOverlay');
+    if (overlay) overlay.classList.remove('open');
+    return;
+  }
+
+  // 3. If currently in another view (search, info, admin), return to home dorm list
+  if (state.currentView !== 'home') {
+    switchView('home');
+    return;
+  }
+
+  // 4. If on home view:
+  // If embedded in iframe (such as inside SuperApp index.html)
+  if (window.parent && window.parent !== window) {
+    try {
+      if (typeof window.parent.closeInApp === 'function') {
+        window.parent.closeInApp();
+        return;
+      }
+    } catch (e) {}
+    window.parent.postMessage({ type: 'closeInApp' }, '*');
+    window.parent.postMessage({ type: 'closeApp' }, '*');
+    return;
+  }
+
+  // If running standalone
+  if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    window.location.href = '/index.html';
+  }
 }

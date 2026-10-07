@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>SKRU SuperApp | มหาวิทยาลัยราชภัฏสงขลา</title>
   
+  <script>
+    // Critical Guard: Prevent index.html from ever nesting inside an iframe
+    if (window.top !== window.self) {
+      try {
+        window.parent.postMessage({ type: 'closeApp', action: 'closeApp' }, '*');
+        window.top.location.href = window.location.href;
+      } catch (e) {
+        window.location.replace('about:blank');
+      }
+    }
+  </script>
+  
   <!-- Web App Meta Tags -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -18,22 +30,23 @@
   
   <style>
     :root {
-      --primary: #1d4ed8;
-      --primary-dark: #1e3a8a;
-      --primary-gradient: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 50%, #06b6d4 100%);
-      --card-gradient: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+      --primary: #d91424;
+      --primary-dark: #b91c1c;
+      --primary-light: #ef233c;
+      --primary-gradient: linear-gradient(135deg, #d91424 0%, #ef233c 50%, #ff5964 100%);
+      --card-gradient: linear-gradient(135deg, #d91424 0%, #ef233c 50%, #b91c1c 100%);
       --gold-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-      --app-bg: #0b0f19;
-      --app-surface: #131b2e;
-      --app-card: rgba(23, 32, 54, 0.85);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
+      --app-bg: #ffffff;
+      --app-surface: #f8fafc;
+      --app-card: #ffffff;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
       --radius-app: 36px;
       --radius-card: 20px;
       --radius-icon: 16px;
-      --shadow-app: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1);
-      --shadow-card: 0 8px 24px -4px rgba(0, 0, 0, 0.3);
+      --shadow-app: 0 25px 60px -15px rgba(217, 20, 36, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.08);
+      --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
       --bottom-nav-height: 68px;
     }
 
@@ -46,11 +59,11 @@
 
     body {
       font-family: 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #030712;
+      background-color: #f1f5f9;
       background-image: 
-        radial-gradient(at 0% 0%, rgba(29, 78, 216, 0.25) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.2) 0px, transparent 50%),
-        radial-gradient(at 50% 50%, rgba(6, 182, 212, 0.1) 0px, transparent 60%);
+        radial-gradient(at 0% 0%, rgba(217, 20, 36, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(217, 20, 36, 0.05) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(255, 255, 255, 0.8) 0px, transparent 60%);
       background-attachment: fixed;
       color: var(--text-main);
       min-height: 100vh;
@@ -68,52 +81,13 @@
       max-height: 960px;
       background: var(--app-bg);
       border-radius: var(--radius-app);
-      box-shadow: var(--shadow-app);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.06);
       display: flex;
       flex-direction: column;
       position: relative;
       overflow: hidden;
-      border: 8px solid #1f293d;
+      border: 8px solid #0f172a;
       transition: max-width 0.3s ease, border-radius 0.3s ease;
-    }
-
-    /* Fullscreen Desktop Mode */
-    body.expanded-mode {
-      padding: 0;
-    }
-    body.expanded-mode .device-wrapper {
-      max-width: 100%;
-      height: 100vh;
-      max-height: 100vh;
-      border-radius: 0;
-      border: none;
-    }
-
-    /* Top Device Controls Bar (For toggle view) */
-    .device-switcher-bar {
-      position: absolute;
-      top: 10px;
-      right: 16px;
-      z-index: 1000;
-      display: flex;
-      gap: 6px;
-    }
-
-    .btn-device-toggle {
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      color: white;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.72rem;
-      font-family: inherit;
-      cursor: pointer;
-      backdrop-filter: blur(8px);
-      transition: all 0.2s;
-    }
-
-    .btn-device-toggle:hover {
-      background: rgba(255, 255, 255, 0.25);
     }
 
     /* App Status Bar */
@@ -125,9 +99,11 @@
       align-items: center;
       font-size: 0.8rem;
       font-weight: 600;
-      color: #e2e8f0;
+      color: #0f172a;
       flex-shrink: 0;
-      z-index: 10;
+      z-index: 250;
+      background: #ffffff;
+      position: relative;
     }
 
     .status-left {
@@ -137,17 +113,21 @@
     }
 
     .dynamic-island {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       width: 90px;
       height: 22px;
       background: #000;
       border-radius: 20px;
-      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
       font-size: 0.65rem;
       color: #94a3b8;
+      pointer-events: none;
     }
 
     .status-right {
@@ -163,6 +143,7 @@
       overflow-x: hidden;
       padding: 0 18px calc(var(--bottom-nav-height) + 16px) 18px;
       scrollbar-width: none;
+      background: #ffffff;
     }
     .app-viewport::-webkit-scrollbar {
       display: none;
@@ -186,26 +167,26 @@
       width: 46px;
       height: 46px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      background: linear-gradient(135deg, #d91424, #ef233c);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: #ffffff;
       font-size: 1.2rem;
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 14px rgba(217, 20, 36, 0.25);
+      border: 2px solid #ffffff;
     }
 
     .user-text h2 {
       font-size: 0.98rem;
       font-weight: 700;
-      color: #ffffff;
+      color: #0f172a;
       line-height: 1.2;
     }
 
     .user-text p {
       font-size: 0.75rem;
-      color: var(--text-muted);
+      color: #64748b;
     }
 
     .header-actions {
@@ -218,9 +199,9 @@
       width: 38px;
       height: 38px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--card-border);
-      color: white;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #334155;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -231,7 +212,9 @@
     }
 
     .btn-icon:hover {
-      background: rgba(255, 255, 255, 0.16);
+      background: #fee2e2;
+      color: #d91424;
+      border-color: #fecaca;
     }
 
     .badge-dot {
@@ -242,16 +225,16 @@
       height: 8px;
       background: #ef4444;
       border-radius: 50%;
-      border: 2px solid var(--app-bg);
+      border: 2px solid #ffffff;
     }
 
     /* Virtual Student Card Widget */
     .student-card-widget {
-      background: linear-gradient(135deg, #1e3a8a 0%, #1e1b4b 60%, #0f172a 100%);
+      background: linear-gradient(135deg, #d91424 0%, #ef233c 50%, #b91c1c 100%);
       border-radius: var(--radius-card);
       padding: 18px 20px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: var(--shadow-card);
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 0 14px 30px -6px rgba(217, 20, 36, 0.45);
       position: relative;
       overflow: hidden;
       margin-bottom: 20px;
@@ -264,7 +247,7 @@
       right: -20%;
       width: 180px;
       height: 180px;
-      background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.22) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -279,24 +262,24 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 700;
-      color: #93c5fd;
+      color: #ffffff;
       letter-spacing: 0.5px;
     }
 
     .univ-tag i {
-      font-size: 1rem;
-      color: #f59e0b;
+      font-size: 1.05rem;
+      color: #fbbf24;
     }
 
     .card-type-pill {
-      background: rgba(245, 158, 11, 0.18);
-      border: 1px solid rgba(245, 158, 11, 0.4);
-      color: #fcd34d;
+      background: rgba(255, 255, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      color: #ffffff;
       font-size: 0.7rem;
-      font-weight: 600;
-      padding: 2px 8px;
+      font-weight: 700;
+      padding: 2px 10px;
       border-radius: 12px;
     }
 
@@ -307,14 +290,15 @@
     }
 
     .student-info h3 {
-      font-size: 1.12rem;
+      font-size: 1.15rem;
       font-weight: 700;
+      color: #ffffff;
       margin-bottom: 2px;
     }
 
     .student-info p {
       font-size: 0.8rem;
-      color: #94a3b8;
+      color: rgba(255, 255, 255, 0.88);
     }
 
     .card-qr-box {
@@ -322,6 +306,7 @@
       padding: 4px;
       border-radius: 8px;
       cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
 
     .card-qr-box img {
@@ -336,17 +321,18 @@
       gap: 8px;
       margin-top: 14px;
       padding-top: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .btn-card-quick {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #ffffff;
       padding: 7px 10px;
       border-radius: 10px;
       font-size: 0.78rem;
       font-family: inherit;
+      font-weight: 600;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -357,8 +343,8 @@
     }
 
     .btn-card-quick:hover {
-      background: rgba(255, 255, 255, 0.18);
-      color: white;
+      background: #ffffff;
+      color: #b91c1c;
     }
 
     /* Search Box */
@@ -372,17 +358,17 @@
       left: 14px;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--text-muted);
+      color: #94a3b8;
       font-size: 0.9rem;
     }
 
     .app-search-input {
       width: 100%;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--card-border);
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
       border-radius: 14px;
       padding: 10px 14px 10px 40px;
-      color: white;
+      color: #0f172a;
       font-size: 0.88rem;
       font-family: inherit;
       outline: none;
@@ -390,12 +376,13 @@
     }
 
     .app-search-input:focus {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: var(--primary);
+      background: #ffffff;
+      border-color: #d91424;
+      box-shadow: 0 0 0 3px rgba(217, 20, 36, 0.12);
     }
 
     .app-search-input::placeholder {
-      color: #64748b;
+      color: #94a3b8;
     }
 
     /* Category Pill Switcher */
@@ -412,9 +399,9 @@
     }
 
     .pill-item {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--card-border);
-      color: var(--text-muted);
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      color: #475569;
       padding: 6px 14px;
       border-radius: 20px;
       font-size: 0.78rem;
@@ -424,11 +411,16 @@
       transition: all 0.2s;
     }
 
+    .pill-item:hover {
+      background: #fee2e2;
+      color: #d91424;
+    }
+
     .pill-item.active {
-      background: var(--primary);
-      color: white;
-      border-color: #3b82f6;
-      box-shadow: 0 2px 8px rgba(29, 78, 216, 0.4);
+      background: #d91424;
+      color: #ffffff;
+      border-color: #d91424;
+      box-shadow: 0 4px 14px rgba(217, 20, 36, 0.3);
     }
 
     /* Section Title */
@@ -442,12 +434,24 @@
     .section-header h3 {
       font-size: 0.95rem;
       font-weight: 700;
-      color: #f1f5f9;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-header h3::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 16px;
+      background: #d91424;
+      border-radius: 2px;
     }
 
     .section-header span {
       font-size: 0.75rem;
-      color: #38bdf8;
+      color: #d91424;
+      font-weight: 600;
     }
 
     /* App Icons Grid (4 columns) */
@@ -484,20 +488,20 @@
       color: white;
       margin-bottom: 6px;
       position: relative;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.04);
       transition: all 0.2s;
     }
 
     .app-item:hover .app-icon-squircle {
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
     }
 
     .app-label {
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: #e2e8f0;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: #1e293b;
       line-height: 1.25;
       max-width: 68px;
       display: -webkit-box;
@@ -510,31 +514,37 @@
       position: absolute;
       top: -4px;
       right: -4px;
-      background: #0284c7;
+      background: #d91424;
       color: white;
       font-size: 0.58rem;
       font-weight: 700;
-      padding: 1px 4px;
+      padding: 1px 5px;
       border-radius: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      border: 1px solid #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
-    /* Icon Palette gradients */
-    .grad-blue   { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
-    .grad-emerald{ background: linear-gradient(135deg, #10b981, #059669); }
+    /* Icon Palette gradients (Red & White university tone) */
+    .grad-red    { background: linear-gradient(135deg, #ef233c, #b91c1c); }
+    .grad-crimson{ background: linear-gradient(135deg, #e11d48, #9f1239); }
+    .grad-ruby   { background: linear-gradient(135deg, #f43f5e, #be123c); }
+    .grad-rose   { background: linear-gradient(135deg, #fb7185, #e11d48); }
     .grad-amber  { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .grad-gold   { background: linear-gradient(135deg, #fbbf24, #b45309); }
+    .grad-emerald{ background: linear-gradient(135deg, #10b981, #059669); }
     .grad-cyan   { background: linear-gradient(135deg, #06b6d4, #0e7490); }
     .grad-indigo { background: linear-gradient(135deg, #6366f1, #4f46e5); }
     .grad-purple { background: linear-gradient(135deg, #a855f7, #7e22ce); }
-    .grad-rose   { background: linear-gradient(135deg, #f43f5e, #be123c); }
     .grad-teal   { background: linear-gradient(135deg, #14b8a6, #0f766e); }
     .grad-sky    { background: linear-gradient(135deg, #0ea5e9, #0369a1); }
-    .grad-red    { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+    .grad-blue   { background: linear-gradient(135deg, #dc2626, #991b1b); } /* red-crimson tone */
+    .grad-white  { background: linear-gradient(135deg, #ffffff, #f1f5f9); color: #b91c1c !important; }
 
     /* Notice & News Carousel Banner */
     .news-banner {
-      background: linear-gradient(90deg, rgba(37, 99, 235, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
-      border: 1px solid rgba(59, 130, 246, 0.3);
+      background: linear-gradient(90deg, #fff5f5 0%, #ffffff 100%);
+      border: 1.5px solid #fecaca;
+      box-shadow: 0 4px 16px rgba(217, 20, 36, 0.06);
       border-radius: 14px;
       padding: 12px 16px;
       display: flex;
@@ -545,18 +555,19 @@
 
     .news-banner i {
       font-size: 1.2rem;
-      color: #60a5fa;
+      color: #d91424;
     }
 
     .news-text {
       flex: 1;
       font-size: 0.78rem;
+      color: #475569;
     }
 
     .news-text strong {
       display: block;
-      color: #93c5fd;
-      font-size: 0.8rem;
+      color: #991b1b;
+      font-size: 0.82rem;
     }
 
     /* Bottom App Navigation Bar */
@@ -566,9 +577,10 @@
       left: 0;
       right: 0;
       height: var(--bottom-nav-height);
-      background: rgba(15, 23, 42, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(16px);
-      border-top: 1px solid var(--card-border);
+      border-top: 1px solid #e2e8f0;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04);
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -596,17 +608,19 @@
     }
 
     .nav-tab-item.active {
-      color: #38bdf8;
+      color: #d91424;
+      font-weight: 600;
     }
 
     .nav-tab-item.active i {
       transform: translateY(-2px);
+      filter: drop-shadow(0 2px 6px rgba(217, 20, 36, 0.35));
     }
 
     /* Modal / In-App WebView Overlay */
     .in-app-view {
       position: absolute;
-      top: 0;
+      top: 44px;
       left: 0;
       right: 0;
       bottom: 0;
@@ -614,6 +628,8 @@
       z-index: 200;
       display: none;
       flex-direction: column;
+      overflow: hidden;
+      transition: top 0.2s ease;
     }
 
     .in-app-view.open {
@@ -621,42 +637,58 @@
     }
 
     .app-bar-view {
-      height: 52px;
-      background: #0f172a;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      height: 54px;
+      background: #ffffff;
+      border-bottom: 1px solid #f1f5f9;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 14px;
-      color: white;
+      padding: 0 16px;
+      color: #0f172a;
       z-index: 10;
+      flex-shrink: 0;
     }
 
     .btn-back-app {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #38bdf8;
-      font-size: 0.82rem;
-      padding: 5px 12px;
-      border-radius: 20px;
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      color: #e11d48;
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 9999px;
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 6px;
       font-family: inherit;
       font-weight: 600;
+      box-shadow: 0 1px 2px rgba(225, 29, 72, 0.06);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .btn-back-app:hover {
-      background: rgba(56, 189, 248, 0.2);
+      background: #e11d48;
+      color: #ffffff;
+      border-color: #e11d48;
+      transform: translateX(-2px);
+      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.25);
     }
 
     .app-bar-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      max-width: 200px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: -0.01em;
+      max-width: calc(100% - 180px);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      text-align: center;
+      pointer-events: none;
     }
 
     .app-bar-actions {
@@ -665,26 +697,388 @@
     }
 
     .btn-app-bar-action {
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: white;
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #475569;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-app-bar-action:hover {
+      background: #fff1f2;
+      border-color: #fecdd3;
+      color: #e11d48;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(225, 29, 72, 0.15);
+    }
+
+    /* Fullscreen Mode for Device Wrapper */
+    .device-wrapper.fullscreen-mode {
+      max-width: 100% !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      max-height: 100vh !important;
+      border-radius: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      z-index: 99999 !important;
+    }
+
+    .device-wrapper.fullscreen-mode .status-bar {
+      display: none !important;
+    }
+
+    .device-wrapper.fullscreen-mode .in-app-view {
+      top: 0 !important;
+    }
+
+    body.has-fullscreen {
+      padding: 0 !important;
+      overflow: hidden !important;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 0 !important;
+        background: #ffffff !important;
+      }
+      .device-wrapper {
+        max-width: 100% !important;
+        width: 100% !important;
+        height: 100vh !important;
+        max-height: 100% !important;
+        border-radius: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .status-bar {
+        display: none !important;
+      }
+      .in-app-view {
+        top: 0 !important;
+      }
     }
 
     .in-app-frame {
       flex: 1;
       width: 100%;
-      height: calc(100% - 52px);
+      height: calc(100% - 54px);
       border: none;
       background: white;
+    }
+
+    /* 027 Login Gate Screen */
+    .login-gate-screen {
+      position: absolute;
+      top: 44px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, #ffb3b8 0%, #ffffff 35%, #fffdf2 75%, #fff8e1 100%);
+      z-index: 450;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 18px 22px 24px 22px;
+      color: #1e293b;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .login-gate-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+    }
+    .gate-top-security {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+    .gate-security-badge {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #059669;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: inherit;
+    }
+    .gate-logo-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 4px 0 14px 0;
+    }
+    .gate-logo-box img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+    }
+    .gate-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 6px;
+    }
+    .gate-subtitle {
+      font-size: 0.78rem;
+      color: #64748b;
+    }
+    .gate-role-tabs {
+      display: flex;
+      background: #f1f5f9;
+      padding: 4px;
+      border-radius: 12px;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .gate-role-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #64748b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+    .gate-role-btn.active {
+      background: #ffffff;
+      color: #d62828;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      font-weight: 700;
+    }
+    .gate-form-group {
+      margin-bottom: 12px;
+    }
+    .gate-label-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #1e293b;
+    }
+    .gate-forgot-link {
+      color: #d62828;
+      text-decoration: none;
+      font-size: 0.74rem;
+      cursor: pointer;
+    }
+    .gate-input-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 14px;
+      transition: all 0.2s;
+    }
+    .gate-input-box:focus-within {
+      border-color: #ea1d24;
+      box-shadow: 0 0 0 3px rgba(234, 29, 36, 0.12);
+    }
+    .gate-input-icon {
+      position: absolute;
+      left: 14px;
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+    .gate-input {
+      width: 100%;
+      height: 44px;
+      border: none;
+      background: transparent;
+      padding: 0 38px 0 42px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      color: #1e293b;
+      outline: none;
+    }
+    .gate-btn-eye {
+      position: absolute;
+      right: 12px;
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 4px;
+    }
+    .gate-remember-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      font-size: 0.78rem;
+      color: #475569;
+      cursor: pointer;
+    }
+    .gate-btn-submit {
+      width: 100%;
+      height: 46px;
+      border-radius: 24px;
+      background: linear-gradient(90deg, #ea1d24 0%, #f76707 100%);
+      color: white;
+      border: none;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(234, 29, 36, 0.35);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .gate-btn-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(234, 29, 36, 0.45);
+    }
+    .gate-demo-chips {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .gate-demo-label {
+      font-size: 0.72rem;
+      color: #64748b;
+      text-align: center;
+      font-weight: 600;
+    }
+    .gate-chip-row {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+    .gate-chip {
+      background: rgba(15, 23, 42, 0.06);
+      border: 1px solid rgba(15, 23, 42, 0.12);
+      border-radius: 16px;
+      padding: 5px 10px;
+      font-size: 0.72rem;
+      color: #334155;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .gate-chip:hover {
+      background: rgba(234, 29, 36, 0.1);
+      border-color: #ea1d24;
+      color: #ea1d24;
+    }
+    .gate-alert {
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      margin-bottom: 12px;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+    .gate-alert.show {
+      display: flex;
+    }
+    .gate-alert.error {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+    }
+    .gate-alert.success {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #065f46;
+    }
+
+    /* Gate Modals */
+    .gate-modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 600;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .gate-modal-overlay.open {
+      display: flex;
+    }
+    .gate-modal-card {
+      background: #ffffff;
+      color: #1e293b;
+      border-radius: 20px;
+      padding: 20px;
+      max-width: 380px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      position: relative;
+      animation: modalPop 0.25s ease;
+    }
+    @keyframes modalPop {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .gate-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      background: #f1f5f9;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+    }
+    .gate-sec-badge {
+      display: inline-block;
+      background: #fee2e2;
+      color: #b91c1c;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 6px;
+      margin-bottom: 4px;
+    }
+    .shake {
+      animation: shakeForm 0.35s ease;
+    }
+    @keyframes shakeForm {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
     }
   </style>
 </head>
@@ -692,12 +1086,7 @@
 
   <!-- SuperApp Device Shell -->
   <div class="device-wrapper" id="deviceWrapper">
-    <!-- View Mode Switcher -->
-    <div class="device-switcher-bar">
-      <button class="btn-device-toggle" id="modeToggleBtn" title="สลับโหมดมือถือ / เต็มจอ">
-        <i class="fa-solid fa-expand"></i> เต็มจอ
-      </button>
-    </div>
+
 
     <!-- Mobile Status Bar -->
     <div class="status-bar">
@@ -714,17 +1103,118 @@
       </div>
     </div>
 
+    <!-- 027 Authentication Login Gate Screen -->
+    <div class="login-gate-screen" id="loginGateScreen">
+      <!-- Top Security Inspector Bar -->
+      <div class="gate-top-security">
+        <button type="button" class="gate-security-badge" id="btnGateSecurity">
+          <span>🛡️ ตรวจสอบการป้องกัน (OWASP Guard)</span>
+        </button>
+      </div>
+
+      <!-- SKRU Logo & Title -->
+      <div class="gate-logo-box">
+        <img src="images/skru-logo.png" alt="ตราสัญลักษณ์ มหาวิทยาลัยราชภัฏสงขลา">
+        <h2 class="gate-title">เข้าสู่ระบบ (SKRU Login)</h2>
+        <p class="gate-subtitle">ระบบบริการดิจิทัล มหาวิทยาลัยราชภัฏสงขลา (027)</p>
+      </div>
+
+      <!-- Role Selector Tabs -->
+      <div class="gate-role-tabs" role="tablist">
+        <button type="button" class="gate-role-btn active" id="tabStudent" role="tab">
+          <span>🎓</span>
+          <span>นักศึกษา (Student)</span>
+        </button>
+        <button type="button" class="gate-role-btn" id="tabStaff" role="tab">
+          <span>🏛️</span>
+          <span>อาจารย์ / บุคลากร (Staff)</span>
+        </button>
+      </div>
+
+      <!-- Alert Notification Banner -->
+      <div class="gate-alert" id="gateAlertBanner"></div>
+
+      <!-- Login Form with 027 Security -->
+      <form id="gateLoginForm" novalidate autocomplete="on" style="display:flex; flex-direction:column; flex:1;">
+        <!-- Identifier -->
+        <div class="gate-form-group">
+          <div class="gate-label-row">
+            <label for="gateInputIdentifier" id="gateLabelIdentifier">
+              รหัสนักศึกษา หรือ อีเมล (@parichat.skru.ac.th)
+            </label>
+          </div>
+          <div class="gate-input-box" id="gateWrapperId">
+            <span class="gate-input-icon"><i class="fa-solid fa-user"></i></span>
+            <input 
+              type="text" 
+              id="gateInputIdentifier" 
+              class="gate-input" 
+              placeholder="674295027" 
+              value="674295027"
+              required
+            >
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="gate-form-group">
+          <div class="gate-label-row">
+            <label for="gateInputPassword">รหัสผ่าน (Password)</label>
+            <a href="#" class="gate-forgot-link" id="gateLinkForgot">ลืมรหัสผ่าน?</a>
+          </div>
+          <div class="gate-input-box" id="gateWrapperPass">
+            <span class="gate-input-icon"><i class="fa-solid fa-lock"></i></span>
+            <input 
+              type="password" 
+              id="gateInputPassword" 
+              class="gate-input" 
+              placeholder="••••••••" 
+              value="Skru@2026!"
+              required
+            >
+            <button type="button" class="gate-btn-eye" id="gateBtnTogglePassword" title="แสดง/ซ่อนรหัสผ่าน">
+              <i class="fa-regular fa-eye" id="gateEyeIcon"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Remember Me Checkbox -->
+        <div class="gate-remember-row" id="gateRememberRow">
+          <input type="checkbox" id="gateCheckboxRemember" checked style="accent-color:#0284c7; width:16px; height:16px; cursor:pointer;">
+          <label for="gateCheckboxRemember" style="cursor:pointer; user-select:none;">จดจำบัญชีผู้ใช้นี้บนอุปกรณ์นี้</label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="gate-btn-submit" id="gateBtnSubmit">
+          <i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ
+        </button>
+      </form>
+
+      <!-- Quick Demo Chips -->
+      <div class="gate-demo-chips">
+        <span class="gate-demo-label">ข้อมูลทดสอบด่วน (027 Demo Accounts):</span>
+        <div class="gate-chip-row">
+          <button type="button" class="gate-chip" id="chipStudent">
+            🎓 นักศึกษา (674295027)
+          </button>
+          <button type="button" class="gate-chip" id="chipStaff">
+            🏛️ อาจารย์ (somchai.k)
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Scrollable Viewport -->
     <main class="app-viewport">
       <!-- App Header Profile -->
       <header class="app-header">
-        <div class="user-profile-header">
-          <div class="user-avatar">
+        <div class="user-profile-header" onclick="openDirectApp('modules/student-profile/public/index.html', 'โปรไฟล์นักศึกษา', 'student-profile.html')">
+          <div class="user-avatar" id="headerAvatar">
             <i class="fa-solid fa-user-graduate"></i>
           </div>
           <div class="user-text">
-            <h2>นาย.กรรณพัต วังค้อม</h2>
-            <p>6530100001 • วท.บ. วิทยาการคอมพิวเตอร์</p>
+            <h2 id="headerUserName">นายสมชาย ใจดี</h2>
+            <p id="headerUserDesc">674295027 • สาขาวิชาเทคโนโลยีและนวัตกรรมดิจิทัล (ITDI)</p>
           </div>
         </div>
         <div class="header-actions">
@@ -735,6 +1225,9 @@
             <i class="fa-regular fa-bell"></i>
             <span class="badge-dot"></span>
           </button>
+          <button class="btn-icon" id="btnLogoutHeader" title="ออกจากระบบ (Logout)" style="color:#ef4444; border-color:rgba(239,68,68,0.3);">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
         </div>
       </header>
 
@@ -744,15 +1237,15 @@
           <div class="univ-tag">
             <i class="fa-solid fa-shield-halved"></i> SKRU SMART ID
           </div>
-          <span class="card-type-pill">STUDENT PASS</span>
+          <span class="card-type-pill" id="studentCardTypeBadge">STUDENT PASS</span>
         </div>
         <div class="card-widget-body">
           <div class="student-info">
-            <h3>นาย.กรรณพัต วังค้อม</h3>
-            <p>คณะวิทยาศาสตร์และเทคโนโลยี (ปี 3)</p>
+            <h3 id="studentCardName">นายสมชาย ใจดี</h3>
+            <p id="studentCardFaculty">คณะวิทยาศาสตร์และเทคโนโลยี (ปี 3)</p>
           </div>
           <div class="card-qr-box" onclick="openDirectApp('modules/student-card/public/index.html', 'บัตรนักศึกษา', 'student-card.html')" title="แตะเพื่อเปิดบัตร">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=SKRU-6530100001" alt="Student QR">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=SKRU-674295027" alt="Student QR" id="studentCardQrImg">
           </div>
         </div>
         <div class="card-quick-actions">
@@ -800,7 +1293,7 @@
       <div class="app-grid" id="appsGrid">
         <!-- 1. Check-in Class (035) -->
         <div class="app-item" data-cat="academic" data-name="check-in เช็คชื่อ เข้าเรียน 035" onclick="openDirectApp('modules/check-in/public/index.html', 'Check-in Class', 'check-in.html')">
-          <div class="app-icon-squircle grad-blue">
+          <div class="app-icon-squircle grad-red">
             <i class="fa-solid fa-clipboard-user"></i>
             <span class="branch-tiny-badge">035</span>
           </div>
@@ -872,7 +1365,7 @@
 
         <!-- 9. Faculty Contact (030) -->
         <div class="app-item" data-cat="academic" data-name="faculty contact ติดต่ออาจารย์ คณะ 030" onclick="openDirectApp('modules/faculty-contact/public/index.html', 'ติดต่ออาจารย์', 'faculty-contact.html')">
-          <div class="app-icon-squircle grad-blue">
+          <div class="app-icon-squircle grad-rose">
             <i class="fa-solid fa-chalkboard-user"></i>
             <span class="branch-tiny-badge">030</span>
           </div>
@@ -935,7 +1428,7 @@
 
         <!-- 16. Login Portal (027) -->
         <div class="app-item" data-cat="account" data-name="login เข้าสู่ระบบ 027" onclick="openDirectApp('modules/login/public/login.html', 'เข้าสู่ระบบ', 'login.html')">
-          <div class="app-icon-squircle grad-blue">
+          <div class="app-icon-squircle grad-red">
             <i class="fa-solid fa-right-to-bracket"></i>
             <span class="branch-tiny-badge">027</span>
           </div>
@@ -971,7 +1464,7 @@
 
         <!-- 20. Library System (047) -->
         <div class="app-item" data-cat="facilities" data-name="library ห้องสมุด หนังสือ 047" onclick="openDirectApp('modules/library/public/index.html', 'ห้องสมุด', 'library.html')">
-          <div class="app-icon-squircle grad-blue">
+          <div class="app-icon-squircle grad-crimson">
             <i class="fa-solid fa-lines-leaning"></i>
             <span class="branch-tiny-badge">047</span>
           </div>
@@ -982,23 +1475,23 @@
 
     <!-- Bottom Navigation Bar -->
     <nav class="bottom-nav">
-      <div class="nav-tab-item active" onclick="switchNavTab('home')">
+      <div class="nav-tab-item active" onclick="switchNavTab('home', this)">
         <i class="fa-solid fa-house"></i>
         <span>หน้าแรก</span>
       </div>
-      <div class="nav-tab-item" onclick="switchNavTab('academic')">
+      <div class="nav-tab-item" onclick="switchNavTab('academic', this)">
         <i class="fa-solid fa-book-bookmark"></i>
         <span>วิชาการ</span>
       </div>
-      <div class="nav-tab-item" onclick="openDirectApp('modules/student-card/public/index.html', 'บัตรนักศึกษา', 'student-card.html')">
+      <div class="nav-tab-item" onclick="openDirectApp('modules/student-card/public/index.html', 'บัตรนักศึกษา', 'student-card.html', this)">
         <i class="fa-solid fa-id-card-clip"></i>
         <span>บัตรดิจิทัล</span>
       </div>
-      <div class="nav-tab-item" onclick="openDirectApp('modules/rewards/public/index.html', 'แลกของรางวัล', 'rewards.html')">
+      <div class="nav-tab-item" onclick="openDirectApp('modules/rewards/public/index.html', 'แลกของรางวัล', 'rewards.html', this)">
         <i class="fa-solid fa-gift"></i>
         <span>สิทธิพิเศษ</span>
       </div>
-      <div class="nav-tab-item" onclick="openDirectApp('modules/student-profile/public/index.html', 'ประวัตินักศึกษา', 'student-profile.html')">
+      <div class="nav-tab-item" onclick="openDirectApp('modules/student-profile/public/index.html', 'ประวัตินักศึกษา', 'student-profile.html', this)">
         <i class="fa-solid fa-user"></i>
         <span>บัญชีฉัน</span>
       </div>
@@ -1012,6 +1505,9 @@
         </button>
         <span class="app-bar-title" id="appBarTitle">กำลังโหลด...</span>
         <div class="app-bar-actions">
+          <button type="button" class="btn-app-bar-action" id="btnToggleFullScreen" title="ขยายเต็มหน้าจอ / ย่อขนาด">
+            <i class="fa-solid fa-expand" id="iconFullScreen"></i>
+          </button>
           <a href="#" target="_blank" class="btn-app-bar-action" id="externalOpenBtn" title="เปิดแท็บใหม่แบบเดี่ยว">
             <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
@@ -1021,39 +1517,400 @@
     </div>
   </div>
 
+  <!-- Gate Modal: Forgot Password -->
+  <div class="gate-modal-overlay" id="gateForgotModal">
+    <div class="gate-modal-card">
+      <button type="button" class="gate-modal-close" id="btnCloseForgot">&times;</button>
+      <div style="text-align: center; margin-bottom: 16px;">
+        <span style="font-size: 36px;">🔑</span>
+        <h3 style="font-size: 17px; font-weight: 700; color: #0f172a; margin-top: 6px;">ลืมรหัสผ่าน (Forgot Password)</h3>
+        <p style="font-size: 12.5px; color: #64748b; margin-top: 4px;">
+          กรุณากรอกรหัสนักศึกษา หรือ อีเมลมหาวิทยาลัย ระบบจะส่งรหัส OTP กู้คืนรหัสผ่าน
+        </p>
+      </div>
+      <form id="gateForgotForm">
+        <div class="gate-form-group">
+          <input type="text" id="forgotIdentifier" class="gate-input" placeholder="674295027 หรือ user@skru.ac.th" style="border: 1px solid #cbd5e1; border-radius: 12px; padding: 0 14px;" required>
+        </div>
+        <button type="submit" class="gate-btn-submit" style="height: 42px; font-size: 0.88rem;">
+          ส่งรหัส OTP กู้คืนรหัสผ่าน
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Gate Modal: Security Inspector -->
+  <div class="gate-modal-overlay" id="gateSecurityModal">
+    <div class="gate-modal-card" style="max-width: 440px;">
+      <button type="button" class="gate-modal-close" id="btnCloseSecurity">&times;</button>
+      <div style="margin-bottom: 12px;">
+        <h3 style="font-size: 16px; font-weight: 700; color: #0f172a;">🛡️ มาตรฐานความปลอดภัย (OWASP Security)</h3>
+        <p style="font-size: 12px; color: #64748b;">
+          ระบบผ่านการเสริมความปลอดภัยตามมาตรฐาน OWASP Top 10
+        </p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:12px; color:#334155;">
+        <div>
+          <span class="gate-sec-badge">A03: Injection Hardened</span>
+          <p>Regex whitelist ตรวจสอบรหัสนักศึกษาและอีเมล ตัด Null Bytes ป้องกัน SQL/NoSQL Injection</p>
+        </div>
+        <div>
+          <span class="gate-sec-badge">A07: Constant-time Hash</span>
+          <p>เข้ารหัสรหัสผ่านด้วย Bcrypt ป้องกัน Timing Attacks และ Side-channel</p>
+        </div>
+        <div>
+          <span class="gate-sec-badge">Anti-Brute Force</span>
+          <p>ระบบตรวจจับการสุ่มรหัสผ่าน ล็อคป้องกันการพยายามล็อกอินผิดซ้ำ</p>
+        </div>
+        <div>
+          <span class="gate-sec-badge">A01: CSRF Protection</span>
+          <p>ใช้ HMAC Double Submit CSRF Token ร่วมกับ HttpOnly / SameSite Lax Cookies</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const inAppView = document.getElementById('inAppView');
     const inAppFrame = document.getElementById('inAppFrame');
     const appBarTitle = document.getElementById('appBarTitle');
     const externalOpenBtn = document.getElementById('externalOpenBtn');
     const closeAppBtn = document.getElementById('closeAppBtn');
-    const modeToggleBtn = document.getElementById('modeToggleBtn');
     const appSearchInput = document.getElementById('appSearchInput');
     const categoryPills = document.querySelectorAll('.pill-item');
     const appItems = document.querySelectorAll('.app-item');
     const serviceCountText = document.getElementById('serviceCountText');
 
+    // 027 Login Gate Elements
+    const loginGateScreen = document.getElementById('loginGateScreen');
+    const tabStudent = document.getElementById('tabStudent');
+    const tabStaff = document.getElementById('tabStaff');
+    const gateLabelIdentifier = document.getElementById('gateLabelIdentifier');
+    const gateInputIdentifier = document.getElementById('gateInputIdentifier');
+    const gateInputPassword = document.getElementById('gateInputPassword');
+    const gateBtnTogglePassword = document.getElementById('gateBtnTogglePassword');
+    const gateEyeIcon = document.getElementById('gateEyeIcon');
+    const gateLoginForm = document.getElementById('gateLoginForm');
+    const gateBtnSubmit = document.getElementById('gateBtnSubmit');
+    const gateAlertBanner = document.getElementById('gateAlertBanner');
+    const chipStudent = document.getElementById('chipStudent');
+    const chipStaff = document.getElementById('chipStaff');
+    const btnLogoutHeader = document.getElementById('btnLogoutHeader');
+
+    // Modals
+    const btnGateSecurity = document.getElementById('btnGateSecurity');
+    const gateSecurityModal = document.getElementById('gateSecurityModal');
+    const btnCloseSecurity = document.getElementById('btnCloseSecurity');
+    const gateLinkForgot = document.getElementById('gateLinkForgot');
+    const gateForgotModal = document.getElementById('gateForgotModal');
+    const btnCloseForgot = document.getElementById('btnCloseForgot');
+    const gateForgotForm = document.getElementById('gateForgotForm');
+
+    // User profile elements in SuperApp
+    const headerUserName = document.getElementById('headerUserName');
+    const headerUserDesc = document.getElementById('headerUserDesc');
+    const studentCardName = document.getElementById('studentCardName');
+    const studentCardFaculty = document.getElementById('studentCardFaculty');
+    const studentCardQrImg = document.getElementById('studentCardQrImg');
+    const studentCardTypeBadge = document.getElementById('studentCardTypeBadge');
+
+    let currentLoginRole = 'student';
+    let isPassVisible = false;
     let currentFilter = 'all';
 
-    // Direct Module In-App Loader (Direct path avoids double iframes & double header bars)
-    function openDirectApp(moduleUrl, title, standaloneUrl) {
+    // 1. Role Toggle in Gate
+    tabStudent.addEventListener('click', () => setLoginRole('student'));
+    tabStaff.addEventListener('click', () => setLoginRole('staff'));
+
+    function setLoginRole(role) {
+      currentLoginRole = role;
+      hideGateAlert();
+      if (role === 'student') {
+        tabStudent.classList.add('active');
+        tabStaff.classList.remove('active');
+        gateLabelIdentifier.textContent = 'รหัสนักศึกษา หรือ อีเมล (@parichat.skru.ac.th)';
+        gateInputIdentifier.placeholder = '674295027';
+        gateInputIdentifier.value = '674295027';
+        gateInputPassword.value = 'Skru@2026!';
+      } else {
+        tabStaff.classList.add('active');
+        tabStudent.classList.remove('active');
+        gateLabelIdentifier.textContent = 'ชื่อผู้ใช้ หรือ อีเมล (@skru.ac.th)';
+        gateInputIdentifier.placeholder = 'somchai.k';
+        gateInputIdentifier.value = 'somchai.k';
+        gateInputPassword.value = 'Staff@2026!';
+      }
+    }
+
+    // 2. Eye password toggle
+    gateBtnTogglePassword.addEventListener('click', () => {
+      isPassVisible = !isPassVisible;
+      gateInputPassword.type = isPassVisible ? 'text' : 'password';
+      gateEyeIcon.className = isPassVisible ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+    });
+
+    // 3. Demo Chips
+    chipStudent.addEventListener('click', () => {
+      setLoginRole('student');
+    });
+    chipStaff.addEventListener('click', () => {
+      setLoginRole('staff');
+    });
+
+    // 4. Modals
+    btnGateSecurity.addEventListener('click', () => gateSecurityModal.classList.add('open'));
+    btnCloseSecurity.addEventListener('click', () => gateSecurityModal.classList.remove('open'));
+    gateLinkForgot.addEventListener('click', (e) => {
+      e.preventDefault();
+      gateForgotModal.classList.add('open');
+    });
+    btnCloseForgot.addEventListener('click', () => gateForgotModal.classList.remove('open'));
+    gateForgotForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('ระบบได้จัดส่งรหัส OTP กู้คืนรหัสผ่านไปยังอีเมลของท่านแล้ว');
+      gateForgotModal.classList.remove('open');
+    });
+
+    function showGateAlert(type, msg) {
+      gateAlertBanner.className = `gate-alert show ${type}`;
+      gateAlertBanner.innerHTML = `<i class="fa-solid fa-circle-info"></i> <span>${msg}</span>`;
+    }
+    function hideGateAlert() {
+      gateAlertBanner.className = 'gate-alert';
+      gateAlertBanner.innerHTML = '';
+    }
+
+    // 5. Apply User Session to Dashboard
+    function applyUserSession(user) {
+      if (!user) return;
+      const displayName = user.fullName || user.name || 'นายสมชาย ใจดี';
+      const displayId = user.studentId || user.username || user.id || '674295027';
+      const faculty = user.faculty || 'คณะวิทยาศาสตร์และเทคโนโลยี';
+      const major = user.major || user.department || 'สาขาวิชาเทคโนโลยีและนวัตกรรมดิจิทัล (ITDI)';
+      const year = user.year || 'ปี 3';
+
+      headerUserName.textContent = displayName;
+      headerUserDesc.textContent = `${displayId} • ${major}`;
+      studentCardName.textContent = displayName;
+      studentCardFaculty.textContent = `${faculty} (${year})`;
+      studentCardTypeBadge.textContent = user.role === 'staff' ? 'STAFF PASS' : 'STUDENT PASS';
+      studentCardQrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=SKRU-${displayId}`;
+    }
+
+    // 6. Check Auth on Initial Page Load
+    function initAuth() {
+      const saved = localStorage.getItem('skru_user');
+      if (saved) {
+        try {
+          const user = JSON.parse(saved);
+          if (user.studentId === '674295027' || user.id === 'std_674295027') {
+            user.fullName = 'นายสมชาย ใจดี';
+            user.firstName = 'สมชาย';
+            user.lastName = 'ใจดี';
+            user.major = 'สาขาวิชาเทคโนโลยีและนวัตกรรมดิจิทัล (ITDI)';
+            localStorage.setItem('skru_user', JSON.stringify(user));
+          }
+          applyUserSession(user);
+          loginGateScreen.classList.add('hidden');
+          return;
+        } catch (e) {
+          localStorage.removeItem('skru_user');
+        }
+      }
+      // If not logged in, enforce login screen
+      loginGateScreen.classList.remove('hidden');
+    }
+
+    // 7. Login Submission Handler
+    gateLoginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const identifier = gateInputIdentifier.value.trim();
+      const password = gateInputPassword.value;
+
+      if (!identifier || !password) {
+        showGateAlert('error', 'กรุณากรอกรหัสประจำตัวและรหัสผ่านให้ครบถ้วน');
+        return;
+      }
+
+      gateBtnSubmit.disabled = true;
+      gateBtnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> กำลังเข้าสู่ระบบ...`;
+      hideGateAlert();
+
+      try {
+        // Fetch CSRF token
+        let csrfToken = '';
+        try {
+          const csrfRes = await fetch('/api/auth/csrf');
+          const csrfData = await csrfRes.json();
+          csrfToken = csrfData.csrfToken || '';
+        } catch(e) {}
+
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': csrfToken
+          },
+          body: JSON.stringify({
+            role: currentLoginRole,
+            identifier,
+            password
+          })
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          showGateAlert('success', data.message || 'เข้าสู่ระบบสำเร็จ ยินดีต้อนรับสู่ SKRU SuperApp');
+          const userData = data.user || {
+            studentId: identifier,
+            fullName: `ผู้ใช้งาน ${identifier}`,
+            faculty: 'คณะวิทยาศาสตร์และเทคโนโลยี',
+            major: 'สาขาวิชาเทคโนโลยีและนวัตกรรมดิจิทัล (ITDI)',
+            year: 'ปี 3'
+          };
+          localStorage.setItem('skru_user', JSON.stringify(userData));
+          applyUserSession(userData);
+
+          setTimeout(() => {
+            loginGateScreen.classList.add('hidden');
+            gateBtnSubmit.disabled = false;
+            gateBtnSubmit.innerHTML = `<i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ`;
+          }, 600);
+        } else {
+          showGateAlert('error', data.message || 'รหัสประจำตัว หรือ รหัสผ่านไม่ถูกต้อง');
+          gateLoginForm.classList.add('shake');
+          setTimeout(() => gateLoginForm.classList.remove('shake'), 400);
+          gateBtnSubmit.disabled = false;
+          gateBtnSubmit.innerHTML = `<i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ`;
+        }
+      } catch (err) {
+        console.error('Login error:', err);
+        showGateAlert('error', 'เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์ กรุณาลองใหม่อีกครั้ง');
+        gateBtnSubmit.disabled = false;
+        gateBtnSubmit.innerHTML = `<i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ`;
+      }
+    });
+
+    // 8. Logout Handler
+    btnLogoutHeader.addEventListener('click', async () => {
+      if (confirm('คุณต้องการออกจากระบบ SKRU SuperApp ใช่หรือไม่?')) {
+        try {
+          await fetch('/api/auth/logout', { method: 'POST' });
+        } catch(e) {}
+        localStorage.removeItem('skru_user');
+        loginGateScreen.classList.remove('hidden');
+        gateInputPassword.value = '';
+        hideGateAlert();
+      }
+    });
+
+    // Run auth check on startup
+    initAuth();
+
+    // Direct Module In-App Loader
+    function openDirectApp(moduleUrl, title, standaloneUrl, sourceTab) {
       appBarTitle.textContent = title;
       externalOpenBtn.href = standaloneUrl || moduleUrl;
       inAppFrame.src = moduleUrl;
       inAppView.classList.add('open');
+
+      if (sourceTab) {
+        document.querySelectorAll('.bottom-nav .nav-tab-item').forEach(item => item.classList.remove('active'));
+        sourceTab.classList.add('active');
+      }
     }
 
-    closeAppBtn.addEventListener('click', () => {
+    function closeInApp() {
       inAppView.classList.remove('open');
       inAppFrame.src = 'about:blank';
+      appBarTitle.textContent = '';
+      // Exit fullscreen if active when closing
+      deviceWrapper.classList.remove('fullscreen-mode');
+      document.body.classList.remove('has-fullscreen');
+      if (iconFullScreen) iconFullScreen.className = 'fa-solid fa-expand';
+      // Return active state to appropriate tab
+      document.querySelectorAll('.bottom-nav .nav-tab-item').forEach(item => item.classList.remove('active'));
+      const homeTab = document.querySelector('.bottom-nav .nav-tab-item:nth-child(1)');
+      if (homeTab) homeTab.classList.add('active');
+    }
+
+    closeAppBtn.addEventListener('click', closeInApp);
+    window.closeInApp = closeInApp;
+
+    // Listen for close requests from inside child iframes
+    window.addEventListener('message', (e) => {
+      if (e.data && (e.data.type === 'closeInApp' || e.data.type === 'closeApp')) {
+        closeInApp();
+      }
     });
 
-    // Viewport Mode Toggle (Mobile Shell vs Fullscreen)
-    modeToggleBtn.addEventListener('click', () => {
-      const isExpanded = document.body.classList.toggle('expanded-mode');
-      modeToggleBtn.innerHTML = isExpanded 
-        ? '<i class="fa-solid fa-compress"></i> กรอบมือถือ' 
-        : '<i class="fa-solid fa-expand"></i> เต็มจอ';
+    // Clean redundant headers inside loaded iframe modules
+    inAppFrame.addEventListener('load', () => {
+      try {
+        const doc = inAppFrame.contentDocument || inAppFrame.contentWindow?.document;
+        if (!doc) return;
+        
+        // Anti-recursion: If iframe loaded index.html by mistake, close overlay immediately
+        if (doc.querySelector('#deviceWrapper') || doc.querySelector('.device-wrapper')) {
+          closeInApp();
+          return;
+        }
+
+        // Clean redundant headers, duplicate back buttons, and phone shells inside modules
+        let cleaner = doc.getElementById('skru-cleaner-style');
+        if (!cleaner) {
+          cleaner = doc.createElement('style');
+          cleaner.id = 'skru-cleaner-style';
+          cleaner.textContent = `
+            #btnBack, #backButton, #headerBackBtn, #header-back-btn, #btn-back,
+            .btn-back, .nav-back-circle-btn,
+            .btn-app-back, a.btn-back, .app-topbar, .portal-nav, .header-spacer {
+              display: none !important;
+            }
+            .desktop-app-wrapper, .mobile-device-container, .device-backdrop {
+              background: transparent !important;
+              padding: 0 !important;
+              margin: 0 !important;
+              min-height: auto !important;
+            }
+            .mobile-device-container {
+              border: none !important;
+              box-shadow: none !important;
+              max-width: 100% !important;
+              border-radius: 0 !important;
+            }
+          `;
+          doc.head.appendChild(cleaner);
+        }
+      } catch (err) {
+        // Cross-origin fallback
+      }
+    });
+
+    // Fullscreen Toggle
+    const btnToggleFullScreen = document.getElementById('btnToggleFullScreen');
+    const iconFullScreen = document.getElementById('iconFullScreen');
+    if (btnToggleFullScreen) {
+      btnToggleFullScreen.addEventListener('click', () => {
+        const isFull = deviceWrapper.classList.toggle('fullscreen-mode');
+        document.body.classList.toggle('has-fullscreen', isFull);
+        if (iconFullScreen) {
+          iconFullScreen.className = isFull ? 'fa-solid fa-compress' : 'fa-solid fa-expand';
+        }
+      });
+    }
+
+    // Listen for back/close messages from any inner module iframes
+    window.addEventListener('message', (event) => {
+      if (
+        event.data === 'closeApp' || 
+        event.data?.type === 'closeApp' || 
+        event.data?.action === 'closeApp' || 
+        event.data?.action === 'back'
+      ) {
+        closeInApp();
+      }
     });
 
     // Filter Logic
@@ -1091,16 +1948,24 @@
     });
 
     // Bottom Tab Bar Navigation
-    function switchNavTab(tab) {
+    function switchNavTab(tab, clickedElement) {
+      document.querySelectorAll('.bottom-nav .nav-tab-item').forEach(item => item.classList.remove('active'));
+      if (clickedElement) {
+        clickedElement.classList.add('active');
+      }
+
       if (tab === 'home') {
         categoryPills.forEach(p => p.classList.remove('active'));
-        document.querySelector('.pill-item[data-cat="all"]').classList.add('active');
+        const allPill = document.querySelector('.pill-item[data-cat="all"]');
+        if (allPill) allPill.classList.add('active');
         currentFilter = 'all';
         appSearchInput.value = '';
         filterApps();
+        document.querySelector('.app-viewport')?.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (tab === 'academic') {
         categoryPills.forEach(p => p.classList.remove('active'));
-        document.querySelector('.pill-item[data-cat="academic"]').classList.add('active');
+        const academicPill = document.querySelector('.pill-item[data-cat="academic"]');
+        if (academicPill) academicPill.classList.add('active');
         currentFilter = 'academic';
         filterApps();
       }

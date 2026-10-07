@@ -215,7 +215,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Close button
   closeBtn.addEventListener('click', () => {
     if (confirm('ต้องการปิดหน้าต่างแบบฟอร์มหรือไม่?')) {
-      window.history.back();
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'closeApp' }, '*');
+      } else if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = '/index.html';
+      }
     }
   });
 

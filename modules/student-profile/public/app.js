@@ -79,17 +79,9 @@ async function loadStudentData() {
 // Render Photo Container + Top Avatar Circle
 function renderPhoto(avatarUrl) {
   const topAvatar = document.getElementById('btnTopAvatar');
-  if (avatarUrl && avatarUrl.trim() !== '') {
-    photoContainer.innerHTML = `<img src="${avatarUrl}" alt="รูปถ่ายนักศึกษา" class="student-photo-img">`;
-    // Update top-right avatar circle with the same photo
-    topAvatar.innerHTML = `<img src="${avatarUrl}" alt="โปรไฟล์" class="top-avatar-img">`;
-  } else {
-    photoContainer.innerHTML = `<div class="badge-skru-art">SKRU</div>`;
-    // Reset top-right avatar to default silhouette
-    topAvatar.innerHTML = `<svg viewBox="0 0 24 24" class="user-silhouette-svg">
-      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#555555"/>
-    </svg>`;
-  }
+  const targetUrl = (avatarUrl && avatarUrl.trim() !== '') ? avatarUrl : 'assets/avatar.png';
+  photoContainer.innerHTML = `<img src="${targetUrl}" alt="รูปถ่ายนักศึกษา" class="student-photo-img" onerror="this.onerror=null; this.src='assets/avatar.png';">`;
+  topAvatar.innerHTML = `<img src="${targetUrl}" alt="โปรไฟล์" class="top-avatar-img" onerror="this.onerror=null; this.src='assets/avatar.png';">`;
 }
 
 // Render data to DOM
@@ -98,20 +90,20 @@ function renderStudentData(student) {
   renderPhoto(student.avatarUrl);
 
   // Card 1
-  card1NameTh.textContent = student.nameTh || 'นาย อดีต คิ้วโก่ง';
-  card1NameEn.textContent = student.nameEn || 'ADEET KIWKHONG';
+  card1NameTh.textContent = student.nameTh || 'นายสมชาย ใจดี';
+  card1NameEn.textContent = student.nameEn || 'MR. SOMCHAI JAIDEE';
   card1Status.textContent = student.studentType || 'นักศึกษาภาคปกติ';
-  card1StudentId.textContent = student.studentId || '674295067';
+  card1StudentId.textContent = student.studentId || '674295027';
   card1Faculty.textContent = student.faculty || 'คณะวิทยาศาสตร์และเทคโนโลยี';
-  card1Major.textContent = student.major || 'เทคโนโลยีสารสนเทศ';
+  card1Major.textContent = student.major || 'สาขาวิชาเทคโนโลยีและนวัตกรรมดิจิทัล (ITDI)';
   card1DegreeLevel.textContent = student.degreeLevel || 'ปริญญาตรี 4 ปี';
   card1YearLevel.textContent = student.yearLevel || 'ปีที่ 3';
 
   // Card 2
-  card2NameTh.textContent = student.nameTh || 'นาย อดีต คิ้วโก่ง';
+  card2NameTh.textContent = student.nameTh || 'นายสมชาย ใจดี';
   card2BirthDate.textContent = student.birthDate || '12 มกราคม 2547';
   card2Phone.textContent = student.phone || '081-234-5678';
-  card2Email.textContent = student.email || '67295067@parichat.skru.ac.th';
+  card2Email.textContent = student.email || '674295027@parichat.skru.ac.th';
   
   if (student.address) {
     card2Address.innerHTML = student.address.replace(/\n/g, '<br>');
@@ -311,7 +303,13 @@ document.addEventListener('click', (e) => {
 });
 
 btnBack.addEventListener('click', () => {
-  showToast('ย้อนกลับ');
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: 'closeApp' }, '*');
+  } else if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    window.location.href = '/index.html';
+  }
 });
 
 // Initialize on page load

@@ -503,3 +503,33 @@ async function confirmResetPin() {
   }
   showToast('รีเซ็ต PIN สำเร็จแล้ว (กำลังออกจากระบบ...)');
 }
+
+// Global Back Navigation Action for Settings Main Screen
+function handleSettingsBack() {
+  // If any modal is currently open, close modal
+  const openModal = document.querySelector('.modal.active');
+  if (openModal) {
+    openModal.classList.remove('active');
+    return;
+  }
+
+  // If inside child iframe (SuperApp)
+  if (window.parent && window.parent !== window) {
+    try {
+      if (typeof window.parent.closeInApp === 'function') {
+        window.parent.closeInApp();
+        return;
+      }
+    } catch (e) {}
+    window.parent.postMessage({ type: 'closeInApp' }, '*');
+    window.parent.postMessage({ type: 'closeApp' }, '*');
+    return;
+  }
+
+  // If running standalone
+  if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    window.location.href = '/index.html';
+  }
+}

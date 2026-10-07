@@ -210,14 +210,16 @@ function renderApp() {
   // 3. CHECK-IN CLASS Action Button State
   if (isMeCheckedIn) {
     elements.btnCheckIn.className = "btn-checkin checked-done";
-    elements.btnCheckInText.textContent = "CHECKED IN ✓";
-    elements.btnCheckIn.disabled = true;
+    elements.btnCheckInText.innerHTML = `✓ CHECKED IN ✓ <span class="btn-subtext">(กดเพื่อยกเลิก / ทดสอบไม่เช็ค)</span>`;
+    elements.btnCheckIn.disabled = false;
+    elements.btnCheckIn.title = "กดเพื่อยกเลิกเช็คชื่อ (สลับสถานะเป็นไม่เช็ค)";
     elements.checkInSpinner.classList.add('hidden');
     elements.checkInCheckmark.classList.remove('hidden');
   } else if (course.isCheckInOpen) {
     elements.btnCheckIn.className = "btn-checkin active-ready";
-    elements.btnCheckInText.textContent = "CHECK-IN CLASS";
+    elements.btnCheckInText.innerHTML = `CHECK-IN CLASS <span class="btn-subtext">(กดเพื่อเช็คชื่อเข้าเรียน)</span>`;
     elements.btnCheckIn.disabled = false;
+    elements.btnCheckIn.title = "กดเพื่อเช็คชื่อเข้าเรียน";
     elements.checkInSpinner.classList.add('hidden');
     elements.checkInCheckmark.classList.add('hidden');
   } else {
@@ -277,8 +279,8 @@ function renderClassmateList(list, currentStudentId) {
 
       <div class="classmate-actions">
         ${student.isCheckedIn 
-          ? `<span class="status-badge-mini checked" title="เวลา ${student.checkInTime}">✓ เช็คแล้ว</span>`
-          : `<span class="status-badge-mini absent">ขาดเรียน</span>`
+          ? `<button type="button" class="status-badge-mini checked btn-toggle-badge" data-id="${student.id}" title="คลิกเพื่อสลับเป็นไม่เช็คชื่อ">✓ เช็คแล้ว</button>`
+          : `<button type="button" class="status-badge-mini absent btn-toggle-badge" data-id="${student.id}" title="คลิกเพื่อสลับเป็นเช็คชื่อ">ขาดเรียน</button>`
         }
         
         <button class="btn-chat-bubble" data-id="${student.id}" title="คุยกับ ${student.name}" aria-label="Chat with classmate">
@@ -289,6 +291,15 @@ function renderClassmateList(list, currentStudentId) {
         </button>
       </div>
     `;
+
+    // Add badge click to toggle student check-in
+    const badgeBtn = row.querySelector('.btn-toggle-badge');
+    if (badgeBtn) {
+      badgeBtn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        await toggleStudentCheck(student.id);
+      });
+    }
 
     // Add chat trigger
     const chatBtn = row.querySelector('.btn-chat-bubble');
@@ -336,7 +347,9 @@ async function performCheckIn(pin = null) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         studentId: currentStudentId,
-        pin: pin
+        pin: pin,
+        action: 'checkin',
+        status: true
       })
     });
 
@@ -358,8 +371,113 @@ async function performCheckIn(pin = null) {
   }
 }
 
-elements.btnCheckIn.addEventListener('click', () => {
-  performCheckIn();
+// Student Uncheck Handler
+async function performUncheck(studentId = null) {
+  const targetId = studentId || appState.currentStudentId;
+  
+  elements.btnCheckIn.disabled = true;
+  elements.btnCheckInText.textContent = "กำลังยกเลิก...";
+  elements.checkInSpinner.classList.remove('hidden');
+
+  try {
+    const res = await fetch('/api/check-in', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        studentId: targetId,
+        action: 'uncheck',
+        status: false
+      })
+    });
+
+    const data = await res.json();
+    if (data.success) {
+      showToast(data.message || "ยกเลิกการเช็คชื่อแล้ว (สถานะ: ไม่เช็ค)", 'info');
+      await fetchAllData();
+    } else {
+      showToast(data.message || "เกิดข้อผิดพลาด", 'error');
+      renderApp();
+    }
+  } catch (err) {
+    showToast("เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์", 'error');
+    renderApp();
+  }
+}
+
+// Student Force Check-in / Uncheck Handler for Test Buttons
+async function performCheckInForce(studentId, shouldCheck) {
+  try {
+    const res = await fetch('/api/check-in', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        studentId: studentId,
+        action: shouldCheck ? 'checkin' : 'uncheck',
+        status: shouldCheck
+      })
+    });
+    const data = await res.json();
+    if (data.success) {
+      if (shouldCheck) playChime(true);
+      showToast(data.message || (shouldCheck ? "เช็คชื่อสำเร็จ!" : "ยกเลิกการเช็คชื่อแล้ว (ไม่เช็ค)"), shouldCheck ? 'success' : 'info');
+      await fetchAllData();
+    } else {
+      showToast(data.message || "เกิดข้อผิดพลาด", 'error');
+    }
+  } catch (err) {
+    showToast("เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์", 'error');
+  }
+}
+
+// Toggle single student checkin status
+async function toggleStudentCheck(studentId) {
+  try {
+    const res = await fetch(`/api/students/${studentId}/toggle`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+    const data = await res.json();
+    if (data.success) {
+      if (data.isCheckedIn) playChime(true);
+      showToast(data.message || "อัปเดตสถานะสำเร็จ", data.isCheckedIn ? 'success' : 'info');
+      await fetchAllData();
+    } else {
+      showToast(data.message || "เกิดข้อผิดพลาด", 'error');
+    }
+  } catch (err) {
+    showToast("เกิดข้อผิดพลาดในการเชื่อมต่อ", 'error');
+  }
+}
+
+// Reset all attendance
+async function resetAllAttendance() {
+  try {
+    const res = await fetch('/api/course/reset-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast("รีเซ็ตทุกคนเป็น 'ไม่เช็ค / ขาดเรียน' สำเร็จ", 'info');
+      await fetchAllData();
+    } else {
+      showToast(data.message || "เกิดข้อผิดพลาด", 'error');
+    }
+  } catch (err) {
+    showToast("เกิดข้อผิดพลาดในการเชื่อมต่อ", 'error');
+  }
+}
+
+elements.btnCheckIn.addEventListener('click', async () => {
+  const { currentStudentId, students } = appState;
+  const currentStudent = students.find(s => s.id === currentStudentId);
+  const isMeCheckedIn = currentStudent ? currentStudent.isCheckedIn : false;
+
+  if (isMeCheckedIn) {
+    await performUncheck(currentStudentId);
+  } else {
+    await performCheckIn();
+  }
 });
 
 // PIN Form Submit in Modal
@@ -627,8 +745,8 @@ function renderSeeAllList(filter = 'all', searchQuery = '') {
 
       <div class="classmate-actions">
         ${student.isCheckedIn 
-          ? `<span class="status-badge-mini checked">${student.checkInTime || 'เช็คแล้ว'}</span>`
-          : `<span class="status-badge-mini absent">ยังไม่เช็ค</span>`
+          ? `<button type="button" class="status-badge-mini checked btn-toggle-badge" data-id="${student.id}" title="คลิกเพื่อสลับเป็นไม่เช็คชื่อ">${student.checkInTime || '✓ เช็คแล้ว'}</button>`
+          : `<button type="button" class="status-badge-mini absent btn-toggle-badge" data-id="${student.id}" title="คลิกเพื่อสลับเป็นเช็คชื่อ">ยังไม่เช็ค</button>`
         }
         <button class="btn-chat-bubble" data-id="${student.id}" title="เปิดแชท">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
@@ -637,6 +755,15 @@ function renderSeeAllList(filter = 'all', searchQuery = '') {
         </button>
       </div>
     `;
+
+    // Add badge click to toggle student check-in
+    const badgeBtn = row.querySelector('.btn-toggle-badge');
+    if (badgeBtn) {
+      badgeBtn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        await toggleStudentCheck(student.id);
+      });
+    }
 
     row.querySelector('.btn-chat-bubble').addEventListener('click', () => {
       elements.seeAllModal.classList.add('hidden');
@@ -707,9 +834,15 @@ elements.btnCloseQr.addEventListener('click', () => {
   elements.qrModal.classList.add('hidden');
 });
 
-// Back Button feedback
+// Back Button action
 elements.btnBack.addEventListener('click', () => {
-  showToast("นี่คือหน้ารายละเอียดวิชาหลัก", 'normal');
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: 'closeApp' }, '*');
+  } else if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    window.location.href = '/index.html';
+  }
 });
 
 // Utility
@@ -728,4 +861,17 @@ setInterval(() => {
 // Initialize on Load
 document.addEventListener('DOMContentLoaded', () => {
   fetchAllData();
+
+  // Test Check-in / Uncheck Quick Buttons
+  document.getElementById('btnTestCheckIn')?.addEventListener('click', async () => {
+    await performCheckInForce(appState.currentStudentId, true);
+  });
+
+  document.getElementById('btnTestUncheck')?.addEventListener('click', async () => {
+    await performCheckInForce(appState.currentStudentId, false);
+  });
+
+  document.getElementById('btnTestReset')?.addEventListener('click', async () => {
+    await resetAllAttendance();
+  });
 });

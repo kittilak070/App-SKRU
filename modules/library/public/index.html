@@ -37,10 +37,14 @@
         }
     </script>
     <style>
-        body {
+        html, body {
             font-family: 'Inter', 'Prompt', sans-serif;
-            background-color: #0f172a;
+            background-color: #f8fafc;
             color: #1e293b;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
         }
         ::-webkit-scrollbar {
             width: 4px;
@@ -68,25 +72,18 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-0 sm:p-4 md:p-6 antialiased selection:bg-skruRed selection:text-white">
+<body class="min-h-screen bg-slate-50 antialiased selection:bg-skruRed selection:text-white m-0 p-0 overflow-x-hidden flex flex-col">
 
-    <!-- Smartphone Mobile App Frame Container -->
-    <div class="w-full max-w-sm sm:max-w-[410px] bg-slate-50 h-screen sm:h-[840px] sm:rounded-[40px] shadow-2xl flex flex-col overflow-hidden relative sm:border-[8px] sm:border-slate-900 text-slate-800">
+    <!-- Fullscreen App Container -->
+    <div class="w-full min-h-screen bg-slate-50 flex flex-col relative text-slate-800 flex-1">
         
-        <!-- Mobile Status Bar -->
-        <div class="bg-slate-900 text-white px-6 pt-3 pb-1 flex justify-between items-center text-xs font-semibold select-none z-20 flex-shrink-0">
-            <span id="statusBarTime">09:41</span>
-            <div class="w-20 h-4 bg-slate-950 rounded-full mx-auto hidden sm:block"></div>
-            <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-signal text-[10px]"></i>
-                <i class="fa-solid fa-wifi text-[10px]"></i>
-                <i class="fa-solid fa-battery-full text-xs text-emerald-400"></i>
-            </div>
-        </div>
 
         <!-- App Top Header -->
         <header class="bg-gradient-to-r from-red-600 via-skruRed to-red-700 text-white px-5 py-3.5 flex items-center justify-between shadow-md relative z-10 flex-shrink-0">
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2">
+                <button type="button" onclick="if(window.parent && window.parent !== window){window.parent.postMessage({type:'closeApp'},'*')}else if(window.history.length>1){window.history.back()}else{window.location.href='/index.html'}" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 active:scale-95 flex items-center justify-center text-white transition -ml-1 mr-1" title="ย้อนกลับ" aria-label="ย้อนกลับ">
+                    <i class="fa-solid fa-arrow-left text-sm"></i>
+                </button>
                 <div class="w-9 h-9 rounded-full bg-white text-skruRed font-black flex items-center justify-center shadow text-xs border-2 border-white">
                     SKRU
                 </div>
@@ -112,7 +109,7 @@
         </header>
 
         <!-- Main Scrollable App Content -->
-        <main class="flex-1 overflow-y-auto px-4 py-4 space-y-4 hide-scrollbar">
+        <main class="flex-1 overflow-y-auto px-4 py-4 space-y-4 hide-scrollbar pb-16">
 
             <!-- 1. VIRTUAL STUDENT / MEMBER CARD -->
             <section class="relative">
@@ -129,8 +126,8 @@
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
                             </div>
-                            <h2 class="text-base font-bold mt-1" id="cardUserName">กัญญาพัชร วงศ์สว่าง</h2>
-                            <p class="text-[11px] text-red-100 font-mono">รหัสนักศึกษา: <span id="cardUserId">651234567</span></p>
+                            <h2 class="text-base font-bold mt-1" id="cardUserName">นายสมชาย ใจดี</h2>
+                            <p class="text-[11px] text-red-100 font-mono">รหัสนักศึกษา: <span id="cardUserId">674295027</span></p>
                         </div>
                         <span class="bg-emerald-500 text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow">
                             <i class="fa-solid fa-check-circle mr-1"></i>ปกติ
@@ -145,7 +142,7 @@
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-[9px] text-red-100" id="cardUserFaculty">คณะวิทยาการจัดการ</p>
+                                <p class="text-[9px] text-red-100" id="cardUserFaculty">คณะวิทยาศาสตร์และเทคโนโลยี (สาขา ITDI)</p>
                                 <p class="text-[10px] font-semibold text-white">สแกนเพื่อเข้า-ออก & ยืมหนังสือ</p>
                             </div>
                         </div>
@@ -305,7 +302,7 @@
         </main>
 
         <!-- Bottom Nav -->
-        <nav class="bg-white border-t border-slate-200 px-4 py-2 flex justify-around items-center absolute bottom-0 left-0 right-0 z-20 text-[10px] flex-shrink-0">
+        <nav class="bg-white border-t border-slate-200 px-4 py-2 flex justify-around items-center fixed bottom-0 left-0 right-0 z-20 text-[10px] flex-shrink-0">
             <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex flex-col items-center text-skruRed font-semibold">
                 <i class="fa-solid fa-house text-sm"></i>
                 <span>หน้าหลัก</span>

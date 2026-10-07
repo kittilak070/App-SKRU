@@ -15,10 +15,17 @@
     
     <!-- Top SKRU Navigation Bar (Matching Figma Header) -->
     <header class="skru-navbar">
-      <div class="brand-logo-group">
-        <span class="brand-title">SKRU</span>
-        <div class="brand-seal" title="มหาวิทยาลัยราชภัฏสงขลา">
-          <img src="assets/skru_seal.svg" alt="ตรามหาวิทยาลัยราชภัฏสงขลา" style="width: 100%; height: 100%; object-fit: contain;">
+      <div class="navbar-left">
+        <button class="nav-back-button" id="dormNavBackBtn" title="ย้อนกลับ" onclick="handleDormBack()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <div class="brand-logo-group">
+          <span class="brand-title">SKRU</span>
+          <div class="brand-seal" title="มหาวิทยาลัยราชภัฏสงขลา">
+            <img src="assets/skru-logo.png" alt="ตรามหาวิทยาลัยราชภัฏสงขลา">
+          </div>
         </div>
       </div>
       <button class="nav-menu-btn" id="menuBtn" aria-label="Open Navigation Menu">
@@ -31,7 +38,7 @@
     <nav class="nav-drawer" id="navDrawer">
       <div class="drawer-header">
         <div style="display: flex; align-items: center; gap: 8px;">
-          <img src="assets/skru_seal.svg" alt="SKRU Seal" style="width: 28px; height: 35px;">
+          <img src="assets/skru-logo.png" alt="SKRU Seal" style="width: 28px; height: 36px; object-fit: contain;">
           <div style="font-weight: 700; color: var(--skru-red); font-size: 15px;">เมนูหลัก SKRU</div>
         </div>
         <button class="drawer-close-btn" id="drawerCloseBtn">&times;</button>
@@ -51,8 +58,8 @@
     <main id="viewHome" class="view-section">
       <!-- Dorm Header Banner (Official SKRU Emblem Seal) -->
       <div class="dorm-header-banner">
-        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 6px;">
-          <img src="assets/skru_seal.svg" alt="ตรามหาวิทยาลัยราชภัฏสงขลา" style="height: 52px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));">
+        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+          <img src="assets/skru-logo.png" alt="ตรามหาวิทยาลัยราชภัฏสงขลา" style="height: 68px; width: auto; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15)); object-fit: contain;">
         </div>
         <div class="banner-subtitle">จองหอพัก</div>
         <div class="banner-institution">มหาวิทยาลัยราชภัฏสงขลา (SKRU)</div>
@@ -125,7 +132,7 @@
         <!-- Admin Login Form (Shown when not logged in) -->
         <div id="adminLoginBox" style="background: white; padding: 20px; border-radius: 12px; border: 1px solid var(--border-gray); box-shadow: var(--shadow-sm); max-width: 360px; margin: 10px auto;">
           <div style="text-align: center; margin-bottom: 14px;">
-            <img src="assets/skru_seal.svg" alt="SKRU Seal" style="height: 48px; width: auto; margin-bottom: 6px;">
+            <img src="assets/skru-logo.png" alt="SKRU Seal" style="height: 52px; width: auto; margin-bottom: 6px; object-fit: contain;">
             <div style="font-weight: 700; font-size: 15px; color: var(--skru-red);">ยืนยันตัวตนสำหรับเจ้าหน้าที่</div>
             <div style="font-size: 12px; color: #64748B; margin-top: 2px;">กรอกรหัสผ่านเพื่อเข้าใช้งานระบบจัดการ</div>
           </div>

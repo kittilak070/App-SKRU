@@ -1,19 +1,19 @@
 {
-  "nameTh": "นาย อดีต คิ้วโก่ง",
-  "nameEn": "ADEET KIWKHONG",
+  "nameTh": "นายสมชาย ใจดี",
+  "nameEn": "MR. SOMCHAI JAIDEE",
   "studentType": "นักศึกษาภาคปกติ",
-  "studentId": "674295067",
+  "studentId": "674295027",
   "faculty": "คณะวิทยาศาสตร์และเทคโนโลยี",
-  "major": "เทคโนโลยีสารสนเทศ",
+  "major": "สาขาวิชาเทคโนโลยีและนวัตกรรมดิจิทัล (ITDI)",
   "degreeLevel": "ปริญญาตรี 4 ปี",
   "yearLevel": "ปีที่ 3",
   "birthDate": "12 มกราคม 2547",
   "phone": "081-234-5678",
-  "email": "67295067@parichat.skru.ac.th",
+  "email": "674295027@parichat.skru.ac.th",
   "address": "123/45 หมู่ 6 ต.เขารูปช้าง\nอ.เมืองสงขลา จ.สงขลา\n90000",
   "curriculum": "วิทยาศาสตรบัณฑิต (วท.บ.)",
   "admissionYear": "2566",
   "status": "ปกติ",
-  "gpa": "5.00",
-  "avatarUrl": "uploads/student_1790877838021.jpg"
+  "gpa": "3.82",
+  "avatarUrl": null
 }

@@ -232,8 +232,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       if (response.ok && data.success) {
         showAlert('success', 'เข้าสู่ระบบสำเร็จ กำลังนำท่านเข้าสู่ระบบบริการดิจิทัล...');
+        if (data.user) {
+          localStorage.setItem('skru_user', JSON.stringify(data.user));
+        }
         setTimeout(() => {
-          window.location.href = '/dashboard';
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'closeApp', action: 'loginSuccess', user: data.user }, '*');
+            window.top.location.href = '/index.html';
+          } else {
+            window.location.href = '/index.html';
+          }
         }, 700);
       } else {
         if (response.status === 423) {

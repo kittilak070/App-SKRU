@@ -1,6 +1,575 @@
 {
   "dorms": [
     {
+      "id": "sabadnga",
+      "name": "หอพักชาย สบัดงา",
+      "type": "male",
+      "typeLabel": "หอพักชาย",
+      "floors": 4,
+      "totalRooms": 34,
+      "bedsPerRoom": 2,
+      "capacityPerRoomText": "2 คน/ห้อง",
+      "totalBeds": 68,
+      "price": 4800,
+      "pricePeriod": "ภาคการศึกษา 4 เดือน",
+      "electricityNote": "รวมค่าบริการไฟฟ้าและน้ำประปาแล้ว",
+      "amenities": [
+        "พัดลมเพดาน และช่องระบายอากาศคู่",
+        "ห้องน้ำรวมสะอาดแยกชั้น มีแม่บ้านทำความสะอาดทุกวัน",
+        "เตียงเดี่ยว 3.5 ฟุต พร้อมฟูกและตู้เสื้อผ้าไม้ส่วนตัว",
+        "ฟรีอินเทอร์เน็ต WiFi ความเร็วสูงของมหาวิทยาลัย",
+        "ใกล้โรงยิม ฟิตเนส และสนามกีฬา มรภ.สงขลา",
+        "ระบบคีย์การ์ดเข้า-ออกอาคาร ปลอดภัย 24 ชม."
+      ],
+      "rooms": [
+        {
+          "roomNumber": "101",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "sabadnga-101-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-101-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "102",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "sabadnga-102-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "sabadnga-102-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "103",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "sabadnga-103-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-103-B",
+              "label": "เตียง B",
+              "isOccupied": true,
+              "occupiedBy": "674295028"
+            }
+          ]
+        },
+        {
+          "roomNumber": "104",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "sabadnga-104-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-104-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "105",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "sabadnga-105-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "sabadnga-105-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "106",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "sabadnga-106-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "sabadnga-106-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "107",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "sabadnga-107-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "sabadnga-107-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "108",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "sabadnga-108-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "sabadnga-108-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "109",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "sabadnga-109-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "sabadnga-109-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "201",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "sabadnga-201-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-201-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "202",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "sabadnga-202-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-202-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "203",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "sabadnga-203-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "sabadnga-203-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "204",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "sabadnga-204-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-204-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "205",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "sabadnga-205-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-205-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "206",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "sabadnga-206-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "sabadnga-206-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "207",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "sabadnga-207-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "sabadnga-207-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "208",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "sabadnga-208-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "sabadnga-208-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "209",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "sabadnga-209-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-209-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "301",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "sabadnga-301-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "sabadnga-301-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "302",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "sabadnga-302-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-302-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "303",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "sabadnga-303-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "sabadnga-303-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "304",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "sabadnga-304-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "sabadnga-304-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "305",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "sabadnga-305-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "sabadnga-305-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "306",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "sabadnga-306-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-306-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "307",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "sabadnga-307-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-307-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "308",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "sabadnga-308-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-308-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "309",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "sabadnga-309-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-309-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "401",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "sabadnga-401-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-401-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "402",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "sabadnga-402-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-402-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "403",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "sabadnga-403-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "sabadnga-403-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "404",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "sabadnga-404-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "sabadnga-404-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "405",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "sabadnga-405-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-405-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "406",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "sabadnga-406-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-406-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "407",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "sabadnga-407-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "sabadnga-407-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "parichat",
       "name": "หอพักหญิง ปาริฉัตร",
       "type": "female",
@@ -10,16 +579,16 @@
       "bedsPerRoom": 2,
       "capacityPerRoomText": "2 คน/ห้อง",
       "totalBeds": 104,
-      "occupiedBeds": 4,
       "price": 5700,
       "pricePeriod": "ภาคการศึกษา 4 เดือน",
-      "electricityNote": "รวมค่าบริการไฟฟ้าแล้ว",
+      "electricityNote": "รวมค่าบริการไฟฟ้าและน้ำประปาแล้ว",
       "amenities": [
-        "พัดลมเพดาน / ตั้งพื้น",
-        "ห้องน้ำรวม",
-        "2 เตียงเดี่ยวต่อห้อง",
-        "ฟรีค่าไฟฟ้า",
-        "ระบบคีย์การ์ด / กล้อง CCTV"
+        "พัดลมเพดาน / ช่องรับลมธรรมชาติ",
+        "ห้องน้ำรวมสะอาด แบ่งโซนเปียก-แห้งชัดเจน",
+        "2 เตียงเดี่ยวต่อห้อง พร้อมโต๊ะเขียนหนังสือส่วนตัว",
+        "ระบบรักษาความปลอดภัย คีย์การ์ด / CCTV ทุกชั้น 24 ชม.",
+        "ใกล้ศูนย์อาหารกลาง และอาคารเรียนคณะครุศาสตร์",
+        "มีตู้กดน้ำดื่มหยอดเหรียญและเครื่องซักผ้าหยอดเหรียญ"
       ],
       "rooms": [
         {
@@ -45,7 +614,8 @@
             {
               "id": "parichat-102-A",
               "label": "เตียง A",
-              "isOccupied": true
+              "isOccupied": true,
+              "occupiedBy": "674123011"
             },
             {
               "id": "parichat-102-B",
@@ -61,12 +631,12 @@
             {
               "id": "parichat-103-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "parichat-103-B",
               "label": "เตียง B",
-              "isOccupied": true
+              "isOccupied": false
             }
           ]
         },
@@ -77,12 +647,12 @@
             {
               "id": "parichat-104-A",
               "label": "เตียง A",
-              "isOccupied": true
+              "isOccupied": false
             },
             {
               "id": "parichat-104-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -98,7 +668,7 @@
             {
               "id": "parichat-105-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -130,7 +700,7 @@
             {
               "id": "parichat-107-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -162,7 +732,7 @@
             {
               "id": "parichat-109-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -226,7 +796,7 @@
             {
               "id": "parichat-113-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -285,12 +855,12 @@
             {
               "id": "parichat-204-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "parichat-204-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -333,7 +903,7 @@
             {
               "id": "parichat-207-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "parichat-207-B",
@@ -349,7 +919,7 @@
             {
               "id": "parichat-208-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "parichat-208-B",
@@ -386,7 +956,7 @@
             {
               "id": "parichat-210-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -402,7 +972,7 @@
             {
               "id": "parichat-211-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -429,7 +999,7 @@
             {
               "id": "parichat-213-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "parichat-213-B",
@@ -445,12 +1015,12 @@
             {
               "id": "parichat-301-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "parichat-301-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -466,7 +1036,7 @@
             {
               "id": "parichat-302-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -498,7 +1068,7 @@
             {
               "id": "parichat-304-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -525,7 +1095,7 @@
             {
               "id": "parichat-306-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "parichat-306-B",
@@ -541,7 +1111,7 @@
             {
               "id": "parichat-307-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "parichat-307-B",
@@ -557,7 +1127,7 @@
             {
               "id": "parichat-308-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "parichat-308-B",
@@ -589,7 +1159,7 @@
             {
               "id": "parichat-310-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "parichat-310-B",
@@ -610,7 +1180,7 @@
             {
               "id": "parichat-311-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -658,7 +1228,7 @@
             {
               "id": "parichat-401-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -674,7 +1244,7 @@
             {
               "id": "parichat-402-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -717,12 +1287,12 @@
             {
               "id": "parichat-405-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "parichat-405-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -738,7 +1308,7 @@
             {
               "id": "parichat-406-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -765,12 +1335,12 @@
             {
               "id": "parichat-408-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "parichat-408-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -781,12 +1351,12 @@
             {
               "id": "parichat-409-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "parichat-409-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -797,7 +1367,7 @@
             {
               "id": "parichat-410-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "parichat-410-B",
@@ -813,7 +1383,7 @@
             {
               "id": "parichat-411-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "parichat-411-B",
@@ -834,7 +1404,7 @@
             {
               "id": "parichat-412-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -850,543 +1420,7 @@
             {
               "id": "parichat-413-B",
               "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "sabadnga",
-      "name": "หอพักชาย สบัดงา",
-      "type": "male",
-      "typeLabel": "หอพักชาย",
-      "floors": 4,
-      "totalRooms": 34,
-      "bedsPerRoom": 2,
-      "capacityPerRoomText": "2 คน/ห้อง",
-      "totalBeds": 68,
-      "occupiedBeds": 1,
-      "price": 5700,
-      "pricePeriod": "ภาคการศึกษา 4 เดือน",
-      "electricityNote": "ค่าบริการไฟฟ้า 5 บาท / หน่วย",
-      "amenities": [
-        "ห้องน้ำรวม",
-        "2 เตียงเดี่ยวต่อห้อง",
-        "นักศึกษาต้องนำพัดลมมาเอง",
-        "ค่าไฟ 5 บาท / หน่วย",
-        "ระบบความปลอดภัย 24 ชม."
-      ],
-      "rooms": [
-        {
-          "roomNumber": "101",
-          "floor": 1,
-          "beds": [
-            {
-              "id": "sabadnga-101-A",
-              "label": "เตียง A",
               "isOccupied": true
-            },
-            {
-              "id": "sabadnga-101-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "102",
-          "floor": 1,
-          "beds": [
-            {
-              "id": "sabadnga-102-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-102-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "103",
-          "floor": 1,
-          "beds": [
-            {
-              "id": "sabadnga-103-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-103-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "104",
-          "floor": 1,
-          "beds": [
-            {
-              "id": "sabadnga-104-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-104-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "105",
-          "floor": 1,
-          "beds": [
-            {
-              "id": "sabadnga-105-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-105-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "106",
-          "floor": 1,
-          "beds": [
-            {
-              "id": "sabadnga-106-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-106-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "107",
-          "floor": 1,
-          "beds": [
-            {
-              "id": "sabadnga-107-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-107-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "108",
-          "floor": 1,
-          "beds": [
-            {
-              "id": "sabadnga-108-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-108-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "201",
-          "floor": 2,
-          "beds": [
-            {
-              "id": "sabadnga-201-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-201-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "202",
-          "floor": 2,
-          "beds": [
-            {
-              "id": "sabadnga-202-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-202-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "203",
-          "floor": 2,
-          "beds": [
-            {
-              "id": "sabadnga-203-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-203-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "204",
-          "floor": 2,
-          "beds": [
-            {
-              "id": "sabadnga-204-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-204-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "205",
-          "floor": 2,
-          "beds": [
-            {
-              "id": "sabadnga-205-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-205-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "206",
-          "floor": 2,
-          "beds": [
-            {
-              "id": "sabadnga-206-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-206-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "207",
-          "floor": 2,
-          "beds": [
-            {
-              "id": "sabadnga-207-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-207-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "208",
-          "floor": 2,
-          "beds": [
-            {
-              "id": "sabadnga-208-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-208-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "301",
-          "floor": 3,
-          "beds": [
-            {
-              "id": "sabadnga-301-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-301-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "302",
-          "floor": 3,
-          "beds": [
-            {
-              "id": "sabadnga-302-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-302-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "303",
-          "floor": 3,
-          "beds": [
-            {
-              "id": "sabadnga-303-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-303-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "304",
-          "floor": 3,
-          "beds": [
-            {
-              "id": "sabadnga-304-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-304-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "305",
-          "floor": 3,
-          "beds": [
-            {
-              "id": "sabadnga-305-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-305-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "306",
-          "floor": 3,
-          "beds": [
-            {
-              "id": "sabadnga-306-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-306-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "307",
-          "floor": 3,
-          "beds": [
-            {
-              "id": "sabadnga-307-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-307-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "308",
-          "floor": 3,
-          "beds": [
-            {
-              "id": "sabadnga-308-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-308-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "401",
-          "floor": 4,
-          "beds": [
-            {
-              "id": "sabadnga-401-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-401-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "402",
-          "floor": 4,
-          "beds": [
-            {
-              "id": "sabadnga-402-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-402-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "403",
-          "floor": 4,
-          "beds": [
-            {
-              "id": "sabadnga-403-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-403-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "404",
-          "floor": 4,
-          "beds": [
-            {
-              "id": "sabadnga-404-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-404-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "405",
-          "floor": 4,
-          "beds": [
-            {
-              "id": "sabadnga-405-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-405-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "406",
-          "floor": 4,
-          "beds": [
-            {
-              "id": "sabadnga-406-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-406-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "407",
-          "floor": 4,
-          "beds": [
-            {
-              "id": "sabadnga-407-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-407-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "408",
-          "floor": 4,
-          "beds": [
-            {
-              "id": "sabadnga-408-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "sabadnga-408-B",
-              "label": "เตียง B",
-              "isOccupied": false
             }
           ]
         }
@@ -1397,21 +1431,21 @@
       "name": "หอพักหญิง พัฒนันรี",
       "type": "female",
       "typeLabel": "หอพักหญิง",
-      "floors": 4,
+      "floors": 5,
       "totalRooms": 60,
       "bedsPerRoom": 3,
       "capacityPerRoomText": "3 คน/ห้อง",
       "totalBeds": 180,
-      "occupiedBeds": 0,
-      "price": 6200,
+      "price": 4200,
       "pricePeriod": "ภาคการศึกษา 4 เดือน",
-      "electricityNote": "ค่าบริการไฟฟ้า 5 บาท / หน่วย",
+      "electricityNote": "คิดตามมิเตอร์ไฟฟ้าจริง (อัตราสวัสดิการ)",
       "amenities": [
-        "มีพัดลมในห้องพัก",
-        "ห้องน้ำภายในห้องพัก (ห้องน้ำในตัว)",
-        "3 เตียงเดี่ยวต่อห้อง",
-        "ค่าไฟ 5 บาท / หน่วย",
-        "ระบบคีย์การ์ดเข้า-ออก"
+        "ลิฟต์โดยสารประจำอาคาร 2 ตัว",
+        "ห้องน้ำในตัวทุกห้องพัก สะดวกสบายเป็นส่วนตัว",
+        "ระเบียงตากผ้าส่วนตัวด้านหลังห้องพัก พร้อมก๊อกน้ำ",
+        "เครื่องทำน้ำอุ่นในห้องน้ำทุกห้อง",
+        "โต๊ะอ่านหนังสือและตู้เสื้อผ้าแยกเดี่ยวประจำตัว 3 ชุด",
+        "ห้องสันทนาการและห้องอ่านหนังสือรวมปรับอากาศชั้น 1"
       ],
       "rooms": [
         {
@@ -1426,7 +1460,7 @@
             {
               "id": "pattananree-101-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-101-C",
@@ -1442,7 +1476,7 @@
             {
               "id": "pattananree-102-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-102-B",
@@ -1468,12 +1502,12 @@
             {
               "id": "pattananree-103-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-103-C",
               "label": "เตียง C",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -1489,12 +1523,12 @@
             {
               "id": "pattananree-104-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-104-C",
               "label": "เตียง C",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -1547,12 +1581,12 @@
             {
               "id": "pattananree-107-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-107-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-107-C",
@@ -1568,7 +1602,7 @@
             {
               "id": "pattananree-108-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-108-B",
@@ -1610,7 +1644,7 @@
             {
               "id": "pattananree-110-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-110-B",
@@ -1636,7 +1670,7 @@
             {
               "id": "pattananree-111-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-111-C",
@@ -1657,73 +1691,10 @@
             {
               "id": "pattananree-112-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-112-C",
-              "label": "เตียง C",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "113",
-          "floor": 1,
-          "beds": [
-            {
-              "id": "pattananree-113-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-113-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-113-C",
-              "label": "เตียง C",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "114",
-          "floor": 1,
-          "beds": [
-            {
-              "id": "pattananree-114-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-114-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-114-C",
-              "label": "เตียง C",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "115",
-          "floor": 1,
-          "beds": [
-            {
-              "id": "pattananree-115-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-115-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-115-C",
               "label": "เตียง C",
               "isOccupied": false
             }
@@ -1736,17 +1707,17 @@
             {
               "id": "pattananree-201-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-201-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-201-C",
               "label": "เตียง C",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -1788,7 +1759,7 @@
             {
               "id": "pattananree-203-C",
               "label": "เตียง C",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -1820,7 +1791,7 @@
             {
               "id": "pattananree-205-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-205-B",
@@ -1830,7 +1801,7 @@
             {
               "id": "pattananree-205-C",
               "label": "เตียง C",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -1872,7 +1843,7 @@
             {
               "id": "pattananree-207-C",
               "label": "เตียง C",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -1888,7 +1859,7 @@
             {
               "id": "pattananree-208-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-208-C",
@@ -1946,7 +1917,7 @@
             {
               "id": "pattananree-211-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-211-B",
@@ -1956,7 +1927,7 @@
             {
               "id": "pattananree-211-C",
               "label": "เตียง C",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -1977,70 +1948,7 @@
             {
               "id": "pattananree-212-C",
               "label": "เตียง C",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "213",
-          "floor": 2,
-          "beds": [
-            {
-              "id": "pattananree-213-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-213-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-213-C",
-              "label": "เตียง C",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "214",
-          "floor": 2,
-          "beds": [
-            {
-              "id": "pattananree-214-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-214-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-214-C",
-              "label": "เตียง C",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "215",
-          "floor": 2,
-          "beds": [
-            {
-              "id": "pattananree-215-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-215-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-215-C",
-              "label": "เตียง C",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -2051,12 +1959,12 @@
             {
               "id": "pattananree-301-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-301-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-301-C",
@@ -2082,7 +1990,7 @@
             {
               "id": "pattananree-302-C",
               "label": "เตียง C",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -2093,7 +2001,7 @@
             {
               "id": "pattananree-303-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-303-B",
@@ -2114,12 +2022,12 @@
             {
               "id": "pattananree-304-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-304-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-304-C",
@@ -2140,7 +2048,7 @@
             {
               "id": "pattananree-305-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-305-C",
@@ -2156,7 +2064,7 @@
             {
               "id": "pattananree-306-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-306-B",
@@ -2182,12 +2090,12 @@
             {
               "id": "pattananree-307-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-307-C",
               "label": "เตียง C",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -2198,7 +2106,7 @@
             {
               "id": "pattananree-308-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-308-B",
@@ -2219,7 +2127,7 @@
             {
               "id": "pattananree-309-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-309-B",
@@ -2240,12 +2148,12 @@
             {
               "id": "pattananree-310-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-310-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-310-C",
@@ -2282,80 +2190,17 @@
             {
               "id": "pattananree-312-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-312-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-312-C",
               "label": "เตียง C",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "313",
-          "floor": 3,
-          "beds": [
-            {
-              "id": "pattananree-313-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-313-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-313-C",
-              "label": "เตียง C",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "314",
-          "floor": 3,
-          "beds": [
-            {
-              "id": "pattananree-314-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-314-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-314-C",
-              "label": "เตียง C",
-              "isOccupied": false
-            }
-          ]
-        },
-        {
-          "roomNumber": "315",
-          "floor": 3,
-          "beds": [
-            {
-              "id": "pattananree-315-A",
-              "label": "เตียง A",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-315-B",
-              "label": "เตียง B",
-              "isOccupied": false
-            },
-            {
-              "id": "pattananree-315-C",
-              "label": "เตียง C",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -2455,12 +2300,12 @@
             {
               "id": "pattananree-405-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-405-C",
               "label": "เตียง C",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -2471,7 +2316,7 @@
             {
               "id": "pattananree-406-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-406-B",
@@ -2518,12 +2363,12 @@
             {
               "id": "pattananree-408-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-408-C",
               "label": "เตียง C",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -2534,7 +2379,7 @@
             {
               "id": "pattananree-409-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-409-B",
@@ -2555,7 +2400,7 @@
             {
               "id": "pattananree-410-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-410-B",
@@ -2576,7 +2421,7 @@
             {
               "id": "pattananree-411-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-411-B",
@@ -2586,7 +2431,7 @@
             {
               "id": "pattananree-411-C",
               "label": "เตียง C",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
@@ -2597,7 +2442,7 @@
             {
               "id": "pattananree-412-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
               "id": "pattananree-412-B",
@@ -2607,69 +2452,1426 @@
             {
               "id": "pattananree-412-C",
               "label": "เตียง C",
-              "isOccupied": false
+              "isOccupied": true
             }
           ]
         },
         {
-          "roomNumber": "413",
-          "floor": 4,
+          "roomNumber": "501",
+          "floor": 5,
           "beds": [
             {
-              "id": "pattananree-413-A",
+              "id": "pattananree-501-A",
               "label": "เตียง A",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
-              "id": "pattananree-413-B",
+              "id": "pattananree-501-B",
               "label": "เตียง B",
               "isOccupied": false
             },
             {
-              "id": "pattananree-413-C",
+              "id": "pattananree-501-C",
               "label": "เตียง C",
               "isOccupied": false
             }
           ]
         },
         {
-          "roomNumber": "414",
-          "floor": 4,
+          "roomNumber": "502",
+          "floor": 5,
           "beds": [
             {
-              "id": "pattananree-414-A",
+              "id": "pattananree-502-A",
               "label": "เตียง A",
               "isOccupied": false
             },
             {
-              "id": "pattananree-414-B",
+              "id": "pattananree-502-B",
               "label": "เตียง B",
-              "isOccupied": false
+              "isOccupied": true
             },
             {
-              "id": "pattananree-414-C",
+              "id": "pattananree-502-C",
               "label": "เตียง C",
               "isOccupied": false
             }
           ]
         },
         {
-          "roomNumber": "415",
-          "floor": 4,
+          "roomNumber": "503",
+          "floor": 5,
           "beds": [
             {
-              "id": "pattananree-415-A",
+              "id": "pattananree-503-A",
               "label": "เตียง A",
               "isOccupied": false
             },
             {
-              "id": "pattananree-415-B",
+              "id": "pattananree-503-B",
               "label": "เตียง B",
               "isOccupied": false
             },
             {
-              "id": "pattananree-415-C",
+              "id": "pattananree-503-C",
               "label": "เตียง C",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "504",
+          "floor": 5,
+          "beds": [
+            {
+              "id": "pattananree-504-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "pattananree-504-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            },
+            {
+              "id": "pattananree-504-C",
+              "label": "เตียง C",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "505",
+          "floor": 5,
+          "beds": [
+            {
+              "id": "pattananree-505-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "pattananree-505-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            },
+            {
+              "id": "pattananree-505-C",
+              "label": "เตียง C",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "506",
+          "floor": 5,
+          "beds": [
+            {
+              "id": "pattananree-506-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "pattananree-506-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            },
+            {
+              "id": "pattananree-506-C",
+              "label": "เตียง C",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "507",
+          "floor": 5,
+          "beds": [
+            {
+              "id": "pattananree-507-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "pattananree-507-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            },
+            {
+              "id": "pattananree-507-C",
+              "label": "เตียง C",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "508",
+          "floor": 5,
+          "beds": [
+            {
+              "id": "pattananree-508-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "pattananree-508-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            },
+            {
+              "id": "pattananree-508-C",
+              "label": "เตียง C",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "509",
+          "floor": 5,
+          "beds": [
+            {
+              "id": "pattananree-509-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "pattananree-509-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            },
+            {
+              "id": "pattananree-509-C",
+              "label": "เตียง C",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "510",
+          "floor": 5,
+          "beds": [
+            {
+              "id": "pattananree-510-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "pattananree-510-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            },
+            {
+              "id": "pattananree-510-C",
+              "label": "เตียง C",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "511",
+          "floor": 5,
+          "beds": [
+            {
+              "id": "pattananree-511-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "pattananree-511-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            },
+            {
+              "id": "pattananree-511-C",
+              "label": "เตียง C",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "512",
+          "floor": 5,
+          "beds": [
+            {
+              "id": "pattananree-512-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "pattananree-512-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            },
+            {
+              "id": "pattananree-512-C",
+              "label": "เตียง C",
+              "isOccupied": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fuengfah",
+      "name": "หอพักหญิง เฟื่องฟ้า (ปรับอากาศ)",
+      "type": "female",
+      "typeLabel": "หอพักหญิง (แอร์)",
+      "floors": 4,
+      "totalRooms": 40,
+      "bedsPerRoom": 2,
+      "capacityPerRoomText": "2 คน/ห้อง",
+      "totalBeds": 80,
+      "price": 7500,
+      "pricePeriod": "ภาคการศึกษา 4 เดือน",
+      "electricityNote": "คิดตามมิเตอร์จริง (อัตราสวัสดิการ นศ.)",
+      "amenities": [
+        "เครื่องปรับอากาศ (แอร์) ประหยัดไฟเบอร์ 5 ทุกห้อง",
+        "ห้องน้ำส่วนตัวในห้องพัก พร้อมเครื่องทำน้ำอุ่น",
+        "ระบบ Digital Door Lock สแกนคีย์การ์ดรายห้อง",
+        "เฟอร์นิเจอร์ Built-in โต๊ะทำงาน เตียงสปริง 3.5 ฟุต",
+        "Co-Working Space & Studio Room ชั้น 2",
+        "กล้องวงจรปิด CCTV ครอบคลุม 100% พร้อม รปภ. 24 ชม."
+      ],
+      "rooms": [
+        {
+          "roomNumber": "101",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "fuengfah-101-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-101-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "102",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "fuengfah-102-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-102-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "103",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "fuengfah-103-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-103-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "104",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "fuengfah-104-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-104-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "105",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "fuengfah-105-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "fuengfah-105-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "106",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "fuengfah-106-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-106-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "107",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "fuengfah-107-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "fuengfah-107-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "108",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "fuengfah-108-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-108-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "109",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "fuengfah-109-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-109-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "110",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "fuengfah-110-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "fuengfah-110-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "201",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "fuengfah-201-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-201-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "202",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "fuengfah-202-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-202-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "203",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "fuengfah-203-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-203-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "204",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "fuengfah-204-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-204-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "205",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "fuengfah-205-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "fuengfah-205-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "206",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "fuengfah-206-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-206-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "207",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "fuengfah-207-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "fuengfah-207-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "208",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "fuengfah-208-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-208-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "209",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "fuengfah-209-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-209-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "210",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "fuengfah-210-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-210-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "301",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "fuengfah-301-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-301-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "302",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "fuengfah-302-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-302-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "303",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "fuengfah-303-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-303-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "304",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "fuengfah-304-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-304-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "305",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "fuengfah-305-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-305-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "306",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "fuengfah-306-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "fuengfah-306-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "307",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "fuengfah-307-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-307-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "308",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "fuengfah-308-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-308-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "309",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "fuengfah-309-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-309-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "310",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "fuengfah-310-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-310-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "401",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "fuengfah-401-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-401-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "402",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "fuengfah-402-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-402-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "403",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "fuengfah-403-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "fuengfah-403-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "404",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "fuengfah-404-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-404-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "405",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "fuengfah-405-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-405-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "406",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "fuengfah-406-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-406-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "407",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "fuengfah-407-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "fuengfah-407-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "408",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "fuengfah-408-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-408-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "409",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "fuengfah-409-A",
+              "label": "เตียง A",
+              "isOccupied": true
+            },
+            {
+              "id": "fuengfah-409-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "410",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "fuengfah-410-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "fuengfah-410-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rachawadee",
+      "name": "หอพักนานาชาติ ราชาวดี",
+      "type": "mixed",
+      "typeLabel": "หอพักนานาชาติ/รวม",
+      "floors": 5,
+      "totalRooms": 30,
+      "bedsPerRoom": 2,
+      "capacityPerRoomText": "2 คน/ห้อง (หรือพักเดี่ยว)",
+      "totalBeds": 60,
+      "price": 9000,
+      "pricePeriod": "ภาคการศึกษา 4 เดือน",
+      "electricityNote": "คิดตามมิเตอร์จริงของแต่ละห้อง",
+      "amenities": [
+        "ห้องปรับอากาศตกแต่งครบ Fully Furnished สไตล์โมเดิร์น",
+        "ตู้เย็น 2 ประตู ไมโครเวฟ และ Smart TV ในห้องพัก",
+        "ระเบียงกว้างวิวเขารูปช้าง บรรยากาศเงียบสงบเหมาะแก่การอ่านหนังสือ",
+        "ฟิตเนสส่วนตัวสำหรับผู้พักอาศัยชั้นดาดฟ้า",
+        "ที่จอดรถยนต์และรถจักรยานยนต์ในร่ม มีระบบไม้กั้นอัตโนมัติ",
+        "บริการซักรีดและเครื่องซักผ้าหยอดเหรียญพร้อมเครื่องอบผ้า"
+      ],
+      "rooms": [
+        {
+          "roomNumber": "101",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "rachawadee-101-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-101-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "102",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "rachawadee-102-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-102-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "103",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "rachawadee-103-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-103-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "104",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "rachawadee-104-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-104-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "105",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "rachawadee-105-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-105-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "106",
+          "floor": 1,
+          "beds": [
+            {
+              "id": "rachawadee-106-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-106-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "201",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "rachawadee-201-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-201-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "202",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "rachawadee-202-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-202-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "203",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "rachawadee-203-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-203-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "204",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "rachawadee-204-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-204-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "205",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "rachawadee-205-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-205-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "206",
+          "floor": 2,
+          "beds": [
+            {
+              "id": "rachawadee-206-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-206-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "301",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "rachawadee-301-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-301-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "302",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "rachawadee-302-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-302-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "303",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "rachawadee-303-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-303-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "304",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "rachawadee-304-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-304-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "305",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "rachawadee-305-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-305-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "306",
+          "floor": 3,
+          "beds": [
+            {
+              "id": "rachawadee-306-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-306-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "401",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "rachawadee-401-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-401-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "402",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "rachawadee-402-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-402-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "403",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "rachawadee-403-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-403-B",
+              "label": "เตียง B",
+              "isOccupied": true
+            }
+          ]
+        },
+        {
+          "roomNumber": "404",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "rachawadee-404-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-404-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "405",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "rachawadee-405-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-405-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "406",
+          "floor": 4,
+          "beds": [
+            {
+              "id": "rachawadee-406-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-406-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "501",
+          "floor": 5,
+          "beds": [
+            {
+              "id": "rachawadee-501-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-501-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "502",
+          "floor": 5,
+          "beds": [
+            {
+              "id": "rachawadee-502-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-502-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "503",
+          "floor": 5,
+          "beds": [
+            {
+              "id": "rachawadee-503-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-503-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "504",
+          "floor": 5,
+          "beds": [
+            {
+              "id": "rachawadee-504-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-504-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "505",
+          "floor": 5,
+          "beds": [
+            {
+              "id": "rachawadee-505-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-505-B",
+              "label": "เตียง B",
+              "isOccupied": false
+            }
+          ]
+        },
+        {
+          "roomNumber": "506",
+          "floor": 5,
+          "beds": [
+            {
+              "id": "rachawadee-506-A",
+              "label": "เตียง A",
+              "isOccupied": false
+            },
+            {
+              "id": "rachawadee-506-B",
+              "label": "เตียง B",
               "isOccupied": false
             }
           ]
@@ -2677,5 +3879,102 @@
       ]
     }
   ],
-  "bookings": []
+  "bookings": [
+    {
+      "id": "BK-1791201230851",
+      "bookingCode": "BK23085136",
+      "dormId": "sabadnga",
+      "dormName": "หอพักชาย สบัดงา",
+      "roomNumber": "103",
+      "bedId": "sabadnga-103-B",
+      "bedLabel": "เตียง B",
+      "studentId": "674295028",
+      "prefix": "นาย",
+      "fullName": "สมชาย ใจดี",
+      "studentName": "นายสมชาย ใจดี",
+      "gender": "male",
+      "faculty": "คณะวิทยาศาสตร์และเทคโนโลยี",
+      "major": "สาขาวิชาเทคโนโลยีและนวัตกรรมดิจิทัล (ITDI)",
+      "phone": "081-234-5678",
+      "email": "674295027@parichat.skru.ac.th",
+      "price": 4800,
+      "pricePeriod": "ภาคการศึกษา 4 เดือน",
+      "paymentSlip": null,
+      "paymentStatus": "pending",
+      "createdAt": "2026-10-05T11:53:50.851Z",
+      "status": "confirmed"
+    },
+    {
+      "id": "BK-179105002",
+      "bookingCode": "BK674123011",
+      "dormId": "parichat",
+      "dormName": "หอพักหญิง ปาริฉัตร",
+      "roomNumber": "102",
+      "bedId": "parichat-102-A",
+      "bedLabel": "เตียง A",
+      "studentId": "674123011",
+      "prefix": "นางสาว",
+      "fullName": "กานดา รักเรียน",
+      "studentName": "นางสาวกานดา รักเรียน",
+      "gender": "female",
+      "faculty": "คณะครุศาสตร์",
+      "major": "สาขาวิชาการศึกษาปฐมวัย",
+      "phone": "089-765-4321",
+      "email": "674123011@parichat.skru.ac.th",
+      "price": 5700,
+      "pricePeriod": "ภาคการศึกษา 4 เดือน",
+      "paymentSlip": "data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"300\" height=\"380\" viewBox=\"0 0 300 380\"><rect width=\"300\" height=\"380\" fill=\"%23f0fdf4\" rx=\"10\"/><rect x=\"15\" y=\"15\" width=\"270\" height=\"350\" fill=\"white\" rx=\"8\" stroke=\"%2386efac\" stroke-width=\"2\"/><circle cx=\"150\" cy=\"55\" r=\"24\" fill=\"%2322c55e\"/><path d=\"M140 55 l7 7 l14 -14\" fill=\"none\" stroke=\"white\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><text x=\"150\" y=\"100\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"%23166534\" text-anchor=\"middle\">โอนเงินสำเร็จ</text><text x=\"150\" y=\"120\" font-family=\"sans-serif\" font-size=\"11\" fill=\"%236b7280\" text-anchor=\"middle\">ธนาคารกรุงไทย (KTB)</text><line x1=\"30\" y1=\"135\" x2=\"270\" y2=\"135\" stroke=\"%23e5e7eb\" stroke-dasharray=\"4\"/><text x=\"35\" y=\"160\" font-family=\"sans-serif\" font-size=\"11\" fill=\"%236b7280\">ไปยัง:</text><text x=\"265\" y=\"160\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"bold\" fill=\"%23111827\" text-anchor=\"end\">งานหอพัก มรภ.สงขลา</text><text x=\"35\" y=\"185\" font-family=\"sans-serif\" font-size=\"11\" fill=\"%236b7280\">บัญชี:</text><text x=\"265\" y=\"185\" font-family=\"sans-serif\" font-size=\"11\" fill=\"%23111827\" text-anchor=\"end\">901-0-12345-6</text><text x=\"35\" y=\"210\" font-family=\"sans-serif\" font-size=\"11\" fill=\"%236b7280\">ผู้โอน:</text><text x=\"265\" y=\"210\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"bold\" fill=\"%23111827\" text-anchor=\"end\">นายสมชาย ใจดี</text><text x=\"35\" y=\"235\" font-family=\"sans-serif\" font-size=\"11\" fill=\"%236b7280\">รหัสนักศึกษา:</text><text x=\"265\" y=\"235\" font-family=\"sans-serif\" font-size=\"11\" fill=\"%23111827\" text-anchor=\"end\">674295027</text><line x1=\"30\" y1=\"255\" x2=\"270\" y2=\"255\" stroke=\"%23e5e7eb\" stroke-dasharray=\"4\"/><text x=\"35\" y=\"285\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"bold\" fill=\"%23111827\">จำนวนเงิน:</text><text x=\"265\" y=\"285\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"bold\" fill=\"%2316a34a\" text-anchor=\"end\">4,800.00 บาท</text><text x=\"150\" y=\"320\" font-family=\"sans-serif\" font-size=\"10\" fill=\"%239ca3af\" text-anchor=\"middle\">รหัสอ้างอิง: 202610041234895027</text><text x=\"150\" y=\"340\" font-family=\"sans-serif\" font-size=\"10\" fill=\"%23166534\" text-anchor=\"middle\">✓ ตรวจสอบสลิปผ่านระบบ e-Slip มหาวิทยาลัยแล้ว</text></svg>",
+      "paymentStatus": "submitted",
+      "createdAt": "2026-09-30T21:38:04.329Z",
+      "status": "confirmed"
+    },
+    {
+      "id": "BK-179105003",
+      "bookingCode": "BK664215089",
+      "dormId": "pattananree",
+      "dormName": "หอพักหญิง พัฒนันรี",
+      "roomNumber": "305",
+      "bedId": "pattananree-305-B",
+      "bedLabel": "เตียง B",
+      "studentId": "664215089",
+      "prefix": "นางสาว",
+      "fullName": "พิมพา พรประเสริฐ",
+      "studentName": "นางสาวพิมพา พรประเสริฐ",
+      "gender": "female",
+      "faculty": "คณะมนุษยศาสตร์และสังคมศาสตร์",
+      "major": "สาขาวิชาภาษาไทยเพื่อการสื่อสาร",
+      "phone": "082-345-6789",
+      "email": "664215089@parichat.skru.ac.th",
+      "price": 4200,
+      "pricePeriod": "ภาคการศึกษา 4 เดือน",
+      "paymentSlip": "data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"300\" height=\"380\" viewBox=\"0 0 300 380\"><rect width=\"300\" height=\"380\" fill=\"%23f0fdf4\" rx=\"10\"/><rect x=\"15\" y=\"15\" width=\"270\" height=\"350\" fill=\"white\" rx=\"8\" stroke=\"%2386efac\" stroke-width=\"2\"/><circle cx=\"150\" cy=\"55\" r=\"24\" fill=\"%2322c55e\"/><path d=\"M140 55 l7 7 l14 -14\" fill=\"none\" stroke=\"white\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><text x=\"150\" y=\"100\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"%23166534\" text-anchor=\"middle\">โอนเงินสำเร็จ</text><text x=\"150\" y=\"120\" font-family=\"sans-serif\" font-size=\"11\" fill=\"%236b7280\" text-anchor=\"middle\">ธนาคารกรุงไทย (KTB)</text><line x1=\"30\" y1=\"135\" x2=\"270\" y2=\"135\" stroke=\"%23e5e7eb\" stroke-dasharray=\"4\"/><text x=\"35\" y=\"160\" font-family=\"sans-serif\" font-size=\"11\" fill=\"%236b7280\">ไปยัง:</text><text x=\"265\" y=\"160\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"bold\" fill=\"%23111827\" text-anchor=\"end\">งานหอพัก มรภ.สงขลา</text><text x=\"35\" y=\"185\" font-family=\"sans-serif\" font-size=\"11\" fill=\"%236b7280\">บัญชี:</text><text x=\"265\" y=\"185\" font-family=\"sans-serif\" font-size=\"11\" fill=\"%23111827\" text-anchor=\"end\">901-0-12345-6</text><text x=\"35\" y=\"210\" font-family=\"sans-serif\" font-size=\"11\" fill=\"%236b7280\">ผู้โอน:</text><text x=\"265\" y=\"210\" font-family=\"sans-serif\" font-size=\"11\" font-weight=\"bold\" fill=\"%23111827\" text-anchor=\"end\">นายสมชาย ใจดี</text><text x=\"35\" y=\"235\" font-family=\"sans-serif\" font-size=\"11\" fill=\"%236b7280\">รหัสนักศึกษา:</text><text x=\"265\" y=\"235\" font-family=\"sans-serif\" font-size=\"11\" fill=\"%23111827\" text-anchor=\"end\">674295027</text><line x1=\"30\" y1=\"255\" x2=\"270\" y2=\"255\" stroke=\"%23e5e7eb\" stroke-dasharray=\"4\"/><text x=\"35\" y=\"285\" font-family=\"sans-serif\" font-size=\"12\" font-weight=\"bold\" fill=\"%23111827\">จำนวนเงิน:</text><text x=\"265\" y=\"285\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"bold\" fill=\"%2316a34a\" text-anchor=\"end\">4,800.00 บาท</text><text x=\"150\" y=\"320\" font-family=\"sans-serif\" font-size=\"10\" fill=\"%239ca3af\" text-anchor=\"middle\">รหัสอ้างอิง: 202610041234895027</text><text x=\"150\" y=\"340\" font-family=\"sans-serif\" font-size=\"10\" fill=\"%23166534\" text-anchor=\"middle\">✓ ตรวจสอบสลิปผ่านระบบ e-Slip มหาวิทยาลัยแล้ว</text></svg>",
+      "paymentStatus": "submitted",
+      "createdAt": "2026-09-29T21:38:04.329Z",
+      "status": "confirmed"
+    },
+    {
+      "id": "BK-179105004",
+      "bookingCode": "BK674389045",
+      "dormId": "sabadnga",
+      "dormName": "หอพักชาย สบัดงา",
+      "roomNumber": "101",
+      "bedId": "sabadnga-101-B",
+      "bedLabel": "เตียง B",
+      "studentId": "674389045",
+      "prefix": "นาย",
+      "fullName": "ธนกฤต วิเศษศิลป์",
+      "studentName": "นายธนกฤต วิเศษศิลป์",
+      "gender": "male",
+      "faculty": "คณะวิทยาการจัดการ",
+      "major": "สาขาวิชาการตลาดดิจิทัล",
+      "phone": "086-987-6543",
+      "email": "674389045@parichat.skru.ac.th",
+      "price": 4800,
+      "pricePeriod": "ภาคการศึกษา 4 เดือน",
+      "paymentSlip": null,
+      "paymentStatus": "pending",
+      "createdAt": "2026-10-03T16:38:04.329Z",
+      "status": "confirmed"
+    }
+  ]
 }

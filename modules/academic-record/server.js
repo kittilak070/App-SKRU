@@ -8,12 +8,12 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const student = {
-  name: 'นางสาว ธิดา คิดใหญ่',
-  id: '674295066',
+  name: 'นายสมชาย ใจดี',
+  id: '674295027',
   status: 'ปกติ',
   level: 'ชั้นปีที่ 3',
   faculty: 'คณะวิทยาศาสตร์และเทคโนโลยี',
-  major: 'สาขาเทคโนโลยีสารสนเทศและนวัตกรรมดิจิทัล',
+  major: 'สาขาวิชาเทคโนโลยีและนวัตกรรมดิจิทัล (ITDI)',
   totalCredits: 96,
   requiredCredits: 132,
   currentGpa: 3.68,

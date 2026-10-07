@@ -24,22 +24,24 @@
 }
 
 body {
-  background-color: #e9ecef;
+  background-color: var(--white);
   color: var(--text-main);
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 .app-container {
   width: 100%;
-  max-width: 460px;
+  max-width: 100%;
   background-color: var(--white);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+  flex: 1;
+  box-shadow: none;
   position: relative;
   overflow-x: hidden;
 }

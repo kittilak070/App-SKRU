@@ -359,8 +359,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 showToast('อยู่ที่หน้าปฏิทิน');
             } else if (navTarget === 'notifications') {
                 notificationModal.classList.add('active');
-            } else if (navTarget === 'home' || navTarget === 'profile') {
-                showToast(`เมนู${tab.querySelector('span').textContent}เปิดใช้งานแล้ว`);
+            } else if (navTarget === 'home') {
+                if (window.parent && window.parent !== window) {
+                    window.parent.postMessage({ type: 'closeApp' }, '*');
+                } else {
+                    window.location.href = '/index.html';
+                }
+            } else if (navTarget === 'profile') {
+                if (window.parent && window.parent !== window) {
+                    window.parent.postMessage({ type: 'openApp', module: 'student-profile' }, '*');
+                } else {
+                    window.location.href = '/student-profile.html';
+                }
             }
         });
     });

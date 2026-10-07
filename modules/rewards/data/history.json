@@ -1,0 +1,57 @@
+[
+  {
+    "id": "TXN-1791258267629",
+    "rewardId": "rw-01",
+    "rewardTitle": "กระเป๋าตรามหาวิทยาลัย (1 ชิ้น)",
+    "rewardImage": "/assets/backpack.jpg",
+    "coinsSpent": 350,
+    "couponCode": "SKRU-350-779805",
+    "qrData": "REDEEM:SKRU-350-779805:674295027",
+    "redeemedAt": "6/10/2569 10:44:27",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "TXN-1791203925952",
+    "rewardId": "rw-01",
+    "rewardTitle": "กระเป๋าตรามหาวิทยาลัย (1 ชิ้น)",
+    "rewardImage": "/assets/backpack.jpg",
+    "coinsSpent": 350,
+    "couponCode": "SKRU-350-470048",
+    "qrData": "REDEEM:SKRU-350-470048:674295027",
+    "redeemedAt": "5/10/2569 19:38:45",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "TXN-1791203166701",
+    "rewardId": "rw-02",
+    "rewardTitle": "เสื้อแจ็คเก็ตมหาวิทยาลัย (1 ตัว)",
+    "rewardImage": "/assets/jacket.jpg",
+    "coinsSpent": 550,
+    "couponCode": "SKRU-550-516427",
+    "qrData": "REDEEM:SKRU-550-516427:674295027",
+    "redeemedAt": "5/10/2569 19:26:06",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "TXN-1791203090109",
+    "rewardId": "rw-01",
+    "rewardTitle": "กระเป๋าตรามหาวิทยาลัย (1 ชิ้น)",
+    "rewardImage": "/assets/backpack.jpg",
+    "coinsSpent": 350,
+    "couponCode": "SKRU-350-388323",
+    "qrData": "REDEEM:SKRU-350-388323:674295027",
+    "redeemedAt": "5/10/2569 19:24:50",
+    "status": "ACTIVE"
+  },
+  {
+    "id": "TXN-17281001",
+    "rewardId": "rw-01",
+    "rewardTitle": "กระเป๋าตรามหาวิทยาลัย (1 ชิ้น)",
+    "rewardImage": "/assets/backpack.jpg",
+    "coinsSpent": 350,
+    "couponCode": "SKRU-350-849201",
+    "qrData": "REDEEM:SKRU-350-849201:674295027",
+    "redeemedAt": "4 ต.ค. 2569 14:20 น.",
+    "status": "ACTIVE"
+  }
+]

@@ -37,15 +37,6 @@
     <!-- Phone Frame Shell -->
     <main class="mobile-frame-wrapper">
       <div class="phone-frame">
-        <!-- Phone Notch / Status Bar -->
-        <div class="status-bar">
-          <span class="time" id="currentTime">09:41</span>
-          <div class="status-icons">
-            <i class="fa-solid fa-signal"></i>
-            <i class="fa-solid fa-wifi"></i>
-            <i class="fa-solid fa-battery-full"></i>
-          </div>
-        </div>
 
         <!-- Dynamic Screen Content Container -->
         <div class="screen-viewport">
@@ -55,6 +46,9 @@
             <!-- Title Header -->
             <div class="main-header">
               <div class="main-title">
+                <button class="settings-main-back-btn" id="settingsMainBackBtn" title="ย้อนกลับ" onclick="handleSettingsBack()">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
                 <div class="settings-header-icon">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e63956" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="4" y1="21" x2="4" y2="14"></line>
@@ -170,8 +164,8 @@
           <!-- 2. NOTIFICATIONS SCREEN -->
           <div class="screen" id="screen-notifications">
             <div class="sub-header">
-              <button class="back-btn" onclick="navigateTo('main')">
-                <i class="fa-solid fa-arrow-left"></i>
+              <button class="back-btn sub-back-btn" onclick="navigateTo('main')" aria-label="ย้อนกลับ" title="ย้อนกลับ">
+                <i class="fa-solid fa-chevron-left"></i> <span>กลับ</span>
               </button>
               <h2>การตั้งค่าการแจ้งเตือน</h2>
             </div>
@@ -275,8 +269,8 @@
           <!-- 3. SUBSCRIPTIONS SCREEN (Matching Image 1) -->
           <div class="screen" id="screen-subscriptions">
             <div class="sub-header">
-              <button class="back-btn" onclick="navigateTo('main')">
-                <i class="fa-solid fa-arrow-left"></i>
+              <button class="back-btn sub-back-btn" onclick="navigateTo('main')" aria-label="ย้อนกลับ" title="ย้อนกลับ">
+                <i class="fa-solid fa-chevron-left"></i> <span>กลับ</span>
               </button>
               <h2>การลงทะเบียนรับข่าวสาร</h2>
             </div>
@@ -338,8 +332,8 @@
           <!-- 3.1 SUBSCRIPTION DETAIL SCREEN (Matching Image 2) -->
           <div class="screen bg-gray" id="screen-subscription-detail">
             <div class="sub-header">
-              <button class="back-btn" onclick="navigateTo('subscriptions')">
-                <i class="fa-solid fa-arrow-left"></i>
+              <button class="back-btn sub-back-btn" onclick="navigateTo('subscriptions')" aria-label="ย้อนกลับ" title="ย้อนกลับ">
+                <i class="fa-solid fa-chevron-left"></i> <span>กลับ</span>
               </button>
               <h2 id="subDetailHeaderTitle">กีฬา</h2>
             </div>
@@ -357,8 +351,8 @@
           <!-- 4. SECURITY SCREEN -->
           <div class="screen bg-gray" id="screen-security">
             <div class="sub-header">
-              <button class="back-btn" onclick="navigateTo('main')">
-                <i class="fa-solid fa-arrow-left"></i>
+              <button class="back-btn sub-back-btn" onclick="navigateTo('main')" aria-label="ย้อนกลับ" title="ย้อนกลับ">
+                <i class="fa-solid fa-chevron-left"></i> <span>กลับ</span>
               </button>
               <h2>ความปลอดภัย</h2>
             </div>
@@ -418,8 +412,8 @@
           <!-- 5. PRIVACY MANAGEMENT SCREEN (Category List) -->
           <div class="screen" id="screen-privacy">
             <div class="sub-header">
-              <button class="back-btn" onclick="navigateTo('main')">
-                <i class="fa-solid fa-arrow-left"></i>
+              <button class="back-btn sub-back-btn" onclick="navigateTo('main')" aria-label="ย้อนกลับ" title="ย้อนกลับ">
+                <i class="fa-solid fa-chevron-left"></i> <span>กลับ</span>
               </button>
               <h2>การจัดการข้อมูลส่วนบุคคล</h2>
             </div>
@@ -448,8 +442,8 @@
           <!-- 5.1 PRIVACY CONSENT DETAIL SCREEN (Matching User Screenshots 1, 2, 3) -->
           <div class="screen bg-gray privacy-detail-screen" id="screen-privacy-detail">
             <div class="sub-header">
-              <button class="back-btn" onclick="navigateTo('privacy')">
-                <i class="fa-solid fa-arrow-left"></i>
+              <button class="back-btn sub-back-btn" onclick="navigateTo('privacy')" aria-label="ย้อนกลับ" title="ย้อนกลับ">
+                <i class="fa-solid fa-chevron-left"></i> <span>กลับ</span>
               </button>
               <h2>การจัดการข้อมูลส่วนบุคคล</h2>
             </div>
@@ -493,8 +487,8 @@
           <!-- 6. TERMS AND CONDITIONS SCREEN (Matching User Screenshots 1-5) -->
           <div class="screen bg-gray terms-screen" id="screen-terms">
             <div class="sub-header">
-              <button class="back-btn" onclick="navigateTo('main')">
-                <i class="fa-solid fa-arrow-left"></i>
+              <button class="back-btn sub-back-btn" onclick="navigateTo('main')" aria-label="ย้อนกลับ" title="ย้อนกลับ">
+                <i class="fa-solid fa-chevron-left"></i> <span>กลับ</span>
               </button>
               <h2>ข้อตกลงและเงื่อนไข</h2>
             </div>
@@ -592,8 +586,8 @@
           <!-- 8. CONTACT US SCREEN (Matching User Screenshot) -->
           <div class="screen bg-gray contact-screen" id="screen-contact">
             <div class="sub-header">
-              <button class="back-btn" onclick="navigateTo('main')">
-                <i class="fa-solid fa-arrow-left"></i>
+              <button class="back-btn sub-back-btn" onclick="navigateTo('main')" aria-label="ย้อนกลับ" title="ย้อนกลับ">
+                <i class="fa-solid fa-chevron-left"></i> <span>กลับ</span>
               </button>
               <h2>ติดต่อเรา</h2>
             </div>
@@ -670,7 +664,7 @@
 
         <!-- Bottom Navigation Bar -->
         <nav class="bottom-nav">
-          <button class="nav-item" onclick="showToast('หน้าหลัก (Home)')">
+          <button class="nav-item" onclick="handleSettingsBack()">
             <i class="fa-solid fa-house"></i>
             <span>หน้าแรก</span>
           </button>

@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#ea1d24">
-  <title>à¹€à¸‚à¹‰à¸²à¸ªà¸¹à¹ˆà¸£à¸°à¸šà¸š | à¸£à¸°à¸šà¸šà¸šà¸£à¸´à¸à¸²à¸£à¸”à¸´à¸ˆà¸´à¸—à¸±à¸¥ à¸¡à¸£à¸ .à¸ªà¸‡à¸‚à¸¥à¸²</title>
+  <title>เข้าสู่ระบบ | ระบบบริการดิจิทัล มรภ.สงขลา</title>
   
   <!-- Google Fonts: Prompt & Sarabun -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,16 +20,16 @@
   <!-- Top Security Inspector Bar -->
   <div class="top-security-bar">
     <button type="button" class="security-badge-btn" id="btnSecurityInspector">
-      <span>ðŸ›¡ï¸ à¸•à¸£à¸§à¸ˆà¸ªà¸­à¸šà¸à¸²à¸£à¸›à¹‰à¸­à¸‡à¸à¸±à¸™ (OWASP Guard)</span>
+      <span>🛡️ ตรวจสอบการป้องกัน (OWASP Guard)</span>
     </button>
   </div>
 
   <!-- Screen Frame: Page 2 (Login Screen) -->
-  <main class="screen-frame animate-slide-right" aria-label="à¸«à¸™à¹‰à¸²à¹€à¸‚à¹‰à¸²à¸ªà¸¹à¹ˆà¸£à¸°à¸šà¸š">
+  <main class="screen-frame animate-slide-right" aria-label="หน้าเข้าสู่ระบบ">
     
     <!-- Top Header -->
     <header class="screen-header">
-      <a href="/" class="login-tag" title="à¸à¸¥à¸±à¸šà¹„à¸›à¸«à¸™à¹‰à¸²à¸•à¹‰à¸­à¸™à¸£à¸±à¸š">
+      <a href="/index.html" class="login-tag" onclick="if(window.parent && window.parent !== window){event.preventDefault();window.parent.postMessage({type:'closeApp'},'*')}else if(window.history.length>1){event.preventDefault();window.history.back()}" title="ย้อนกลับ">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
@@ -46,18 +46,18 @@
       
       <!-- New Official SKRU Logo -->
       <div class="login-logo-wrap">
-        <img src="images/skru-logo.png" alt="à¸•à¸£à¸²à¸ªà¸±à¸à¸¥à¸±à¸à¸©à¸“à¹Œ à¸¡à¸«à¸²à¸§à¸´à¸—à¸¢à¸²à¸¥à¸±à¸¢à¸£à¸²à¸Šà¸ à¸±à¸à¸ªà¸‡à¸‚à¸¥à¸²">
+        <img src="images/skru-logo.png" alt="ตราสัญลักษณ์ มหาวิทยาลัยราชภัฏสงขลา">
       </div>
 
       <!-- Role Selector Tabs -->
       <div class="role-tabs" role="tablist">
         <button type="button" class="role-tab-btn active-student" id="tabStudent" role="tab" aria-selected="true">
-          <span class="tab-icon">ðŸŽ“</span>
-          <span>à¸™à¸±à¸à¸¨à¸¶à¸à¸©à¸² (Student)</span>
+          <span class="tab-icon">🎓</span>
+          <span>นักศึกษา (Student)</span>
         </button>
         <button type="button" class="role-tab-btn" id="tabStaff" role="tab" aria-selected="false">
-          <span class="tab-icon">ðŸ›ï¸</span>
-          <span>à¸­à¸²à¸ˆà¸²à¸£à¸¢à¹Œ / à¸šà¸¸à¸„à¸¥à¸²à¸à¸£ (Staff)</span>
+          <span class="tab-icon">🏛️</span>
+          <span>อาจารย์ / บุคลากร (Staff)</span>
         </button>
       </div>
 
@@ -68,7 +68,7 @@
         <div class="form-group">
           <div class="label-row">
             <label for="inputIdentifier" class="form-label" id="labelIdentifier">
-              à¸£à¸«à¸±à¸ªà¸™à¸±à¸à¸¨à¸¶à¸à¸©à¸² à¸«à¸£à¸·à¸­ à¸­à¸µà¹€à¸¡à¸¥ (@parichat.skru.ac.th)
+              รหัสนักศึกษา หรือ อีเมล (@parichat.skru.ac.th)
             </label>
           </div>
           <div class="input-wrapper" id="wrapperIdentifier">
@@ -98,9 +98,9 @@
         <div class="form-group">
           <div class="label-row">
             <label for="inputPassword" class="form-label">
-              à¸£à¸«à¸±à¸ªà¸œà¹ˆà¸²à¸™ (Password)
+              รหัสผ่าน (Password)
             </label>
-            <a href="#" class="forgot-link" id="linkForgot">à¸¥à¸·à¸¡à¸£à¸«à¸±à¸ªà¸œà¹ˆà¸²à¸™?</a>
+            <a href="#" class="forgot-link" id="linkForgot">ลืมรหัสผ่าน?</a>
           </div>
           <div class="input-wrapper" id="wrapperPassword">
             <span class="input-icon">
@@ -114,14 +114,14 @@
               id="inputPassword" 
               name="password" 
               class="form-input" 
-              placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" 
+              placeholder="••••••••" 
               value="Skru@2026!"
               minlength="6"
               maxlength="128"
               autocomplete="current-password"
               required
             >
-            <button type="button" class="btn-toggle-eye" id="btnTogglePassword" title="à¹à¸ªà¸”à¸‡/à¸‹à¹ˆà¸­à¸™à¸£à¸«à¸±à¸ªà¸œà¹ˆà¸²à¸™" aria-label="à¹à¸ªà¸”à¸‡à¸£à¸«à¸±à¸ªà¸œà¹ˆà¸²à¸™">
+            <button type="button" class="btn-toggle-eye" id="btnTogglePassword" title="แสดง/ซ่อนรหัสผ่าน" aria-label="แสดงรหัสผ่าน">
               <span id="eyeIcon">
                 <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -141,13 +141,13 @@
             </svg>
           </div>
           <span class="remember-label" onclick="document.getElementById('checkboxRemember').click()">
-            à¸ˆà¸”à¸ˆà¸³à¸šà¸±à¸à¸Šà¸µà¸œà¸¹à¹‰à¹ƒà¸Šà¹‰à¸™à¸µà¹‰à¸šà¸™à¸­à¸¸à¸›à¸à¸£à¸“à¹Œà¸™à¸µà¹‰
+            จดจำบัญชีผู้ใช้นี้บนอุปกรณ์นี้
           </span>
         </div>
 
         <!-- Submit Action Button -->
         <button type="submit" class="btn-primary" id="btnSubmit">
-          à¹€à¸‚à¹‰à¸²à¸ªà¸¹à¹ˆà¸£à¸°à¸šà¸š
+          เข้าสู่ระบบ
         </button>
       </form>
 
@@ -159,12 +159,12 @@
 
   <!-- Quick Demo Chips -->
   <div class="demo-helper-bar">
-    <span style="font-size: 12px; color: #cbd5e1; font-weight: 500;">à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¸—à¸”à¸ªà¸­à¸šà¸”à¹ˆà¸§à¸™:</span>
+    <span style="font-size: 12px; color: #cbd5e1; font-weight: 500;">ข้อมูลทดสอบด่วน:</span>
     <button type="button" class="demo-chip" id="chipStudent">
-      <span>ðŸŽ“ à¸™à¸±à¸à¸¨à¸¶à¸à¸©à¸² (674295027)</span>
+      <span>🎓 นักศึกษา (674295027)</span>
     </button>
     <button type="button" class="demo-chip" id="chipStaff">
-      <span>ðŸ›ï¸ à¸­à¸²à¸ˆà¸²à¸£à¸¢à¹Œ (somchai.k)</span>
+      <span>🏛️ อาจารย์ (somchai.k)</span>
     </button>
   </div>
 
@@ -173,22 +173,22 @@
     <div class="modal-card">
       <button type="button" class="modal-close" id="btnCloseForgot">&times;</button>
       <div style="text-align: center; margin-bottom: 20px;">
-        <span style="font-size: 40px;">ðŸ”‘</span>
-        <h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 8px;">à¸¥à¸·à¸¡à¸£à¸«à¸±à¸ªà¸œà¹ˆà¸²à¸™ (Forgot Password)</h3>
+        <span style="font-size: 40px;">🔑</span>
+        <h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin-top: 8px;">ลืมรหัสผ่าน (Forgot Password)</h3>
         <p style="font-size: 13px; color: #64748b; margin-top: 4px;">
-          à¸à¸£à¸¸à¸“à¸²à¸à¸£à¸­à¸à¸£à¸«à¸±à¸ªà¸™à¸±à¸à¸¨à¸¶à¸à¸©à¸² à¸«à¸£à¸·à¸­ à¸­à¸µà¹€à¸¡à¸¥à¸¡à¸«à¸²à¸§à¸´à¸—à¸¢à¸²à¸¥à¸±à¸¢ à¸£à¸°à¸šà¸šà¸ˆà¸°à¸ˆà¸±à¸”à¸ªà¹ˆà¸‡à¸¥à¸´à¸‡à¸à¹Œà¸£à¸µà¹€à¸‹à¹‡à¸•à¸£à¸«à¸±à¸ªà¸œà¹ˆà¸²à¸™à¹„à¸›à¸¢à¸±à¸‡à¸­à¸µà¹€à¸¡à¸¥à¸‚à¸­à¸‡à¸„à¸¸à¸“
+          กรุณากรอกรหัสนักศึกษา หรือ อีเมลมหาวิทยาลัย ระบบจะจัดส่งลิงก์รีเซ็ตรหัสผ่านไปยังอีเมลของคุณ
         </p>
       </div>
 
       <form id="forgotForm">
         <div class="form-group" style="margin-bottom: 18px;">
-          <label for="forgotIdentifier" class="form-label">à¸£à¸«à¸±à¸ªà¸™à¸±à¸à¸¨à¸¶à¸à¸©à¸² à¸«à¸£à¸·à¸­ à¸­à¸µà¹€à¸¡à¸¥</label>
+          <label for="forgotIdentifier" class="form-label">รหัสนักศึกษา หรือ อีเมล</label>
           <div class="input-wrapper">
-            <input type="text" id="forgotIdentifier" class="form-input" placeholder="674295027 à¸«à¸£à¸·à¸­ user@skru.ac.th" style="padding-left: 16px;" required>
+            <input type="text" id="forgotIdentifier" class="form-input" placeholder="674295027 หรือ user@skru.ac.th" style="padding-left: 16px;" required>
           </div>
         </div>
         <button type="submit" class="btn-primary" id="btnForgotSubmit">
-          à¸ªà¹ˆà¸‡à¸¥à¸´à¸‡à¸à¹Œà¸£à¸µà¹€à¸‹à¹‡à¸•à¸£à¸«à¸±à¸ªà¸œà¹ˆà¸²à¸™
+          ส่งลิงก์รีเซ็ตรหัสผ่าน
         </button>
       </form>
     </div>
@@ -199,37 +199,37 @@
     <div class="modal-card" style="max-width: 540px;">
       <button type="button" class="modal-close" id="btnCloseSecurity">&times;</button>
       <div style="margin-bottom: 16px;">
-        <h3 style="font-size: 18px; font-weight: 700; color: #0f172a;">ðŸ›¡ï¸ à¸£à¸²à¸¢à¸¥à¸°à¹€à¸­à¸µà¸¢à¸”à¸à¸²à¸£à¸›à¹‰à¸­à¸‡à¸à¸±à¸™à¸„à¸§à¸²à¸¡à¸›à¸¥à¸­à¸”à¸ à¸±à¸¢ (Input Security)</h3>
+        <h3 style="font-size: 18px; font-weight: 700; color: #0f172a;">🛡️ รายละเอียดการป้องกันความปลอดภัย (Input Security)</h3>
         <p style="font-size: 13px; color: #64748b; margin-top: 2px;">
-          à¸¡à¸²à¸•à¸£à¸à¸²à¸™à¸„à¸§à¸²à¸¡à¸›à¸¥à¸­à¸”à¸ à¸±à¸¢à¸£à¸°à¸”à¸±à¸šà¸ªà¸¹à¸‡à¸•à¸²à¸¡ OWASP Top 10 à¸—à¸µà¹ˆà¸•à¸´à¸”à¸•à¸±à¹‰à¸‡à¹ƒà¸™à¹à¸•à¹ˆà¸¥à¸°à¸Šà¹ˆà¸­à¸‡à¸£à¸±à¸šà¸‚à¹‰à¸­à¸¡à¸¹à¸¥
+          มาตรฐานความปลอดภัยระดับสูงตาม OWASP Top 10 ที่ติดตั้งในแต่ละช่องรับข้อมูล
         </p>
       </div>
 
       <div class="sec-item">
         <span class="badge">A03: Injection</span>
         <div style="font-size: 12.5px; color: #334155;">
-          <strong>à¸Šà¹ˆà¸­à¸‡à¸£à¸«à¸±à¸ªà¸›à¸£à¸°à¸ˆà¸³à¸•à¸±à¸§:</strong> à¸•à¸£à¸§à¸ˆà¸ªà¸­à¸š Regex Whitelist à¹€à¸‰à¸žà¸²à¸°à¸•à¸±à¸§à¹€à¸¥à¸‚ 9 à¸«à¸¥à¸±à¸ à¸«à¸£à¸·à¸­à¹‚à¸”à¹€à¸¡à¸™ <code>@parichat.skru.ac.th</code> / <code>@skru.ac.th</code> à¸›à¹‰à¸­à¸‡à¸à¸±à¸™ SQLi, NoSQLi à¹à¸¥à¸°à¸•à¸±à¸” Null Bytes
+          <strong>ช่องรหัสประจำตัว:</strong> ตรวจสอบ Regex Whitelist เฉพาะตัวเลข 9 หลัก หรือโดเมน <code>@parichat.skru.ac.th</code> / <code>@skru.ac.th</code> ป้องกัน SQLi, NoSQLi และตัด Null Bytes
         </div>
       </div>
 
       <div class="sec-item">
         <span class="badge">A07: Identification</span>
         <div style="font-size: 12.5px; color: #334155;">
-          <strong>à¸Šà¹ˆà¸­à¸‡à¸£à¸«à¸±à¸ªà¸œà¹ˆà¸²à¸™ & à¸à¸²à¸£à¹€à¸‚à¹‰à¸²à¸ªà¸¹à¹ˆà¸£à¸°à¸šà¸š:</strong> à¹€à¸‚à¹‰à¸²à¸£à¸«à¸±à¸ª Bcrypt (Salt 12), Constant-time matching à¸›à¹‰à¸­à¸‡à¸à¸±à¸™ Timing Attacks / Side-channel à¹à¸¥à¸°à¸ˆà¸³à¸à¸±à¸”à¸„à¸§à¸²à¸¡à¸¢à¸²à¸§ 8-128 à¸­à¸±à¸à¸©à¸£ à¸›à¹‰à¸­à¸‡à¸à¸±à¸™ ReDoS
+          <strong>ช่องรหัสผ่าน & การเข้าสู่ระบบ:</strong> เข้ารหัส Bcrypt (Salt 12), Constant-time matching ป้องกัน Timing Attacks / Side-channel และจำกัดความยาว 8-128 อักษร ป้องกัน ReDoS
         </div>
       </div>
 
       <div class="sec-item">
         <span class="badge">Anti-Brute Force</span>
         <div style="font-size: 12.5px; color: #334155;">
-          <strong>Rate Limiter & Lockout:</strong> à¸•à¸£à¸§à¸ˆà¸ªà¸­à¸š IP à¹à¸¥à¸°à¸šà¸±à¸à¸Šà¸µ à¸«à¸²à¸à¸à¸£à¸­à¸à¸£à¸«à¸±à¸ªà¸œà¹ˆà¸²à¸™à¸œà¸´à¸”à¹€à¸à¸´à¸™ 5 à¸„à¸£à¸±à¹‰à¸‡ à¸£à¸°à¸šà¸šà¸ˆà¸°à¸£à¸°à¸‡à¸±à¸šà¸Šà¸±à¹ˆà¸§à¸„à¸£à¸²à¸§ 15 à¸™à¸²à¸—à¸µ à¸žà¸£à¹‰à¸­à¸¡à¹à¸ˆà¹‰à¸‡à¹€à¸•à¸·à¸­à¸™à¹€à¸§à¸¥à¸²à¸™à¸±à¸šà¸–à¸­à¸¢à¸«à¸¥à¸±à¸‡
+          <strong>Rate Limiter & Lockout:</strong> ตรวจสอบ IP และบัญชี หากกรอกรหัสผ่านผิดเกิน 5 ครั้ง ระบบจะระงับชั่วคราว 15 นาที พร้อมแจ้งเตือนเวลานับถอยหลัง
         </div>
       </div>
 
       <div class="sec-item">
         <span class="badge">A01: CSRF & Headers</span>
         <div style="font-size: 12.5px; color: #334155;">
-          <strong>CSRF & Helmet Protection:</strong> à¹ƒà¸Šà¹‰ Double-submit HMAC CSRF Token, à¸•à¸´à¸”à¸•à¸±à¹‰à¸‡ CSP, X-Frame-Options, HSTS, SameSite Strict, à¹à¸¥à¸° HttpOnly Cookies à¸›à¹‰à¸­à¸‡à¸à¸±à¸™à¸à¸²à¸£à¸‚à¹‚à¸¡à¸¢ Session
+          <strong>CSRF & Helmet Protection:</strong> ใช้ Double-submit HMAC CSRF Token, ติดตั้ง CSP, X-Frame-Options, HSTS, SameSite Strict, และ HttpOnly Cookies ป้องกันการขโมย Session
         </div>
       </div>
     </div>
@@ -240,4 +240,3 @@
   <script src="js/login.js"></script>
 </body>
 </html>
-

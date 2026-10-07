@@ -6,82 +6,40 @@
   -webkit-font-smoothing: antialiased;
 }
 
-body {
+html, body {
   font-family: 'Prompt', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #3e3e42;
+  background: #FFFFFF;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 24px 10px;
+  overflow-x: hidden;
 }
 
-/* ================= 390px x 844px SCREEN CONTAINER ================= */
+/* ================= FULL SCREEN CONTAINER ================= */
 .screen-container {
   position: relative;
-  width: 390px;
-  height: 844px;
-  background: #FBF6E4;
-  overflow: hidden;
-  border-radius: 4px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  background: #FFFFFF;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0 auto;
+  padding-bottom: 50px;
 }
 
-/* ================= TOP LEFT DECORATIVE GRAPHICS ================= */
-.vector-top-1 {
-  position: absolute;
-  width: 15.36px;
-  height: 44px;
-  left: -9px;
-  top: 0px;
-  border: 1px solid rgba(0, 0, 0, 0.21);
-  transform: rotate(-167.23deg);
-  pointer-events: none;
-}
-
-.vector-top-3 {
-  position: absolute;
-  width: 15.36px;
-  height: 44px;
-  left: -9px;
-  top: 0px;
-  border: 1px solid rgba(0, 0, 0, 0.21);
-  transform: rotate(-167.23deg);
-  pointer-events: none;
-}
-
-.vector-top-2 {
-  position: absolute;
-  width: 15.36px;
-  height: 44px;
-  left: -6px;
-  top: 0px;
-  border: 1px solid rgba(0, 0, 0, 0.21);
-  transform: rotate(-167.23deg);
-  pointer-events: none;
-}
-
-.rect-yellow-top {
-  position: absolute;
-  width: 6px;
-  height: 126px;
-  left: 0px;
-  top: 0px;
-  background: rgba(242, 218, 66, 0.84);
-  pointer-events: none;
-  z-index: 1;
-}
-
+/* ================= TOP LEFT DECORATIVE GRAPHICS (HIDDEN) ================= */
+.vector-top-1,
+.vector-top-2,
+.vector-top-3,
+.rect-yellow-top,
 .ellipse-red-top {
-  position: absolute;
-  width: 22px;
-  height: 110px;
-  left: -4px;
-  top: 40px;
-  background: #FF0000;
-  border-radius: 0 11px 11px 0;
-  pointer-events: none;
-  z-index: 1;
+  display: none !important;
 }
 
 /* ================= NAVIGATION BACK CIRCLE BUTTON ================= */
@@ -231,12 +189,16 @@ body {
 .card-student-summary {
   box-sizing: border-box;
   position: absolute;
-  left: 24px;
+  left: 16px;
+  right: 16px;
+  width: calc(100% - 32px);
+  max-width: 440px;
+  margin: 0 auto;
   top: 144px;
-  width: 342px;
   height: 174px;
   background: #FFFFFF;
-  border: 1px solid #000000;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   border-radius: 18px;
   z-index: 2;
 }
@@ -350,15 +312,15 @@ body {
   position: absolute;
   right: 14px;
   top: 19px;
-  background: #F4E8B9;
+  background: #E8F5E9;
   border-radius: 6px;
   padding: 1.5px 6px;
   font-family: 'Prompt', sans-serif;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 7.5px;
   line-height: 10px;
-  color: #554400;
+  color: #2E7D32;
   white-space: nowrap;
 }
 
@@ -431,7 +393,7 @@ body {
   position: absolute;
   left: 116px;
   top: 77px;
-  width: 212px;
+  right: 14px;
   height: 1px;
   background: rgba(0, 0, 0, 0.08);
 }
@@ -534,12 +496,16 @@ body {
 .card-student-detail {
   box-sizing: border-box;
   position: absolute;
-  left: 24px;
+  left: 16px;
+  right: 16px;
+  width: calc(100% - 32px);
+  max-width: 440px;
+  margin: 0 auto;
   top: 330px;
-  width: 342px;
-  height: 470px;
+  height: 480px;
   background: #FFFFFF;
-  border: 1px solid #000000;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   border-radius: 18px;
   padding: 16px 18px;
   z-index: 2;
@@ -645,79 +611,14 @@ body {
   margin: 4.5px 0;
 }
 
-/* ================= BOTTOM DECORATIVE SHAPES ================= */
-.ellipse-bottom-9 {
-  position: absolute;
-  width: 257px;
-  height: 547px;
-  left: -207px;
-  top: 638px;
-  background: rgba(255, 0, 0, 0.29);
-  transform: rotate(-90deg);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.ellipse-bottom-10 {
-  position: absolute;
-  width: 257px;
-  height: 547px;
-  left: -280px;
-  top: 614px;
-  background: rgba(255, 0, 0, 0.54);
-  transform: rotate(-90deg);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.vector-bottom-2 {
-  position: absolute;
-  width: 15.36px;
-  height: 44px;
-  left: 372px;
-  top: 810px;
-  border: 1px solid rgba(0, 0, 0, 0.21);
-  transform: rotate(15deg);
-  pointer-events: none;
-  z-index: 3;
-}
-
-.vector-bottom-1 {
-  position: absolute;
-  width: 15.36px;
-  height: 44px;
-  left: 376px;
-  top: 810px;
-  border: 1px solid rgba(0, 0, 0, 0.21);
-  transform: rotate(15deg);
-  pointer-events: none;
-  z-index: 3;
-}
-
-.rect-yellow-bottom {
-  position: absolute;
-  width: 6px;
-  height: 126px;
-  left: 384px;
-  top: 766px;
-  background: rgba(242, 218, 66, 0.84);
-  pointer-events: none;
-  z-index: 3;
-}
-
+/* ================= BOTTOM DECORATIVE SHAPES (HIDDEN) ================= */
+.ellipse-bottom-9,
+.ellipse-bottom-10,
+.vector-bottom-1,
+.vector-bottom-2,
+.rect-yellow-bottom,
 .ellipse-red-bottom {
-  position: absolute;
-  width: 18px;
-  height: 91px;
-  left: 378px;
-  top: 742px;
-  background: #FF0000;
-  transform: rotate(-180deg);
-  border-radius: 9px;
-  pointer-events: none;
-  z-index: 3;
+  display: none !important;
 }
 
 /* ================= TOAST NOTIFICATION ================= */

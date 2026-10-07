@@ -1,5 +1,23 @@
 // SKRU Tuition Fee Frontend Logic
 const mockStudents = {
+  '674295027': {
+    id: '674295027',
+    name: 'นายสมชาย ใจดี',
+    faculty: 'คณะวิทยาศาสตร์และเทคโนโลยี',
+    major: 'สาขาวิชาเทคโนโลยีและนวัตกรรมดิจิทัล (ITDI)',
+    year: 3,
+    fee: {
+      id: 'FEE001',
+      studentId: '674295027',
+      semester: '1/2569',
+      description: 'ค่าธรรมเนียมการศึกษา ภาคเรียนที่ 1/2569',
+      refCode1: '1234620311123485687',
+      refCode2: '1234620311123485175',
+      amount: 11000.00,
+      status: 'pending',
+      dueDate: '30 พ.ย. 2569'
+    }
+  },
   '6530100001': {
     id: '6530100001',
     name: 'นาย.กรรณพัต วังค้อม',

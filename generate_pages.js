@@ -367,6 +367,14 @@ function createAppPageHtml(currentService) {
       background: rgba(255,255,255,0.15);
     }
 
+    /* Hide topbar when loaded inside an iframe */
+    body.in-iframe .app-topbar {
+      display: none !important;
+    }
+    body.in-iframe .app-body-frame {
+      height: 100vh !important;
+    }
+
     .app-body-frame {
       flex: 1;
       width: 100%;
@@ -379,7 +387,7 @@ function createAppPageHtml(currentService) {
 <body>
   <!-- Native App Navigation Bar -->
   <header class="app-topbar">
-    <a href="index.html" class="btn-app-back" title="กลับสู่ SKRU SuperApp">
+    <a href="index.html" class="btn-app-back" title="กลับสู่ SKRU SuperApp" onclick="if (window.parent && window.parent !== window) { event.preventDefault(); window.parent.postMessage({ type: 'closeApp' }, '*'); }">
       <i class="fa-solid fa-chevron-left"></i> หน้าหลักแอป
     </a>
 
@@ -392,7 +400,7 @@ function createAppPageHtml(currentService) {
       <select class="app-select-nav" onchange="location.href=this.value" title="สลับบริการ">
         ${optionsHtml}
       </select>
-      <a href="${currentService.target}" target="_blank" class="btn-open-direct" title="เปิดหน้าต่างแยกเต็มจอ">
+      <a href="${currentService.target}" target="_blank" class="btn-open-direct" title="เปิดหน้าต่างแยก">
         <i class="fa-solid fa-up-right-from-square"></i>
       </a>
     </div>
@@ -400,6 +408,27 @@ function createAppPageHtml(currentService) {
 
   <!-- Application Content Frame -->
   <iframe src="${currentService.target}" class="app-body-frame" id="appBodyFrame" title="${currentService.thaiTitle}"></iframe>
+
+  <script>
+    if (window.self !== window.top) {
+      document.body.classList.add('in-iframe');
+    }
+    // Listen for back/close requests from child iframe
+    window.addEventListener('message', (event) => {
+      if (
+        event.data === 'closeApp' || 
+        event.data?.type === 'closeApp' || 
+        event.data?.action === 'closeApp' || 
+        event.data?.action === 'back'
+      ) {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'closeApp' }, '*');
+        } else {
+          window.location.href = 'index.html';
+        }
+      }
+    });
+  </script>
 </body>
 </html>
 `;

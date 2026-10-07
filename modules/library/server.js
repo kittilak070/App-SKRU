@@ -29,12 +29,12 @@ function calcDaysLeft(dueDateStr) {
 
 // ── User Profile State ────────────────────────────────────────
 let userData = {
-  name: "กัญญาพัชร วงศ์สว่าง",
-  studentId: "651234567",
-  faculty: "คณะวิทยาการจัดการ",
+  name: "นายสมชาย ใจดี",
+  studentId: "674295027",
+  faculty: "คณะวิทยาศาสตร์และเทคโนโลยี (สาขา ITDI)",
   status: "ปกติ",
   maxLoans: 5,
-  fineBalance: 25.00,
+  fineBalance: 0.00,
   avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80"
 };
 

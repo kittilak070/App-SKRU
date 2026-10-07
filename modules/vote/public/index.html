@@ -75,13 +75,74 @@
       </div>
     </section>
 
-    <!-- Success Modal Overlay -->
+    <!-- Success Modal Overlay with Receipt Card -->
     <div class="modal-overlay" id="successModal">
       <div class="success-icon">✓</div>
-      <h2 class="modal-title">ขอบคุณสำหรับความคิดเห็น!</h2>
-      <p class="modal-message">เราได้บันทึกคะแนนความพึงพอใจของท่านเรียบร้อยแล้ว เพื่อนำไปพัฒนาและปรับปรุงการให้บริการต่อไป</p>
-      <button type="button" class="btn-secondary" id="resetBtn">ให้คะแนนใหม่อีกครั้ง</button>
+      <h2 class="modal-title">บันทึกข้อมูลเรียบร้อยแล้ว!</h2>
+      <p class="modal-message">เราได้บันทึกคะแนนความพึงพอใจของคุณเข้าสู่ระบบฐานข้อมูล SKRU แล้ว</p>
+
+      <!-- Live Recorded Details Card -->
+      <div class="receipt-card" id="receiptCard">
+        <div class="receipt-badge">
+          <span class="badge-dot"></span> บันทึกในระบบเรียบร้อย (SKRU Database)
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">คะแนนที่ให้:</span>
+          <span class="receipt-val highlight-gold" id="receiptScoreText">⭐⭐⭐⭐⭐ 5.0 (ดีมาก)</span>
+        </div>
+        <div class="receipt-row" id="receiptCommentRow">
+          <span class="receipt-label">ข้อเสนอแนะ:</span>
+          <span class="receipt-val" id="receiptCommentText">-</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">เวลาที่บันทึก:</span>
+          <span class="receipt-val" id="receiptTimeText">-</span>
+        </div>
+      </div>
+
+      <div class="modal-buttons">
+        <button type="button" class="btn-view-records" id="btnViewRecords">📋 ดูรายการโหวตที่บันทึกแล้ว</button>
+        <button type="button" class="btn-secondary" id="resetBtn">ให้คะแนนใหม่อีกครั้ง</button>
+      </div>
     </div>
+
+    <!-- Section: Live Recorded Votes & Community Feedback -->
+    <section class="live-feed-section" id="liveFeedSection">
+      <div class="feed-header-banner">
+        <div class="feed-title-box">
+          <h2 class="feed-title">📊 ข้อมูลการบันทึกคะแนนและสถิติ</h2>
+          <span class="feed-subtitle">รายการประเมินความพึงพอใจจริงที่บันทึกในระบบ SKRU</span>
+        </div>
+        <a href="admin.html" class="btn-dashboard-link" title="เปิดหน้าแดชบอร์ดสถิติเต็มรูปแบบ">
+          แดชบอร์ดสถิติ ↗
+        </a>
+      </div>
+
+      <!-- Quick Summary Cards -->
+      <div class="feed-stats-grid">
+        <div class="feed-stat-card">
+          <div class="feed-stat-val" id="liveAvgScore">0.0</div>
+          <div class="feed-stat-label">คะแนนเฉลี่ย</div>
+          <div class="feed-stars-visual" id="liveAvgStars">☆☆☆☆☆</div>
+        </div>
+        <div class="feed-stat-card">
+          <div class="feed-stat-val" id="liveTotalCount">0</div>
+          <div class="feed-stat-label">ผู้ร่วมโหวตทั้งหมด</div>
+          <div class="feed-stat-note">บันทึกเรียลไทม์</div>
+        </div>
+      </div>
+
+      <!-- Live Recorded Submissions List -->
+      <div class="feed-list-container">
+        <div class="feed-list-title">
+          <span>ประวัติคะแนนที่บันทึกแล้วล่าสุด</span>
+          <span class="live-tag"><span class="pulse-dot"></span> Real-time</span>
+        </div>
+        <div class="feed-items-list" id="feedItemsList">
+          <div class="feed-loading">กำลังโหลดข้อมูลประวัติการโหวต...</div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Bottom navigation links -->

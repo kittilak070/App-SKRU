@@ -184,7 +184,7 @@
         <p>มหาวิทยาลัยราชภัฏสงขลา (SKRU)</p>
       </div>
       <div class="header-actions">
-        <a href="/" class="btn-header">👈 กลับหน้าฟอร์ม</a>
+        <a href="index.html" class="btn-header">👈 กลับหน้าฟอร์ม</a>
         <button type="button" class="btn-header" id="refreshBtn">🔄 รีเฟรช</button>
         <button type="button" class="btn-header" id="exportBtn" style="background:#16a34a; border-color:#15803d;">📥 ส่งออก CSV</button>
       </div>
@@ -264,8 +264,18 @@
         const res = await fetch('/api/ratings');
         if (res.ok) {
           const data = await res.json();
-          globalRatings = data.ratings || [];
-          renderDashboard(data.stats, globalRatings);
+          const list = Array.isArray(data) ? data : (data.ratings || []);
+          let stats = data.stats;
+          if (!stats) {
+            const total = list.length;
+            const totalScore = list.reduce((sum, r) => sum + Number(r.score || 0), 0);
+            const avg = total > 0 ? (totalScore / total).toFixed(2) : '0.00';
+            const dist = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+            list.forEach(r => { if (dist[r.score] !== undefined) dist[r.score]++; });
+            stats = { total, average: Number(avg), distribution: dist };
+          }
+          globalRatings = list;
+          renderDashboard(stats, globalRatings);
           return;
         }
       } catch (e) {

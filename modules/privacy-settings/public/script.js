@@ -55,3 +55,13 @@ consentForm.addEventListener('submit', async function(e) {
         submitBtn.textContent = 'ยืนยัน';
     }
 });
+
+function handleBack() {
+    if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'closeApp' }, '*');
+    } else if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        window.location.href = '/index.html';
+    }
+}

@@ -758,7 +758,13 @@ function rejectBooking(bookingId) {
 
 // --- NAVIGATION & ACTIONS ---
 function handleBack() {
-  showToast("ย้อนกลับไปยังเมนูก่อนหน้า");
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: 'closeApp' }, '*');
+  } else if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    window.location.href = '/index.html';
+  }
 }
 
 function navigateTo(target) {
